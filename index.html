@@ -102,149 +102,15 @@ body {
   transition: transform 0.4s ease;
 }
 
-@keyframes float {
-  0% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1))
-      translateY(0px);
-  }
-  50% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1))
-      translateY(-6px);
-  }
-  100% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1))
-      translateY(0px);
-  }
-}
-
-.orbit:hover {
-  animation-play-state: paused;
-  transform:
-    translate(-50%, -50%)
-    translate(var(--x), var(--y))
-    rotate(0deg)
-    scale(1.05);
-}
-
 /* =====================
-   WELCOME BANNER
+   WELCOME BANNER PLACEHOLDER
 ===================== */
 
 .welcome-banner {
-  width: 720px;
-  max-width: 92%;
-  margin: 30px auto 10px auto;
-  padding: 24px 30px;
-  text-align: center;
-
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.6),
-    rgba(200,220,255,0.35)
-  );
-
-  border: 1px solid rgba(120,160,255,0.6);
-  border-radius: 18px;
-
-  box-shadow:
-    0 0 25px rgba(120,180,255,0.35),
-    inset 0 0 12px rgba(255,255,255,0.6);
-
-  backdrop-filter: blur(10px);
-  z-index: 9;
-}
-
-.welcome-banner h1 {
-  margin: 0;
-  font-size: 42px;
-  letter-spacing: 2px;
-
-  background: linear-gradient(90deg, #3a6df0, #6cc3ff, #3a6df0);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbow 6s linear infinite;
-}
-
-.welcome-banner p {
-  margin-top: 10px;
-  font-size: 18px;
-  opacity: 0.85;
-}
-
-/* =====================
-   AERO WINDOWS
-===================== */
-
-.aero-window {
-  position: relative;
-  margin: 40px auto;
+  margin: 30px auto;
   width: 700px;
   max-width: 90%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255,255,255,0.6);
-  border-radius: 12px;
-  box-shadow:
-    0 0 20px rgba(0, 150, 255,0.2),
-    0 8px 32px rgba(0,0,0,0.1);
-  backdrop-filter: blur(12px);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transform: translate(var(--x, 0px), var(--y, 300px));
-}
-
-.aero-header {
-  height: 40px;
-  background: linear-gradient(180deg, #5c9ee8 0%, #1e62d0 50%, #134bb0 51%, #458ce0 100%);
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-  border-bottom: 1px solid #0d3882;
-}
-
-.aero-title {
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Verdana;
-}
-
-.aero-content {
-  padding: 20px;
-  background: rgba(168,198,227,0.309);
-}
-
-/* gradient headings */
-
-.aero-content h3,
-h4 {
   text-align: center;
-  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-  background-size: 400% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbow 5s linear infinite;
-}
-
-.aero-content h3 { font-size: 50px; }
-h4 { font-size: 30px; }
-
-@keyframes rainbow {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 0%; }
 }
 </style>
 </head>
@@ -277,53 +143,16 @@ h4 { font-size: 30px; }
    style="--x:300px; --y:200px; --r:25deg;">
 </div>
 
-<!-- Welcome banner -->
+<!-- Welcome banner placeholder -->
 <div class="welcome-banner">
-  <h1>WELCOME TO EPHEMERA</h1>
-  <p>a small creative studio floating somewhere on the internet ✦</p>
+  <!-- Replace src with your banner image -->
+  <img src="" alt="Welcome banner" style="width:100%; height:auto;">
 </div>
 
 <!-- Aero windows -->
 <div class="aero-window">
-  <div class="aero-header">
-    <div class="aero-title">★ WELCOME ★</div>
-  </div>
-  <div class="aero-content">
-    <h4>Hi! We are EPHEMERA</h4>
-    <p>A small creative studio run by two friends with too many browser tabs open.</p>
-  </div>
+  ...
 </div>
-
-<div class="aero-window">
-  <div class="aero-header">
-    <div class="aero-title">★ Another Section ★</div>
-  </div>
-  <div class="aero-content">
-    <h3>second box here</h3>
-    <p>can add more windows</p>
-  </div>
-</div>
-
-<script>
-const STAR_IMAGES = [
-  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
-  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png",
-  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png"
-];
-
-for (let i = 0; i < 50; i++) {
-  const star = document.createElement("div");
-  star.className = "star";
-  const img = document.createElement("img");
-  img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
-  star.style.left = Math.random() * window.innerWidth + "px";
-  star.style.width = Math.random() * 18 + 12 + "px";
-  star.style.animationDuration = Math.random() * 15 + 10 + "s";
-  star.style.animationDelay = Math.random() * -15 + "s";
-  star.appendChild(img);
-  document.body.appendChild(star);
-}
-</script>
 
 </body>
 </html>
