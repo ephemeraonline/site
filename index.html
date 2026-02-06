@@ -6,9 +6,10 @@
 <title>★EPHEMERA★</title>
 
 <style>
-/* =====================
+/* ==================================================
    GLOBAL / CURSOR
-===================== */
+   Site-wide cursor + typography
+================================================== */
 
 * {
   cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_GOOD.png"), auto !important;
@@ -26,15 +27,16 @@ body {
   font-family: 'NurealRegular', sans-serif;
 }
 
-/* fonts */
+/* Custom font */
 @font-face {
   font-family: 'NurealRegular';
   src: url('https://files.catbox.moe/zcgiwn.woff2') format('woff2');
 }
 
-/* =====================
-   FALLING STARS
-===================== */
+/* ==================================================
+   FALLING STARS (background ambience)
+   Decorative only — no interaction
+================================================== */
 
 .star {
   position: absolute;
@@ -59,9 +61,10 @@ body {
   }
 }
 
-/* =====================
-   DECOR PLANET
-===================== */
+/* ==================================================
+   DECOR PLANET (main centerpiece image)
+   Logo / hero graphic
+================================================== */
 
 #decor-e {
   display: block;
@@ -71,9 +74,10 @@ body {
   z-index: 10; 
 }
 
-/* =====================
+/* ==================================================
    ORBIT SYSTEM
-===================== */
+   Floating navigation / badges / stickers
+================================================== */
 
 .orbit-container {
   position: relative;
@@ -92,6 +96,7 @@ body {
   pointer-events: auto;
   z-index: 10;
 
+  /* Manual placement system */
   transform:
     translate(-50%, -50%)
     translate(var(--x), var(--y))
@@ -102,33 +107,7 @@ body {
   transition: transform 0.4s ease;
 }
 
-@keyframes float {
-  0% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1))
-      translateY(0px);
-  }
-  50% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1))
-      translateY(-6px);
-  }
-  100% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1))
-      translateY(0px);
-  }
-}
-
+/* Hover snaps upright */
 .orbit:hover {
   animation-play-state: paused;
   transform:
@@ -138,35 +117,38 @@ body {
     scale(1.05);
 }
 
-/* =====================
+/* ==================================================
    WELCOME BANNER
-===================== */
+   Large image header / announcement / seasonal banner
+================================================== */
 
 .welcome-banner {
   position: relative;
   width: 720px;
-  height: auto;
   max-width: 100%;
   margin: 40px auto;
   z-index: 10;
   display: block;
 
+  /* Same placement controls as decor */
   transform:
     translate(var(--x, 0px), var(--y, 0px))
     rotate(var(--r, 0deg))
     scale(var(--s, 1));
 }
 
-
-/* =====================
+/* ==================================================
    AERO WINDOWS
-===================== */
+   Main content blocks (stack vertically)
+================================================== */
 
 .aero-window {
   position: relative;
   margin: 40px auto;
   width: 700px;
   max-width: 90%;
+
+  /* Glass / Aero look */
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255,255,255,0.6);
   border-radius: 12px;
@@ -174,15 +156,22 @@ body {
     0 0 20px rgba(0, 150, 255,0.2),
     0 8px 32px rgba(0,0,0,0.1);
   backdrop-filter: blur(12px);
+
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transform: translate(var(--x, 0px), var(--y, 300px));
 }
 
+/* Window title bar */
 .aero-header {
   height: 40px;
-  background: linear-gradient(180deg, #5c9ee8 0%, #1e62d0 50%, #134bb0 51%, #458ce0 100%);
+  background: linear-gradient(
+    180deg,
+    #5c9ee8 0%,
+    #1e62d0 50%,
+    #134bb0 51%,
+    #458ce0 100%
+  );
   display: flex;
   align-items: center;
   padding-left: 15px;
@@ -196,25 +185,25 @@ body {
   font-family: Verdana;
 }
 
+/* Window content area */
 .aero-content {
   padding: 20px;
   background: rgba(168,198,227,0.309);
 }
 
-/* gradient headings */
-
+/* Optional decorative headings inside windows */
 .aero-content h3,
 h4 {
   text-align: center;
-  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  background: linear-gradient(
+    90deg,
+    red, orange, yellow, green, blue, indigo, violet
+  );
   background-size: 400% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: rainbow 5s linear infinite;
 }
-
-.aero-content h3 { font-size: 50px; }
-h4 { font-size: 30px; }
 
 @keyframes rainbow {
   0% { background-position: 0% 0%; }
@@ -225,39 +214,69 @@ h4 { font-size: 30px; }
 
 <body>
 
-<!-- Decor planet -->
-<img id="decor-e" src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png" alt="E">
+<!-- ==================================================
+     HERO / LOGO IMAGE
+     Main brand graphic
+================================================== -->
+<img id="decor-e"
+     src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
+     alt="EPHEMERA logo">
 
-<!-- Orbiting decor -->
+<!-- ==================================================
+     ORBITING DECOR
+     Could be:
+     - Navigation buttons
+     - About / Work / Contact links
+     - Decorative badges
+================================================== -->
 <div class="orbit-container">
+
+  <!-- Example: Featured project / flyer -->
   <img class="orbit"
-   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png"
-   style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;">
-   
+       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png"
+       style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;">
+
+  <!-- Example: About page link -->
   <img class="orbit"
-   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
-   style="--x:130px; --y:-50px; --r:10deg;">
-   
+       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
+       style="--x:130px; --y:-50px; --r:10deg;">
+
+  <!-- Example: Work / portfolio -->
   <img class="orbit"
-   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_WORK.png"
-   style="--x:-340px; --y:200px; --r:-15deg;">
-    
+       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_WORK.png"
+       style="--x:-340px; --y:200px; --r:-15deg;">
+
+  <!-- Example: Contact -->
   <img class="orbit"
-   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-   style="--x:5px; --y:200px; --r:-15deg;">
-    
+       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
+       style="--x:5px; --y:200px; --r:-15deg;">
+
+  <!-- Example: Social links -->
   <img class="orbit"
-   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_SOCIALS.png"
-   style="--x:300px; --y:200px; --r:25deg;">
+       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_SOCIALS.png"
+       style="--x:300px; --y:200px; --r:25deg;">
 </div>
 
-<!-- Welcome banner -->
+<!-- ==================================================
+     WELCOME / ANNOUNCEMENT BANNER
+     Could be:
+     - “Under construction”
+     - Seasonal art
+     - Big statement graphic
+================================================== -->
 <div class="welcome-banner"
      style="--x: 0px; --y: 250px; --r: 0deg;">
-  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_banner.gif">
+  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_banner.gif"
+       alt="Welcome banner">
 </div>
 
-<!-- Aero windows -->
+<!-- ==================================================
+     AERO WINDOW: INTRO / STATUS
+     Could be:
+     - About text
+     - Site status
+     - Update log
+================================================== -->
 <div class="aero-window">
   <div class="aero-header">
     <div class="aero-title">★ WELCOME ★</div>
@@ -268,6 +287,13 @@ h4 { font-size: 30px; }
   </div>
 </div>
 
+<!-- ==================================================
+     AERO WINDOW: SECONDARY CONTENT
+     Could be:
+     - News
+     - Projects
+     - Embedded media
+================================================== -->
 <div class="aero-window">
   <div class="aero-header">
     <div class="aero-title">★ Another Section ★</div>
@@ -278,6 +304,10 @@ h4 { font-size: 30px; }
   </div>
 </div>
 
+<!-- ==================================================
+     FALLING STARS SCRIPT
+     Background decoration only
+================================================== -->
 <script>
 const STAR_IMAGES = [
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
