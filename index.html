@@ -90,7 +90,7 @@ body {
   left: 50%;
   width: 150px;
   pointer-events: auto;
- z-index: 10;
+  z-index: 10;
 
   transform:
     translate(-50%, -50%)
@@ -102,7 +102,6 @@ body {
   transition: transform 0.4s ease;
 }
 
-/* floating wobble */
 @keyframes float {
   0% {
     transform:
@@ -112,7 +111,6 @@ body {
       scale(var(--s, 1))
       translateY(0px);
   }
-
   50% {
     transform:
       translate(-50%, -50%)
@@ -121,7 +119,6 @@ body {
       scale(var(--s, 1))
       translateY(-6px);
   }
-
   100% {
     transform:
       translate(-50%, -50%)
@@ -132,7 +129,6 @@ body {
   }
 }
 
-/* snap upright on hover */
 .orbit:hover {
   animation-play-state: paused;
   transform:
@@ -140,6 +136,52 @@ body {
     translate(var(--x), var(--y))
     rotate(0deg)
     scale(1.05);
+}
+
+/* =====================
+   WELCOME BANNER
+===================== */
+
+.welcome-banner {
+  width: 720px;
+  max-width: 92%;
+  margin: 30px auto 10px auto;
+  padding: 24px 30px;
+  text-align: center;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.6),
+    rgba(200,220,255,0.35)
+  );
+
+  border: 1px solid rgba(120,160,255,0.6);
+  border-radius: 18px;
+
+  box-shadow:
+    0 0 25px rgba(120,180,255,0.35),
+    inset 0 0 12px rgba(255,255,255,0.6);
+
+  backdrop-filter: blur(10px);
+  z-index: 9;
+}
+
+.welcome-banner h1 {
+  margin: 0;
+  font-size: 42px;
+  letter-spacing: 2px;
+
+  background: linear-gradient(90deg, #3a6df0, #6cc3ff, #3a6df0);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 6s linear infinite;
+}
+
+.welcome-banner p {
+  margin-top: 10px;
+  font-size: 18px;
+  opacity: 0.85;
 }
 
 /* =====================
@@ -161,10 +203,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-
-  /* manual per-window positioning */
   transform: translate(var(--x, 0px), var(--y, 300px));
-  transition: transform 0.4s ease;
 }
 
 .aero-header {
@@ -185,17 +224,11 @@ body {
 
 .aero-content {
   padding: 20px;
-  overflow-y: auto;
   background: rgba(168,198,227,0.309);
 }
 
-.aero-content p {
-  font-size: 18px;
-  line-height: 1;
-  margin-bottom: 1em;
-}
-
 /* gradient headings */
+
 .aero-content h3,
 h4 {
   text-align: center;
@@ -213,34 +246,6 @@ h4 { font-size: 30px; }
   0% { background-position: 0% 0%; }
   100% { background-position: 100% 0%; }
 }
-
-/* =====================
-   RESPONSIVE
-===================== */
-
-@media (max-width: 768px) {
-  #decor-e { width: 220px; }
-  .orbit-container { width: 220px; height: 220px; }
-  .orbit { width: 90px; }
-
-  /* SCALE DOWN ORBIT OFFSETS SO THEY STAY CENTERED */
-  .orbit {
-    --x: calc(var(--x) * 0.6);
-    --y: calc(var(--y) * 0.6);
-  }
-}
-
-@media (max-width: 480px) {
-  #decor-e { width: 160px; }
-  .orbit-container { width: 180px; height: 180px; }
-  .orbit { width: 70px; }
-
-  /* SCALE DOWN ORBIT OFFSETS EVEN MORE */
-  .orbit {
-    --x: calc(var(--x) * 0.35);
-    --y: calc(var(--y) * 0.35);
-  }
-}
 </style>
 </head>
 
@@ -252,7 +257,7 @@ h4 { font-size: 30px; }
 <!-- Orbiting decor -->
 <div class="orbit-container">
   <img class="orbit"
-   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png""
+   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png"
    style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;">
    
   <img class="orbit"
@@ -260,16 +265,22 @@ h4 { font-size: 30px; }
    style="--x:130px; --y:-50px; --r:10deg;">
    
   <img class="orbit"
-    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_WORK.png""
-    style="--x:-340px; --y:200px; --r:-15deg;">
+   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_WORK.png"
+   style="--x:-340px; --y:200px; --r:-15deg;">
     
   <img class="orbit"
-    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png""
-    style="--x:5px; --y:200px; --r:-15deg;">
+   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
+   style="--x:5px; --y:200px; --r:-15deg;">
     
   <img class="orbit"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_SOCIALS.png""
-       style="--x:300px; --y:200px; --r:25deg;">
+   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_SOCIALS.png"
+   style="--x:300px; --y:200px; --r:25deg;">
+</div>
+
+<!-- Welcome banner -->
+<div class="welcome-banner">
+  <h1>WELCOME TO EPHEMERA</h1>
+  <p>a small creative studio floating somewhere on the internet ✦</p>
 </div>
 
 <!-- Aero windows -->
@@ -278,7 +289,6 @@ h4 { font-size: 30px; }
     <div class="aero-title">★ WELCOME ★</div>
   </div>
   <div class="aero-content">
-     <center><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_banner.gif" width="700"></center>
     <h4>Hi! We are EPHEMERA</h4>
     <p>A small creative studio run by two friends with too many browser tabs open.</p>
   </div>
@@ -294,7 +304,6 @@ h4 { font-size: 30px; }
   </div>
 </div>
 
-<!-- Falling stars script -->
 <script>
 const STAR_IMAGES = [
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
