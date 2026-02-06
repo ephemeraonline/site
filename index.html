@@ -102,15 +102,99 @@ body {
   transition: transform 0.4s ease;
 }
 
+@keyframes float {
+  0% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1))
+      translateY(0px);
+  }
+  50% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1))
+      translateY(-6px);
+  }
+  100% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1))
+      translateY(0px);
+  }
+}
+
+.orbit:hover {
+  animation-play-state: paused;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    rotate(0deg)
+    scale(1.05);
+}
+
 /* =====================
-   WELCOME BANNER PLACEHOLDER
+   WELCOME BANNER (IMAGE ONLY)
 ===================== */
 
 .welcome-banner {
-  margin: 30px auto;
+  width: 720px;
+  max-width: 92%;
+  margin: 30px auto 10px auto;
+}
+
+.welcome-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =====================
+   AERO WINDOWS
+===================== */
+
+.aero-window {
+  position: relative;
+  margin: 40px auto;
   width: 700px;
   max-width: 90%;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 12px;
+  box-shadow:
+    0 0 20px rgba(0, 150, 255,0.2),
+    0 8px 32px rgba(0,0,0,0.1);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translate(var(--x, 0px), var(--y, 300px));
+}
+
+.aero-header {
+  height: 40px;
+  background: linear-gradient(180deg, #5c9ee8 0%, #1e62d0 50%, #134bb0 51%, #458ce0 100%);
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  border-bottom: 1px solid #0d3882;
+}
+
+.aero-title {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Verdana;
+}
+
+.aero-content {
+  padding: 20px;
+  background: rgba(168,198,227,0.309);
 }
 </style>
 </head>
@@ -143,15 +227,19 @@ body {
    style="--x:300px; --y:200px; --r:25deg;">
 </div>
 
-<!-- Welcome banner placeholder -->
+<!-- Welcome banner (image placeholder) -->
 <div class="welcome-banner">
-  <!-- Replace src with your banner image -->
-  <img src="" alt="Welcome banner" style="width:100%; height:auto;">
+  <img src="" alt="Welcome banner image">
 </div>
 
 <!-- Aero windows -->
 <div class="aero-window">
-  ...
+  <div class="aero-header">
+    <div class="aero-title">★ WELCOME ★</div>
+  </div>
+  <div class="aero-content">
+    <p>A small creative studio run by two friends with too many browser tabs open.</p>
+  </div>
 </div>
 
 </body>
