@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPHEMERA</title>
+
+<style>
+/* =====================
+   GLOBAL / CURSOR
+===================== */
+
+* {
+  cursor: url("https://i.postimg.cc/hP09nJ09/EPH-CURSOR-GOOD.png"), auto !important;
+}
+
+a, button, img, .orbit {
+  cursor: url("https://i.postimg.cc/NFXvTqd2/EPH-CURSOR-BAD.png"), pointer !important;
+}
+
+body {
+  margin: 0;
+  background: #FFFFFF;
+  overflow-x: hidden;
+  color: #000;
+  font-family: 'NurealRegular', sans-serif;
+}
+
+/* fonts */
+@font-face {
+  font-family: 'NurealRegular';
+  src: url('https://files.catbox.moe/zcgiwn.woff2') format('woff2');
+}
+
+/* =====================
+   FALLING STARS
+===================== */
+
+.star {
+  position: absolute;
+  top: -60px;
+  pointer-events: none;
+  animation: fall linear infinite;
+  z-index: 1;
+}
+
+.star img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(200vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* =====================
+   DECOR PLANET
+===================== */
+
+#decor-e {
+  display: block;
+  margin: 40px auto;
+  width: 350px;
+  height: auto;
+}
+
+/* =====================
+   ORBIT SYSTEM
+===================== */
+
+.orbit-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 40px auto;
+  pointer-events: none;
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  pointer-events: auto;
+
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    rotate(var(--r, 0deg))
+    scale(var(--s, 1));
+
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.4s ease;
+}
+
+/* floating wobble */
+@keyframes float {
+  0% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1))
+      translateY(0px);
+  }
+
+  50% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1))
+      translateY(-6px);
+  }
+
+  100% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1))
+      translateY(0px);
+  }
+}
+
+/* snap upright on hover */
+.orbit:hover {
+  animation-play-state: paused;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    rotate(0deg)
+    scale(1.05);
+}
+
+/* =====================
+   AERO WINDOWS
+===================== */
+
+.aero-window {
+  position: relative;
+  margin: 40px auto;
+  width: 700px;
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 12px;
+  box-shadow:
+    0 0 20px rgba(0, 150, 255,0.2),
+    0 8px 32px rgba(0,0,0,0.1);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* manual per-window positioning */
+  transform: translate(var(--x, 0px), var(--y, 300px));
+  transition: transform 0.4s ease;
+}
+
+.aero-header {
+  height: 40px;
+  background: linear-gradient(180deg, #5c9ee8 0%, #1e62d0 50%, #134bb0 51%, #458ce0 100%);
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  border-bottom: 1px solid #0d3882;
+}
+
+.aero-title {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Verdana;
+}
+
+.aero-content {
+  padding: 20px;
+  overflow-y: auto;
+  background: rgba(168,198,227,0.309);
+}
+
+.aero-content p {
+  font-size: 18px;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+
+/* gradient headings */
+.aero-content h3,
+h4 {
+  text-align: center;
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 5s linear infinite;
+}
+
+.aero-content h3 { font-size: 50px; }
+h4 { font-size: 30px; }
+
+@keyframes rainbow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+
+@media (max-width: 768px) {
+  #decor-e { width: 220px; }
+  .orbit-container { width: 220px; height: 220px; }
+  .orbit { width: 90px; }
+
+  /* SCALE DOWN ORBIT OFFSETS SO THEY STAY CENTERED */
+  .orbit {
+    --x: calc(var(--x) * 0.6);
+    --y: calc(var(--y) * 0.6);
+  }
+}
+
+@media (max-width: 480px) {
+  #decor-e { width: 160px; }
+  .orbit-container { width: 180px; height: 180px; }
+  .orbit { width: 70px; }
+
+  /* SCALE DOWN ORBIT OFFSETS EVEN MORE */
+  .orbit {
+    --x: calc(var(--x) * 0.35);
+    --y: calc(var(--y) * 0.35);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Decor planet -->
+<img id="decor-e" src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png" alt="E">
+
+<!-- Orbiting decor -->
+<div class="orbit-container">
+  <img class="orbit"
+   src="https://i.postimg.cc/nrGTN3zP/FLYERS-ROUGH.png"
+   style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;">
+   
+  <img class="orbit"
+   src="https://i.postimg.cc/C5Hbd9Cs/EPHEMERA-ABOUT.png"
+   style="--x:130px; --y:-50px; --r:10deg;">
+   
+  <img class="orbit"
+    src="https://i.postimg.cc/vmXYHsNJ/EPHEMERA-WORK.png"
+    style="--x:-340px; --y:200px; --r:-15deg;">
+    
+  <img class="orbit"
+    src="https://i.postimg.cc/G3JDPwYg/EPHEMERA-CONTACT.png"
+    style="--x:5px; --y:200px; --r:-15deg;">
+    
+  <img class="orbit"
+       src="https://i.postimg.cc/7hmbF4n2/EPHEMERA-SOCIALS.png"
+       style="--x:300px; --y:200px; --r:25deg;">
+</div>
+
+<!-- Aero windows -->
+<div class="aero-window">
+  <div class="aero-header">
+    <div class="aero-title">★ WELCOME ★</div>
+  </div>
+  <div class="aero-content">
+    <h3>Hello!</h3>
+    <center><img src="https://artwork.neocities.org/photos/junk/welcome02015.gif" width="300"></center>
+    <h4>we are ephemera</h4>
+    <p>A small creative studio run by two friends with too many browser tabs open.</p>
+  </div>
+</div>
+
+<div class="aero-window">
+  <div class="aero-header">
+    <div class="aero-title">★ Another Section ★</div>
+  </div>
+  <div class="aero-content">
+    <h3>second box here</h3>
+    <p>Add as many windows as you want for your page.</p>
+  </div>
+</div>
+
+<!-- Falling stars script -->
+<script>
+const STAR_IMAGES = [
+  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
+  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png",
+  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png"
+];
+
+for (let i = 0; i < 50; i++) {
+  const star = document.createElement("div");
+  star.className = "star";
+  const img = document.createElement("img");
+  img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
+  star.style.left = Math.random() * window.innerWidth + "px";
+  star.style.width = Math.random() * 18 + 12 + "px";
+  star.style.animationDuration = Math.random() * 15 + 10 + "s";
+  star.style.animationDelay = Math.random() * -15 + "s";
+  star.appendChild(img);
+  document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>
