@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>★EPHEMERA★</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
 <style>
 /* ==================================================
    GLOBAL / CURSOR
-   Site-wide cursor + typography
 ================================================== */
-
 * {
   cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_GOOD.png"), auto !important;
 }
@@ -27,17 +27,14 @@ body {
   font-family: 'NurealRegular', sans-serif;
 }
 
-/* Custom font */
 @font-face {
   font-family: 'NurealRegular';
   src: url('https://files.catbox.moe/zcgiwn.woff2') format('woff2');
 }
 
 /* ==================================================
-   FALLING STARS (background ambience)
-   Decorative only — no interaction
+   FALLING STARS
 ================================================== */
-
 .star {
   position: absolute;
   top: -60px;
@@ -45,7 +42,6 @@ body {
   animation: fall linear infinite;
   z-index: 1;
 }
-
 .star img {
   width: 100%;
   height: auto;
@@ -53,32 +49,24 @@ body {
   opacity: 0.95;
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
 }
-
 @keyframes fall {
-  to {
-    transform: translateY(200vh) rotate(360deg);
-    opacity: 0;
-  }
+  to { transform: translateY(200vh) rotate(360deg); opacity: 0; }
 }
 
 /* ==================================================
-   DECOR PLANET (main centerpiece image)
-   Logo / hero graphic
+   DECOR PLANET
 ================================================== */
-
 #decor-e {
   display: block;
   margin: 40px auto;
   width: 350px;
   height: auto;
-  z-index: 10; 
+  z-index: 50;
 }
 
 /* ==================================================
    ORBIT SYSTEM
-   Floating navigation / badges / stickers
 ================================================== */
-
 .orbit-container {
   position: relative;
   width: 300px;
@@ -87,7 +75,6 @@ body {
   pointer-events: none;
   z-index: 10;
 }
-
 .orbit {
   position: absolute;
   top: 50%;
@@ -95,19 +82,14 @@ body {
   width: 150px;
   pointer-events: auto;
   z-index: 10;
-
-  /* Manual placement system */
   transform:
     translate(-50%, -50%)
     translate(var(--x), var(--y))
     rotate(var(--r, 0deg))
     scale(var(--s, 1));
-
   animation: float 6s ease-in-out infinite;
   transition: transform 0.4s ease;
 }
-
-/* Hover snaps upright */
 .orbit:hover {
   animation-play-state: paused;
   transform:
@@ -116,12 +98,26 @@ body {
     rotate(0deg)
     scale(1.05);
 }
+@keyframes float {
+  0%, 100% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1));
+  }
+  50% {
+    transform:
+      translate(-50%, -50%)
+      translate(calc(var(--x) + 6px), calc(var(--y) - 6px))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1));
+  }
+}
 
 /* ==================================================
    WELCOME BANNER
-   Large image header / announcement / seasonal banner
 ================================================== */
-
 .welcome-banner {
   position: relative;
   width: 720px;
@@ -129,8 +125,6 @@ body {
   margin: 40px auto;
   z-index: 10;
   display: block;
-
-  /* Same placement controls as decor */
   transform:
     translate(var(--x, 0px), var(--y, 210px))
     rotate(var(--r, 0deg))
@@ -139,16 +133,12 @@ body {
 
 /* ==================================================
    AERO WINDOWS
-   Main content blocks (stack vertically)
 ================================================== */
-
 .aero-window {
   position: relative;
   margin: 40px auto;
   width: 700px;
   max-width: 90%;
-
-  /* Glass / Aero look */
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255,255,255,0.6);
   border-radius: 12px;
@@ -156,7 +146,6 @@ body {
     0 0 20px rgba(0, 150, 255,0.2),
     0 8px 32px rgba(0,0,0,0.1);
   backdrop-filter: blur(12px);
-
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -165,8 +154,6 @@ body {
     rotate(var(--r, 0deg))
     scale(var(--s, 1));
 }
-
-/* Window title bar */
 .aero-header {
   height: 40px;
   background: linear-gradient(
@@ -181,21 +168,16 @@ body {
   padding-left: 15px;
   border-bottom: 1px solid #0d3882;
 }
-
 .aero-title {
   color: white;
   font-size: 14px;
   font-weight: bold;
   font-family: Verdana;
 }
-
-/* Window content area */
 .aero-content {
   padding: 20px;
   background: rgba(168,198,227,0.309);
 }
-
-/* Optional decorative headings inside windows */
 .aero-content h3,
 h4 {
   text-align: center;
@@ -208,79 +190,275 @@ h4 {
   -webkit-text-fill-color: transparent;
   animation: rainbow 5s linear infinite;
 }
-
 @keyframes rainbow {
   0% { background-position: 0% 0%; }
   100% { background-position: 100% 0%; }
 }
+
+/* ==================================================
+   MUSIC PLAYER CSS (YOUR PROVIDED STYLES)
+   + draggable tweaks
+================================================== */
+
+/* draggable container (wraps .player) */
+#player-drag {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  touch-action: none; /* important for mobile dragging */
+}
+
+/* your .player styles (kept) */
+.player {
+  width: fit-content;
+  border: #CECECE solid 2px;
+  border-radius: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(0deg, rgba(205,205,205,1) 0%, rgba(230,230,230,1) 30%, rgba(255,255,255,1) 100%);
+  padding: 5px;
+
+  /* helpful for dragging */
+  user-select: none;
+}
+
+/* make the whole player feel draggable (but don't break buttons) */
+.player .window {
+  cursor: grab !important;
+}
+.player.dragging .window {
+  cursor: grabbing !important;
+}
+
+/* --- seek slider (your styles) --- */
+.seek_slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #e4d5dc;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 8px;
+}
+.seek_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 8px;
+  height: 8px;
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #cecece;
+  padding-top: 3px;
+  position: relative;
+  bottom: 3px;
+}
+
+/* your big blob of UI css (kept mostly intact, only fixed obvious invalid selector) */
+button,input,label,option,select,table,textarea,ul.tree-view{-webkit-font-smoothing:none;font-family:"Myriad Pro";font-size:11px}
+h1{font-size:5rem}h2{font-size:2.5rem}h3{font-size:2rem}h4{font-size:1.5rem}
+u{border-bottom:.5px solid #222;text-decoration:none}
+button,input[type=reset],input[type=submit]{border:none;border-radius:0;box-sizing:border-box;color:transparent;min-height:23px;min-width:75px;padding:0 12px;text-shadow:0 0 #222}
+.vertical-bar,button,input[type=reset],input[type=submit].vertical-bar{height:20px;width:4px}
+button:not(:disabled):active,input[type=reset]:not(:disabled):active,input[type=submit]:not(:disabled):active{opacity:0.5}
+@media (not(hover)){
+  button:not(:disabled):hover,input[type=reset]:not(:disabled):hover,input[type=submit]:not(:disabled):hover{
+    box-shadow:inset -1px -1px #fff,inset 1px 1px #0a0a0a,inset -2px -2px #dfdfdf,inset 2px 2px grey
+  }
+}
+button:focus,input[type=reset]:focus,input[type=submit]:focus{opacity:1}
+button::-moz-focus-inner,input[type=reset]::-moz-focus-inner,input[type=submit]::-moz-focus-inner{border:0}
+:disabled,:disabled+label,input[readonly],input[readonly]+label{color:grey}
+:disabled+label,button:disabled,input[type=reset]:disabled,input[type=submit]:disabled{text-shadow:1px 1px 0 #fff}
+
+@media (not(hover)){
+  button:not(:disabled):hover {
+    box-shadow:inset -1px -1px #fff,inset 1px 1px #0a0a0a,inset -2px -2px #dfdfdf,inset 2px 2px grey
+  }
+}
+
+@font-face {
+  font-family: "Myriad Pro";
+  src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
+}
+
+.window, .title-bar {
+  font-family: "Myriad Pro";
+  -webkit-font-smoothing: none;
+  font-size: 11px;
+}
+
+.window {
+  padding: 10px;
+  width: 290px;
+}
+
+.window-body {
+  display: block;
+  margin: auto;
+  border-radius: 0em;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+}
+input[type=range]:focus { outline: none; }
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+}
+
+.flex { display: flex; }
+
+#musicplayer {
+  display: block;
+  float: right;
+  background: linear-gradient(0deg, #F1E3F0, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
+  border-radius: 60em;
+  border: 2px solid transparent;
+  margin-left: 8px;
+  padding-left: 10px;
+  box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+  -moz-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+}
+
+.wheel {
+  display: block;
+  justify-content: center;
+  margin: auto;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
+  border-radius: 50em;
+  border: 2px solid transparent;
+  padding-top: 0px;
+  box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+  -moz-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+}
+
+.innerwheel {
+  border-radius: 50em;
+  border: 2px solid #E2E2E2;
+  padding: 9px 12px 9px 10px;
+  margin: 0;
+  box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;
+  -moz-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;
+}
+
+th { width: 20px; margin: 0; }
+
+/* FIXED: original selector was invalid ".fas fa-minus" */
+.fas.fa-minus { margin: 0; padding-bottom: 5px; }
+
+.wheelcontrols {
+  font-size: 14px !important;
+  text-align: center;
+  padding-top: 2px;
+  color: #aaa;
+  opacity: 0.8;
+}
+.wheelcontrols button {
+  background: none;
+  border: none;
+  color: #aaa;
+  opacity: 0.6;
+  font-size: 14px;
+  padding: 2px;
+  cursor: pointer;
+}
+.wheelcontrols button:hover { opacity: 1; }
+
+.controls button:hover { opacity: 1; }
+
+.playpause-track {
+  font-size: 22px !important;
+  padding: 3px;
+}
+
+.songtitle {
+  padding: 25px;
+  color: #A3A3A3;
+  padding-bottom: 0;
+  margin-left: 15px;
+  margin-right: 20px;
+  font-size: 16px;
+  display: block;
+  font-family: "Myriad Pro";
+}
+
+.controls button {
+  display: block;
+  margin-left: 15px;
+  font-size: 14px !important;
+  text-align: center;
+  color: #ccb3be;
+  opacity: 0.6;
+}
+
+button {
+  min-width: 20px;
+  background: none;
+  text-align: center;
+}
+button:active { opacity: 0.7; }
+
+.seeking {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  padding-left: 0;
+  padding-bottom: 0px;
+  color: #A3A3A3;
+}
+
+.current-time { padding-right: 5px; }
+.total-duration { padding-left: 5px; }
 </style>
 </head>
 
 <body>
 
-<!-- ==================================================
-     HERO / LOGO IMAGE
-     Main brand graphic
-================================================== -->
 <img id="decor-e"
      src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
      alt="EPHEMERA logo">
 
-<!-- ==================================================
-     ORBITING DECOR
-     Could be:
-     - Navigation buttons
-     - About / Work / Contact links
-     - Decorative badges
-================================================== -->
 <div class="orbit-container">
-
-  <!-- Example: Featured project / flyer -->
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png"
        style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;">
-
-  <!-- Example: About page link -->
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
        style="--x:130px; --y:-50px; --r:10deg;">
-
-  <!-- Example: Work / portfolio -->
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_WORK.png"
        style="--x:-340px; --y:200px; --r:-15deg;">
-
-  <!-- Example: Contact -->
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
        style="--x:5px; --y:200px; --r:-15deg;">
-
-  <!-- Example: Social links -->
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_SOCIALS.png"
        style="--x:300px; --y:200px; --r:25deg;">
 </div>
 
-<!-- ==================================================
-     WELCOME / ANNOUNCEMENT BANNER
-     Could be:
-     - “Under construction”
-     - Seasonal art
-     - Big statement graphic
-================================================== -->
-<div class="welcome-banner"
-     style="--x: 0px; --y: 250px; --r: 0deg;">
+<div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;">
   <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_banner.gif"
        alt="Welcome banner">
 </div>
 
-<!-- ==================================================
-     AERO WINDOW: INTRO / STATUS
-     Could be:
-     - About text
-     - Site status
-     - Update log
-================================================== -->
 <div class="aero-window">
   <div class="aero-header">
     <div class="aero-title">★ WELCOME ★</div>
@@ -291,13 +469,6 @@ h4 {
   </div>
 </div>
 
-<!-- ==================================================
-     AERO WINDOW: SECONDARY CONTENT
-     Could be:
-     - News
-     - Projects
-     - Embedded media
-================================================== -->
 <div class="aero-window">
   <div class="aero-header">
     <div class="aero-title">★ Another Section ★</div>
@@ -309,10 +480,72 @@ h4 {
 </div>
 
 <!-- ==================================================
-     FALLING STARS SCRIPT
-     Background decoration only
+     DRAGGABLE MUSIC PLAYER
 ================================================== -->
+<div id="player-drag" aria-label="draggable music player">
+  <div class="player" id="player">
+    <div class="window" id="player-handle">
+      <div class="window-body">
+        <div class="flex">
+          <div class="wheel" style="height:100px;width:100px;">
+            <div class="wheelcontrols">
+              <button class="fas fa-plus" onclick="volumeUp()" style="padding-top:4px; padding-bottom:0;"></button>
+            </div>
+
+            <table class="wheelcontrols">
+              <th>
+                <button class="fas fa-backward" onclick="prevTrack()"></button>
+              </th>
+              <th class="innerwheel">
+                <button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button>
+              </th>
+              <th>
+                <button class="fas fa-forward" onclick="nextTrack()"></button>
+              </th>
+            </table>
+
+            <div class="wheelcontrols" style="padding:0;">
+              <button class="fas fa-minus" onclick="volumeDown()"></button>
+            </div>
+          </div>
+
+          <div id="musicplayer">
+            <div class="flex">
+              <marquee scrollamount="4" class="songtitle"></marquee>
+            </div>
+
+            <div class="seeking">
+              <div class="current-time">00:00</div>
+              <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+              <div class="total-duration">0:00</div>
+            </div>
+
+            <table class="controls">
+              <tr>
+                <td>
+                  <button type="button" title="Loop (visual only)"><div class="fas fa-sync"></div></button>
+                </td>
+                <td>
+                  <button type="button" title="Playlist (visual only)"><div class="fas fa-music"></div></button>
+                </td>
+                <td>
+                  <button type="button" title="Shuffle (visual only)"><div class="fas fa-random"></div></button>
+                </td>
+              </tr>
+            </table>
+
+            <audio id="music" src=""></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+/* ==================================================
+   FALLING STARS
+================================================== */
 const STAR_IMAGES = [
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png",
@@ -325,12 +558,206 @@ for (let i = 0; i < 50; i++) {
   const img = document.createElement("img");
   img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
   star.style.left = Math.random() * window.innerWidth + "px";
-  star.style.width = Math.random() * 18 + 12 + "px";
-  star.style.animationDuration = Math.random() * 15 + 10 + "s";
-  star.style.animationDelay = Math.random() * -15 + "s";
+  star.style.width = (Math.random() * 18 + 12) + "px";
+  star.style.animationDuration = (Math.random() * 15 + 10) + "s";
+  star.style.animationDelay = (Math.random() * -15) + "s";
   star.appendChild(img);
   document.body.appendChild(star);
 }
+
+/* ==================================================
+   MUSIC PLAYER SCRIPT
+================================================== */
+let track_name = document.querySelector(".songtitle");
+let seek_slider = document.querySelector(".seek_slider");
+let curr_time = document.querySelector(".current-time");
+let total_duration = document.querySelector(".total-duration");
+
+let track_index = 0;
+let isPlaying = false;
+let updateTimer;
+
+let curr_track = document.getElementById("music");
+
+let track_list = [
+  { name: "One Shot One Kill - The Cat's Whiskers", path: "https://files.catbox.moe/fegzmf.mp3" },
+  { name: "Shooting Arrows - The Cat's Whiskers", path: "https://files.catbox.moe/zj81lr.mp3" },
+  { name: "4 REAL - The Cat's Whiskers", path: "https://files.catbox.moe/fxd8fo.mp3" },
+  { name: "My Sweetest Love - The Cat's Whiskers ft. Kazuma Mitchell", path: "https://files.catbox.moe/qe4he5.mp3" },
+  { name: "Mercy On Me - The Cat's Whiskers", path: "https://files.catbox.moe/w7nnf9.mp3" }
+];
+
+function loadTrack(index) {
+  clearInterval(updateTimer);
+  resetValues();
+
+  curr_track.src = track_list[index].path;
+  curr_track.load();
+
+  track_name.textContent = track_list[index].name;
+
+  updateTimer = setInterval(seekUpdate, 1000);
+  curr_track.addEventListener("ended", nextTrack);
+}
+
+function resetValues() {
+  curr_time.textContent = "0:00";
+  total_duration.textContent = "0:00";
+  seek_slider.value = 0;
+}
+
+function playpauseTrack() {
+  if (!isPlaying) playTrack();
+  else pauseTrack();
+}
+
+function playTrack() {
+  curr_track.play();
+  isPlaying = true;
+  let playButton = document.querySelector(".playpause-track");
+  playButton.className = "playpause-track fas fa-pause";
+}
+
+function pauseTrack() {
+  curr_track.pause();
+  isPlaying = false;
+  let playButton = document.querySelector(".playpause-track");
+  playButton.className = "playpause-track fas fa-play";
+}
+
+function nextTrack() {
+  if (track_index < track_list.length - 1) track_index += 1;
+  else track_index = 0;
+
+  loadTrack(track_index);
+  if (isPlaying) playTrack();
+}
+
+function prevTrack() {
+  if (track_index > 0) track_index -= 1;
+  else track_index = track_list.length - 1;
+
+  loadTrack(track_index);
+  if (isPlaying) playTrack();
+}
+
+let currentVolume = curr_track.volume;
+
+function volumeUp() {
+  if (currentVolume < 1.0) {
+    currentVolume = Math.min(1.0, currentVolume + 0.2);
+    curr_track.volume = currentVolume;
+  }
+}
+
+function volumeDown() {
+  if (currentVolume > 0.0) {
+    currentVolume = Math.max(0.0, currentVolume - 0.2);
+    curr_track.volume = currentVolume;
+  }
+}
+
+function seekTo() {
+  let seekto = curr_track.duration * (seek_slider.value / 100);
+  curr_track.currentTime = seekto;
+}
+
+function seekUpdate() {
+  let seekPosition = 0;
+
+  if (!isNaN(curr_track.duration)) {
+    seekPosition = curr_track.currentTime * (100 / curr_track.duration);
+    seek_slider.value = seekPosition;
+
+    let currentMinutes = Math.floor(curr_track.currentTime / 60);
+    let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+    let durationMinutes = Math.floor(curr_track.duration / 60);
+    let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+
+    if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
+    if (durationSeconds < 10) durationSeconds = "0" + durationSeconds;
+
+    curr_time.textContent = currentMinutes + ":" + currentSeconds;
+    total_duration.textContent = durationMinutes + ":" + durationSeconds;
+  }
+}
+
+loadTrack(track_index);
+
+/* ==================================================
+   DRAGGABLE (mouse + touch)
+================================================== */
+(function makeDraggable() {
+  const dragWrap = document.getElementById("player-drag");
+  const handle = document.getElementById("player-handle");
+  const playerEl = document.getElementById("player");
+
+  let isDragging = false;
+  let startX = 0, startY = 0;
+  let startLeft = 0, startTop = 0;
+
+  // set initial position using left/top (so dragging math is easy)
+  // (convert bottom/left initial into left/top once)
+  const rect = dragWrap.getBoundingClientRect();
+  dragWrap.style.left = rect.left + "px";
+  dragWrap.style.top = rect.top + "px";
+  dragWrap.style.bottom = "auto";
+
+  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+
+  function pointerDown(e) {
+    // don't start drag when interacting with controls
+    const t = e.target;
+    if (t.closest("button") || t.closest("input") || t.closest("a") || t.closest("select") || t.closest("textarea")) {
+      return;
+    }
+
+    isDragging = true;
+    playerEl.classList.add("dragging");
+
+    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+    startX = p.clientX;
+    startY = p.clientY;
+
+    const r = dragWrap.getBoundingClientRect();
+    startLeft = r.left;
+    startTop = r.top;
+
+    e.preventDefault();
+  }
+
+  function pointerMove(e) {
+    if (!isDragging) return;
+
+    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+    const dx = p.clientX - startX;
+    const dy = p.clientY - startY;
+
+    const wrapRect = dragWrap.getBoundingClientRect();
+    const maxLeft = window.innerWidth - wrapRect.width;
+    const maxTop = window.innerHeight - wrapRect.height;
+
+    const nextLeft = clamp(startLeft + dx, 0, maxLeft);
+    const nextTop = clamp(startTop + dy, 0, maxTop);
+
+    dragWrap.style.left = nextLeft + "px";
+    dragWrap.style.top = nextTop + "px";
+  }
+
+  function pointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
+    playerEl.classList.remove("dragging");
+  }
+
+  handle.addEventListener("mousedown", pointerDown);
+  window.addEventListener("mousemove", pointerMove);
+  window.addEventListener("mouseup", pointerUp);
+
+  handle.addEventListener("touchstart", pointerDown, { passive: false });
+  window.addEventListener("touchmove", pointerMove, { passive: true });
+  window.addEventListener("touchend", pointerUp);
+})();
 </script>
 
 </body>
