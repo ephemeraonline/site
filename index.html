@@ -75,11 +75,12 @@ body {
   pointer-events: none;
   z-index: 10;
 }
+
 .orbit {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 150px;
+  width: 150px;                /* FLYERS_ROUGH stays same size */
   pointer-events: auto;
   z-index: 10;
   transform:
@@ -88,16 +89,18 @@ body {
     rotate(var(--r, 0deg))
     scale(var(--s, 1));
   animation: float 6s ease-in-out infinite;
-  transition: transform 0.4s ease;
+  transition: transform 0.2s ease;
+  will-change: transform;
 }
+
+/* subtle wiggle on hover, keeps each orbit's own --r and --s */
 .orbit:hover {
-  animation-play-state: paused;
-  transform:
-    translate(-50%, -50%)
-    translate(var(--x), var(--y))
-    rotate(0deg)
-    scale(1.05);
+  animation:
+    float 6s ease-in-out infinite,
+    orbitWiggle 0.9s ease-in-out infinite;
 }
+
+/* float stays as-is */
 @keyframes float {
   0%, 100% {
     transform:
@@ -111,6 +114,45 @@ body {
       translate(-50%, -50%)
       translate(calc(var(--x) + 6px), calc(var(--y) - 6px))
       rotate(var(--r, 0deg))
+      scale(var(--s, 1));
+  }
+}
+
+/* NEW: more subtle wiggle (tiny rotate + 1px nudge) */
+@keyframes orbitWiggle {
+  0% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(calc(var(--r, 0deg) - 0.7deg))
+      scale(var(--s, 1));
+  }
+  25% {
+    transform:
+      translate(-50%, -50%)
+      translate(calc(var(--x) + 1px), calc(var(--y) - 1px))
+      rotate(calc(var(--r, 0deg) + 0.9deg))
+      scale(var(--s, 1));
+  }
+  50% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(calc(var(--r, 0deg) - 0.9deg))
+      scale(var(--s, 1));
+  }
+  75% {
+    transform:
+      translate(-50%, -50%)
+      translate(calc(var(--x) - 1px), calc(var(--y) + 1px))
+      rotate(calc(var(--r, 0deg) + 0.7deg))
+      scale(var(--s, 1));
+  }
+  100% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(calc(var(--r, 0deg) - 0.7deg))
       scale(var(--s, 1));
   }
 }
@@ -442,16 +484,19 @@ button:active { opacity: 0.7; }
        style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;">
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
-       style="--x:130px; --y:-50px; --r:10deg;">
+       style="--x:100px; --y:-50px; --r:10deg;">
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_WORK.png"
-       style="--x:-340px; --y:200px; --r:-15deg;">
+       style="--x:-440px; --y:200px; --r:-15deg;">
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-       style="--x:5px; --y:200px; --r:-15deg;">
+       style="--x:-200px; --y:200px; --r:-15deg;">
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_SOCIALS.png"
        style="--x:300px; --y:200px; --r:25deg;">
+  <img class="orbit"
+       src="http://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STORE.png"
+       style="--x:60px; --y:200px; --r:25deg;">
 </div>
 
 <div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;">
@@ -548,6 +593,7 @@ button:active { opacity: 0.7; }
 ================================================== */
 const STAR_IMAGES = [
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
+  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png",
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png",
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png"
 ];
@@ -696,8 +742,6 @@ loadTrack(track_index);
   let startX = 0, startY = 0;
   let startLeft = 0, startTop = 0;
 
-  // set initial position using left/top (so dragging math is easy)
-  // (convert bottom/left initial into left/top once)
   const rect = dragWrap.getBoundingClientRect();
   dragWrap.style.left = rect.left + "px";
   dragWrap.style.top = rect.top + "px";
@@ -706,7 +750,6 @@ loadTrack(track_index);
   function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 
   function pointerDown(e) {
-    // don't start drag when interacting with controls
     const t = e.target;
     if (t.closest("button") || t.closest("input") || t.closest("a") || t.closest("select") || t.closest("textarea")) {
       return;
