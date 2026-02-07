@@ -233,11 +233,137 @@ h4 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: rainbow 5s linear infinite;
-  
+
 }
 @keyframes rainbow {
   0% { background-position: 0% 0%; }
   100% { background-position: 100% 0%; }
+}
+
+/* ==================================================
+   AERO GALLERY MODAL (ADDED)
+================================================== */
+.aero-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  z-index: 999999;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(2px);
+}
+.aero-overlay.is-open { display: grid; }
+
+.aero-gallery {
+  width: min(880px, calc(100vw - 28px));
+  height: min(560px, calc(100vh - 28px));
+  overflow: hidden;
+  transform: none; /* IMPORTANT: stop inherited translate() from .aero-window */
+}
+
+.aero-gallery-body {
+  height: calc(100% - 40px - 56px);
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  gap: 10px;
+  padding: 12px;
+  align-items: center;
+}
+
+.aero-stage {
+  height: 100%;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.35);
+  border: 1px solid rgba(0,0,0,0.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 10px;
+}
+
+#aero-gallery-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 14px 38px rgba(0,0,0,0.22);
+}
+
+.aero-nav {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.55));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 10px 20px rgba(0,0,0,0.10);
+  cursor: pointer;
+  font-size: 18px;
+  min-width: 44px; /* overrides your global button min-width */
+  color: rgba(0,0,0,0.85);
+  text-shadow: none;
+}
+
+.aero-nav:hover { transform: translateY(-1px); }
+.aero-nav:active { transform: translateY(0); }
+
+.aero-footer {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-top: 1px solid rgba(0,0,0,0.10);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.35));
+}
+
+.aero-counter {
+  font-size: 12.5px;
+  color: rgba(0,0,0,0.70);
+}
+
+.aero-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.aero-btn {
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.90), rgba(255,255,255,0.55));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
+  cursor: pointer;
+  font-size: 13px;
+  min-width: auto; /* overrides global */
+  color: rgba(0,0,0,0.85);
+  text-shadow: none;
+}
+.aero-btn:hover { transform: translateY(-1px); }
+.aero-btn:active { transform: translateY(0); }
+
+.aero-close-btn {
+  margin-left: auto;
+  margin-right: 10px;
+  width: 34px;
+  height: 28px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: rgba(255,255,255,0.25);
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  min-width: 34px;
+  text-shadow: none;
+}
+.aero-close-btn:hover {
+  background: rgba(255, 90, 90, 0.85);
+}
+
+@media (max-width: 640px) {
+  .aero-gallery-body { grid-template-columns: 44px 1fr 44px; }
+  .aero-nav { width: 38px; height: 38px; border-radius: 10px; min-width: 38px; }
 }
 
 /* ==================================================
@@ -483,23 +609,30 @@ button:active { opacity: 0.7; }
 
 <div class="orbit-container">
   <img class="orbit"
+       id="flyers-trigger"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png"
-       style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;">
+       style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;"
+       alt="Flyers rough">
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
-       style="--x:100px; --y:-50px; --r:10deg;">
+       style="--x:100px; --y:-50px; --r:10deg;"
+       alt="">
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_WORK.png"
-       style="--x:-440px; --y:200px; --r:-15deg;">
+       style="--x:-440px; --y:200px; --r:-15deg;"
+       alt="">
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-       style="--x:-200px; --y:200px; --r:-15deg;">
+       style="--x:-200px; --y:200px; --r:-15deg;"
+       alt="">
   <img class="orbit"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_SOCIALS.png"
-       style="--x:300px; --y:200px; --r:25deg;">
+       style="--x:300px; --y:200px; --r:25deg;"
+       alt="">
   <img class="orbit"
        src="http://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STORE.png"
-       style="--x:60px; --y:200px; --r:25deg;">
+       style="--x:60px; --y:200px; --r:25deg;"
+       alt="">
 </div>
 
 <div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;">
@@ -524,6 +657,39 @@ button:active { opacity: 0.7; }
   <div class="aero-content">
     <h3>second box here</h3>
     <p>can add more windows</p>
+  </div>
+</div>
+
+<!-- ==================================================
+     AERO GALLERY MODAL (ADDED)
+================================================== -->
+<div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
+  <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
+
+    <div class="aero-header">
+      <div class="aero-title">★ FLYERS ★</div>
+      <button class="aero-close-btn" id="aero-gallery-close-x" type="button" aria-label="Close">✕</button>
+    </div>
+
+    <div class="aero-gallery-body">
+      <button class="aero-nav" id="aero-gallery-prev" type="button" aria-label="Previous">◀</button>
+
+      <div class="aero-stage">
+        <img id="aero-gallery-img" src="" alt="Flyer preview">
+      </div>
+
+      <button class="aero-nav" id="aero-gallery-next" type="button" aria-label="Next">▶</button>
+    </div>
+
+    <div class="aero-footer">
+      <div class="aero-counter" id="aero-gallery-counter">1 / 1</div>
+
+      <div class="aero-actions">
+        <button class="aero-btn" id="aero-gallery-open" type="button">open image</button>
+        <button class="aero-btn" id="aero-gallery-close" type="button">close</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -613,6 +779,91 @@ for (let i = 0; i < 50; i++) {
   star.appendChild(img);
   document.body.appendChild(star);
 }
+
+/* ==================================================
+   AERO GALLERY (ADDED)
+   Opens on click of FLYERS_ROUGH.png orbit
+================================================== */
+(function () {
+  const trigger = document.getElementById("flyers-trigger") ||
+    document.querySelector('img[src*="FLYERS_ROUGH.png"]');
+
+  const overlay = document.getElementById("aero-gallery-overlay");
+  const img = document.getElementById("aero-gallery-img");
+  const counter = document.getElementById("aero-gallery-counter");
+
+  const prevBtn = document.getElementById("aero-gallery-prev");
+  const nextBtn = document.getElementById("aero-gallery-next");
+  const closeBtn = document.getElementById("aero-gallery-close");
+  const closeX = document.getElementById("aero-gallery-close-x");
+  const openBtn = document.getElementById("aero-gallery-open");
+
+  if (!trigger || !overlay || !img || !counter || !prevBtn || !nextBtn || !closeBtn || !closeX || !openBtn) return;
+
+  // Swap these to your real flyer URLs
+  const flyers = [
+    "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
+    "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png",
+    "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png"
+  ];
+
+  let index = 0;
+
+  function render() {
+    img.src = flyers[index];
+    counter.textContent = (index + 1) + " / " + flyers.length;
+  }
+
+  function open() {
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    render();
+    closeX.focus();
+  }
+
+  function close() {
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  function prev() {
+    index = (index - 1 + flyers.length) % flyers.length;
+    render();
+  }
+
+  function next() {
+    index = (index + 1) % flyers.length;
+    render();
+  }
+
+  trigger.addEventListener("click", function (e) {
+    e.preventDefault && e.preventDefault();
+    open();
+  });
+
+  prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", next);
+
+  closeBtn.addEventListener("click", close);
+  closeX.addEventListener("click", close);
+
+  openBtn.addEventListener("click", function () {
+    window.open(flyers[index], "_blank", "noopener,noreferrer");
+  });
+
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) close();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (!overlay.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") prev();
+    if (e.key === "ArrowRight") next();
+  });
+})();
 
 /* ==================================================
    MUSIC PLAYER SCRIPT
