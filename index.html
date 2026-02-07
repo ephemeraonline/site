@@ -635,6 +635,36 @@ button:active { opacity: 0.7; }
 
 .current-time { padding-right: 5px; }
 .total-duration { padding-left: 5px; }
+
+/* ==================================================
+   FLOATING MUTE BUTTON (IMAGE SWAPPABLE)
+================================================== */
+#mute-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000000;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+}
+#mute-float img {
+  width: 44px;
+  height: 44px;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#mute-float:active {
+  transform: translateY(1px);
+}
 </style>
 </head>
 
@@ -703,11 +733,8 @@ button:active { opacity: 0.7; }
 <div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
   <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
 
-    
     <div class="aero-header">
-       
       <div class="aero-title">our flyers</div>
-   
       <button class="aero-close-btn" id="aero-gallery-close-x" type="button" aria-label="Close">✕</button>
     </div>
 
@@ -727,7 +754,6 @@ button:active { opacity: 0.7; }
       <div class="aero-counter" id="aero-gallery-counter">1 / 1</div>
 
       <div class="aero-actions">
-        <!-- replaced open text with magnifying glass (toggles zoom) -->
         <button class="aero-btn" id="aero-gallery-zoom" type="button" aria-label="Zoom">
           <i class="fas fa-search"></i>
         </button>
@@ -800,6 +826,15 @@ button:active { opacity: 0.7; }
   </div>
 </div>
 
+<!-- ==================================================
+     FLOATING MUTE TOGGLE (CHANGE IMAGES HERE)
+================================================== -->
+<button id="mute-float" type="button" aria-label="Mute / unmute">
+  <img id="mute-float-img"
+       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/MUTE.png"
+       alt="">
+</button>
+
 <script>
 /* ==================================================
    FALLING STARS
@@ -826,10 +861,6 @@ for (let i = 0; i < 50; i++) {
 
 /* ==================================================
    AERO GALLERY (UPDATED)
-   - removed footer close button + "open image" action
-   - magnifier toggles zoom inside modal
-   - click stage when zoomed to toggle off
-   - arrow keys still work
 ================================================== */
 (function () {
   const trigger = document.getElementById("flyers-trigger") ||
@@ -847,7 +878,6 @@ for (let i = 0; i < 50; i++) {
 
   if (!trigger || !overlay || !img || !counter || !prevBtn || !nextBtn || !closeX || !zoomBtn || !zoomWrap) return;
 
-  // Swap these to your real flyer URLs
   const flyers = [
     "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
     "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png",
@@ -856,7 +886,6 @@ for (let i = 0; i < 50; i++) {
 
   let index = 0;
 
-  // simple "pan" state when zoomed
   let isPanning = false;
   let panStartX = 0, panStartY = 0;
   let panX = 0, panY = 0;
@@ -929,18 +958,15 @@ for (let i = 0; i < 50; i++) {
     toggleZoom();
   });
 
-  // click the stage toggles zoom off when zoomed (nice quick escape)
   zoomWrap.addEventListener("dblclick", function (e) {
     e.preventDefault();
     toggleZoom();
   });
 
-  // click outside modal closes
   overlay.addEventListener("click", function (e) {
     if (e.target === overlay) close();
   });
 
-  // keyboard
   document.addEventListener("keydown", function (e) {
     if (!overlay.classList.contains("is-open")) return;
     if (e.key === "Escape") close();
@@ -949,7 +975,6 @@ for (let i = 0; i < 50; i++) {
     if (e.key === "z" || e.key === "Z") toggleZoom();
   });
 
-  // drag-to-pan (only when zoomed)
   function panDown(e) {
     if (!overlay.classList.contains("is-open")) return;
     if (!overlay.classList.contains("is-zoomed")) return;
@@ -1109,6 +1134,92 @@ function seekUpdate() {
 loadTrack(track_index);
 
 /* ==================================================
+   AUTOPLAY + REMEMBERED MUTE STATE (localStorage)
+================================================== */
+(function setupAutoplayMuteRemember() {
+  const KEY = "EPHEMERA_AUDIO_MUTED";
+
+  const muteBtn = document.getElementById("mute-float");
+  const muteImg = document.getElementById("mute-float-img");
+
+  // CHANGE THESE TWO URLs TO YOUR BUTTON IMAGES
+  const ICON_MUTED = "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/shut_down.png";
+  const ICON_SOUND = "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/shut_down.png";
+
+  function readSavedMuted() {
+    const v = localStorage.getItem(KEY);
+    if (v === "true") return true;
+    if (v === "false") return false;
+    return null; // no saved pref
+  }
+
+  function saveMuted(isMuted) {
+    try { localStorage.setItem(KEY, String(isMuted)); } catch (e) {}
+  }
+
+  function syncMuteUI(isMuted) {
+    if (muteImg) muteImg.src = isMuted ? ICON_MUTED : ICON_SOUND;
+    if (muteBtn) muteBtn.setAttribute("aria-label", isMuted ? "Unmute" : "Mute");
+  }
+
+  function setMuted(isMuted) {
+    curr_track.muted = isMuted;
+    syncMuteUI(isMuted);
+    saveMuted(isMuted);
+  }
+
+  // Apply saved preference (if any) BEFORE we attempt autoplay
+  const saved = readSavedMuted();
+  if (saved !== null) {
+    curr_track.muted = saved;
+  }
+
+  // Ensure UI reflects current state immediately
+  syncMuteUI(curr_track.muted);
+
+  // Attempt autoplay on load.
+  // If autoplay with sound is blocked, try autoplay muted.
+  window.addEventListener("load", () => {
+    curr_track.play().then(() => {
+      isPlaying = true;
+      const playButton = document.querySelector(".playpause-track");
+      if (playButton) playButton.className = "playpause-track fas fa-pause";
+    }).catch(() => {
+      // if user wanted sound, browser might block; try muted autoplay
+      curr_track.muted = true;
+      syncMuteUI(true);
+
+      curr_track.play().then(() => {
+        isPlaying = true;
+        const playButton = document.querySelector(".playpause-track");
+        if (playButton) playButton.className = "playpause-track fas fa-pause";
+        // don't overwrite saved pref unless user clicks the mute button
+      }).catch(() => {
+        isPlaying = false;
+        const playButton = document.querySelector(".playpause-track");
+        if (playButton) playButton.className = "playpause-track fas fa-play";
+      });
+    });
+  });
+
+  // Floating mute toggle click
+  if (muteBtn) {
+    muteBtn.addEventListener("click", () => {
+      setMuted(!curr_track.muted);
+
+      // If audio never started, user gesture can start it
+      if (curr_track.paused) {
+        curr_track.play().then(() => {
+          isPlaying = true;
+          const playButton = document.querySelector(".playpause-track");
+          if (playButton) playButton.className = "playpause-track fas fa-pause";
+        }).catch(() => {});
+      }
+    });
+  }
+})();
+
+/* ==================================================
    DRAGGABLE (mouse + touch)
 ================================================== */
 (function makeDraggable() {
@@ -1183,4 +1294,3 @@ loadTrack(track_index);
 
 </body>
 </html>
-
