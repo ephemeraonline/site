@@ -241,7 +241,10 @@ h4 {
 }
 
 /* ==================================================
-   AERO GALLERY MODAL (ADDED)
+   AERO GALLERY MODAL (UPDATED)
+   - removed "open image" text + close button
+   - magnifying glass toggles zoom inside modal
+   - keep X in title bar to close
 ================================================== */
 .aero-overlay {
   position: fixed;
@@ -282,12 +285,32 @@ h4 {
   padding: 10px;
 }
 
+/* wrap for zoom + pan */
+.aero-zoomwrap {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: default;
+}
+
+/* image itself */
 #aero-gallery-img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 14px 38px rgba(0,0,0,0.22);
+  transform-origin: center center;
+  transition: transform 180ms ease;
+}
+
+/* zoom state */
+.aero-overlay.is-zoomed .aero-zoomwrap { cursor: grab; }
+.aero-overlay.is-zoomed .aero-zoomwrap:active { cursor: grabbing; }
+.aero-overlay.is-zoomed #aero-gallery-img {
+  transform: scale(1.85);
 }
 
 .aero-nav {
@@ -342,6 +365,19 @@ h4 {
 }
 .aero-btn:hover { transform: translateY(-1px); }
 .aero-btn:active { transform: translateY(0); }
+
+/* magnifier button look */
+#aero-gallery-zoom {
+  width: 40px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+#aero-gallery-zoom i { font-size: 14px; }
+
+.aero-overlay.is-zoomed #aero-gallery-zoom {
+  background: linear-gradient(to bottom, rgba(210,245,255,0.95), rgba(150,210,255,0.65));
+}
 
 .aero-close-btn {
   margin-left: auto;
@@ -661,7 +697,7 @@ button:active { opacity: 0.7; }
 </div>
 
 <!-- ==================================================
-     AERO GALLERY MODAL (ADDED)
+     AERO GALLERY MODAL (UPDATED)
 ================================================== -->
 <div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
   <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
@@ -675,7 +711,9 @@ button:active { opacity: 0.7; }
       <button class="aero-nav" id="aero-gallery-prev" type="button" aria-label="Previous">◀</button>
 
       <div class="aero-stage">
-        <img id="aero-gallery-img" src="" alt="Flyer preview">
+        <div class="aero-zoomwrap" id="aero-zoomwrap" aria-label="image stage">
+          <img id="aero-gallery-img" src="" alt="Flyer preview">
+        </div>
       </div>
 
       <button class="aero-nav" id="aero-gallery-next" type="button" aria-label="Next">▶</button>
@@ -685,8 +723,10 @@ button:active { opacity: 0.7; }
       <div class="aero-counter" id="aero-gallery-counter">1 / 1</div>
 
       <div class="aero-actions">
-        <button class="aero-btn" id="aero-gallery-open" type="button">open image</button>
-        <button class="aero-btn" id="aero-gallery-close" type="button">close</button>
+        <!-- replaced open text with magnifying glass (toggles zoom) -->
+        <button class="aero-btn" id="aero-gallery-zoom" type="button" aria-label="Zoom">
+          <i class="fas fa-search"></i>
+        </button>
       </div>
     </div>
 
@@ -781,8 +821,11 @@ for (let i = 0; i < 50; i++) {
 }
 
 /* ==================================================
-   AERO GALLERY (ADDED)
-   Opens on click of FLYERS_ROUGH.png orbit
+   AERO GALLERY (UPDATED)
+   - removed footer close button + "open image" action
+   - magnifier toggles zoom inside modal
+   - click stage when zoomed to toggle off
+   - arrow keys still work
 ================================================== */
 (function () {
   const trigger = document.getElementById("flyers-trigger") ||
@@ -794,11 +837,11 @@ for (let i = 0; i < 50; i++) {
 
   const prevBtn = document.getElementById("aero-gallery-prev");
   const nextBtn = document.getElementById("aero-gallery-next");
-  const closeBtn = document.getElementById("aero-gallery-close");
   const closeX = document.getElementById("aero-gallery-close-x");
-  const openBtn = document.getElementById("aero-gallery-open");
+  const zoomBtn = document.getElementById("aero-gallery-zoom");
+  const zoomWrap = document.getElementById("aero-zoomwrap");
 
-  if (!trigger || !overlay || !img || !counter || !prevBtn || !nextBtn || !closeBtn || !closeX || !openBtn) return;
+  if (!trigger || !overlay || !img || !counter || !prevBtn || !nextBtn || !closeX || !zoomBtn || !zoomWrap) return;
 
   // Swap these to your real flyer URLs
   const flyers = [
@@ -809,9 +852,39 @@ for (let i = 0; i < 50; i++) {
 
   let index = 0;
 
+  // simple "pan" state when zoomed
+  let isPanning = false;
+  let panStartX = 0, panStartY = 0;
+  let panX = 0, panY = 0;
+
+  function setPan(x, y) {
+    panX = x;
+    panY = y;
+    img.style.transform = overlay.classList.contains("is-zoomed")
+      ? "translate(" + panX + "px," + panY + "px) scale(1.85)"
+      : "";
+  }
+
+  function resetZoom() {
+    overlay.classList.remove("is-zoomed");
+    img.style.transform = "";
+    panX = 0; panY = 0;
+  }
+
+  function toggleZoom() {
+    const on = overlay.classList.toggle("is-zoomed");
+    if (!on) {
+      img.style.transform = "";
+      panX = 0; panY = 0;
+    } else {
+      setPan(0, 0);
+    }
+  }
+
   function render() {
     img.src = flyers[index];
     counter.textContent = (index + 1) + " / " + flyers.length;
+    resetZoom();
   }
 
   function open() {
@@ -826,6 +899,7 @@ for (let i = 0; i < 50; i++) {
     overlay.classList.remove("is-open");
     overlay.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    resetZoom();
   }
 
   function prev() {
@@ -845,24 +919,70 @@ for (let i = 0; i < 50; i++) {
 
   prevBtn.addEventListener("click", prev);
   nextBtn.addEventListener("click", next);
-
-  closeBtn.addEventListener("click", close);
   closeX.addEventListener("click", close);
 
-  openBtn.addEventListener("click", function () {
-    window.open(flyers[index], "_blank", "noopener,noreferrer");
+  zoomBtn.addEventListener("click", function () {
+    toggleZoom();
   });
 
+  // click the stage toggles zoom off when zoomed (nice quick escape)
+  zoomWrap.addEventListener("dblclick", function (e) {
+    e.preventDefault();
+    toggleZoom();
+  });
+
+  // click outside modal closes
   overlay.addEventListener("click", function (e) {
     if (e.target === overlay) close();
   });
 
+  // keyboard
   document.addEventListener("keydown", function (e) {
     if (!overlay.classList.contains("is-open")) return;
     if (e.key === "Escape") close();
     if (e.key === "ArrowLeft") prev();
     if (e.key === "ArrowRight") next();
+    if (e.key === "z" || e.key === "Z") toggleZoom();
   });
+
+  // drag-to-pan (only when zoomed)
+  function panDown(e) {
+    if (!overlay.classList.contains("is-open")) return;
+    if (!overlay.classList.contains("is-zoomed")) return;
+
+    isPanning = true;
+    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+    panStartX = p.clientX;
+    panStartY = p.clientY;
+
+    e.preventDefault();
+  }
+
+  function panMove(e) {
+    if (!isPanning) return;
+    if (!overlay.classList.contains("is-zoomed")) return;
+
+    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+    const dx = p.clientX - panStartX;
+    const dy = p.clientY - panStartY;
+
+    setPan(panX + dx, panY + dy);
+
+    panStartX = p.clientX;
+    panStartY = p.clientY;
+  }
+
+  function panUp() {
+    isPanning = false;
+  }
+
+  zoomWrap.addEventListener("mousedown", panDown);
+  window.addEventListener("mousemove", panMove);
+  window.addEventListener("mouseup", panUp);
+
+  zoomWrap.addEventListener("touchstart", panDown, { passive: false });
+  window.addEventListener("touchmove", panMove, { passive: true });
+  window.addEventListener("touchend", panUp);
 })();
 
 /* ==================================================
