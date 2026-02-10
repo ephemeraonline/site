@@ -173,6 +173,19 @@ body {
     rotate(var(--r, 0deg))
     scale(var(--s, 1));
 }
+/* ==================================================
+   TRINKETS
+================================================== */
+
+.trinket-layer {
+  position: relative;
+  width: 100%;
+  height: 260vh; /* adjust if you need more vertical room */
+}
+
+.trinket {
+  position: absolute;
+}
 
 /* ==================================================
    AERO WINDOWS
@@ -745,9 +758,25 @@ button:active { opacity: 0.7; }
     <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time. so click around, get lost, and have fun. thank you for being here <3</p>
   </center>
     </div>
-    
-    <div>
+</div>
 
+<!-- ✦ TRINKETS ✦ -->
+<div class="trinket-layer">
+
+   <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/WELCOME_HOME.gif"
+     class="trinket"
+     style="top: 35vh; left: 20%; margin-left: -10px; width: 520px;">
+
+  <img src="TRINKET_2.png"
+       class="trinket"
+       style="top: 185vh; left: 45vw; width: 90px;">
+
+  <img src="TRINKET_3.png"
+       class="trinket"
+       style="top: 210vh; left: 70vw; width: 140px;">
+
+</div>
+<!-- ✦ END TRINKETS ✦ -->
 
 
 <!-- ==================================================
@@ -764,8 +793,6 @@ button:active { opacity: 0.7; }
   </div>
 </div>
 -->
-
-
 
 <!-- ==================================================
      AERO GALLERY MODAL (UPDATED)
