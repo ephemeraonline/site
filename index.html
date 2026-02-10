@@ -197,6 +197,7 @@ body {
     rotate(var(--r, 0deg))
     scale(var(--s, 1));
 }
+
 .aero-header {
   height: 40px;
   background-color: #907cff;
@@ -205,17 +206,22 @@ body {
   padding-left: 15px;
   border-bottom: 1px solid #0d3882;
 }
+
 .aero-title {
   color: white;
   font-size: 14px;
   font-weight: bold;
   font-family: Verdana;
 }
+
 .aero-content {
-  padding: 20px;
+  padding: 15px;
   background-color: #e9e9e9;
   font-size: 16px;
+  width: fit-content;
+  font-weight: bold;
 }
+
 .aero-content h3,
 h4 {
   text-align: center;
@@ -228,11 +234,30 @@ h4 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: rainbow 5s linear infinite;
-
+  width: fit-content;
 }
+
 @keyframes rainbow {
   0% { background-position: 0% 0%; }
   100% { background-position: 100% 0%; }
+}
+
+/* ==================================================
+   SECOND AERO WINDOW TWEAKS (ONLY)
+   - size, text size, padding
+================================================== */
+.aero-window.aero-window--second {
+  width: 320px;
+  max-width: 92%;
+  transform: translate(var(--x, 0px), var(--y, 250px)) rotate(var(--r, 0deg)) scale(var(--s, 1));
+}
+
+.aero-window.aero-window--second .aero-content {
+  padding: 15px;
+  background-color: #e9e9e9;
+  font-size: 16px;
+  font-weight: bold;
+  width: fit-content;
 }
 
 /* ==================================================
@@ -418,7 +443,7 @@ h4 {
   border-radius: 100px;
   margin-left: auto;
   margin-right: auto;
-  background: linear-gradient(0deg, rgba(205,205,205,1) 0%, rgba(230,230,230,1) 30%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(0deg, #c4e149 0%, #a0dc5b 30%, #a5ff00 100%);
   padding: 5px;
 
   /* helpful for dragging */
@@ -439,7 +464,7 @@ h4 {
   -moz-appearance: none;
   appearance: none;
   height: 6px;
-  background: #e4d5dc;
+  background: #d8e4d5;
   opacity: 0.7;
   -webkit-transition: .2s;
   transition: opacity .2s;
@@ -576,7 +601,7 @@ th { width: 20px; margin: 0; }
 .wheelcontrols button {
   background: none;
   border: none;
-  color: #aaa;
+  color: #79b830;;
   opacity: 0.6;
   font-size: 14px;
   padding: 2px;
@@ -589,18 +614,19 @@ th { width: 20px; margin: 0; }
 .playpause-track {
   font-size: 22px !important;
   padding: 3px;
+  color: #79b830;
 }
 
 .songtitle {
   padding: 25px;
-  color: #b469aa;
+  color: #79b830;
   padding-bottom: 0;
   margin-left: 15px;
   margin-right: 20px;
   font-size: 16px;
   display: block;
   font-family: "Helvetica";
-   font-weight: bold;
+  font-weight: bold;
 }
 
 .controls button {
@@ -608,7 +634,7 @@ th { width: 20px; margin: 0; }
   margin-left: 15px;
   font-size: 14px !important;
   text-align: center;
-  color: #ccb3be;
+  color: #79b830;
   opacity: 0.6;
 }
 
@@ -698,7 +724,6 @@ button:active { opacity: 0.7; }
 </div>
 
 <div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;">
- 
 </div>
 
 <div class="aero-window">
@@ -711,14 +736,29 @@ button:active { opacity: 0.7; }
   </div>
 </div>
 
-<div class="aero-window">
+<div class="aero-window aero-window--second">
   <div class="aero-header">
-    <div class="aero-title"> another section </div>
+    <div class="aero-title">under construction </div>
   </div>
   <div class="aero-content">
     <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time. so click around, get lost, and have fun. thank you for being here <3</p>
   </div>
 </div>
+
+<!-- ==================================================
+     OPTIONAL THIRD AERO WINDOW (SPACE)
+     (copy + fill when you're ready)
+================================================== -->
+<!--
+<div class="aero-window aero-window--third">
+  <div class="aero-header">
+    <div class="aero-title">title here</div>
+  </div>
+  <div class="aero-content">
+    <p>text here</p>
+  </div>
+</div>
+-->
 
 <!-- ==================================================
      AERO GALLERY MODAL (UPDATED)
@@ -1170,15 +1210,12 @@ loadTrack(track_index);
   // Ensure UI reflects current state immediately
   syncMuteUI(curr_track.muted);
 
-  // Attempt autoplay on load.
-  // If autoplay with sound is blocked, try autoplay muted.
   window.addEventListener("load", () => {
     curr_track.play().then(() => {
       isPlaying = true;
       const playButton = document.querySelector(".playpause-track");
       if (playButton) playButton.className = "playpause-track fas fa-pause";
     }).catch(() => {
-      // if user wanted sound, browser might block; try muted autoplay
       curr_track.muted = true;
       syncMuteUI(true);
 
@@ -1186,7 +1223,6 @@ loadTrack(track_index);
         isPlaying = true;
         const playButton = document.querySelector(".playpause-track");
         if (playButton) playButton.className = "playpause-track fas fa-pause";
-        // don't overwrite saved pref unless user clicks the mute button
       }).catch(() => {
         isPlaying = false;
         const playButton = document.querySelector(".playpause-track");
@@ -1195,12 +1231,10 @@ loadTrack(track_index);
     });
   });
 
-  // Floating mute toggle click
   if (muteBtn) {
     muteBtn.addEventListener("click", () => {
       setMuted(!curr_track.muted);
 
-      // If audio never started, user gesture can start it
       if (curr_track.paused) {
         curr_track.play().then(() => {
           isPlaying = true;
