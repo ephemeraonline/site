@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -15,7 +15,7 @@
   cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_GOOD.png"), auto !important;
 }
 
-a, button, img, .orbit, .trinket {
+a, button, img, .orbit {
   cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_BAD.png"), pointer !important;
 }
 
@@ -244,6 +244,7 @@ h4 {
 
 /* ==================================================
    SECOND AERO WINDOW TWEAKS (ONLY)
+   - size, text size, padding
 ================================================== */
 .aero-window.aero-window--second {
   width: 320px;
@@ -261,6 +262,9 @@ h4 {
 
 /* ==================================================
    AERO GALLERY MODAL (UPDATED)
+   - removed "open image" text + close button
+   - magnifying glass toggles zoom inside modal
+   - keep X in title bar to close
 ================================================== */
 .aero-overlay {
   position: fixed;
@@ -277,7 +281,7 @@ h4 {
   width: min(880px, calc(100vw - 28px));
   height: min(560px, calc(100vh - 28px));
   overflow: hidden;
-  transform: none;
+  transform: none; /* IMPORTANT: stop inherited translate() from .aero-window */
 }
 
 .aero-gallery-body {
@@ -301,6 +305,7 @@ h4 {
   padding: 10px;
 }
 
+/* wrap for zoom + pan */
 .aero-zoomwrap {
   width: 100%;
   height: 100%;
@@ -310,6 +315,7 @@ h4 {
   cursor: default;
 }
 
+/* image itself */
 #aero-gallery-img {
   max-width: 100%;
   max-height: 100%;
@@ -320,9 +326,12 @@ h4 {
   transition: transform 180ms ease;
 }
 
+/* zoom state */
 .aero-overlay.is-zoomed .aero-zoomwrap { cursor: grab; }
 .aero-overlay.is-zoomed .aero-zoomwrap:active { cursor: grabbing; }
-.aero-overlay.is-zoomed #aero-gallery-img { transform: scale(1.85); }
+.aero-overlay.is-zoomed #aero-gallery-img {
+  transform: scale(1.85);
+}
 
 .aero-nav {
   width: 44px;
@@ -333,7 +342,7 @@ h4 {
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 10px 20px rgba(0,0,0,0.10);
   cursor: pointer;
   font-size: 18px;
-  min-width: 44px;
+  min-width: 44px; /* overrides your global button min-width */
   color: rgba(0,0,0,0.85);
   text-shadow: none;
 }
@@ -370,13 +379,14 @@ h4 {
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
   cursor: pointer;
   font-size: 13px;
-  min-width: auto;
+  min-width: auto; /* overrides global */
   color: rgba(0,0,0,0.85);
   text-shadow: none;
 }
 .aero-btn:hover { transform: translateY(-1px); }
 .aero-btn:active { transform: translateY(0); }
 
+/* magnifier button look */
 #aero-gallery-zoom {
   width: 40px;
   padding: 0;
@@ -403,7 +413,9 @@ h4 {
   min-width: 34px;
   text-shadow: none;
 }
-.aero-close-btn:hover { background: rgba(255, 90, 90, 0.85); }
+.aero-close-btn:hover {
+  background: rgba(255, 90, 90, 0.85);
+}
 
 @media (max-width: 640px) {
   .aero-gallery-body { grid-template-columns: 44px 1fr 44px; }
@@ -412,15 +424,19 @@ h4 {
 
 /* ==================================================
    MUSIC PLAYER CSS (YOUR PROVIDED STYLES)
+   + draggable tweaks
 ================================================== */
+
+/* draggable container (wraps .player) */
 #player-drag {
   position: fixed;
   left: 20px;
   bottom: 20px;
   z-index: 9999;
-  touch-action: none;
+  touch-action: none; /* important for mobile dragging */
 }
 
+/* your .player styles (kept) */
 .player {
   width: fit-content;
   border: #CECECE solid 2px;
@@ -429,12 +445,20 @@ h4 {
   margin-right: auto;
   background: linear-gradient(0deg, #c4e149 0%, #a0dc5b 30%, #a5ff00 100%);
   padding: 5px;
+
+  /* helpful for dragging */
   user-select: none;
 }
 
-.player .window { cursor: grab !important; }
-.player.dragging .window { cursor: grabbing !important; }
+/* make the whole player feel draggable (but don't break buttons) */
+.player .window {
+  cursor: grab !important;
+}
+.player.dragging .window {
+  cursor: grabbing !important;
+}
 
+/* --- seek slider (your styles) --- */
 .seek_slider {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -461,6 +485,7 @@ h4 {
   bottom: 3px;
 }
 
+/* your big blob of UI css (kept mostly intact, only fixed obvious invalid selector) */
 button,input,label,option,select,table,textarea,ul.tree-view{-webkit-font-smoothing:none;font-family:"Myriad Pro";font-size:11px}
 h1{font-size:5rem}h2{font-size:2.5rem}h3{font-size:2rem}h4{font-size:1.5rem}
 u{border-bottom:.5px solid #222;text-decoration:none}
@@ -494,13 +519,34 @@ button::-moz-focus-inner,input[type=reset]::-moz-focus-inner,input[type=submit]:
   font-size: 11px;
 }
 
-.window { padding: 10px; width: 290px; }
-.window-body { display: block; margin: auto; border-radius: 0em; }
+.window {
+  padding: 10px;
+  width: 290px;
+}
 
-input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; }
+.window-body {
+  display: block;
+  margin: auto;
+  border-radius: 0em;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+}
 input[type=range]:focus { outline: none; }
-input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 2px; cursor: pointer; }
-input[type=range]::-moz-range-track { width: 100%; height: 2px; cursor: pointer; }
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+}
 
 .flex { display: flex; }
 
@@ -541,6 +587,8 @@ input[type=range]::-moz-range-track { width: 100%; height: 2px; cursor: pointer;
 }
 
 th { width: 20px; margin: 0; }
+
+/* FIXED: original selector was invalid ".fas fa-minus" */
 .fas.fa-minus { margin: 0; padding-bottom: 5px; }
 
 .wheelcontrols {
@@ -553,7 +601,7 @@ th { width: 20px; margin: 0; }
 .wheelcontrols button {
   background: none;
   border: none;
-  color: #79b830;
+  color: #79b830;;
   opacity: 0.6;
   font-size: 14px;
   padding: 2px;
@@ -563,7 +611,11 @@ th { width: 20px; margin: 0; }
 
 .controls button:hover { opacity: 1; }
 
-.playpause-track { font-size: 22px !important; padding: 3px; color: #79b830; }
+.playpause-track {
+  font-size: 22px !important;
+  padding: 3px;
+  color: #79b830;
+}
 
 .songtitle {
   padding: 25px;
@@ -586,7 +638,11 @@ th { width: 20px; margin: 0; }
   opacity: 0.6;
 }
 
-button { min-width: 20px; background: none; text-align: center; }
+button {
+  min-width: 20px;
+  background: none;
+  text-align: center;
+}
 button:active { opacity: 0.7; }
 
 .seeking {
@@ -609,12 +665,14 @@ button:active { opacity: 0.7; }
   right: 20px;
   bottom: 20px;
   z-index: 1000000;
+
   width: 44px;
   height: 44px;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
+
   display: grid;
   place-items: center;
 }
@@ -625,21 +683,8 @@ button:active { opacity: 0.7; }
   user-select: none;
   -webkit-user-drag: none;
 }
-#mute-float:active { transform: translateY(1px); }
-
-/* =========================================
-   TRINKETS (separate from decor)
-========================================= */
-.trinket {
-  position: absolute;      /* swap to absolute if you want them to scroll */
-  z-index: 40;          /* adjust layering vs orbit/window as you like */
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: auto;
-}
-
-.trinket:hover {
-  filter: drop-shadow(0 0 6px rgba(0,0,0,0.15));
+#mute-float:active {
+  transform: translateY(1px);
 }
 </style>
 </head>
@@ -678,714 +723,8 @@ button:active { opacity: 0.7; }
        alt="">
 </div>
 
-<div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;"></div>
-
-<!-- ==================================================
-     TRINKETS (DROP ANY PNG/GIF/EMBEDS HERE)
-     Delete/replace these examples
-================================================== -->
-<img class="trinket" id="trinket1"
-     src=" <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>★EPHEMERA★</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-
-<style>
-/* ==================================================
-   GLOBAL / CURSOR
-================================================== */
-* {
-  cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_GOOD.png"), auto !important;
-}
-
-a, button, img, .orbit, .trinket {
-  cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_BAD.png"), pointer !important;
-}
-
-body {
-  margin: 0;
-  background: #FFFFFF;
-  overflow-x: hidden;
-  color: #000;
-  font-family: 'Helvetica', sans-serif;
-  font-size: 12px;
-}
-
-@font-face {
-  font-family: 'NurealRegular';
-  src: url('https://files.catbox.moe/zcgiwn.woff2') format('woff2');
-}
-
-/* ==================================================
-   FALLING STARS
-================================================== */
-.star {
-  position: absolute;
-  top: -60px;
-  pointer-events: none;
-  animation: fall linear infinite;
-  z-index: 1;
-}
-.star img {
-  width: 100%;
-  height: auto;
-  display: block;
-  opacity: 0.95;
-  filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
-}
-@keyframes fall {
-  to { transform: translateY(200vh) rotate(360deg); opacity: 0; }
-}
-
-/* ==================================================
-   DECOR PLANET
-================================================== */
-#decor-e {
-  display: block;
-  margin: 40px auto;
-  width: 350px;
-  height: auto;
-  z-index: 50;
-}
-
-/* ==================================================
-   ORBIT SYSTEM
-================================================== */
-.orbit-container {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  margin: 40px auto;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.orbit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150px;                /* FLYERS_ROUGH stays same size */
-  pointer-events: auto;
-  z-index: 10;
-  transform:
-    translate(-50%, -50%)
-    translate(var(--x), var(--y))
-    rotate(var(--r, 0deg))
-    scale(var(--s, 1));
-  animation: float 6s ease-in-out infinite;
-  transition: transform 0.2s ease;
-  will-change: transform;
-}
-
-/* subtle wiggle on hover, keeps each orbit's own --r and --s */
-.orbit:hover {
-  animation:
-    float 6s ease-in-out infinite,
-    orbitWiggle 0.9s ease-in-out infinite;
-}
-
-/* float stays as-is */
-@keyframes float {
-  0%, 100% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1));
-  }
-  50% {
-    transform:
-      translate(-50%, -50%)
-      translate(calc(var(--x) + 6px), calc(var(--y) - 6px))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1));
-  }
-}
-
-/* NEW: more subtle wiggle (tiny rotate + 1px nudge) */
-@keyframes orbitWiggle {
-  0% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) - 0.7deg))
-      scale(var(--s, 1));
-  }
-  25% {
-    transform:
-      translate(-50%, -50%)
-      translate(calc(var(--x) + 1px), calc(var(--y) - 1px))
-      rotate(calc(var(--r, 0deg) + 0.9deg))
-      scale(var(--s, 1));
-  }
-  50% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) - 0.9deg))
-      scale(var(--s, 1));
-  }
-  75% {
-    transform:
-      translate(-50%, -50%)
-      translate(calc(var(--x) - 1px), calc(var(--y) + 1px))
-      rotate(calc(var(--r, 0deg) + 0.7deg))
-      scale(var(--s, 1));
-  }
-  100% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) - 0.7deg))
-      scale(var(--s, 1));
-  }
-}
-
-/* ==================================================
-   WELCOME BANNER
-================================================== */
-.welcome-banner {
-  position: relative;
-  width: 720px;
-  max-width: 100%;
-  margin: 40px auto;
-  z-index: 10;
-  display: block;
-  transform:
-    translate(var(--x, 0px), var(--y, 210px))
-    rotate(var(--r, 0deg))
-    scale(var(--s, 1));
-}
-
-/* ==================================================
-   AERO WINDOWS
-================================================== */
-.aero-window {
-  position: relative;
-  margin: 40px auto;
-  width: 700px;
-  max-width: 90%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255,255,255,0.6);
-  border-radius: 12px;
-  box-shadow:
-    0 0 20px rgba(0, 150, 255,0.2),
-    0 8px 32px rgba(0,0,0,0.1);
-  backdrop-filter: blur(12px);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transform:
-    translate(var(--x, 0px), var(--y, 250px))
-    rotate(var(--r, 0deg))
-    scale(var(--s, 1));
-}
-
-.aero-header {
-  height: 40px;
-  background-color: #907cff;
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-  border-bottom: 1px solid #0d3882;
-}
-
-.aero-title {
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Verdana;
-}
-
-.aero-content {
-  padding: 15px;
-  background-color: #e9e9e9;
-  font-size: 16px;
-  width: fit-content;
-  font-weight: bold;
-}
-
-.aero-content h3,
-h4 {
-  text-align: center;
-  font-size: 40px;
-  background: linear-gradient(
-    90deg,
-    red, orange, yellow, green, blue, indigo, violet
-  );
-  background-size: 400% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbow 5s linear infinite;
-  width: fit-content;
-}
-
-@keyframes rainbow {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 0%; }
-}
-
-/* ==================================================
-   SECOND AERO WINDOW TWEAKS (ONLY)
-================================================== */
-.aero-window.aero-window--second {
-  width: 320px;
-  max-width: 92%;
-  transform: translate(var(--x, 0px), var(--y, 250px)) rotate(var(--r, 0deg)) scale(var(--s, 1));
-}
-
-.aero-window.aero-window--second .aero-content {
-  padding: 15px;
-  background-color: #e9e9e9;
-  font-size: 16px;
-  font-weight: bold;
-  width: fit-content;
-}
-
-/* ==================================================
-   AERO GALLERY MODAL (UPDATED)
-================================================== */
-.aero-overlay {
-  position: fixed;
-  inset: 0;
-  display: none;
-  place-items: center;
-  z-index: 999999;
-  background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(2px);
-}
-.aero-overlay.is-open { display: grid; }
-
-.aero-gallery {
-  width: min(880px, calc(100vw - 28px));
-  height: min(560px, calc(100vh - 28px));
-  overflow: hidden;
-  transform: none;
-}
-
-.aero-gallery-body {
-  height: calc(100% - 40px - 56px);
-  display: grid;
-  grid-template-columns: 56px 1fr 56px;
-  gap: 10px;
-  padding: 12px;
-  align-items: center;
-}
-
-.aero-stage {
-  height: 100%;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.35);
-  border: 1px solid rgba(0,0,0,0.10);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  padding: 10px;
-}
-
-.aero-zoomwrap {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  cursor: default;
-}
-
-#aero-gallery-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 14px 38px rgba(0,0,0,0.22);
-  transform-origin: center center;
-  transition: transform 180ms ease;
-}
-
-.aero-overlay.is-zoomed .aero-zoomwrap { cursor: grab; }
-.aero-overlay.is-zoomed .aero-zoomwrap:active { cursor: grabbing; }
-.aero-overlay.is-zoomed #aero-gallery-img { transform: scale(1.85); }
-
-.aero-nav {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  border: 1px solid rgba(0,0,0,0.14);
-  background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.55));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 10px 20px rgba(0,0,0,0.10);
-  cursor: pointer;
-  font-size: 18px;
-  min-width: 44px;
-  color: rgba(0,0,0,0.85);
-  text-shadow: none;
-}
-
-.aero-nav:hover { transform: translateY(-1px); }
-.aero-nav:active { transform: translateY(0); }
-
-.aero-footer {
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
-  border-top: 1px solid rgba(0,0,0,0.10);
-  background: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.35));
-}
-
-.aero-counter {
-  font-size: 12.5px;
-  color: rgba(0,0,0,0.70);
-}
-
-.aero-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.aero-btn {
-  height: 34px;
-  padding: 0 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.14);
-  background: linear-gradient(to bottom, rgba(255,255,255,0.90), rgba(255,255,255,0.55));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
-  cursor: pointer;
-  font-size: 13px;
-  min-width: auto;
-  color: rgba(0,0,0,0.85);
-  text-shadow: none;
-}
-.aero-btn:hover { transform: translateY(-1px); }
-.aero-btn:active { transform: translateY(0); }
-
-#aero-gallery-zoom {
-  width: 40px;
-  padding: 0;
-  display: grid;
-  place-items: center;
-}
-#aero-gallery-zoom i { font-size: 14px; }
-
-.aero-overlay.is-zoomed #aero-gallery-zoom {
-  background: linear-gradient(to bottom, rgba(210,245,255,0.95), rgba(150,210,255,0.65));
-}
-
-.aero-close-btn {
-  margin-left: auto;
-  margin-right: 10px;
-  width: 34px;
-  height: 28px;
-  border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.14);
-  background: rgba(255,255,255,0.25);
-  cursor: pointer;
-  color: #fff;
-  font-size: 14px;
-  min-width: 34px;
-  text-shadow: none;
-}
-.aero-close-btn:hover { background: rgba(255, 90, 90, 0.85); }
-
-@media (max-width: 640px) {
-  .aero-gallery-body { grid-template-columns: 44px 1fr 44px; }
-  .aero-nav { width: 38px; height: 38px; border-radius: 10px; min-width: 38px; }
-}
-
-/* ==================================================
-   MUSIC PLAYER CSS (YOUR PROVIDED STYLES)
-================================================== */
-#player-drag {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  z-index: 9999;
-  touch-action: none;
-}
-
-.player {
-  width: fit-content;
-  border: #CECECE solid 2px;
-  border-radius: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  background: linear-gradient(0deg, #c4e149 0%, #a0dc5b 30%, #a5ff00 100%);
-  padding: 5px;
-  user-select: none;
-}
-
-.player .window { cursor: grab !important; }
-.player.dragging .window { cursor: grabbing !important; }
-
-.seek_slider {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: 6px;
-  background: #d8e4d5;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  border-radius: 8px;
-}
-.seek_slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 8px;
-  height: 8px;
-  background: white;
-  cursor: pointer;
-  border-radius: 50%;
-  border: 1px solid #cecece;
-  padding-top: 3px;
-  position: relative;
-  bottom: 3px;
-}
-
-button,input,label,option,select,table,textarea,ul.tree-view{-webkit-font-smoothing:none;font-family:"Myriad Pro";font-size:11px}
-h1{font-size:5rem}h2{font-size:2.5rem}h3{font-size:2rem}h4{font-size:1.5rem}
-u{border-bottom:.5px solid #222;text-decoration:none}
-button,input[type=reset],input[type=submit]{border:none;border-radius:0;box-sizing:border-box;color:transparent;min-height:23px;min-width:75px;padding:0 12px;text-shadow:0 0 #222}
-.vertical-bar,button,input[type=reset],input[type=submit].vertical-bar{height:20px;width:4px}
-button:not(:disabled):active,input[type=reset]:not(:disabled):active,input[type=submit]:not(:disabled):active{opacity:0.5}
-@media (not(hover)){
-  button:not(:disabled):hover,input[type=reset]:not(:disabled):hover,input[type=submit]:not(:disabled):hover{
-    box-shadow:inset -1px -1px #fff,inset 1px 1px #0a0a0a,inset -2px -2px #dfdfdf,inset 2px 2px grey
-  }
-}
-button:focus,input[type=reset]:focus,input[type=submit]:focus{opacity:1}
-button::-moz-focus-inner,input[type=reset]::-moz-focus-inner,input[type=submit]::-moz-focus-inner{border:0}
-:disabled,:disabled+label,input[readonly],input[readonly]+label{color:grey}
-:disabled+label,button:disabled,input[type=reset]:disabled,input[type=submit]:disabled{text-shadow:1px 1px 0 #fff}
-
-@media (not(hover)){
-  button:not(:disabled):hover {
-    box-shadow:inset -1px -1px #fff,inset 1px 1px #0a0a0a,inset -2px -2px #dfdfdf,inset 2px 2px grey
-  }
-}
-
-@font-face {
-  font-family: "Myriad Pro";
-  src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
-}
-
-.window, .title-bar {
-  font-family: "Myriad Pro";
-  -webkit-font-smoothing: none;
-  font-size: 11px;
-}
-
-.window { padding: 10px; width: 290px; }
-.window-body { display: block; margin: auto; border-radius: 0em; }
-
-input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; }
-input[type=range]:focus { outline: none; }
-input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 2px; cursor: pointer; }
-input[type=range]::-moz-range-track { width: 100%; height: 2px; cursor: pointer; }
-
-.flex { display: flex; }
-
-#musicplayer {
-  display: block;
-  float: right;
-  background: linear-gradient(0deg, #F1E3F0, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
-  border-radius: 60em;
-  border: 2px solid transparent;
-  margin-left: 8px;
-  padding-left: 10px;
-  box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
-  -webkit-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
-  -moz-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
-}
-
-.wheel {
-  display: block;
-  justify-content: center;
-  margin: auto;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
-  border-radius: 50em;
-  border: 2px solid transparent;
-  padding-top: 0px;
-  box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
-  -webkit-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
-  -moz-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
-}
-
-.innerwheel {
-  border-radius: 50em;
-  border: 2px solid #E2E2E2;
-  padding: 9px 12px 9px 10px;
-  margin: 0;
-  box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;
-  -webkit-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;
-  -moz-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;
-}
-
-th { width: 20px; margin: 0; }
-.fas.fa-minus { margin: 0; padding-bottom: 5px; }
-
-.wheelcontrols {
-  font-size: 14px !important;
-  text-align: center;
-  padding-top: 2px;
-  color: #aaa;
-  opacity: 0.8;
-}
-.wheelcontrols button {
-  background: none;
-  border: none;
-  color: #79b830;
-  opacity: 0.6;
-  font-size: 14px;
-  padding: 2px;
-  cursor: pointer;
-}
-.wheelcontrols button:hover { opacity: 1; }
-
-.controls button:hover { opacity: 1; }
-
-.playpause-track { font-size: 22px !important; padding: 3px; color: #79b830; }
-
-.songtitle {
-  padding: 25px;
-  color: #79b830;
-  padding-bottom: 0;
-  margin-left: 15px;
-  margin-right: 20px;
-  font-size: 16px;
-  display: block;
-  font-family: "Helvetica";
-  font-weight: bold;
-}
-
-.controls button {
-  display: block;
-  margin-left: 15px;
-  font-size: 14px !important;
-  text-align: center;
-  color: #79b830;
-  opacity: 0.6;
-}
-
-button { min-width: 20px; background: none; text-align: center; }
-button:active { opacity: 0.7; }
-
-.seeking {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 10px;
-  padding-left: 0;
-  padding-bottom: 0px;
-  color: #A3A3A3;
-}
-
-.current-time { padding-right: 5px; }
-.total-duration { padding-left: 5px; }
-
-/* ==================================================
-   FLOATING MUTE BUTTON (IMAGE SWAPPABLE)
-================================================== */
-#mute-float {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 1000000;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-}
-#mute-float img {
-  width: 44px;
-  height: 44px;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-#mute-float:active { transform: translateY(1px); }
-
-/* =========================================
-   TRINKETS (separate from decor)
-========================================= */
-.trinket {
-  position: fixed;      /* swap to absolute if you want them to scroll */
-  z-index: 40;          /* adjust layering vs orbit/window as you like */
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: auto;
-}
-
-.trinket:hover {
-  filter: drop-shadow(0 0 6px rgba(0,0,0,0.15));
-}
-</style>
-</head>
-
-<body>
-
-<img id="decor-e"
-     src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
-     alt="EPHEMERA logo">
-
-<div class="orbit-container">
-  <img class="orbit"
-       id="flyers-trigger"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png"
-       style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;"
-       alt="Flyers rough">
-  <img class="orbit"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
-       style="--x:100px; --y:-50px; --r:10deg;"
-       alt="">
-  <img class="orbit"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_WORK.png"
-       style="--x:-440px; --y:200px; --r:-15deg;"
-       alt="">
-  <img class="orbit"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-       style="--x:-200px; --y:200px; --r:-15deg;"
-       alt="">
-  <img class="orbit"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_SOCIALS.png"
-       style="--x:300px; --y:200px; --r:25deg;"
-       alt="">
-  <img class="orbit"
-       src="http://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STORE.png"
-       style="--x:60px; --y:200px; --r:25deg;"
-       alt="">
+<div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;">
 </div>
-
-<div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;"></div>
-
-<!-- ==================================================
-     TRINKETS (DROP ANY PNG/GIF/EMBEDS HERE)
-     Delete/replace these examples
-================================================== -->
-<img class="trinket" id="trinket1"
-     src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/WELCOME_HOME.gifg"
-     alt=""
-     style="top: 12vh; left: 6vw; width: 90px;">
-
-<img class="trinket" id="trinket2"
-     src="https://artwork.neocities.org/photos/junk/starblink.gif"
-     alt=""
-     style="bottom: 18vh; right: 10vw; width: 80px;">
-
-<!-- Example embed trinket -->
-<iframe class="trinket" id="trinket3"
-        src="about:blank"
-        style="top: 55vh; left: 6vw; width: 240px; height: 140px; border: 0; border-radius: 12px;"
-        loading="lazy"></iframe>
 
 <div class="aero-window">
   <div class="aero-header">
@@ -1402,12 +741,30 @@ button:active { opacity: 0.7; }
     <div class="aero-title">under construction </div>
   </div>
   <div class="aero-content">
-    <center>
-      <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time. so click around, get lost, and have fun. thank you for being here <3</p>
-    </center>
-  </div>
+     <center>
+    <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time. so click around, get lost, and have fun. thank you for being here <3</p>
+  </center>
+    </div>
 </div>
 
+<!-- ==================================================
+     OPTIONAL THIRD AERO WINDOW (SPACE)
+     (copy + fill when you're ready)
+================================================== -->
+<!--
+<div class="aero-window aero-window--third">
+  <div class="aero-header">
+    <div class="aero-title">title here</div>
+  </div>
+  <div class="aero-content">
+    <p>text here</p>
+  </div>
+</div>
+-->
+
+<!-- ==================================================
+     AERO GALLERY MODAL (UPDATED)
+================================================== -->
 <div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
   <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
 
@@ -1430,6 +787,7 @@ button:active { opacity: 0.7; }
 
     <div class="aero-footer">
       <div class="aero-counter" id="aero-gallery-counter">1 / 1</div>
+
       <div class="aero-actions">
         <button class="aero-btn" id="aero-gallery-zoom" type="button" aria-label="Zoom">
           <i class="fas fa-search"></i>
@@ -1440,6 +798,9 @@ button:active { opacity: 0.7; }
   </div>
 </div>
 
+<!-- ==================================================
+     DRAGGABLE MUSIC PLAYER
+================================================== -->
 <div id="player-drag" aria-label="draggable music player">
   <div class="player" id="player">
     <div class="window" id="player-handle">
@@ -1451,9 +812,15 @@ button:active { opacity: 0.7; }
             </div>
 
             <table class="wheelcontrols">
-              <th><button class="fas fa-backward" onclick="prevTrack()"></button></th>
-              <th class="innerwheel"><button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button></th>
-              <th><button class="fas fa-forward" onclick="nextTrack()"></button></th>
+              <th>
+                <button class="fas fa-backward" onclick="prevTrack()"></button>
+              </th>
+              <th class="innerwheel">
+                <button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button>
+              </th>
+              <th>
+                <button class="fas fa-forward" onclick="nextTrack()"></button>
+              </th>
             </table>
 
             <div class="wheelcontrols" style="padding:0;">
@@ -1474,9 +841,15 @@ button:active { opacity: 0.7; }
 
             <table class="controls">
               <tr>
-                <td><button type="button" title="Loop (visual only)"><div class="fas fa-sync"></div></button></td>
-                <td><button type="button" title="Playlist (visual only)"><div class="fas fa-music"></div></button></td>
-                <td><button type="button" title="Shuffle (visual only)"><div class="fas fa-random"></div></button></td>
+                <td>
+                  <button type="button" title="Loop (visual only)"><div class="fas fa-sync"></div></button>
+                </td>
+                <td>
+                  <button type="button" title="Playlist (visual only)"><div class="fas fa-music"></div></button>
+                </td>
+                <td>
+                  <button type="button" title="Shuffle (visual only)"><div class="fas fa-random"></div></button>
+                </td>
               </tr>
             </table>
 
@@ -1488,6 +861,9 @@ button:active { opacity: 0.7; }
   </div>
 </div>
 
+<!-- ==================================================
+     FLOATING MUTE TOGGLE (CHANGE IMAGES HERE)
+================================================== -->
 <button id="mute-float" type="button" aria-label="Mute / unmute">
   <img id="mute-float-img"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/MUTE.png"
@@ -1660,7 +1036,9 @@ for (let i = 0; i < 50; i++) {
     panStartY = p.clientY;
   }
 
-  function panUp() { isPanning = false; }
+  function panUp() {
+    isPanning = false;
+  }
 
   zoomWrap.addEventListener("mousedown", panDown);
   window.addEventListener("mousemove", panMove);
@@ -1799,6 +1177,7 @@ loadTrack(track_index);
   const muteBtn = document.getElementById("mute-float");
   const muteImg = document.getElementById("mute-float-img");
 
+  // CHANGE THESE TWO URLs TO YOUR BUTTON IMAGES
   const ICON_MUTED = "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/shut_down.png";
   const ICON_SOUND = "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/shut_down.png";
 
@@ -1806,7 +1185,7 @@ loadTrack(track_index);
     const v = localStorage.getItem(KEY);
     if (v === "true") return true;
     if (v === "false") return false;
-    return null;
+    return null; // no saved pref
   }
 
   function saveMuted(isMuted) {
@@ -1824,8 +1203,13 @@ loadTrack(track_index);
     saveMuted(isMuted);
   }
 
+  // Apply saved preference (if any) BEFORE we attempt autoplay
   const saved = readSavedMuted();
-  if (saved !== null) curr_track.muted = saved;
+  if (saved !== null) {
+    curr_track.muted = saved;
+  }
+
+  // Ensure UI reflects current state immediately
   syncMuteUI(curr_track.muted);
 
   window.addEventListener("load", () => {
@@ -1885,572 +1269,9 @@ loadTrack(track_index);
 
   function pointerDown(e) {
     const t = e.target;
-    if (t.closest("button") || t.closest("input") || t.closest("a") || t.closest("select") || t.closest("textarea")) return;
-
-    isDragging = true;
-    playerEl.classList.add("dragging");
-
-    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-    startX = p.clientX;
-    startY = p.clientY;
-
-    const r = dragWrap.getBoundingClientRect();
-    startLeft = r.left;
-    startTop = r.top;
-
-    e.preventDefault();
-  }
-
-  function pointerMove(e) {
-    if (!isDragging) return;
-
-    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-    const dx = p.clientX - startX;
-    const dy = p.clientY - startY;
-
-    const wrapRect = dragWrap.getBoundingClientRect();
-    const maxLeft = window.innerWidth - wrapRect.width;
-    const maxTop = window.innerHeight - wrapRect.height;
-
-    const nextLeft = clamp(startLeft + dx, 0, maxLeft);
-    const nextTop = clamp(startTop + dy, 0, maxTop);
-
-    dragWrap.style.left = nextLeft + "px";
-    dragWrap.style.top = nextTop + "px";
-  }
-
-  function pointerUp() {
-    if (!isDragging) return;
-    isDragging = false;
-    playerEl.classList.remove("dragging");
-  }
-
-  handle.addEventListener("mousedown", pointerDown);
-  window.addEventListener("mousemove", pointerMove);
-  window.addEventListener("mouseup", pointerUp);
-
-  handle.addEventListener("touchstart", pointerDown, { passive: false });
-  window.addEventListener("touchmove", pointerMove, { passive: true });
-  window.addEventListener("touchend", pointerUp);
-})();
-</script>
-
-</body>
-</html>
-"
-     alt=""
-     style="top: 12vh; left: 6vw; width: 90px;">
-
-<img class="trinket" id="trinket2"
-     src="https://artwork.neocities.org/photos/junk/starblink.gif"
-     alt=""
-     style="bottom: 18vh; right: 10vw; width: 80px;">
-
-<!-- Example embed trinket -->
-<iframe class="trinket" id="trinket3"
-        src="about:blank"
-        style="top: 55vh; left: 6vw; width: 240px; height: 140px; border: 0; border-radius: 12px;"
-        loading="lazy"></iframe>
-
-<div class="aero-window">
-  <div class="aero-header">
-    <div class="aero-title"> message from admin team </div>
-  </div>
-  <div class="aero-content">
-    <h3></h3>
-    <p>hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out :) </p>
-  </div>
-</div>
-
-<div class="aero-window aero-window--second">
-  <div class="aero-header">
-    <div class="aero-title">under construction </div>
-  </div>
-  <div class="aero-content">
-    <center>
-      <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time. so click around, get lost, and have fun. thank you for being here <3</p>
-    </center>
-  </div>
-</div>
-
-<div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
-  <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
-
-    <div class="aero-header">
-      <div class="aero-title">our flyers</div>
-      <button class="aero-close-btn" id="aero-gallery-close-x" type="button" aria-label="Close">✕</button>
-    </div>
-
-    <div class="aero-gallery-body">
-      <button class="aero-nav" id="aero-gallery-prev" type="button" aria-label="Previous">◀</button>
-
-      <div class="aero-stage">
-        <div class="aero-zoomwrap" id="aero-zoomwrap" aria-label="image stage">
-          <img id="aero-gallery-img" src="" alt="Flyer preview">
-        </div>
-      </div>
-
-      <button class="aero-nav" id="aero-gallery-next" type="button" aria-label="Next">▶</button>
-    </div>
-
-    <div class="aero-footer">
-      <div class="aero-counter" id="aero-gallery-counter">1 / 1</div>
-      <div class="aero-actions">
-        <button class="aero-btn" id="aero-gallery-zoom" type="button" aria-label="Zoom">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div id="player-drag" aria-label="draggable music player">
-  <div class="player" id="player">
-    <div class="window" id="player-handle">
-      <div class="window-body">
-        <div class="flex">
-          <div class="wheel" style="height:100px;width:100px;">
-            <div class="wheelcontrols">
-              <button class="fas fa-plus" onclick="volumeUp()" style="padding-top:4px; padding-bottom:0;"></button>
-            </div>
-
-            <table class="wheelcontrols">
-              <th><button class="fas fa-backward" onclick="prevTrack()"></button></th>
-              <th class="innerwheel"><button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button></th>
-              <th><button class="fas fa-forward" onclick="nextTrack()"></button></th>
-            </table>
-
-            <div class="wheelcontrols" style="padding:0;">
-              <button class="fas fa-minus" onclick="volumeDown()"></button>
-            </div>
-          </div>
-
-          <div id="musicplayer">
-            <div class="flex">
-              <marquee scrollamount="4" class="songtitle"></marquee>
-            </div>
-
-            <div class="seeking">
-              <div class="current-time">00:00</div>
-              <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
-              <div class="total-duration">0:00</div>
-            </div>
-
-            <table class="controls">
-              <tr>
-                <td><button type="button" title="Loop (visual only)"><div class="fas fa-sync"></div></button></td>
-                <td><button type="button" title="Playlist (visual only)"><div class="fas fa-music"></div></button></td>
-                <td><button type="button" title="Shuffle (visual only)"><div class="fas fa-random"></div></button></td>
-              </tr>
-            </table>
-
-            <audio id="music" src=""></audio>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<button id="mute-float" type="button" aria-label="Mute / unmute">
-  <img id="mute-float-img"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/MUTE.png"
-       alt="">
-</button>
-
-<script>
-/* ==================================================
-   FALLING STARS
-================================================== */
-const STAR_IMAGES = [
-  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
-  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png",
-  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png",
-  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png"
-];
-
-for (let i = 0; i < 50; i++) {
-  const star = document.createElement("div");
-  star.className = "star";
-  const img = document.createElement("img");
-  img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
-  star.style.left = Math.random() * window.innerWidth + "px";
-  star.style.width = (Math.random() * 18 + 12) + "px";
-  star.style.animationDuration = (Math.random() * 15 + 10) + "s";
-  star.style.animationDelay = (Math.random() * -15) + "s";
-  star.appendChild(img);
-  document.body.appendChild(star);
-}
-
-/* ==================================================
-   AERO GALLERY (UPDATED)
-================================================== */
-(function () {
-  const trigger = document.getElementById("flyers-trigger") ||
-    document.querySelector('img[src*="FLYERS_ROUGH.png"]');
-
-  const overlay = document.getElementById("aero-gallery-overlay");
-  const img = document.getElementById("aero-gallery-img");
-  const counter = document.getElementById("aero-gallery-counter");
-
-  const prevBtn = document.getElementById("aero-gallery-prev");
-  const nextBtn = document.getElementById("aero-gallery-next");
-  const closeX = document.getElementById("aero-gallery-close-x");
-  const zoomBtn = document.getElementById("aero-gallery-zoom");
-  const zoomWrap = document.getElementById("aero-zoomwrap");
-
-  if (!trigger || !overlay || !img || !counter || !prevBtn || !nextBtn || !closeX || !zoomBtn || !zoomWrap) return;
-
-  const flyers = [
-    "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Ephemera%20Contact%20Flyer%2072.png",
-    "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png",
-    "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png"
-  ];
-
-  let index = 0;
-
-  let isPanning = false;
-  let panStartX = 0, panStartY = 0;
-  let panX = 0, panY = 0;
-
-  function setPan(x, y) {
-    panX = x;
-    panY = y;
-    img.style.transform = overlay.classList.contains("is-zoomed")
-      ? "translate(" + panX + "px," + panY + "px) scale(1.85)"
-      : "";
-  }
-
-  function resetZoom() {
-    overlay.classList.remove("is-zoomed");
-    img.style.transform = "";
-    panX = 0; panY = 0;
-  }
-
-  function toggleZoom() {
-    const on = overlay.classList.toggle("is-zoomed");
-    if (!on) {
-      img.style.transform = "";
-      panX = 0; panY = 0;
-    } else {
-      setPan(0, 0);
+    if (t.closest("button") || t.closest("input") || t.closest("a") || t.closest("select") || t.closest("textarea")) {
+      return;
     }
-  }
-
-  function render() {
-    img.src = flyers[index];
-    counter.textContent = (index + 1) + " / " + flyers.length;
-    resetZoom();
-  }
-
-  function open() {
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    render();
-    closeX.focus();
-  }
-
-  function close() {
-    overlay.classList.remove("is-open");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    resetZoom();
-  }
-
-  function prev() {
-    index = (index - 1 + flyers.length) % flyers.length;
-    render();
-  }
-
-  function next() {
-    index = (index + 1) % flyers.length;
-    render();
-  }
-
-  trigger.addEventListener("click", function (e) {
-    e.preventDefault && e.preventDefault();
-    open();
-  });
-
-  prevBtn.addEventListener("click", prev);
-  nextBtn.addEventListener("click", next);
-  closeX.addEventListener("click", close);
-
-  zoomBtn.addEventListener("click", function () {
-    toggleZoom();
-  });
-
-  zoomWrap.addEventListener("dblclick", function (e) {
-    e.preventDefault();
-    toggleZoom();
-  });
-
-  overlay.addEventListener("click", function (e) {
-    if (e.target === overlay) close();
-  });
-
-  document.addEventListener("keydown", function (e) {
-    if (!overlay.classList.contains("is-open")) return;
-    if (e.key === "Escape") close();
-    if (e.key === "ArrowLeft") prev();
-    if (e.key === "ArrowRight") next();
-    if (e.key === "z" || e.key === "Z") toggleZoom();
-  });
-
-  function panDown(e) {
-    if (!overlay.classList.contains("is-open")) return;
-    if (!overlay.classList.contains("is-zoomed")) return;
-
-    isPanning = true;
-    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-    panStartX = p.clientX;
-    panStartY = p.clientY;
-
-    e.preventDefault();
-  }
-
-  function panMove(e) {
-    if (!isPanning) return;
-    if (!overlay.classList.contains("is-zoomed")) return;
-
-    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-    const dx = p.clientX - panStartX;
-    const dy = p.clientY - panStartY;
-
-    setPan(panX + dx, panY + dy);
-
-    panStartX = p.clientX;
-    panStartY = p.clientY;
-  }
-
-  function panUp() { isPanning = false; }
-
-  zoomWrap.addEventListener("mousedown", panDown);
-  window.addEventListener("mousemove", panMove);
-  window.addEventListener("mouseup", panUp);
-
-  zoomWrap.addEventListener("touchstart", panDown, { passive: false });
-  window.addEventListener("touchmove", panMove, { passive: true });
-  window.addEventListener("touchend", panUp);
-})();
-
-/* ==================================================
-   MUSIC PLAYER SCRIPT
-================================================== */
-let track_name = document.querySelector(".songtitle");
-let seek_slider = document.querySelector(".seek_slider");
-let curr_time = document.querySelector(".current-time");
-let total_duration = document.querySelector(".total-duration");
-
-let track_index = 0;
-let isPlaying = false;
-let updateTimer;
-
-let curr_track = document.getElementById("music");
-
-let track_list = [
-  { name: "Charli xcx - Sympathy is knife featuring ariana grande", path: "https://files.catbox.moe/xlx839.mp3" },
-  { name: "Mckayla Twiggs - What A Girl Wants", path: "https://files.catbox.moe/xw4kit.mp3" },
-  { name: "Danny L Harle - Raft in the Sea Featuring Julia Michaels", path: "https://files.catbox.moe/7ehw00.mp3" },
-  { name: "My Sweetest Love - The Cat's Whiskers ft. Kazuma Mitchell", path: "https://files.catbox.moe/qe4he5.mp3" },
-  { name: "Mercy On Me - The Cat's Whiskers", path: "https://files.catbox.moe/w7nnf9.mp3" }
-];
-
-function loadTrack(index) {
-  clearInterval(updateTimer);
-  resetValues();
-
-  curr_track.src = track_list[index].path;
-  curr_track.load();
-
-  track_name.textContent = track_list[index].name;
-
-  updateTimer = setInterval(seekUpdate, 1000);
-  curr_track.addEventListener("ended", nextTrack);
-}
-
-function resetValues() {
-  curr_time.textContent = "0:00";
-  total_duration.textContent = "0:00";
-  seek_slider.value = 0;
-}
-
-function playpauseTrack() {
-  if (!isPlaying) playTrack();
-  else pauseTrack();
-}
-
-function playTrack() {
-  curr_track.play();
-  isPlaying = true;
-  let playButton = document.querySelector(".playpause-track");
-  playButton.className = "playpause-track fas fa-pause";
-}
-
-function pauseTrack() {
-  curr_track.pause();
-  isPlaying = false;
-  let playButton = document.querySelector(".playpause-track");
-  playButton.className = "playpause-track fas fa-play";
-}
-
-function nextTrack() {
-  if (track_index < track_list.length - 1) track_index += 1;
-  else track_index = 0;
-
-  loadTrack(track_index);
-  if (isPlaying) playTrack();
-}
-
-function prevTrack() {
-  if (track_index > 0) track_index -= 1;
-  else track_index = track_list.length - 1;
-
-  loadTrack(track_index);
-  if (isPlaying) playTrack();
-}
-
-let currentVolume = curr_track.volume;
-
-function volumeUp() {
-  if (currentVolume < 1.0) {
-    currentVolume = Math.min(1.0, currentVolume + 0.2);
-    curr_track.volume = currentVolume;
-  }
-}
-
-function volumeDown() {
-  if (currentVolume > 0.0) {
-    currentVolume = Math.max(0.0, currentVolume - 0.2);
-    curr_track.volume = currentVolume;
-  }
-}
-
-function seekTo() {
-  let seekto = curr_track.duration * (seek_slider.value / 100);
-  curr_track.currentTime = seekto;
-}
-
-function seekUpdate() {
-  let seekPosition = 0;
-
-  if (!isNaN(curr_track.duration)) {
-    seekPosition = curr_track.currentTime * (100 / curr_track.duration);
-    seek_slider.value = seekPosition;
-
-    let currentMinutes = Math.floor(curr_track.currentTime / 60);
-    let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
-    let durationMinutes = Math.floor(curr_track.duration / 60);
-    let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
-
-    if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
-    if (durationSeconds < 10) durationSeconds = "0" + durationSeconds;
-
-    curr_time.textContent = currentMinutes + ":" + currentSeconds;
-    total_duration.textContent = durationMinutes + ":" + durationSeconds;
-  }
-}
-
-loadTrack(track_index);
-
-/* ==================================================
-   AUTOPLAY + REMEMBERED MUTE STATE (localStorage)
-================================================== */
-(function setupAutoplayMuteRemember() {
-  const KEY = "EPHEMERA_AUDIO_MUTED";
-
-  const muteBtn = document.getElementById("mute-float");
-  const muteImg = document.getElementById("mute-float-img");
-
-  const ICON_MUTED = "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/shut_down.png";
-  const ICON_SOUND = "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/shut_down.png";
-
-  function readSavedMuted() {
-    const v = localStorage.getItem(KEY);
-    if (v === "true") return true;
-    if (v === "false") return false;
-    return null;
-  }
-
-  function saveMuted(isMuted) {
-    try { localStorage.setItem(KEY, String(isMuted)); } catch (e) {}
-  }
-
-  function syncMuteUI(isMuted) {
-    if (muteImg) muteImg.src = isMuted ? ICON_MUTED : ICON_SOUND;
-    if (muteBtn) muteBtn.setAttribute("aria-label", isMuted ? "Unmute" : "Mute");
-  }
-
-  function setMuted(isMuted) {
-    curr_track.muted = isMuted;
-    syncMuteUI(isMuted);
-    saveMuted(isMuted);
-  }
-
-  const saved = readSavedMuted();
-  if (saved !== null) curr_track.muted = saved;
-  syncMuteUI(curr_track.muted);
-
-  window.addEventListener("load", () => {
-    curr_track.play().then(() => {
-      isPlaying = true;
-      const playButton = document.querySelector(".playpause-track");
-      if (playButton) playButton.className = "playpause-track fas fa-pause";
-    }).catch(() => {
-      curr_track.muted = true;
-      syncMuteUI(true);
-
-      curr_track.play().then(() => {
-        isPlaying = true;
-        const playButton = document.querySelector(".playpause-track");
-        if (playButton) playButton.className = "playpause-track fas fa-pause";
-      }).catch(() => {
-        isPlaying = false;
-        const playButton = document.querySelector(".playpause-track");
-        if (playButton) playButton.className = "playpause-track fas fa-play";
-      });
-    });
-  });
-
-  if (muteBtn) {
-    muteBtn.addEventListener("click", () => {
-      setMuted(!curr_track.muted);
-
-      if (curr_track.paused) {
-        curr_track.play().then(() => {
-          isPlaying = true;
-          const playButton = document.querySelector(".playpause-track");
-          if (playButton) playButton.className = "playpause-track fas fa-pause";
-        }).catch(() => {});
-      }
-    });
-  }
-})();
-
-/* ==================================================
-   DRAGGABLE (mouse + touch)
-================================================== */
-(function makeDraggable() {
-  const dragWrap = document.getElementById("player-drag");
-  const handle = document.getElementById("player-handle");
-  const playerEl = document.getElementById("player");
-
-  let isDragging = false;
-  let startX = 0, startY = 0;
-  let startLeft = 0, startTop = 0;
-
-  const rect = dragWrap.getBoundingClientRect();
-  dragWrap.style.left = rect.left + "px";
-  dragWrap.style.top = rect.top + "px";
-  dragWrap.style.bottom = "auto";
-
-  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
-
-  function pointerDown(e) {
-    const t = e.target;
-    if (t.closest("button") || t.closest("input") || t.closest("a") || t.closest("select") || t.closest("textarea")) return;
 
     isDragging = true;
     playerEl.classList.add("dragging");
