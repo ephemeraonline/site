@@ -694,12 +694,11 @@ button:active { opacity: 0.7; }
   </div>
 
   <!-- clock + date (fixed) -->
-<div id="ephemera-clock" style="--x: 50; --y: 72; --size: 260px;">
-  <div class="clock-inner">
-    <div id="clock-date"></div>
-    <div id="clock-time"></div>
-  </div>
+<div id="ephemera-clock" style="--x: 50; --y: 72; --size: 820px;">
+  <div id="clock-line"></div>
 </div>
+
+
 
 
   <!-- image under the clock (fixed) -->
@@ -879,17 +878,22 @@ function updateClock() {
   const day = now.getDate();
   const year = now.getFullYear();
 
-  const hh = String(now.getHours()).padStart(2, "0");
-  const mm = String(now.getMinutes()).padStart(2, "0");
-  const ss = String(now.getSeconds()).padStart(2, "0");
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, "0");
 
-  const line = month + "/" + day + "/" + year + " " + hh + ":" + mm + ":" + ss;
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12; // converts 0 → 12
+
+  const line = month + "/" + day + "/" + year + " " + hours + ":" + minutes + " " + ampm;
 
   const el = document.getElementById("clock-line");
   if (el) el.textContent = line;
 }
+
 setInterval(updateClock, 1000);
 updateClock();
+
 /* ==================================================
    FALLING STARS
 ================================================== */
