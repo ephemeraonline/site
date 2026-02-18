@@ -245,7 +245,7 @@ h4 {
 .aero-window.aero-window--second {
   width: 320px;
   max-width: 92%;
-  transform: translate(var(--x, 0px), var(--y, 250px)) rotate(var(--r, 0deg)) scale(var(--s, 1));
+  transform: translate(var(--x, 360px), var(--y, 250px)) rotate(var(--r, 0deg)) scale(var(--s, 1));
 }
 
 .aero-window.aero-window--second .aero-content {
@@ -257,68 +257,85 @@ h4 {
 }
 
 /* ==================================================
-   STICKERS (FIXED TO VIEWPORT)
-   Only controls: --x (vw), --y (vh), --size (px)
+   RANDOM IMAGE SECTION (below first aero window)
+   Centered horizontally, adjustable per image
 ================================================== */
-.sticker-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5; /* under orbits/aero (10), above stars (1) */
+
+.random-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* keeps container centered */
+  margin: 40px 0;
+  z-index: 8;
 }
 
-.sticker {
-  position: fixed;     /* FIXED INDIVIDUALLY */
-  left: 0;
-  top: 0;
-  width: var(--size, 140px);
+.random-canvas {
+  position: relative;        /* anchor for absolute children */
+  width: 800px;              /* change overall collage width */
+  max-width: 90vw;
+  height: 500px;             /* change collage height */
+}
 
-  /* ONLY position API */
-  transform: translate(calc(var(--x, 10) * 1vw), calc(var(--y, 10) * 1vh));
-
+.random-item {
+  position: absolute;
+  width: var(--w, 160px);
+  top: var(--top, 0px);
+  left: var(--left, 0px);
+  transform: rotate(var(--r, 0deg));
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
 }
 
-.sticker img {
+.random-item img {
   width: 100%;
   height: auto;
   display: block;
 }
 
 /* ==================================================
-   CLOCK STICKER (FIXED, SIMPLE API)
-   Only controls: --x (vw), --y (vh), --size (px)
+   COLLAGE CLOCK + AFFIRMATION
 ================================================== */
-#ephemera-clock {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: var(--size, 820px);
-  transform: translate(calc(var(--x, 50) * 1vw), calc(var(--y, 70) * 1vh));
-  z-index: 36;
-  pointer-events: none;
-}
 
-#clock-line {
+.collage-date {
+  position: absolute;
+  top: var(--top, 0px);
+  left: var(--left, 0px);
   font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-size: 30px;
-  color: #000000;
+  font-size: 24px;
+  color: var(--color, #000000);
+  z-index: 20;
   white-space: nowrap;
 }
 
-
-/* image under clock (fixed + simple API) */
-#under-clock-image {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: var(--size, 320px);
-  transform: translate(calc(var(--x, 50) * 1vw), calc(var(--y, 78) * 1vh));
-  z-index: 6;
-  pointer-events: none;
-  filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
+.collage-banner {
+  position: absolute;
+  top: var(--top, 0px);
+  left: var(--left, 0px);
+  width: var(--w, 220px);
+  z-index: 15;
 }
-#under-clock-image img { width: 100%; height: auto; display: block; }
+
+.collage-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.collage-affirmation {
+  position: absolute;
+  top: var(--top, 0px);
+  left: var(--left, 0px);
+  width: var(--w, 260px);
+  padding: 12px 14px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 16px;
+  background: var(--bg, #fff8dc);
+  color: var(--color, #000);
+  border-radius: 0px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  z-index: 18;
+}
+
 
 /* ==================================================
    AERO GALLERY MODAL (UPDATED)
@@ -668,30 +685,7 @@ button:active { opacity: 0.7; }
 
 <body>
 
-<!-- ==================================================
-     FIXED STICKERS (ONLY --x --y --size)
-     --x and --y are numbers in vw/vh (0-100)
-================================================== -->
-<div class="sticker-layer" aria-hidden="true">
-  <div class="sticker" style="--x: 6; --y: 18; --size: 160px;">
-    <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/0ea93369fbcaaf821cfbd44cd4d3a076.gif" alt="">
-  </div>
 
-  <div class="sticker" style="--x: 78; --y: 20; --size: 180px;">
-    <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/1502d8d1bf4b9b3bedba14c8038f15f4.gif" alt="">
-  </div>
-
-  <div class="sticker" style="--x: 74; --y: 50; --size: 190px;">
-    <img src="https://github.com/ephemeraonline/site/blob/main/IMAGES/34e7ab11af4f667c0217159ebb7458ba.jpg?raw=true" alt="">
-  </div>
-
-  <div class="sticker" style="--x: 10; --y: 62; --size: 170px;">
-    <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/48de9c221c98de6e3be9e423ab800144.gif" alt="">
-  </div>
-
-  <div class="sticker" style="--x: 78; --y: 72; --size: 170px;">
-    <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/4b66361592ff5a82173686ca86b5b3bb.jpg" alt="">
-  </div>
 
   <!-- clock + date (fixed) -->
 <div id="ephemera-clock" style="--x: 50; --y: 72; --size: 820px;">
@@ -705,7 +699,7 @@ button:active { opacity: 0.7; }
   <div id="under-clock-image" style="--x: 50; --y: 81; --size: 320px;">
     <img src="https://artwork.neocities.org/photos/junk/sparkle.gif" alt="">
   </div>
-</div>
+
 
 <img id="decor-e"
      src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
@@ -736,6 +730,9 @@ button:active { opacity: 0.7; }
        alt="">
 </div>
 
+
+
+
 <div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;"></div>
 
 <div class="aero-window">
@@ -758,6 +755,75 @@ button:active { opacity: 0.7; }
     </center>
   </div>
 </div>
+
+<!-- =========================================
+     RANDOM ABSOLUTE IMAGE COLLAGE
+========================================= -->
+<div class="random-section">
+  <div class="random-canvas">
+  
+  <!-- =========================================
+     RANDOM COLLAGE SECTION (BELOW SECOND WINDOW)
+========================================= -->
+<div class="random-section">
+  <div class="random-canvas">
+
+    <!-- RANDOM IMAGES -->
+    <div class="random-item"
+         style="--w:180px; --top:40px; --left:100px; --r:0deg;">
+      <img src="PASTE_IMAGE_URL_1" alt="">
+    </div>
+
+    <div class="random-item"
+         style="--w:220px; --top:180px; --left:300px; --r:-5deg;">
+      <img src="PASTE_IMAGE_URL_2" alt="">
+    </div>
+
+    <!-- SIMPLE DATE -->
+    <div class="collage-date"
+         id="collage-date"
+         style="--top: 40px; --left: 520px; --color:#000;">
+    </div>
+
+    <!-- BANNER -->
+    <div class="collage-banner"
+         style="--top: 0px; --left: 500px; --w: 240px;">
+      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DAILY%20AFFIRMATION.png" alt="">
+    </div>
+
+    <!-- AFFIRMATION -->
+    <div class="collage-affirmation"
+         style="--top: 160px; --left: 480px; --w: 280px; --bg:#a5ff00; --color:#6a006a;">
+      “i will outlive all my enemies”
+    </div>
+
+  </div>
+</div>
+<!-- ========================================= -->
+
+    <div class="random-item"
+         style="--w:180px; --top:40px; --left:100px; --r:0deg;">
+      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/0ea93369fbcaaf821cfbd44cd4d3a076.gif" alt="">
+    </div>
+
+    <div class="random-item"
+         style="--w:220px; --top:160px; --left:320px; --r:-4deg;">
+      <img src="PASTE_IMAGE_URL_2" alt="">
+    </div>
+
+    <div class="random-item"
+         style="--w:150px; --top:260px; --left:40px; --r:3deg;">
+      <img src="PASTE_IMAGE_URL_3" alt="">
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- =========================================
+     END RANDOM COLLAGE
+========================================= -->
 
 <!-- ==================================================
      AERO GALLERY MODAL (UPDATED)
@@ -865,31 +931,7 @@ button:active { opacity: 0.7; }
 </button>
 
 <script>
-/* ==================================================
-   CLOCK SCRIPT
-================================================== */
-function updateClock() {
-  const now = new Date();
 
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
-  const year = now.getFullYear();
-
-  let hours = now.getHours();
-  const minutes = String(now.getMinutes()).padStart(2, "0");
-
-  const ampm = hours >= 12 ? "PM" : "AM";
-  hours = hours % 12;
-  hours = hours ? hours : 12; // converts 0 → 12
-
-  const line = month + "/" + day + "/" + year + " " + hours + ":" + minutes + " " + ampm;
-
-  const el = document.getElementById("clock-line");
-  if (el) el.textContent = line;
-}
-
-setInterval(updateClock, 1000);
-updateClock();
 
 /* ==================================================
    FALLING STARS
@@ -1324,6 +1366,24 @@ loadTrack(track_index);
   window.addEventListener("touchmove", pointerMove, { passive: true });
   window.addEventListener("touchend", pointerUp);
 })();
+
+/* ==================================================
+   COLLAGE SIMPLE DATE (x/x/xxxx)
+================================================== */
+
+function updateCollageDate() {
+  const now = new Date();
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const year = now.getFullYear();
+
+  const simple = month + "/" + day + "/" + year;
+
+  const el = document.getElementById("collage-date");
+  if (el) el.textContent = simple;
+}
+
+updateCollageDate();
 </script>
 
 </body>
