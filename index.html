@@ -699,10 +699,57 @@ button:active { opacity: 0.7; }
 #mute-float:active {
   transform: translateY(1px);
 }
+
+   #ephemera-clock {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+
+  padding: 1px;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.9),
+    rgba(200,220,255,0.6)
+  );
+
+  box-shadow:
+    0 0 20px rgba(120,180,255,0.4),
+    inset 0 0 8px rgba(255,255,255,0.8);
+}
+
+.clock-inner {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border-radius: 13px;
+  padding: 10px 16px;
+  text-align: right;
+}
+
+#clock-date {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  opacity: 0.7;
+}
+
+#clock-time {
+  font-size: 16px;
+  margin-top: 2px;
+}
 </style>
 </head>
 
 <body>
+
+   <div id="ephemera-clock">
+  <div class="clock-inner">
+    <div id="clock-date"></div>
+    <div id="clock-time"></div>
+  </div>
 
 <img id="decor-e"
      src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
@@ -905,6 +952,7 @@ button:active { opacity: 0.7; }
        alt="">
 </button>
 
+      
 <script>
 /* ==================================================
    FALLING STARS
@@ -1355,6 +1403,35 @@ loadTrack(track_index);
   window.addEventListener("touchend", pointerUp);
 })();
 </script>
+      
+/* ==================================================
+  CLOCK
+================================================== */
+      
+<script>
+function updateClock() {
+  const now = new Date();
 
+  const dateOptions = {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  };
+
+  const date = now.toLocaleDateString(undefined, dateOptions);
+  const time = now.toLocaleTimeString([], { 
+    hour: "2-digit", 
+    minute: "2-digit", 
+    second: "2-digit" 
+  });
+
+  document.getElementById("clock-date").textContent = date;
+  document.getElementById("clock-time").textContent = time;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
 </body>
 </html>
