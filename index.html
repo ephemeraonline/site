@@ -292,55 +292,33 @@ h4 {
   display: block;
 }
 
-/* =========================================
-   Y2K DATE + AFFIRMATION STYLE
-========================================= */
-
-.collage-date {
+/* GRAPHIC + LIVE DATE OVERLAY (for the random collage) */
+.date-graphic {
   position: absolute;
   top: var(--top, 0px);
   left: var(--left, 0px);
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-size: 28px;
-  font-weight: bold;
-  color: #1e40ff; /* bright blue */
-  text-shadow: 1px 1px 0 #ffffff;
-  z-index: 30;
+  width: var(--w, 260px);
+  transform: rotate(var(--r, 0deg));
+  z-index: 40;
 }
 
-/* DAILY AFFIRMATION TITLE */
-.collage-title {
+.date-graphic img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* the live date text sitting ON TOP of the graphic */
+.date-graphic .live-date {
   position: absolute;
-  top: var(--top, 0px);
-  left: var(--left, 0px);
+  top: var(--dt, 12px);      /* move date down/up */
+  left: var(--dl, 12px);     /* move date left/right */
   font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-size: 38px;
   font-weight: 900;
-  letter-spacing: 1px;
-  color: #ff8fb1; /* bubble pink */
-  text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000;
-  z-index: 25;
-}
-
-/* AFFIRMATION BAR */
-.collage-affirmation {
-  position: absolute;
-  top: var(--top, 0px);
-  left: var(--left, 0px);
-  padding: 10px 18px;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-size: 22px;
-  font-weight: bold;
-  background: #b6ff00; /* neon green highlight */
-  color: #8a00ff;       /* purple text */
-  border-radius: 0px;
+  font-size: var(--fs, 28px);
+  color: var(--c, #1e40ff);
+  text-shadow: 1px 1px 0 #ffffff;
   white-space: nowrap;
-  z-index: 24;
-  
 }
 
 
@@ -694,21 +672,6 @@ button:active { opacity: 0.7; }
 <body>
 
 
-
-  <!-- clock + date (fixed) -->
-<div id="ephemera-clock" style="--x: 50; --y: 72; --size: 820px;">
-  <div id="clock-line"></div>
-</div>
-
-
-
-
-  <!-- image under the clock (fixed) -->
-  <div id="under-clock-image" style="--x: 50; --y: 81; --size: 320px;">
-    <img src="https://artwork.neocities.org/photos/junk/sparkle.gif" alt="">
-  </div>
-
-
 <img id="decor-e"
      src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
      alt="EPHEMERA logo">
@@ -820,6 +783,14 @@ button:active { opacity: 0.7; }
       <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif" alt="">
     </div>
   </div>
+</div>
+
+<!-- DATE GRAPHIC (image) + LIVE DATE TEXT overlay -->
+<div class="date-graphic"
+     style="--top: 40px; --left: 120px; --w: 260px; --r: 0deg;
+            --dt: 18px; --dl: 18px; --fs: 30px; --c: #1e40ff;">
+  <img src="https://food-heritage.org/wp-content/uploads/2018/05/Iftar1.jpg" alt="">
+  <div class="live-date" id="random-live-date"></div>
 </div>
 
 
@@ -1374,19 +1345,17 @@ loadTrack(track_index);
    COLLAGE SIMPLE DATE (x/x/xxxx)
 ================================================== */
 
-function updateCollageDate() {
+function updateRandomGraphicDate() {
   const now = new Date();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
-  const year = now.getFullYear();
+  const m = now.getMonth() + 1;
+  const d = now.getDate();
+  const y = now.getFullYear();
+  const line = m + "/" + d + "/" + y;
 
-  const simple = month + "/" + day + "/" + year;
-
-  const el = document.getElementById("collage-date");
-  if (el) el.textContent = simple;
+  const el = document.getElementById("random-live-date");
+  if (el) el.textContent = line;
 }
-
-updateCollageDate();
+updateRandomGraphicDate();
 </script>
 
 </body>
