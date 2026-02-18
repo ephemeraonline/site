@@ -284,7 +284,7 @@ h4 {
   position: absolute;
   left: 0;
   top: 0;
-  width: var(--w, 200px);
+  width: var(--w, 300px);
   transform: translate(var(--x, 0px), var(--y, 0px));
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
 }
@@ -299,16 +299,19 @@ h4 {
 /* live date text sits on top of the graphic (fixed placement) */
 .date-graphic .live-date{
   position: absolute;
-  top: 14px;     /* adjust ONCE here if needed */
-  left: 14px;    /* adjust ONCE here if needed */
+  top: 50%;
+  left: 50%;
+
+  /* adjustable vertical offset */
+  transform: translate(-50%, calc(-50% + var(--y-adjust, 0px)));
+
   font-family: "Comic Sans MS","Comic Sans",cursive;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 20px;
   color: #1e40ff;
   text-shadow: 1px 1px 0 #ffffff;
   white-space: nowrap;
 }
-
 
 /* ==================================================
    AERO GALLERY MODAL (UPDATED)
@@ -722,8 +725,7 @@ button:active { opacity: 0.7; }
      
   <!-- DATE GRAPHIC + LIVE DATE (only --x --y --w) -->
     <div class="date-graphic" style="--x: 120px; --y: 40px; --w: 260px;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA%20WEBSITE%20(1).png" alt="">
-      <div class="live-date" id="random-live-date"></div>
+      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED%20(3).png" alt="">
     </div>
 
     <div class="random-item" style="--x: 100px; --y: 40px; --w: 180px;">
@@ -754,6 +756,8 @@ button:active { opacity: 0.7; }
     <div class="random-item" style="--x: 20px; --y: 420px; --w: 150px;">
       <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif" alt="">
     </div>
+<div class="date-graphic"
+     style="--x:120px; --y:20px; --w:260px; --y-adjust: 26px;">
 
   </div>
 </div>
