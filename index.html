@@ -81,7 +81,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 150px;                /* FLYERS_ROUGH stays same size */
+  width: 150px;
   pointer-events: auto;
   z-index: 10;
   transform:
@@ -94,14 +94,12 @@ body {
   will-change: transform;
 }
 
-/* subtle wiggle on hover, keeps each orbit's own --r and --s */
 .orbit:hover {
   animation:
     float 6s ease-in-out infinite,
     orbitWiggle 0.9s ease-in-out infinite;
 }
 
-/* float stays as-is */
 @keyframes float {
   0%, 100% {
     transform:
@@ -119,7 +117,6 @@ body {
   }
 }
 
-/* NEW: more subtle wiggle (tiny rotate + 1px nudge) */
 @keyframes orbitWiggle {
   0% {
     transform:
@@ -260,27 +257,25 @@ h4 {
 }
 
 /* ==================================================
-   STICKERS LAYER (FLOATING)
-   Adjustable GIF/PNG placement using CSS variables
+   STICKERS (FIXED TO VIEWPORT)
+   Only controls: --x (vw), --y (vh), --size (px)
 ================================================== */
 .sticker-layer {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 5; /* under orbits/aero (which are 10), above stars (1) */
+  z-index: 5; /* under orbits/aero (10), above stars (1) */
 }
 
 .sticker {
-  position: absolute;
+  position: fixed;     /* FIXED INDIVIDUALLY */
   left: 0;
   top: 0;
-  width: var(--w, 120px);
-  height: auto;
-  opacity: var(--o, 1);
-  transform:
-    translate(var(--x, 50px), var(--y, 50px))
-    rotate(var(--r, 0deg))
-    scale(var(--s, 1));
+  width: var(--size, 140px);
+
+  /* ONLY position API */
+  transform: translate(calc(var(--x, 10) * 1vw), calc(var(--y, 10) * 1vh));
+
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
 }
 
@@ -291,88 +286,39 @@ h4 {
 }
 
 /* ==================================================
-   UNDER-SECOND WINDOW STICKER SECTION (NEW)
-   - clock centred under second window
-   - adjustable with --x / --y
-   - image slot underneath
+   CLOCK STICKER (FIXED, SIMPLE API)
+   Only controls: --x (vw), --y (vh), --size (px)
 ================================================== */
-.under-second-stickers {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  margin: 10px 0 55px;
-
-  /* adjust position of the whole block */
-  transform: translate(var(--x, 0px), var(--y, 0px));
-  pointer-events: none;
-  z-index: 10;
-}
-
-/* the clock “card” */
 #ephemera-clock {
-  width: var(--clock-w, 260px);
-  padding: 1px;
-  border-radius: 14px;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.9),
-    rgba(200,220,255,0.6)
-  );
-
-  box-shadow:
-    0 0 20px rgba(120,180,255,0.35),
-    inset 0 0 8px rgba(255,255,255,0.75);
-
-  transform:
-    translate(var(--clock-x, 0px), var(--clock-y, 0px))
-    rotate(var(--clock-r, 0deg))
-    scale(var(--clock-s, 1));
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--size, 820px);
+  transform: translate(calc(var(--x, 50) * 1vw), calc(var(--y, 70) * 1vh));
+  z-index: 36;
+  pointer-events: none;
 }
 
-#ephemera-clock .clock-inner {
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-
-  border-radius: 13px;
-  padding: 10px 14px;
-  text-align: right;
-
-  user-select: none;
+#clock-line {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 30px;
+  color: #000000;
+  white-space: nowrap;
 }
 
-#clock-date {
-  font-size: 10px;
-  letter-spacing: 0.5px;
-  opacity: 0.75;
-}
 
-#clock-time {
-  font-size: 15px;
-  margin-top: 2px;
-  font-family: 'NurealRegular', sans-serif;
-}
-
-/* the image slot underneath */
+/* image under clock (fixed + simple API) */
 #under-clock-image {
-  width: var(--img-w, 260px);
-  transform:
-    translate(var(--img-x, 0px), var(--img-y, 0px))
-    rotate(var(--img-r, 0deg))
-    scale(var(--img-s, 1));
-  opacity: var(--img-o, 1);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--size, 320px);
+  transform: translate(calc(var(--x, 50) * 1vw), calc(var(--y, 78) * 1vh));
+  z-index: 6;
+  pointer-events: none;
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
 }
-
-#under-clock-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+#under-clock-image img { width: 100%; height: auto; display: block; }
 
 /* ==================================================
    AERO GALLERY MODAL (UPDATED)
@@ -466,15 +412,9 @@ h4 {
   background: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.35));
 }
 
-.aero-counter {
-  font-size: 12.5px;
-  color: rgba(0,0,0,0.70);
-}
+.aero-counter { font-size: 12.5px; color: rgba(0,0,0,0.70); }
 
-.aero-actions {
-  display: flex;
-  gap: 8px;
-}
+.aero-actions { display: flex; gap: 8px; }
 
 .aero-btn {
   height: 34px;
@@ -492,12 +432,7 @@ h4 {
 .aero-btn:hover { transform: translateY(-1px); }
 .aero-btn:active { transform: translateY(0); }
 
-#aero-gallery-zoom {
-  width: 40px;
-  padding: 0;
-  display: grid;
-  place-items: center;
-}
+#aero-gallery-zoom { width: 40px; padding: 0; display: grid; place-items: center; }
 #aero-gallery-zoom i { font-size: 14px; }
 
 .aero-overlay.is-zoomed #aero-gallery-zoom {
@@ -551,6 +486,7 @@ h4 {
 .player .window { cursor: grab !important; }
 .player.dragging .window { cursor: grabbing !important; }
 
+/* --- seek slider (your styles) --- */
 .seek_slider {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -593,12 +529,7 @@ button::-moz-focus-inner,input[type=reset]::-moz-focus-inner,input[type=submit]:
   src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
 }
 
-.window, .title-bar {
-  font-family: "Myriad Pro";
-  -webkit-font-smoothing: none;
-  font-size: 11px;
-}
-
+.window, .title-bar { font-family: "Myriad Pro"; -webkit-font-smoothing: none; font-size: 11px; }
 .window { padding: 10px; width: 290px; }
 .window-body { display: block; margin: auto; border-radius: 0em; }
 
@@ -669,11 +600,7 @@ th { width: 20px; margin: 0; }
 
 .controls button:hover { opacity: 1; }
 
-.playpause-track {
-  font-size: 22px !important;
-  padding: 3px;
-  color: #79b830;
-}
+.playpause-track { font-size: 22px !important; padding: 3px; color: #79b830; }
 
 .songtitle {
   padding: 25px;
@@ -696,11 +623,7 @@ th { width: 20px; margin: 0; }
   opacity: 0.6;
 }
 
-button {
-  min-width: 20px;
-  background: none;
-  text-align: center;
-}
+button { min-width: 20px; background: none; text-align: center; }
 button:active { opacity: 0.7; }
 
 .seeking {
@@ -716,21 +639,19 @@ button:active { opacity: 0.7; }
 .total-duration { padding-left: 5px; }
 
 /* ==================================================
-   FLOATING MUTE BUTTON (IMAGE SWAPPABLE)
+   FLOATING MUTE BUTTON
 ================================================== */
 #mute-float {
   position: fixed;
   right: 20px;
   bottom: 20px;
   z-index: 1000002;
-
   width: 44px;
   height: 44px;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
-
   display: grid;
   place-items: center;
 }
@@ -748,15 +669,42 @@ button:active { opacity: 0.7; }
 <body>
 
 <!-- ==================================================
-     FLOATING STICKERS (optional)
+     FIXED STICKERS (ONLY --x --y --size)
+     --x and --y are numbers in vw/vh (0-100)
 ================================================== -->
 <div class="sticker-layer" aria-hidden="true">
-  <div class="sticker" style="--x: 40px; --y: 120px; --w: 160px; --r: -6deg; --s: 1; --o: 1;">
-    <img src="https://artwork.neocities.org/photos/junk/starblink.gif" alt="">
+  <div class="sticker" style="--x: 6; --y: 18; --size: 160px;">
+    <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/0ea93369fbcaaf821cfbd44cd4d3a076.gif" alt="">
   </div>
 
-  <div class="sticker" style="--x: calc(100vw - 220px); --y: 140px; --w: 180px; --r: 8deg; --s: 1; --o: 0.95;">
-    <img src="https://artwork.neocities.org/photos/summer/reef.gif" alt="">
+  <div class="sticker" style="--x: 78; --y: 20; --size: 180px;">
+    <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/1502d8d1bf4b9b3bedba14c8038f15f4.gif" alt="">
+  </div>
+
+  <div class="sticker" style="--x: 74; --y: 50; --size: 190px;">
+    <img src="https://github.com/ephemeraonline/site/blob/main/IMAGES/34e7ab11af4f667c0217159ebb7458ba.jpg?raw=true" alt="">
+  </div>
+
+  <div class="sticker" style="--x: 10; --y: 62; --size: 170px;">
+    <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/48de9c221c98de6e3be9e423ab800144.gif" alt="">
+  </div>
+
+  <div class="sticker" style="--x: 78; --y: 72; --size: 170px;">
+    <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/4b66361592ff5a82173686ca86b5b3bb.jpg" alt="">
+  </div>
+
+  <!-- clock + date (fixed) -->
+<div id="ephemera-clock" style="--x: 50; --y: 72; --size: 260px;">
+  <div class="clock-inner">
+    <div id="clock-date"></div>
+    <div id="clock-time"></div>
+  </div>
+</div>
+
+
+  <!-- image under the clock (fixed) -->
+  <div id="under-clock-image" style="--x: 50; --y: 81; --size: 320px;">
+    <img src="https://artwork.neocities.org/photos/junk/sparkle.gif" alt="">
   </div>
 </div>
 
@@ -814,42 +762,6 @@ button:active { opacity: 0.7; }
     </center>
   </div>
 </div>
-
-<!-- ==================================================
-     CLOCK + IMAGE UNDER SECOND WINDOW (NEW)
-     Adjust these vars to move/size stuff:
-     - whole block: --x / --y
-     - clock: --clock-w --clock-x --clock-y --clock-r --clock-s
-     - image: --img-w --img-x --img-y --img-r --img-s --img-o
-================================================== -->
-<div class="under-second-stickers"
-     style="--x: 0px; --y: 0px;
-            --clock-w: 260px; --clock-x: 0px; --clock-y: 0px; --clock-r: 0deg; --clock-s: 1;
-            --img-w: 320px; --img-x: 0px; --img-y: 0px; --img-r: 0deg; --img-s: 1; --img-o: 1;">
-  <div id="ephemera-clock" aria-hidden="true">
-    <div class="clock-inner">
-      <div id="clock-date"></div>
-      <div id="clock-time"></div>
-    </div>
-  </div>
-
-  <div id="under-clock-image" aria-hidden="true">
-    <!-- swap this src for any gif/png -->
-    <img src="https://artwork.neocities.org/photos/junk/sparkle.gif" alt="">
-  </div>
-</div>
-
-<!-- OPTIONAL THIRD AERO WINDOW (SPACE) -->
-<!--
-<div class="aero-window aero-window--third">
-  <div class="aero-header">
-    <div class="aero-title">title here</div>
-  </div>
-  <div class="aero-content">
-    <p>text here</p>
-  </div>
-</div>
--->
 
 <!-- ==================================================
      AERO GALLERY MODAL (UPDATED)
@@ -950,9 +862,6 @@ button:active { opacity: 0.7; }
   </div>
 </div>
 
-<!-- ==================================================
-     FLOATING MUTE TOGGLE
-================================================== -->
 <button id="mute-float" type="button" aria-label="Mute / unmute">
   <img id="mute-float-img"
        src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/MUTE.png"
@@ -961,35 +870,26 @@ button:active { opacity: 0.7; }
 
 <script>
 /* ==================================================
-   CLOCK SCRIPT (NEW)
+   CLOCK SCRIPT
 ================================================== */
 function updateClock() {
   const now = new Date();
 
-  const dateOptions = {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    year: "numeric"
-  };
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const year = now.getFullYear();
 
-  const date = now.toLocaleDateString(undefined, dateOptions);
-  const time = now.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  });
+  const hh = String(now.getHours()).padStart(2, "0");
+  const mm = String(now.getMinutes()).padStart(2, "0");
+  const ss = String(now.getSeconds()).padStart(2, "0");
 
-  const d = document.getElementById("clock-date");
-  const t = document.getElementById("clock-time");
-  if (!d || !t) return;
+  const line = month + "/" + day + "/" + year + " " + hh + ":" + mm + ":" + ss;
 
-  d.textContent = date;
-  t.textContent = time;
+  const el = document.getElementById("clock-line");
+  if (el) el.textContent = line;
 }
 setInterval(updateClock, 1000);
 updateClock();
-
 /* ==================================================
    FALLING STARS
 ================================================== */
@@ -1108,9 +1008,7 @@ for (let i = 0; i < 50; i++) {
   nextBtn.addEventListener("click", next);
   closeX.addEventListener("click", close);
 
-  zoomBtn.addEventListener("click", function () {
-    toggleZoom();
-  });
+  zoomBtn.addEventListener("click", function () { toggleZoom(); });
 
   zoomWrap.addEventListener("dblclick", function (e) {
     e.preventDefault();
@@ -1137,7 +1035,6 @@ for (let i = 0; i < 50; i++) {
     const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
     panStartX = p.clientX;
     panStartY = p.clientY;
-
     e.preventDefault();
   }
 
@@ -1167,7 +1064,7 @@ for (let i = 0; i < 50; i++) {
 })();
 
 /* ==================================================
-   MUSIC PLAYER SCRIPT
+   MUSIC PLAYER SCRIPT (unchanged)
 ================================================== */
 let track_name = document.querySelector(".songtitle");
 let seek_slider = document.querySelector(".seek_slider");
