@@ -261,66 +261,53 @@ h4 {
    Centered horizontally, adjustable per image
 ================================================== */
 
-.random-section {
+/* RANDOM SECTION (centered container) */
+.random-section{
   position: relative;
   width: 100%;
   display: flex;
-  justify-content: center;   /* keeps container centered */
+  justify-content: center;
   margin: 40px 0;
   z-index: 8;
 }
 
-.random-canvas {
-  position: relative;        /* anchor for absolute children */
-  width: 800px;              /* change overall collage width */
+.random-canvas{
+  position: relative;
+  width: 800px;      /* overall collage width */
   max-width: 90vw;
-  height: 500px;             /* change collage height */
+  height: 500px;     /* overall collage height */
 }
 
-.random-item {
+/* ONE SIMPLE API: --x --y --w */
+.random-item,
+.date-graphic{
   position: absolute;
-  width: var(--w, 160px);
-  top: var(--top, 0px);
-  left: var(--left, 0px);
-  transform: rotate(var(--r, 0deg));
+  left: 0;
+  top: 0;
+  width: var(--w, 200px);
+  transform: translate(var(--x, 0px), var(--y, 0px));
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
 }
 
-.random-item img {
+.random-item img,
+.date-graphic img{
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* GRAPHIC + LIVE DATE OVERLAY (for the random collage) */
-.date-graphic {
+/* live date text sits on top of the graphic (fixed placement) */
+.date-graphic .live-date{
   position: absolute;
-  top: var(--top, 0px);
-  left: var(--left, 0px);
-  width: var(--w, 260px);
-  transform: rotate(var(--r, 0deg));
-  z-index: 40;
-}
-
-.date-graphic img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* the live date text sitting ON TOP of the graphic */
-.date-graphic .live-date {
-  position: absolute;
-  top: var(--dt, 12px);      /* move date down/up */
-  left: var(--dl, 12px);     /* move date left/right */
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  top: 14px;     /* adjust ONCE here if needed */
+  left: 14px;    /* adjust ONCE here if needed */
+  font-family: "Comic Sans MS","Comic Sans",cursive;
   font-weight: 900;
-  font-size: var(--fs, 28px);
-  color: var(--c, #1e40ff);
+  font-size: 30px;
+  color: #1e40ff;
   text-shadow: 1px 1px 0 #ffffff;
   white-space: nowrap;
 }
-
 
 
 /* ==================================================
@@ -733,51 +720,43 @@ button:active { opacity: 0.7; }
 <div class="random-section">
   <div class="random-canvas">
      
-  <!-- DATE GRAPHIC (image) + LIVE DATE TEXT overlay -->
-<div class="date-graphic"
-     style="--top: 40px; --left: 120px; --w: 260px; --r: 0deg;
-            --dt: 18px; --dl: 18px; --fs: 30px; --c: #1e40ff;">
-  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA%20WEBSITE%20(1).png" alt="">
-  <div class="live-date" id="random-live-date"></div>
-</div>
+  <!-- DATE GRAPHIC + LIVE DATE (only --x --y --w) -->
+    <div class="date-graphic" style="--x: 120px; --y: 40px; --w: 260px;">
+      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA%20WEBSITE%20(1).png" alt="">
+      <div class="live-date" id="random-live-date"></div>
+    </div>
 
-    <div class="random-item"
-         style="--w:180px; --top:40px; --left:100px; --r:0deg;">
+    <div class="random-item" style="--x: 100px; --y: 40px; --w: 180px;">
       <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/0ea93369fbcaaf821cfbd44cd4d3a076.gif" alt="">
     </div>
 
-    <div class="random-item"
-         style="--w:220px; --top:160px; --left:320px; --r:-4deg;">
+    <div class="random-item" style="--x: 320px; --y: 160px; --w: 220px;">
       <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/1502d8d1bf4b9b3bedba14c8038f15f4.gif" alt="">
     </div>
 
-    <div class="random-item"
-         style="--w:150px; --top:260px; --left:40px; --r:3deg;">
+    <div class="random-item" style="--x: 40px; --y: 260px; --w: 150px;">
       <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/34e7ab11af4f667c0217159ebb7458ba.jpg" alt="">
     </div>
-     
-    <div class="random-item"
-         style="--w:150px; --top:260px; --left:40px; --r:3deg;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/48de9c221c98de6e3be9e423ab800144.gif alt="">
-   </div>
 
-         <div class="random-item"
-         style="--w:150px; --top:260px; --left:40px; --r:3deg;">
+    <!-- FIXED your broken quote in the src attribute -->
+    <div class="random-item" style="--x: 40px; --y: 300px; --w: 150px;">
+      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/48de9c221c98de6e3be9e423ab800144.gif" alt="">
+    </div>
+
+    <div class="random-item" style="--x: 220px; --y: 260px; --w: 150px;">
       <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/4b66361592ff5a82173686ca86b5b3bb.jpg" alt="">
     </div>
 
-         <div class="random-item"
-         style="--w:150px; --top:260px; --left:40px; --r:3deg;">
+    <div class="random-item" style="--x: 420px; --y: 260px; --w: 150px;">
       <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/WELCOME_HOME.gif" alt="">
     </div>
 
-         <div class="random-item"
-         style="--w:150px; --top:260px; --left:40px; --r:3deg;">
+    <div class="random-item" style="--x: 20px; --y: 420px; --w: 150px;">
       <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif" alt="">
     </div>
+
   </div>
 </div>
-
 
 
 
@@ -1346,5 +1325,7 @@ updateRandomGraphicDate();
 
 </body>
 </html>
+
+
 
 
