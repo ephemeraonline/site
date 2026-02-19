@@ -180,6 +180,22 @@ body {
     scale(var(--s, 1));
 }
 
+ /* ==================================================
+  IMAGE HEADER (between orbit and aero window)
+================================================== */
+.image-header{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 16px; /* super tight spacing */
+}
+
+.image-header-img{
+  width: var(--w, 600px);
+  max-width: 90vw; /* scales for mobile */
+  height: auto;
+  display: block;
+}
 /* ==================================================
  AERO WINDOWS
 ================================================== */
@@ -737,7 +753,7 @@ button:active { opacity: 0.7; }
 </div>
 
 <div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;"></div>
-<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png">
+
 <div class="aero-window">
   <div class="aero-header">
     <div class="aero-title"> message from admin team </div>
@@ -747,7 +763,13 @@ button:active { opacity: 0.7; }
     <p>hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out :) </p>
   </div>
 </div>
-
+<div class="image-header">
+  <img 
+    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png"
+    alt="Section header"
+    class="image-header-img"
+    style="--w:600px;">
+</div>
 <div class="aero-window aero-window--second">
   <div class="aero-header">
     <div class="aero-title">under construction </div>
