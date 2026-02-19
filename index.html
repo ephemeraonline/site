@@ -59,17 +59,14 @@ body {
 ================================================== */
 /* wrapper keeps both aligned */
 .e-wrap{
-  position: relative;
-  width: 620px;
-  height: 620px;
-  margin: 20px auto 8px; /* controls how far from top */
+  height: 520px;
+  margin: 10px auto 0px;
 }
-
 /* center the E inside wrapper */
 #decor-e{
   position: absolute;
   left: 50%;
-  top: 65%;
+  top: 50%;
   transform: translate(-50%, -50%);
   width: 350px;
   height: auto;
@@ -180,29 +177,14 @@ body {
     scale(var(--s, 1));
 }
 
- /* ==================================================
-  IMAGE HEADER (between orbit and aero window)
-================================================== */
-.image-header{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: 12px 0 16px; /* super tight spacing */
-}
-
-.image-header-img{
-  width: var(--w, 600px);
-  max-width: 90vw; /* scales for mobile */
-  height: auto;
-  display: block;
-}
 /* ==================================================
  AERO WINDOWS
 ================================================== */
 .aero-window {
+  
   position: relative;
-  margin: 12px auto; /* ✅ tight + consistent */
-  width: 700px;
+  margin: 6px auto 24px;
+  width: 900px;
   max-width: 90%;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255,255,255,0.6);
@@ -239,7 +221,7 @@ body {
 .aero-content {
   padding: 15px;
   background-color: #e9e9e9;
-  font-size: 16px;
+  font-size: 18px;
   width: fit-content;
   font-weight: bold;
 }
@@ -281,6 +263,24 @@ h4 {
   width: fit-content;
 }
 
+/* ==================================================
+  ≈ (between orbit and aero window)
+================================================== */
+.image-header{
+  width: 100%;
+  margin-top: 40px; /* adjust to taste */
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 240px; /* adjust this value */
+}
+.image-header-img{
+  width: var(--w, 600px);
+  max-width: 90vw; /* scales for mobile */
+  height: auto;
+  display: block;
+}
 /* ==================================================
  TABLE
 ================================================== */
@@ -730,30 +730,36 @@ button:active { opacity: 0.7; }
 <div class="orbit-container">
   <img class="orbit"
     id="flyers-trigger"
-    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png"
-    style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1;"
+    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_UPDATED.gif"
+    style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:180px;"
     alt="Flyers rough">
   <img class="orbit"
     src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
-    style="--x:200px; --y:-160px; --r:10deg; --s:1.0;"
+    style="--x:200px; --y:-160px; --r:10deg; --s:1.0;width:180px;"
     alt="">
 
   <img class="orbit"
     src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-    style="--x:-260px; --y:170px; --r:-15deg; --s:1.0;"
+    style="--x:-260px; --y:170px; --r:-15deg; --s:1.0;width:180px;"
     alt="">
   <img class="orbit"
     src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/instagram_3d.gif"
-    style="--x:260px; --y:160px; --r:5deg; --s:0.95;"
+    style="--x:260px; --y:160px; --r:5deg; --s:0.95;width:180px;"
     alt="">
   <img class="orbit"
     src="http://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STORE.png"
-    style="--x:0px; --y:260px; --r:25deg; --s:1.05;"
+    style="--x:0px; --y:260px; --r:25deg; --s:1.05;width:180px;"
     alt="">
 </div>
 
 <div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;"></div>
-
+<div class="image-header">
+  <img 
+    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png"
+    alt="Section header"
+    class="image-header-img"
+    style="--w:600px;">
+</div>
 <div class="aero-window">
   <div class="aero-header">
     <div class="aero-title"> message from admin team </div>
@@ -763,13 +769,7 @@ button:active { opacity: 0.7; }
     <p>hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out :) </p>
   </div>
 </div>
-<div class="image-header">
-  <img 
-    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png"
-    alt="Section header"
-    class="image-header-img"
-    style="--w:600px;">
-</div>
+
 <div class="aero-window aero-window--second">
   <div class="aero-header">
     <div class="aero-title">under construction </div>
