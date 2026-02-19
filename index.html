@@ -301,6 +301,53 @@ h4 {
   }
 }
 
+/* ==================================================
+   AFFIRMATIONS
+================================================== */
+
+/* wrapper */
+.tbl-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* image wrapper for overlay positioning */
+.tbl-img-wrap{
+  position: relative;
+  display: inline-block;
+}
+
+/* live date overlay */
+.live-date{
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Comic Sans MS","Comic Sans",cursive;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #1e40ff;
+  text-shadow: 1px 1px 0 #ffffff;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* caption box */
+.tbl-caption{
+  margin-top: 8px;
+  padding: 8px 12px;
+  font-family: "Comic Sans MS","Comic Sans",cursive;
+  font-size: 20px;
+  font-weight: bold;
+  background: #a5ff00;
+  color: #7d43b2;
+  border-radius: 0px;
+  text-align: center;
+  width: fit-content;
+  max-width: 260px;
+}
 
 /* ==================================================
    AERO GALLERY MODAL (UPDATED)
@@ -714,15 +761,36 @@ button:active { opacity: 0.7; }
 <div class="image-table-wrap">
   <table class="image-table">
     <tr>
-      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED%20(3).png" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/0ea93369fbcaaf821cfbd44cd4d3a076.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td>
+  <div class="tbl-card">
+
+    <!-- IMAGE + LIVE DATE OVERLAY -->
+    <div class="tbl-img-wrap">
+      <img class="tbl-img"
+           src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED2.png"
+           alt=""
+           style="--w:250px; --x:0px; --y:0px;">
+
+      <div class="live-date" id="live-date"></div>
+    </div>
+
+    <!-- TEXT BOX UNDER IMAGE -->
+    <div class="tbl-caption"
+         style="--bg:#a5ff00; --color:#7d43b2;">
+      “i will outlive all my enemies”
+    </div>
+
+  </div>
+
+      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/WELCOME_HOME.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
       <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/1502d8d1bf4b9b3bedba14c8038f15f4.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
       <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
     </tr>
     <tr>
-      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/34e7ab11af4f667c0217159ebb7458ba.jpg" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      
+      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/64276f7fa3150b8f083571297875bd99.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
       <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
     </tr>
     <tr>
@@ -739,6 +807,9 @@ button:active { opacity: 0.7; }
 <!-- =========================================
      END TABLE
 ========================================= -->
+
+
+
 
 <!-- ==================================================
      AERO GALLERY MODAL (UPDATED)
@@ -1283,25 +1354,32 @@ loadTrack(track_index);
 })();
 
 /* ==================================================
-   COLLAGE SIMPLE DATE (x/x/xxxx)
+   LIVE DATE
 ================================================== */
 
-function updateRandomGraphicDate() {
+
+function updateLiveDate(){
   const now = new Date();
-  const m = now.getMonth() + 1;
-  const d = now.getDate();
-  const y = now.getFullYear();
-  const line = m + "/" + d + "/" + y;
 
-  const el = document.getElementById("random-live-date");
-  if (el) el.textContent = line;
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const year = now.getFullYear();
+
+  const hours24 = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2,"0");
+
+  const ampm = hours24 >= 12 ? "PM" : "AM";
+  const hours = hours24 % 12 || 12;
+
+  const line = month + "/" + day + "/" + year + " " + hours + ":" + minutes + " " + ampm;
+
+  const el = document.getElementById("live-date");
+  if(el) el.textContent = line;
 }
-updateRandomGraphicDate();
+
+updateLiveDate();
+setInterval(updateLiveDate, 60000); // updates every minute
 </script>
-
-</body>
-</html>
-
 
 
 
