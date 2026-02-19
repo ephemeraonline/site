@@ -257,61 +257,50 @@ h4 {
 }
 
 /* ==================================================
-   RANDOM IMAGE SECTION (below first aero window)
-   Centered horizontally, adjustable per image
+   TABLE
 ================================================== */
-
-/* RANDOM SECTION (centered container) */
-.random-section{
-  position: relative;
+.image-table-wrap{
   width: 100%;
+  padding: 24px 16px 60px;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
-  margin: 40px 0;
-  z-index: 8;
 }
 
-.random-canvas{
-  position: relative;
-  width: 800px;      /* overall collage width */
-  max-width: 90vw;
-  height: 500px;     /* overall collage height */
+.image-table{
+  width: min(1100px, 100%);
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
-/* ONE SIMPLE API: --x --y --w */
-.random-item,
-.date-graphic{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: var(--w, 300px);
-  transform: translate(var(--x, 0px), var(--y, 0px));
-  filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
+.image-table td{
+  padding: 12px;
+  vertical-align: top;
 }
 
-.random-item img,
-.date-graphic img{
-  width: 100%;
-  height: auto;
+/* size + position controls per image */
+.tbl-img{
   display: block;
+  width: var(--w, 180px);
+  height: auto;
+  transform: translate(var(--x, 0px), var(--y, 0px));
 }
 
-/* live date text sits on top of the graphic (fixed placement) */
-.date-graphic .live-date{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  /* adjustable vertical offset */
-  transform: translate(-50%, calc(-50% + var(--y-adjust, 0px)));
-
-  font-family: "Comic Sans MS","Comic Sans",cursive;
-  font-weight: 900;
-  font-size: 20px;
-  color: #1e40ff;
-  text-shadow: 1px 1px 0 #ffffff;
-  white-space: nowrap;
+/* mobile: stack into 2 columns (cleaner than 4) */
+@media (max-width: 640px){
+  .image-table{
+    table-layout: auto;
+  }
+  .image-table td{
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+  .tbl-img{
+    width: min(var(--w, 220px), 92vw);
+  }
 }
+
 
 /* ==================================================
    AERO GALLERY MODAL (UPDATED)
@@ -718,54 +707,37 @@ button:active { opacity: 0.7; }
 </div>
 
 <!-- =========================================
-     RANDOM ABSOLUTE IMAGE COLLAGE
+     START TABLE
 ========================================= -->
-<div class="random-section">
-  <div class="random-canvas">
-     
-  <!-- DATE GRAPHIC + LIVE DATE (only --x --y --w) -->
-    <div class="date-graphic" style="--x: 120px; --y: 40px; --w: 260px;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED%20(3).png" alt="">
-    </div>
 
-    <div class="random-item" style="--x: 100px; --y: 40px; --w: 180px;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/0ea93369fbcaaf821cfbd44cd4d3a076.gif" alt="">
-    </div>
-
-    <div class="random-item" style="--x: 320px; --y: 160px; --w: 220px;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/1502d8d1bf4b9b3bedba14c8038f15f4.gif" alt="">
-    </div>
-
-    <div class="random-item" style="--x: 40px; --y: 260px; --w: 150px;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/34e7ab11af4f667c0217159ebb7458ba.jpg" alt="">
-    </div>
-
-    <!-- FIXED your broken quote in the src attribute -->
-    <div class="random-item" style="--x: 40px; --y: 300px; --w: 150px;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/48de9c221c98de6e3be9e423ab800144.gif" alt="">
-    </div>
-
-    <div class="random-item" style="--x: 220px; --y: 260px; --w: 150px;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/4b66361592ff5a82173686ca86b5b3bb.jpg" alt="">
-    </div>
-
-    <div class="random-item" style="--x: 420px; --y: 260px; --w: 150px;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/WELCOME_HOME.gif" alt="">
-    </div>
-
-    <div class="random-item" style="--x: 20px; --y: 420px; --w: 150px;">
-      <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif" alt="">
-    </div>
-<div class="date-graphic"
-     style="--x:120px; --y:20px; --w:260px; --y-adjust: 26px;">
-
-  </div>
+<!-- 4 x 3 IMAGE TABLE -->
+<div class="image-table-wrap">
+  <table class="image-table">
+    <tr>
+      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED%20(3).png" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/0ea93369fbcaaf821cfbd44cd4d3a076.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/1502d8d1bf4b9b3bedba14c8038f15f4.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+    </tr>
+    <tr>
+      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+    </tr>
+    <tr>
+      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+    </tr>
+  </table>
 </div>
 
 
 
 <!-- =========================================
-     END RANDOM COLLAGE
+     END TABLE
 ========================================= -->
 
 <!-- ==================================================
@@ -1329,6 +1301,7 @@ updateRandomGraphicDate();
 
 </body>
 </html>
+
 
 
 
