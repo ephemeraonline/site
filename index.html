@@ -9,7 +9,7 @@
 
 <style>
 /* ==================================================
-   GLOBAL / CURSOR
+  GLOBAL / CURSOR
 ================================================== */
 * {
   cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_GOOD.png"), auto !important;
@@ -34,7 +34,7 @@ body {
 }
 
 /* ==================================================
-   FALLING STARS
+  FALLING STARS (FULL PAGE HEIGHT)
 ================================================== */
 .star {
   position: absolute;
@@ -50,12 +50,14 @@ body {
   opacity: 0.95;
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
 }
+
+/* ✅ uses --fall-distance set by JS to match full page height */
 @keyframes fall {
-  to { transform: translateY(200vh) rotate(360deg); opacity: 0; }
+  to { transform: translateY(var(--fall-distance, 2800vh)) rotate(360deg); opacity: 0; }
 }
 
 /* ==================================================
-   DECOR PLANET
+  DECOR PLANET
 ================================================== */
 #decor-e {
   display: block;
@@ -66,7 +68,7 @@ body {
 }
 
 /* ==================================================
-   ORBIT SYSTEM
+  ORBIT SYSTEM
 ================================================== */
 .orbit-container {
   position: relative;
@@ -85,10 +87,10 @@ body {
   pointer-events: auto;
   z-index: 10;
   transform:
-    translate(-50%, -50%)
-    translate(var(--x), var(--y))
-    rotate(var(--r, 0deg))
-    scale(var(--s, 1));
+	translate(-50%, -50%)
+	translate(var(--x), var(--y))
+	rotate(var(--r, 0deg))
+	scale(var(--s, 1));
   animation: float 6s ease-in-out infinite;
   transition: transform 0.2s ease;
   will-change: transform;
@@ -96,67 +98,67 @@ body {
 
 .orbit:hover {
   animation:
-    float 6s ease-in-out infinite,
-    orbitWiggle 0.9s ease-in-out infinite;
+	float 6s ease-in-out infinite,
+	orbitWiggle 0.9s ease-in-out infinite;
 }
 
 @keyframes float {
   0%, 100% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1));
+	transform:
+	  translate(-50%, -50%)
+	  translate(var(--x), var(--y))
+	  rotate(var(--r, 0deg))
+	  scale(var(--s, 1));
   }
   50% {
-    transform:
-      translate(-50%, -50%)
-      translate(calc(var(--x) + 6px), calc(var(--y) - 6px))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1));
+	transform:
+	  translate(-50%, -50%)
+	  translate(calc(var(--x) + 6px), calc(var(--y) - 6px))
+	  rotate(var(--r, 0deg))
+	  scale(var(--s, 1));
   }
 }
 
 @keyframes orbitWiggle {
   0% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) - 0.7deg))
-      scale(var(--s, 1));
+	transform:
+	  translate(-50%, -50%)
+	  translate(var(--x), var(--y))
+	  rotate(calc(var(--r, 0deg) - 0.7deg))
+	  scale(var(--s, 1));
   }
   25% {
-    transform:
-      translate(-50%, -50%)
-      translate(calc(var(--x) + 1px), calc(var(--y) - 1px))
-      rotate(calc(var(--r, 0deg) + 0.9deg))
-      scale(var(--s, 1));
+	transform:
+	  translate(-50%, -50%)
+	  translate(calc(var(--x) + 1px), calc(var(--y) - 1px))
+	  rotate(calc(var(--r, 0deg) + 0.9deg))
+	  scale(var(--s, 1));
   }
   50% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) - 0.9deg))
-      scale(var(--s, 1));
+	transform:
+	  translate(-50%, -50%)
+	  translate(var(--x), var(--y))
+	  rotate(calc(var(--r, 0deg) - 0.9deg))
+	  scale(var(--s, 1));
   }
   75% {
-    transform:
-      translate(-50%, -50%)
-      translate(calc(var(--x) - 1px), calc(var(--y) + 1px))
-      rotate(calc(var(--r, 0deg) + 0.7deg))
-      scale(var(--s, 1));
+	transform:
+	  translate(-50%, -50%)
+	  translate(calc(var(--x) - 1px), calc(var(--y) + 1px))
+	  rotate(calc(var(--r, 0deg) + 0.7deg))
+	  scale(var(--s, 1));
   }
   100% {
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) - 0.7deg))
-      scale(var(--s, 1));
+	transform:
+	  translate(-50%, -50%)
+	  translate(var(--x), var(--y))
+	  rotate(calc(var(--r, 0deg) - 0.7deg))
+	  scale(var(--s, 1));
   }
 }
 
 /* ==================================================
-   WELCOME BANNER
+  WELCOME BANNER
 ================================================== */
 .welcome-banner {
   position: relative;
@@ -166,13 +168,13 @@ body {
   z-index: 10;
   display: block;
   transform:
-    translate(var(--x, 0px), var(--y, 210px))
-    rotate(var(--r, 0deg))
-    scale(var(--s, 1));
+	translate(var(--x, 0px), var(--y, 210px))
+	rotate(var(--r, 0deg))
+	scale(var(--s, 1));
 }
 
 /* ==================================================
-   AERO WINDOWS
+  AERO WINDOWS
 ================================================== */
 .aero-window {
   position: relative;
@@ -183,16 +185,16 @@ body {
   border: 1px solid rgba(255,255,255,0.6);
   border-radius: 12px;
   box-shadow:
-    0 0 20px rgba(0, 150, 255,0.2),
-    0 8px 32px rgba(0,0,0,0.1);
+	0 0 20px rgba(0, 150, 255,0.2),
+	0 8px 32px rgba(0,0,0,0.1);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   transform:
-    translate(var(--x, 0px), var(--y, 250px))
-    rotate(var(--r, 0deg))
-    scale(var(--s, 1));
+	translate(var(--x, 0px), var(--y, 250px))
+	rotate(var(--r, 0deg))
+	scale(var(--s, 1));
 }
 
 .aero-header {
@@ -219,20 +221,7 @@ body {
   font-weight: bold;
 }
 
-.aero-content h3,
-h4 {
-  text-align: center;
-  font-size: 40px;
-  background: linear-gradient(
-    90deg,
-    red, orange, yellow, green, blue, indigo, violet
-  );
-  background-size: 400% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbow 5s linear infinite;
-  width: fit-content;
-}
+
 
 @keyframes rainbow {
   0% { background-position: 0% 0%; }
@@ -240,7 +229,7 @@ h4 {
 }
 
 /* ==================================================
-   SECOND AERO WINDOW TWEAKS (ONLY)
+  SECOND AERO WINDOW TWEAKS (ONLY)
 ================================================== */
 .aero-window.aero-window--second {
   width: 320px;
@@ -257,7 +246,7 @@ h4 {
 }
 
 /* ==================================================
-   TABLE
+  TABLE
 ================================================== */
 .image-table-wrap{
   width: 100%;
@@ -265,6 +254,8 @@ h4 {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  z-index: 10;
+  position: relative;
 }
 
 .image-table{
@@ -288,31 +279,24 @@ h4 {
 
 /* mobile: stack into 2 columns (cleaner than 4) */
 @media (max-width: 640px){
-  .image-table{
-    table-layout: auto;
-  }
+  .image-table{ table-layout: auto; }
   .image-table td{
-    width: 50%;
-    display: inline-block;
-    box-sizing: border-box;
+	width: 50%;
+	display: inline-block;
+	box-sizing: border-box;
   }
-  .tbl-img{
-    width: min(var(--w, 220px), 92vw);
-  }
+  .tbl-img{ width: min(var(--w, 220px), 92vw); }
 }
 
 /* ==================================================
-   AFFIRMATIONS
+  AFFIRMATIONS
 ================================================== */
-
-/* wrapper */
 .tbl-card{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* image wrapper for overlay positioning */
 .tbl-img-wrap{
   position: relative;
   display: inline-block;
@@ -334,15 +318,15 @@ h4 {
   white-space: nowrap;
 }
 
-/* caption box */
+/* caption box (✅ now respects --bg and --color) */
 .tbl-caption{
   margin-top: 8px;
   padding: 8px 12px;
   font-family: "Comic Sans MS","Comic Sans",cursive;
   font-size: 20px;
   font-weight: bold;
-  background: #a5ff00;
-  color: #7d43b2;
+  background: var(--bg, #a5ff00);
+  color: var(--color, #7d43b2);
   border-radius: 0px;
   text-align: center;
   width: fit-content;
@@ -350,7 +334,7 @@ h4 {
 }
 
 /* ==================================================
-   AERO GALLERY MODAL (UPDATED)
+  AERO GALLERY MODAL (UPDATED)
 ================================================== */
 .aero-overlay {
   position: fixed;
@@ -490,8 +474,8 @@ h4 {
 }
 
 /* ==================================================
-   MUSIC PLAYER CSS (YOUR PROVIDED STYLES)
-   + draggable tweaks
+  MUSIC PLAYER CSS (YOUR PROVIDED STYLES)
+  + draggable tweaks
 ================================================== */
 #player-drag {
   position: fixed;
@@ -515,7 +499,6 @@ h4 {
 .player .window { cursor: grab !important; }
 .player.dragging .window { cursor: grabbing !important; }
 
-/* --- seek slider (your styles) --- */
 .seek_slider {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -668,7 +651,7 @@ button:active { opacity: 0.7; }
 .total-duration { padding-left: 5px; }
 
 /* ==================================================
-   FLOATING MUTE BUTTON
+  FLOATING MUTE BUTTON
 ================================================== */
 #mute-float {
   position: fixed;
@@ -697,257 +680,252 @@ button:active { opacity: 0.7; }
 
 <body>
 
-
 <img id="decor-e"
-     src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
-     alt="EPHEMERA logo">
+	 src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
+	 alt="EPHEMERA logo">
 
 <div class="orbit-container">
   <img class="orbit"
-       id="flyers-trigger"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png"
-       style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;"
-       alt="Flyers rough">
-  <img class="orbit"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
-       style="--x:100px; --y:-50px; --r:10deg;"
-       alt="">
+	   id="flyers-trigger"
+	   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_ROUGH.png"
+	   style="--x:-200px; --y:-20px; --r:-15deg; --s:1.5;"
+	   alt="Flyers rough">
 
   <img class="orbit"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-       style="--x:-200px; --y:200px; --r:-15deg;"
-       alt="">
+	   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
+	   style="--x:100px; --y:-50px; --r:10deg;"
+	   alt="">
+
   <img class="orbit"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/instagram_3d.gif"
-       style="--x:300px; --y:200px; --r:5deg;"
-       alt="">
+	   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
+	   style="--x:-200px; --y:200px; --r:-15deg;"
+	   alt="">
+
   <img class="orbit"
-       src="http://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STORE.png"
-       style="--x:60px; --y:200px; --r:25deg;"
-       alt="">
+	   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/instagram_3d.gif"
+	   style="--x:300px; --y:200px; --r:5deg;"
+	   alt="">
+
+  <img class="orbit"
+	   src="http://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STORE.png"
+	   style="--x:60px; --y:200px; --r:25deg;"
+	   alt="">
 </div>
-
-
-
 
 <div class="welcome-banner" style="--x: 0px; --y: 250px; --r: 0deg;"></div>
 
 <div class="aero-window">
   <div class="aero-header">
-    <div class="aero-title"> message from admin team </div>
+	<div class="aero-title"> message from admin team </div>
   </div>
   <div class="aero-content">
-    <h3></h3>
-    <p>hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out :) </p>
+	<h3></h3>
+	<p>hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out :) </p>
   </div>
 </div>
 
 <div class="aero-window aero-window--second">
   <div class="aero-header">
-    <div class="aero-title">under construction </div>
+	<div class="aero-title">under construction </div>
   </div>
   <div class="aero-content">
-    <center>
-      <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time. so click around, get lost, and have fun. thank you for being here <3</p>
-    </center>
+	<center>
+	  <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time. so click around, get lost, and have fun. thank you for being here &lt;3</p>
+	</center>
   </div>
 </div>
 
 <!-- =========================================
-     START TABLE
+  START TABLE
 ========================================= -->
-
-<!-- 4 x 3 IMAGE TABLE -->
 <div class="image-table-wrap">
   <table class="image-table">
-    <tr>
-      <td>
-  <div class="tbl-card">
+	<tr>
+	  <td>
+		<div class="tbl-card">
+		  <div class="tbl-img-wrap">
+			<img class="tbl-img"
+				 src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED2.png"
+				 alt=""
+				 style="--w:250px; --x:0px; --y:0px;">
+			<div class="live-date" id="live-date"></div>
+		  </div>
 
-    <!-- IMAGE + LIVE DATE OVERLAY -->
-    <div class="tbl-img-wrap">
-      <img class="tbl-img"
-           src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED2.png"
-           alt=""
-           style="--w:250px; --x:0px; --y:0px;">
+		  <div class="tbl-caption" style="--bg:#a5ff00; --color:#7d43b2;">
+			“i will outlive all my enemies”
+		  </div>
+		</div>
+	  </td>
 
-      <div class="live-date" id="live-date"></div>
-    </div>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/WELCOME_HOME.gif" alt="" style="--w:340px; --x:0px; --y:0px;"></td>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/hellokitty_sparkle.gif" alt="" style="--w:130px; --x:50px; --y:0px;"></td>
+	  <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+	</tr>
 
-    <!-- TEXT BOX UNDER IMAGE -->
-    <div class="tbl-caption"
-         style="--bg:#a5ff00; --color:#7d43b2;">
-      “i will outlive all my enemies”
-    </div>
+	<tr>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/keep_in_touch.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/kitty_demon.gif" alt="" style="--w:130px; --x:0px; --y:0px;"></td>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif" alt="" style="--w:220px; --x:0px; --y:0px;"></td>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/my_computer.jpg" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+	</tr>
 
-  </div>
-
-      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/WELCOME_HOME.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/1502d8d1bf4b9b3bedba14c8038f15f4.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-    </tr>
-    <tr>
-      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/34e7ab11af4f667c0217159ebb7458ba.jpg" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      
-      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/64276f7fa3150b8f083571297875bd99.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-    </tr>
-    <tr>
-      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-      <td><img class="tbl-img" src="" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
-    </tr>
+	<tr>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/kitty_devil.gif" alt="" style="--w:130px; --x:0px; --y:0px;"></td>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/doggos.jpg" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/ipod_ad.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+	  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/not_a_joke.jpg" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+	</tr>
   </table>
 </div>
-
-
-
 <!-- =========================================
-     END TABLE
+  END TABLE
 ========================================= -->
 
-
-
-
 <!-- ==================================================
-     AERO GALLERY MODAL (UPDATED)
+  AERO GALLERY MODAL (UPDATED)
 ================================================== -->
 <div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
   <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
+	<div class="aero-header">
+	  <div class="aero-title">our flyers</div>
+	  <button class="aero-close-btn" id="aero-gallery-close-x" type="button" aria-label="Close">✕</button>
+	</div>
 
-    <div class="aero-header">
-      <div class="aero-title">our flyers</div>
-      <button class="aero-close-btn" id="aero-gallery-close-x" type="button" aria-label="Close">✕</button>
-    </div>
+	<div class="aero-gallery-body">
+	  <button class="aero-nav" id="aero-gallery-prev" type="button" aria-label="Previous">◀</button>
 
-    <div class="aero-gallery-body">
-      <button class="aero-nav" id="aero-gallery-prev" type="button" aria-label="Previous">◀</button>
+	  <div class="aero-stage">
+		<div class="aero-zoomwrap" id="aero-zoomwrap" aria-label="image stage">
+		  <img id="aero-gallery-img" src="" alt="Flyer preview">
+		</div>
+	  </div>
 
-      <div class="aero-stage">
-        <div class="aero-zoomwrap" id="aero-zoomwrap" aria-label="image stage">
-          <img id="aero-gallery-img" src="" alt="Flyer preview">
-        </div>
-      </div>
+	  <button class="aero-nav" id="aero-gallery-next" type="button" aria-label="Next">▶</button>
+	</div>
 
-      <button class="aero-nav" id="aero-gallery-next" type="button" aria-label="Next">▶</button>
-    </div>
+	<div class="aero-footer">
+	  <div class="aero-counter" id="aero-gallery-counter">1 / 1</div>
 
-    <div class="aero-footer">
-      <div class="aero-counter" id="aero-gallery-counter">1 / 1</div>
-
-      <div class="aero-actions">
-        <button class="aero-btn" id="aero-gallery-zoom" type="button" aria-label="Zoom">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </div>
-
+	  <div class="aero-actions">
+		<button class="aero-btn" id="aero-gallery-zoom" type="button" aria-label="Zoom">
+		  <i class="fas fa-search"></i>
+		</button>
+	  </div>
+	</div>
   </div>
 </div>
 
 <!-- ==================================================
-     DRAGGABLE MUSIC PLAYER
+  DRAGGABLE MUSIC PLAYER
 ================================================== -->
 <div id="player-drag" aria-label="draggable music player">
   <div class="player" id="player">
-    <div class="window" id="player-handle">
-      <div class="window-body">
-        <div class="flex">
-          <div class="wheel" style="height:100px;width:100px;">
-            <div class="wheelcontrols">
-              <button class="fas fa-plus" onclick="volumeUp()" style="padding-top:4px; padding-bottom:0;"></button>
-            </div>
+	<div class="window" id="player-handle">
+	  <div class="window-body">
+		<div class="flex">
+		  <div class="wheel" style="height:100px;width:100px;">
+			<div class="wheelcontrols">
+			  <button class="fas fa-plus" onclick="volumeUp()" style="padding-top:4px; padding-bottom:0;"></button>
+			</div>
 
-            <table class="wheelcontrols">
-              <th>
-                <button class="fas fa-backward" onclick="prevTrack()"></button>
-              </th>
-              <th class="innerwheel">
-                <button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button>
-              </th>
-              <th>
-                <button class="fas fa-forward" onclick="nextTrack()"></button>
-              </th>
-            </table>
+			<table class="wheelcontrols">
+			  <tr>
+				<th><button class="fas fa-backward" onclick="prevTrack()"></button></th>
+				<th class="innerwheel"><button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button></th>
+				<th><button class="fas fa-forward" onclick="nextTrack()"></button></th>
+			  </tr>
+			</table>
 
-            <div class="wheelcontrols" style="padding:0;">
-              <button class="fas fa-minus" onclick="volumeDown()"></button>
-            </div>
-          </div>
+			<div class="wheelcontrols" style="padding:0;">
+			  <button class="fas fa-minus" onclick="volumeDown()"></button>
+			</div>
+		  </div>
 
-          <div id="musicplayer">
-            <div class="flex">
-              <marquee scrollamount="4" class="songtitle"></marquee>
-            </div>
+		  <div id="musicplayer">
+			<div class="flex">
+			  <marquee scrollamount="4" class="songtitle"></marquee>
+			</div>
 
-            <div class="seeking">
-              <div class="current-time">00:00</div>
-              <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
-              <div class="total-duration">0:00</div>
-            </div>
+			<div class="seeking">
+			  <div class="current-time">00:00</div>
+			  <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+			  <div class="total-duration">0:00</div>
+			</div>
 
-            <table class="controls">
-              <tr>
-                <td>
-                  <button type="button" title="Loop (visual only)"><div class="fas fa-sync"></div></button>
-                </td>
-                <td>
-                  <button type="button" title="Playlist (visual only)"><div class="fas fa-music"></div></button>
-                </td>
-                <td>
-                  <button type="button" title="Shuffle (visual only)"><div class="fas fa-random"></div></button>
-                </td>
-              </tr>
-            </table>
+			<table class="controls">
+			  <tr>
+				<td><button type="button" title="Loop (visual only)"><div class="fas fa-sync"></div></button></td>
+				<td><button type="button" title="Playlist (visual only)"><div class="fas fa-music"></div></button></td>
+				<td><button type="button" title="Shuffle (visual only)"><div class="fas fa-random"></div></button></td>
+			  </tr>
+			</table>
 
-            <audio id="music" src=""></audio>
-          </div>
-        </div>
-      </div>
-    </div>
+			<audio id="music" src=""></audio>
+		  </div>
+		</div>
+	  </div>
+	</div>
   </div>
 </div>
 
 <button id="mute-float" type="button" aria-label="Mute / unmute">
   <img id="mute-float-img"
-       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/MUTE.png"
-       alt="">
+	   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/MUTE.png"
+	   alt="">
 </button>
 
 <script>
-
-
 /* ==================================================
-   FALLING STARS
+  FALLING STARS (FULL PAGE HEIGHT)
 ================================================== */
 const STAR_IMAGES = [
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png",
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png",
-  "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png",
   "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png"
 ];
 
-for (let i = 0; i < 50; i++) {
-  const star = document.createElement("div");
-  star.className = "star";
-  const img = document.createElement("img");
-  img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
-  star.style.left = Math.random() * window.innerWidth + "px";
-  star.style.width = (Math.random() * 18 + 12) + "px";
-  star.style.animationDuration = (Math.random() * 15 + 10) + "s";
-  star.style.animationDelay = (Math.random() * -15) + "s";
-  star.appendChild(img);
-  document.body.appendChild(star);
+function createStars() {
+  const pageHeight = document.documentElement.scrollHeight;
+
+  for (let i = 0; i < 60; i++) {
+	const star = document.createElement("div");
+	star.className = "star";
+
+	const img = document.createElement("img");
+	img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
+
+	star.style.left = Math.random() * window.innerWidth + "px";
+	star.style.width = (Math.random() * 18 + 12) + "px";
+
+	// ✅ fall through the entire page length
+	star.style.setProperty("--fall-distance", pageHeight + "px");
+
+	star.style.animationDuration = (Math.random() * 20 + 15) + "s";
+	star.style.animationDelay = (Math.random() * -20) + "s";
+
+	star.appendChild(img);
+	document.body.appendChild(star);
+  }
 }
 
+createStars();
+
+/* optional: if your page length changes after load (adding content),
+   this keeps falls correct without respawning stars */
+function syncStarFallDistance() {
+  const pageHeight = document.documentElement.scrollHeight;
+  document.querySelectorAll(".star").forEach((s) => {
+	s.style.setProperty("--fall-distance", pageHeight + "px");
+  });
+}
+window.addEventListener("resize", syncStarFallDistance);
+
 /* ==================================================
-   AERO GALLERY (UPDATED)
+  AERO GALLERY (UPDATED)
 ================================================== */
 (function () {
   const trigger = document.getElementById("flyers-trigger") ||
-    document.querySelector('img[src*="FLYERS_ROUGH.png"]');
+	document.querySelector('img[src*="FLYERS_ROUGH.png"]');
 
   const overlay = document.getElementById("aero-gallery-overlay");
   const img = document.getElementById("aero-gallery-img");
@@ -962,9 +940,9 @@ for (let i = 0; i < 50; i++) {
   if (!trigger || !overlay || !img || !counter || !prevBtn || !nextBtn || !closeX || !zoomBtn || !zoomWrap) return;
 
   const flyers = [
-    "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Ephemera%20Contact%20Flyer%2072.png",
-    "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png",
-    "https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png"
+	"https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Ephemera%20Contact%20Flyer%2072.png",
+	"https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png",
+	"https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png"
   ];
 
   let index = 0;
@@ -974,63 +952,63 @@ for (let i = 0; i < 50; i++) {
   let panX = 0, panY = 0;
 
   function setPan(x, y) {
-    panX = x;
-    panY = y;
-    img.style.transform = overlay.classList.contains("is-zoomed")
-      ? "translate(" + panX + "px," + panY + "px) scale(1.85)"
-      : "";
+	panX = x;
+	panY = y;
+	img.style.transform = overlay.classList.contains("is-zoomed")
+	  ? "translate(" + panX + "px," + panY + "px) scale(1.85)"
+	  : "";
   }
 
   function resetZoom() {
-    overlay.classList.remove("is-zoomed");
-    img.style.transform = "";
-    panX = 0; panY = 0;
+	overlay.classList.remove("is-zoomed");
+	img.style.transform = "";
+	panX = 0; panY = 0;
   }
 
   function toggleZoom() {
-    const on = overlay.classList.toggle("is-zoomed");
-    if (!on) {
-      img.style.transform = "";
-      panX = 0; panY = 0;
-    } else {
-      setPan(0, 0);
-    }
+	const on = overlay.classList.toggle("is-zoomed");
+	if (!on) {
+	  img.style.transform = "";
+	  panX = 0; panY = 0;
+	} else {
+	  setPan(0, 0);
+	}
   }
 
   function render() {
-    img.src = flyers[index];
-    counter.textContent = (index + 1) + " / " + flyers.length;
-    resetZoom();
+	img.src = flyers[index];
+	counter.textContent = (index + 1) + " / " + flyers.length;
+	resetZoom();
   }
 
   function open() {
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    render();
-    closeX.focus();
+	overlay.classList.add("is-open");
+	overlay.setAttribute("aria-hidden", "false");
+	document.body.style.overflow = "hidden";
+	render();
+	closeX.focus();
   }
 
   function close() {
-    overlay.classList.remove("is-open");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    resetZoom();
+	overlay.classList.remove("is-open");
+	overlay.setAttribute("aria-hidden", "true");
+	document.body.style.overflow = "";
+	resetZoom();
   }
 
   function prev() {
-    index = (index - 1 + flyers.length) % flyers.length;
-    render();
+	index = (index - 1 + flyers.length) % flyers.length;
+	render();
   }
 
   function next() {
-    index = (index + 1) % flyers.length;
-    render();
+	index = (index + 1) % flyers.length;
+	render();
   }
 
   trigger.addEventListener("click", function (e) {
-    e.preventDefault && e.preventDefault();
-    open();
+	e.preventDefault && e.preventDefault();
+	open();
   });
 
   prevBtn.addEventListener("click", prev);
@@ -1040,45 +1018,45 @@ for (let i = 0; i < 50; i++) {
   zoomBtn.addEventListener("click", function () { toggleZoom(); });
 
   zoomWrap.addEventListener("dblclick", function (e) {
-    e.preventDefault();
-    toggleZoom();
+	e.preventDefault();
+	toggleZoom();
   });
 
   overlay.addEventListener("click", function (e) {
-    if (e.target === overlay) close();
+	if (e.target === overlay) close();
   });
 
   document.addEventListener("keydown", function (e) {
-    if (!overlay.classList.contains("is-open")) return;
-    if (e.key === "Escape") close();
-    if (e.key === "ArrowLeft") prev();
-    if (e.key === "ArrowRight") next();
-    if (e.key === "z" || e.key === "Z") toggleZoom();
+	if (!overlay.classList.contains("is-open")) return;
+	if (e.key === "Escape") close();
+	if (e.key === "ArrowLeft") prev();
+	if (e.key === "ArrowRight") next();
+	if (e.key === "z" || e.key === "Z") toggleZoom();
   });
 
   function panDown(e) {
-    if (!overlay.classList.contains("is-open")) return;
-    if (!overlay.classList.contains("is-zoomed")) return;
+	if (!overlay.classList.contains("is-open")) return;
+	if (!overlay.classList.contains("is-zoomed")) return;
 
-    isPanning = true;
-    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-    panStartX = p.clientX;
-    panStartY = p.clientY;
-    e.preventDefault();
+	isPanning = true;
+	const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+	panStartX = p.clientX;
+	panStartY = p.clientY;
+	e.preventDefault();
   }
 
   function panMove(e) {
-    if (!isPanning) return;
-    if (!overlay.classList.contains("is-zoomed")) return;
+	if (!isPanning) return;
+	if (!overlay.classList.contains("is-zoomed")) return;
 
-    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-    const dx = p.clientX - panStartX;
-    const dy = p.clientY - panStartY;
+	const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+	const dx = p.clientX - panStartX;
+	const dy = p.clientY - panStartY;
 
-    setPan(panX + dx, panY + dy);
+	setPan(panX + dx, panY + dy);
 
-    panStartX = p.clientX;
-    panStartY = p.clientY;
+	panStartX = p.clientX;
+	panStartY = p.clientY;
   }
 
   function panUp() { isPanning = false; }
@@ -1093,7 +1071,7 @@ for (let i = 0; i < 50; i++) {
 })();
 
 /* ==================================================
-   MUSIC PLAYER SCRIPT (unchanged)
+  MUSIC PLAYER SCRIPT (unchanged)
 ================================================== */
 let track_name = document.querySelector(".songtitle");
 let seek_slider = document.querySelector(".seek_slider");
@@ -1169,15 +1147,15 @@ let currentVolume = curr_track.volume;
 
 function volumeUp() {
   if (currentVolume < 1.0) {
-    currentVolume = Math.min(1.0, currentVolume + 0.2);
-    curr_track.volume = currentVolume;
+	currentVolume = Math.min(1.0, currentVolume + 0.2);
+	curr_track.volume = currentVolume;
   }
 }
 
 function volumeDown() {
   if (currentVolume > 0.0) {
-    currentVolume = Math.max(0.0, currentVolume - 0.2);
-    curr_track.volume = currentVolume;
+	currentVolume = Math.max(0.0, currentVolume - 0.2);
+	curr_track.volume = currentVolume;
   }
 }
 
@@ -1190,26 +1168,26 @@ function seekUpdate() {
   let seekPosition = 0;
 
   if (!isNaN(curr_track.duration)) {
-    seekPosition = curr_track.currentTime * (100 / curr_track.duration);
-    seek_slider.value = seekPosition;
+	seekPosition = curr_track.currentTime * (100 / curr_track.duration);
+	seek_slider.value = seekPosition;
 
-    let currentMinutes = Math.floor(curr_track.currentTime / 60);
-    let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
-    let durationMinutes = Math.floor(curr_track.duration / 60);
-    let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+	let currentMinutes = Math.floor(curr_track.currentTime / 60);
+	let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+	let durationMinutes = Math.floor(curr_track.duration / 60);
+	let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
 
-    if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
-    if (durationSeconds < 10) durationSeconds = "0" + durationSeconds;
+	if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
+	if (durationSeconds < 10) durationSeconds = "0" + durationSeconds;
 
-    curr_time.textContent = currentMinutes + ":" + currentSeconds;
-    total_duration.textContent = durationMinutes + ":" + durationSeconds;
+	curr_time.textContent = currentMinutes + ":" + currentSeconds;
+	total_duration.textContent = durationMinutes + ":" + durationSeconds;
   }
 }
 
 loadTrack(track_index);
 
 /* ==================================================
-   AUTOPLAY + REMEMBERED MUTE STATE (localStorage)
+  AUTOPLAY + REMEMBERED MUTE STATE (localStorage)
 ================================================== */
 (function setupAutoplayMuteRemember() {
   const KEY = "EPHEMERA_AUDIO_MUTED";
@@ -1221,25 +1199,25 @@ loadTrack(track_index);
   const ICON_SOUND = "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/shut_down.png";
 
   function readSavedMuted() {
-    const v = localStorage.getItem(KEY);
-    if (v === "true") return true;
-    if (v === "false") return false;
-    return null;
+	const v = localStorage.getItem(KEY);
+	if (v === "true") return true;
+	if (v === "false") return false;
+	return null;
   }
 
   function saveMuted(isMuted) {
-    try { localStorage.setItem(KEY, String(isMuted)); } catch (e) {}
+	try { localStorage.setItem(KEY, String(isMuted)); } catch (e) {}
   }
 
   function syncMuteUI(isMuted) {
-    if (muteImg) muteImg.src = isMuted ? ICON_MUTED : ICON_SOUND;
-    if (muteBtn) muteBtn.setAttribute("aria-label", isMuted ? "Unmute" : "Mute");
+	if (muteImg) muteImg.src = isMuted ? ICON_MUTED : ICON_SOUND;
+	if (muteBtn) muteBtn.setAttribute("aria-label", isMuted ? "Unmute" : "Mute");
   }
 
   function setMuted(isMuted) {
-    curr_track.muted = isMuted;
-    syncMuteUI(isMuted);
-    saveMuted(isMuted);
+	curr_track.muted = isMuted;
+	syncMuteUI(isMuted);
+	saveMuted(isMuted);
   }
 
   const saved = readSavedMuted();
@@ -1248,43 +1226,43 @@ loadTrack(track_index);
   syncMuteUI(curr_track.muted);
 
   window.addEventListener("load", () => {
-    curr_track.play().then(() => {
-      isPlaying = true;
-      const playButton = document.querySelector(".playpause-track");
-      if (playButton) playButton.className = "playpause-track fas fa-pause";
-    }).catch(() => {
-      curr_track.muted = true;
-      syncMuteUI(true);
+	curr_track.play().then(() => {
+	  isPlaying = true;
+	  const playButton = document.querySelector(".playpause-track");
+	  if (playButton) playButton.className = "playpause-track fas fa-pause";
+	}).catch(() => {
+	  curr_track.muted = true;
+	  syncMuteUI(true);
 
-      curr_track.play().then(() => {
-        isPlaying = true;
-        const playButton = document.querySelector(".playpause-track");
-        if (playButton) playButton.className = "playpause-track fas fa-pause";
-      }).catch(() => {
-        isPlaying = false;
-        const playButton = document.querySelector(".playpause-track");
-        if (playButton) playButton.className = "playpause-track fas fa-play";
-      });
-    });
+	  curr_track.play().then(() => {
+		isPlaying = true;
+		const playButton = document.querySelector(".playpause-track");
+		if (playButton) playButton.className = "playpause-track fas fa-pause";
+	  }).catch(() => {
+		isPlaying = false;
+		const playButton = document.querySelector(".playpause-track");
+		if (playButton) playButton.className = "playpause-track fas fa-play";
+	  });
+	});
   });
 
   if (muteBtn) {
-    muteBtn.addEventListener("click", () => {
-      setMuted(!curr_track.muted);
+	muteBtn.addEventListener("click", () => {
+	  setMuted(!curr_track.muted);
 
-      if (curr_track.paused) {
-        curr_track.play().then(() => {
-          isPlaying = true;
-          const playButton = document.querySelector(".playpause-track");
-          if (playButton) playButton.className = "playpause-track fas fa-pause";
-        }).catch(() => {});
-      }
-    });
+	  if (curr_track.paused) {
+		curr_track.play().then(() => {
+		  isPlaying = true;
+		  const playButton = document.querySelector(".playpause-track");
+		  if (playButton) playButton.className = "playpause-track fas fa-pause";
+		}).catch(() => {});
+	  }
+	});
   }
 })();
 
 /* ==================================================
-   DRAGGABLE (mouse + touch)
+  DRAGGABLE (mouse + touch)
 ================================================== */
 (function makeDraggable() {
   const dragWrap = document.getElementById("player-drag");
@@ -1303,45 +1281,45 @@ loadTrack(track_index);
   function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 
   function pointerDown(e) {
-    const t = e.target;
-    if (t.closest("button") || t.closest("input") || t.closest("a") || t.closest("select") || t.closest("textarea")) return;
+	const t = e.target;
+	if (t.closest("button") || t.closest("input") || t.closest("a") || t.closest("select") || t.closest("textarea")) return;
 
-    isDragging = true;
-    playerEl.classList.add("dragging");
+	isDragging = true;
+	playerEl.classList.add("dragging");
 
-    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-    startX = p.clientX;
-    startY = p.clientY;
+	const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+	startX = p.clientX;
+	startY = p.clientY;
 
-    const r = dragWrap.getBoundingClientRect();
-    startLeft = r.left;
-    startTop = r.top;
+	const r = dragWrap.getBoundingClientRect();
+	startLeft = r.left;
+	startTop = r.top;
 
-    e.preventDefault();
+	e.preventDefault();
   }
 
   function pointerMove(e) {
-    if (!isDragging) return;
+	if (!isDragging) return;
 
-    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
-    const dx = p.clientX - startX;
-    const dy = p.clientY - startY;
+	const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+	const dx = p.clientX - startX;
+	const dy = p.clientY - startY;
 
-    const wrapRect = dragWrap.getBoundingClientRect();
-    const maxLeft = window.innerWidth - wrapRect.width;
-    const maxTop = window.innerHeight - wrapRect.height;
+	const wrapRect = dragWrap.getBoundingClientRect();
+	const maxLeft = window.innerWidth - wrapRect.width;
+	const maxTop = window.innerHeight - wrapRect.height;
 
-    const nextLeft = clamp(startLeft + dx, 0, maxLeft);
-    const nextTop = clamp(startTop + dy, 0, maxTop);
+	const nextLeft = clamp(startLeft + dx, 0, maxLeft);
+	const nextTop = clamp(startTop + dy, 0, maxTop);
 
-    dragWrap.style.left = nextLeft + "px";
-    dragWrap.style.top = nextTop + "px";
+	dragWrap.style.left = nextLeft + "px";
+	dragWrap.style.top = nextTop + "px";
   }
 
   function pointerUp() {
-    if (!isDragging) return;
-    isDragging = false;
-    playerEl.classList.remove("dragging");
+	if (!isDragging) return;
+	isDragging = false;
+	playerEl.classList.remove("dragging");
   }
 
   handle.addEventListener("mousedown", pointerDown);
@@ -1354,10 +1332,8 @@ loadTrack(track_index);
 })();
 
 /* ==================================================
-   LIVE DATE
+  LIVE DATE
 ================================================== */
-
-
 function updateLiveDate(){
   const now = new Date();
 
@@ -1381,6 +1357,6 @@ updateLiveDate();
 setInterval(updateLiveDate, 60000); // updates every minute
 </script>
 
-
-
-
+</body>
+</html>
+```
