@@ -100,10 +100,11 @@ body {
   will-change: transform;
 }
 
+/* ✅ CHANGED: random hover wiggle driven by CSS vars set by JS */
 .orbit:hover {
   animation:
     float 6s ease-in-out infinite,
-    orbitWiggle 0.9s ease-in-out infinite;
+    orbitWiggle var(--wiggle-speed, 0.85s) ease-in-out infinite;
 }
 
 @keyframes float {
@@ -123,40 +124,41 @@ body {
   }
 }
 
+/* ✅ CHANGED: wiggle reads random offsets from --w1/--w2/--w3 */
 @keyframes orbitWiggle {
   0% {
     transform:
       translate(-50%, -50%)
       translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) - 0.7deg))
+      rotate(calc(var(--r, 0deg) + var(--w1, -0.7deg)))
       scale(var(--s, 1));
   }
   25% {
     transform:
       translate(-50%, -50%)
       translate(calc(var(--x) + 1px), calc(var(--y) - 1px))
-      rotate(calc(var(--r, 0deg) + 0.9deg))
-      scale(var(--s, 1));
+      rotate(calc(var(--r, 0deg) + var(--w2, 0.9deg)))
+      scale(calc(var(--s, 1) * var(--ws1, 1)));
   }
   50% {
     transform:
       translate(-50%, -50%)
       translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) - 0.9deg))
+      rotate(calc(var(--r, 0deg) + var(--w3, -0.9deg)))
       scale(var(--s, 1));
   }
   75% {
     transform:
       translate(-50%, -50%)
       translate(calc(var(--x) - 1px), calc(var(--y) + 1px))
-      rotate(calc(var(--r, 0deg) + 0.7deg))
-      scale(var(--s, 1));
+      rotate(calc(var(--r, 0deg) + var(--w2, 0.7deg)))
+      scale(calc(var(--s, 1) * var(--ws2, 1)));
   }
   100% {
     transform:
       translate(-50%, -50%)
       translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) - 0.7deg))
+      rotate(calc(var(--r, 0deg) + var(--w1, -0.7deg)))
       scale(var(--s, 1));
   }
 }
@@ -735,7 +737,7 @@ button:active { opacity: 0.7; }
     alt="Flyers rough">
   <img class="orbit"
     src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
-    style="--x:50px; --y:-280px; --r:25deg; --s:1.0;width:180px;"
+    style="--x:50px; --y:-280px; --r:5deg; --s:1.0;width:180px;"
     alt="">
     
 
@@ -745,11 +747,11 @@ button:active { opacity: 0.7; }
     alt="">
   <img class="orbit"
     src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_BUTTON.gif"
-    style="--x:260px; --y:160px; --r:5deg; --s:0.95;width:230px;"
+    style="--x:260px; --y:180px; --r:5deg; --s:0.95;width:230px;"
     alt="">
   <img class="orbit"
     src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-    style="--x:0px; --y:260px; --r:25deg; --s:1.05;width:180px;"
+    style="--x:260px; --y:-65px; --r:25deg; --s:1.05;width:180px;"
     alt="">
 </div>
 
@@ -969,6 +971,55 @@ for (let i = 0; i < 50; i++) {
   star.appendChild(img);
   document.body.appendChild(star);
 }
+
+/* ==================================================
+ ORBIT HOVER RANDOMISER (✅ only new JS for hover randomness)
+ - sets CSS vars per orbit on hover so each one wiggles differently
+================================================== */
+(function setupRandomOrbitHover(){
+  const orbits = Array.from(document.querySelectorAll(".orbit"));
+  if (!orbits.length) return;
+
+  function rand(min, max){ return Math.random() * (max - min) + min; }
+  function pickSign(){ return Math.random() < 0.5 ? -1 : 1; }
+
+  function applyRandom(el){
+    // rotation offsets (deg) for the wiggle frames
+    const w1 = rand(0.4, 1.2) * pickSign();
+    const w2 = rand(0.6, 1.6) * pickSign();
+    const w3 = rand(0.4, 1.4) * pickSign();
+
+    // tiny scale nudges (subtle)
+    const ws1 = rand(0.98, 1.04);
+    const ws2 = rand(0.98, 1.04);
+
+    // speed + timing variation
+    const speed = rand(0.55, 1.05); // seconds
+
+    el.style.setProperty("--w1", w1.toFixed(2) + "deg");
+    el.style.setProperty("--w2", w2.toFixed(2) + "deg");
+    el.style.setProperty("--w3", w3.toFixed(2) + "deg");
+    el.style.setProperty("--ws1", ws1.toFixed(3));
+    el.style.setProperty("--ws2", ws2.toFixed(3));
+    el.style.setProperty("--wiggle-speed", speed.toFixed(2) + "s");
+  }
+
+  orbits.forEach((el) => {
+    // seed once so each orbit has a default “personality”
+    applyRandom(el);
+
+    // re-randomise each hover entry (true random each time)
+    el.addEventListener("mouseenter", () => applyRandom(el), { passive: true });
+
+    // optional: if you want it to change *while* hovering, uncomment
+    // let t;
+    // el.addEventListener("mouseenter", () => {
+    //   applyRandom(el);
+    //   t = setInterval(() => applyRandom(el), 700);
+    // }, { passive: true });
+    // el.addEventListener("mouseleave", () => clearInterval(t), { passive: true });
+  });
+})();
 
 /* ==================================================
  AERO GALLERY (UPDATED)
@@ -1407,3 +1458,4 @@ setInterval(updateLiveDate, 60000); // updates every minute
 </script>
 </body>
 </html>
+```
