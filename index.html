@@ -714,6 +714,59 @@ button:active { opacity: 0.7; }
   -webkit-user-drag: none;
 }
 #mute-float:active { transform: translateY(1px); }
+
+ .visitor-counter.y2k {
+  position: relative;
+  background: linear-gradient(145deg, #ffd6f5, #ff9be6);
+  border: 4px solid #ff4fd8;
+  padding: 18px 30px;
+  text-align: center;
+  display: inline-block;
+  font-family: "Comic Sans MS", cursive;
+  box-shadow:
+    0 0 12px #ff9be6,
+    inset 0 0 10px rgba(255,255,255,0.7);
+  overflow: hidden;
+}
+
+/* Glitter overlay */
+.visitor-counter.y2k::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://i.imgur.com/8Km9tLL.gif");
+  background-size: cover;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+ /* ==================================================
+ COUNTER
+================================================== */
+
+/* Number styling */
+#visitor-count {
+  display: block;
+  font-size: 38px;
+  font-weight: bold;
+  color: #ff00cc;
+  text-shadow:
+    0 0 5px white,
+    0 0 10px #ff66e6,
+    0 0 20px #ff00cc;
+  position: relative;
+  z-index: 1;
+}
+
+/* Label styling */
+.visitor-label {
+  display: block;
+  font-size: 20px;
+  color: #ff33cc;
+  text-shadow: 0 0 5px white;
+  position: relative;
+  z-index: 1;
+}
 </style>
 </head>
 
@@ -830,12 +883,12 @@ button:active { opacity: 0.7; }
 
       <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BEAR_STAMPS.png" alt="" style="--w:70px; --x:0px; --y:0px;"></td>
 
-     <td>
-  <div class="visitor-counter">
-    <span id="visitor-count">0</span>
+<td>
+  <div class="visitor-counter y2k">
+    <span id="visitor-count">6,282,180</span>
     <span class="visitor-label">Visitors</span>
   </div>
-</td> 
+</td>
     
 
       <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/not_a_joke.jpg" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
