@@ -1,6 +1,10 @@
+MOBILE ADJUSTMENT
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>★EPHEMERA★</title>
@@ -8,50 +12,28 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
 <style>
-:root{
-  --desktop-w: 1400; /* set to your “designed” desktop width (number only) */
-}
-
-html, body{
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
 
 /* ==================================================
- MOBILE
+   MOBILE SCALE
 ================================================== */
 
-:root{
-  --desktop-width: 1400; /* width your site was designed for */
+.page-scale{
+  transform-origin: top center;
 }
 
-html,body{
-  margin:0;
-  padding:0;
-  overflow-x:hidden;
+/* phones */
+@media (max-width: 768px){
+  .page-scale{
+    transform: scale(0.55);
+    width: 182%;
+  }
 }
 
-/* center the layout */
-#stage{
-  width:100vw;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-}
-
-/* fixed desktop layout */
-#site{
-  width:calc(var(--desktop-width) * 1px);
-  transform-origin:top center;
-}
-
-/* scale for tablet + mobile */
-@media (max-width:1100px){
-  #site{
-    transform:scale(calc(100vw / (var(--desktop-width) * 1px)));
+/* very small phones */
+@media (max-width: 480px){
+  .page-scale{
+    transform: scale(0.45);
+    width: 222%;
   }
 }
 
@@ -120,27 +102,16 @@ body {
   }
 }
 
-```css
 /* ==================================================
-   DECOR PLANET + ORBITS (LOCKED ANCHOR)
-   Everything positions off .e-wrap so tablet/mobile
-   matches desktop exactly (then scale the whole page).
+ DECOR PLANET
 ================================================== */
-
-:root{
-  --desktop-width: 1400px; /* match your desktop canvas width */
-}
-
-/* wrapper is the single, fixed positioning context */
+/* wrapper keeps both aligned */
 .e-wrap{
-  position: relative;              /* ✅ critical: anchor for all absolute children */
-  width: var(--desktop-width);     /* ✅ fixed canvas width = consistent center */
   height: 520px;
-  margin: 10px auto 0;
+  margin: 10px auto 0px;
   margin-bottom: -40px;
 }
-
-/* center the E inside the wrapper */
+/* center the E inside wrapper */
 #decor-e{
   position: absolute;
   left: 50%;
@@ -152,97 +123,94 @@ body {
 }
 
 /* ==================================================
-   ORBIT SYSTEM (fills wrapper, not the page)
+ ORBIT SYSTEM
 ================================================== */
-
 .orbit-container{
   position: absolute;
-  inset: 0;                        /* fills .e-wrap */
+  inset: 0;
   pointer-events: none;
   z-index: 60;
 }
 
-.orbit{
+.orbit {
   position: absolute;
-  left: 50%;
   top: 50%;
+  left: 50%;
   width: 130px;
   pointer-events: auto;
   z-index: 10;
-
   transform:
-    translate(-50%, -50%)
-    translate(var(--x), var(--y))
-    rotate(var(--r, 0deg))
-    scale(var(--s, 1));
-
+  translate(-50%, -50%)
+  translate(var(--x), var(--y))
+  rotate(var(--r, 0deg))
+  scale(var(--s, 1));
   animation: float 6s ease-in-out infinite;
   transition: transform 0.2s ease;
   will-change: transform;
 }
 
-/* random hover wiggle driven by CSS vars set by JS */
-.orbit:hover{
+/* ✅ CHANGED: random hover wiggle driven by CSS vars set by JS */
+.orbit:hover {
   animation:
-    float 6s ease-in-out infinite,
-    orbitWiggle var(--wiggle-speed, 0.85s) ease-in-out infinite;
+  float 6s ease-in-out infinite,
+  orbitWiggle var(--wiggle-speed, 0.85s) ease-in-out infinite;
 }
 
-@keyframes float{
-  0%, 100%{
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1));
+@keyframes float {
+  0%, 100% {
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    rotate(var(--r, 0deg))
+    scale(var(--s, 1));
   }
-  50%{
-    transform:
-      translate(-50%, -50%)
-      translate(calc(var(--x) + 6px), calc(var(--y) - 6px))
-      rotate(var(--r, 0deg))
-      scale(var(--s, 1));
+  50% {
+  transform:
+    translate(-50%, -50%)
+    translate(calc(var(--x) + 6px), calc(var(--y) - 6px))
+    rotate(var(--r, 0deg))
+    scale(var(--s, 1));
   }
 }
 
-@keyframes orbitWiggle{
-  0%{
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) + var(--w1, -0.7deg)))
-      scale(var(--s, 1));
+/* ✅ CHANGED: wiggle reads random offsets from --w1/--w2/--w3 */
+@keyframes orbitWiggle {
+  0% {
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    rotate(calc(var(--r, 0deg) + var(--w1, -0.7deg)))
+    scale(var(--s, 1));
   }
-  25%{
-    transform:
-      translate(-50%, -50%)
-      translate(calc(var(--x) + 1px), calc(var(--y) - 1px))
-      rotate(calc(var(--r, 0deg) + var(--w2, 0.9deg)))
-      scale(calc(var(--s, 1) * var(--ws1, 1)));
+  25% {
+  transform:
+    translate(-50%, -50%)
+    translate(calc(var(--x) + 1px), calc(var(--y) - 1px))
+    rotate(calc(var(--r, 0deg) + var(--w2, 0.9deg)))
+    scale(calc(var(--s, 1) * var(--ws1, 1)));
   }
-  50%{
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) + var(--w3, -0.9deg)))
-      scale(var(--s, 1));
+  50% {
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    rotate(calc(var(--r, 0deg) + var(--w3, -0.9deg)))
+    scale(var(--s, 1));
   }
-  75%{
-    transform:
-      translate(-50%, -50%)
-      translate(calc(var(--x) - 1px), calc(var(--y) + 1px))
-      rotate(calc(var(--r, 0deg) + var(--w2, 0.7deg)))
-      scale(calc(var(--s, 1) * var(--ws2, 1)));
+  75% {
+  transform:
+    translate(-50%, -50%)
+    translate(calc(var(--x) - 1px), calc(var(--y) + 1px))
+    rotate(calc(var(--r, 0deg) + var(--w2, 0.7deg)))
+    scale(calc(var(--s, 1) * var(--ws2, 1)));
   }
-  100%{
-    transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(calc(var(--r, 0deg) + var(--w1, -0.7deg)))
-      scale(var(--s, 1));
+  100% {
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    rotate(calc(var(--r, 0deg) + var(--w1, -0.7deg)))
+    scale(var(--s, 1));
   }
 }
-```
 
 /* ==================================================
   AERO WINDOWS (BASE)
@@ -802,9 +770,8 @@ button:active { opacity: 0.7; }
 </head>
 
 <body>
-<body>
-<div id="stage">
-  <div id="site">
+<div class="page-scale">
+
 <div class="e-wrap">
   <img id="decor-e"
      src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
@@ -1715,8 +1682,6 @@ function updateLiveDate(){
 updateLiveDate();
 setInterval(updateLiveDate, 60000);
 </script>
-   </div>
-  </div>
-</body>
+</div>
 </body>
 </html>
