@@ -79,11 +79,27 @@ body {
  DECOR PLANET (MASTER WRAPPER)
 ================================================== */
 .e-wrap{
-  /* knobs */
-  --x: 0px;      /* left/right */
-  --y: 0px;      /* up/down */
-  --s: 1;        /* scale */
-  --w: 300px;    /* base width for the E */
+ .e-wrap{
+  --x: 0px;
+  --y: 0px;
+  --s: 1;
+  --w: 300px;
+
+  position: relative;
+
+  width: var(--w);
+  height: 220px;
+
+  margin: 10px auto;     /* this centers it horizontally */
+
+  transform:
+    translate(var(--x), var(--y))
+    scale(var(--s));
+
+  transform-origin: top center;
+
+  z-index: 50;
+}
 
   position: relative;
   left: 50%;
