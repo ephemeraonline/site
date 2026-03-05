@@ -79,12 +79,21 @@ body {
  DECOR PLANET
 ================================================== */
 .e-wrap{
+  --s: 1; /* scale control */
+
   height: 220px;
+  width: 150px;
+
   margin: 10px auto 0px;
   margin-bottom: -190px;
-  top: 50px;
-  width: 150px;
+
+  position: relative;
+  top: 170px;
+
+  transform: scale(var(--s));
+  transform-origin: center top;
 }
+
 #decor-e{
   position: absolute;
   left: 50%;
@@ -94,7 +103,6 @@ body {
   height: auto;
   z-index: 50;
 }
-
 /* ==================================================
  ORBIT SYSTEM
 ================================================== */
@@ -189,6 +197,7 @@ body {
 ================================================== */
 .aero-window{
   position: relative;
+  display: none;
   margin: 6px auto 24px;
   transform: translateX(-50%);
   width: var(--w, 900px);
@@ -687,7 +696,7 @@ button:active { opacity: 0.7; }
       style="--w:600px;">
   </div>
 
-<div class="e-wrap">
+<div class="e-wrap" style="--s:1.2;">
   <img id="decor-e"
      src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
      alt="EPHEMERA logo">
@@ -726,45 +735,15 @@ button:active { opacity: 0.7; }
 
 
 
-<div class="aero-window aero-window--third" style="--w:700px; --x:40px; --y:160px;">
-  <div class="aero-header">
-    <div class="aero-title"> welcome message </div>
-  </div>
-  <div class="aero-content">
-    <p>
-      hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out 🙂 
-    </p>   
-  </div>
-</div>
 
-<div class="aero-window aero-window--second">
-  <div class="aero-header">
-    <div class="aero-title">under construction </div>
-  </div>
-  <div class="aero-content">
-    <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time.  </p>
-  </div>
-</div>
+  
 
-<div class="aero-window aero-window--second"
-     style="position:absolute; left:220px; top:2500px; z-index:50; width:320px;">
 
-  <div class="aero-header">
-    <div class="aero-title">come back soon </div>
-  </div>
-
-  <div class="aero-content">
-    <p>
-      click around, get lost, and have fun. thank you for being here <3
-    </p>
-  </div>
-
-</div>
 
 <!-- =========================================
    START TABLE
 ========================================= -->
-<div class="image-table-wrap">
+<div class="image-table-wrap"style="display:none;">
   <table class="image-table">
     <tr>
       <td>
