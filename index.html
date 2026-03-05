@@ -76,59 +76,78 @@ body {
 }
 
 /* ==================================================
- DECOR PLANET
+ DECOR PLANET (MASTER WRAPPER)
 ================================================== */
 .e-wrap{
-  height: 220px;
+  /* knobs */
+  --x: 0px;      /* left/right */
+  --y: 0px;      /* up/down */
+  --s: 1;        /* scale */
+  --w: 300px;    /* base width for the E */
+
+  position: relative;
+  left: 50%;
+  transform:
+    translateX(-50%)
+    translate(var(--x), var(--y))
+    scale(var(--s));
+  transform-origin: top center;
+
+  width: var(--w);
+  height: 220px;          /* keep your staging height */
   margin: 10px auto 0px;
   margin-bottom: -190px;
-  top: 50px;
-  width: 150px;
+
+  z-index: 50;
 }
+
+/* E image now fills the wrapper width */
 #decor-e{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) translateY(40px);
-  width: 300px;
+  position: relative;     /* NOT absolute to the page */
+  display: block;
+  width: 100%;
   height: auto;
+  transform: translateY(40px); /* keep your “nudge down” */
   z-index: 50;
 }
 
 /* ==================================================
- ORBIT SYSTEM
+ ORBIT SYSTEM (RELATIVE TO E-WRAP)
 ================================================== */
 .orbit-container{
   position: absolute;
-  inset: 0;
+  inset: 0;               /* fills e-wrap */
   pointer-events: none;
   z-index: 60;
-  transform: translateY(40px);
+  transform: translateY(40px); /* keep same nudge as E */
 }
 
-.orbit {
+.orbit{
   position: absolute;
   top: 50%;
   left: 50%;
   width: 130px;
   pointer-events: auto;
   z-index: 10;
+
   transform:
     translate(-50%, -50%)
     translate(var(--x), var(--y))
     rotate(var(--r, 0deg))
     scale(var(--s, 1));
+
   animation: float 6s ease-in-out infinite;
   transition: transform 0.2s ease;
   will-change: transform;
 }
 
-.orbit:hover {
+.orbit:hover{
   animation:
     float 6s ease-in-out infinite,
     orbitWiggle var(--wiggle-speed, 0.85s) ease-in-out infinite;
 }
 
+/* keep your keyframes exactly as-is */
 @keyframes float {
   0%, 100% {
     transform:
@@ -183,7 +202,6 @@ body {
       scale(var(--s, 1));
   }
 }
-
 /* ==================================================
   AERO WINDOW (ONE STYLE ONLY)
 ================================================== */
