@@ -5,7 +5,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>★EPHEMERA★</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -81,9 +80,9 @@ body {
  DECOR PLANET 
 ================================================== */
 .e-wrap{
-  --w: 70%;       /* size (responsive) */
+  --w: 80%;       /* size (responsive) */
   --x: 0px;       /* nudge left/right */
-  --y: 110px;     /* move down/up */
+  --y: 170px;     /* move down/up */
 
   width: var(--w);
   max-width: 420px;
@@ -108,7 +107,7 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) translateY(40px);
-  width: 90%;
+  width: 60%;   /* same value */
   height: auto;
   z-index: 50;
 }
@@ -116,10 +115,16 @@ body {
 /* ORBITS live inside wrapper */
 .orbit-container{
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
+
+  width: 60%; /* match the decor-e width */
+  height: 60%;
+
+  transform: translate(-50%, -50%) translateY(40px);
+
   pointer-events: none;
   z-index: 60;
-  transform: translateY(40px);
 }
 
 /* orbit size is relative to wrapper */
@@ -129,7 +134,7 @@ body {
   left: 50%;
 
   width: 18%;
-  max-width: 140px;
+  max-width: 240px;
   min-width: 60px;
 
   pointer-events: auto;
@@ -150,7 +155,6 @@ body {
 ================================================== */
 .aero-window{
   position: relative;
-  display: none;
   margin: 6px auto 24px;
   transform: translateX(-50%);
   width: var(--w, 900px);
@@ -223,7 +227,7 @@ body {
   --w: 320px;
   --mw: 92%;
   --x: 360px;
-  --y: 150px;
+  --y: 320px;
 }
 
 .aero-window--third{
@@ -257,8 +261,8 @@ body {
 ================================================== */
 .image-table-wrap{
   width: 100%;
+  margin-top: 380px;
   padding: 0px 16px 60px;
-  margin-top: -60px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -646,7 +650,7 @@ button:active { opacity: 0.7; }
       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_HEADER_BALLOON.png"
       alt="Section header"
       class="image-header-img"
-      style="--w:600px;">
+      style="--w:450px;">
   </div>
 
 <div class="e-wrap">
@@ -675,7 +679,7 @@ button:active { opacity: 0.7; }
 
   <img class="orbit"
     src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
-    style="--x:260px; --y:180px; --r:5deg; --s:0.95;width:230px;"
+    style="--x:260px; --y:180px; --r:5deg; --s:0.95;width:630px;"
     alt="">
 
   <img class="orbit"
@@ -688,7 +692,7 @@ button:active { opacity: 0.7; }
 
 
 
-<div class="aero-window aero-window--third" style="--w:700px; --x:40px; --y:160px; visibility:hidden;"> 
+<div class="aero-window aero-window--third" style="--w:900px; --x:40px; --y:640px; visibility:;"> 
    <div class="aero-header">
     <div class="aero-title"> welcome message </div>
   </div>
@@ -699,7 +703,7 @@ button:active { opacity: 0.7; }
   </div>
 </div>
 
-<div class="aero-window aero-window--second">
+<div class="aero-window aero-window--second"style="--w:330px; --x:340px; --y:720px; visibility:;">
   <div class="aero-header">
     <div class="aero-title">under construction </div>
   </div>
@@ -709,7 +713,7 @@ button:active { opacity: 0.7; }
 </div>
 
 <div class="aero-window aero-window--second"
-     style="position:absolute; left:220px; top:2500px; z-index:50; width:320px;">
+    style="--w:350px;  --x:20px; --y:1680px; visibility:;">
 
   <div class="aero-header">
     <div class="aero-title">come back soon </div>
