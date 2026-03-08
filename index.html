@@ -1,0 +1,1951 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>★EPHEMERA★</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+<style>
+
+/* ==================================================
+ COUNTER
+================================================== */
+.counter-cell {
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  width: 200px;
+  font-family: "Comic Sans MS";
+  font-weight: bold;
+  font-size: 20px;
+  color: #000aff;
+}
+
+/* ==================================================
+ GLOBAL / CURSOR
+================================================== */
+* {
+  cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_GOOD.png"), auto !important;
+}
+
+a, button, img, .orbit {
+  cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_BAD.png"), pointer !important;
+}
+
+body {
+  margin: 0;
+  background: #FFFFFF;
+  overflow-x: hidden;
+  color: #000;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 12px;
+}
+
+@font-face {
+  font-family: 'NurealRegular';
+  src: url('https://files.catbox.moe/zcgiwn.woff2') format('woff2');
+}
+
+/* ==================================================
+ FALLING STARS 
+================================================== */
+.star{
+  position: fixed;
+  top: -80px;
+  left: 0;
+  pointer-events: none;
+  z-index: -9999;
+  animation: fall linear infinite;
+  will-change: transform, opacity;
+}
+.star img{
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
+}
+@keyframes fall{
+  to{
+    transform: translateY(calc(100vh + 160px)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ==================================================
+ DECOR PLANET 
+================================================== */
+.e-wrap{
+  --w: 80%;       /* size (responsive) */
+  --x: 0px;       /* nudge left/right */
+  --y: 170px;     /* move down/up */
+
+  width: var(--w);
+  max-width: 420px;
+  min-width: 120px;
+
+  height: 200px;
+
+  margin: 10px auto 0px;
+  margin-bottom: -190px;
+
+  position: relative;
+
+  /* all placement happens here */
+  transform: translate(var(--x), var(--y));
+
+  z-index: 50;
+}
+
+/* E scales with wrapper */
+#decor-e{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) translateY(40px);
+  width: 60%;   /* same value */
+  height: auto;
+  z-index: 50;
+}
+
+/* ORBITS live inside wrapper */
+.orbit-container{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 60%; /* match the decor-e width */
+  height: 60%;
+
+  transform: translate(-50%, -50%) translateY(40px);
+
+  pointer-events: none;
+  z-index: 60;
+}
+
+/* orbit size is relative to wrapper */
+.orbit{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 18%;
+  max-width: 240px;
+  min-width: 60px;
+
+  pointer-events: auto;
+  z-index: 10;
+
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    rotate(var(--r, 0deg))
+    scale(var(--s, 1));
+
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+/* ==================================================
+  AERO WINDOW (ONE STYLE ONLY)
+================================================== */
+.aero-window{
+  position: relative;
+  margin: 6px auto 24px;
+  transform: translateX(-50%);
+  width: var(--w, 900px);
+  max-width: var(--mw, 90%);
+
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  box-shadow:
+    0 0 20px rgba(0, 150, 255, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+
+  display: flex;
+  flex-direction: column;
+
+  transform:
+    translate(var(--x, 0px), var(--y, 120px))
+    rotate(var(--r, 0deg))
+    scale(var(--s, 1));
+}
+
+.aero-window .aero-header{
+  height: 40px;
+  background-color: #907cff;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  border-bottom: 1px solid #0d3882;
+  box-sizing: border-box;
+}
+
+.aero-window .aero-title{
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.aero-window .aero-content{
+  padding: 15px;
+  background-color: #e9e9e9;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: Verdana, Geneva, sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.aero-window .aero-content p{
+  margin: 0 0 10px;
+  font-weight: inherit;
+}
+.aero-window .aero-content p:last-child{ margin-bottom: 0; }
+
+/* ==================================================
+  VARIANTS (ONLY VARIABLES)
+================================================== */
+.aero-window--first{
+  --w: 900px;
+  --mw: 90%;
+  --x: 0px;
+  --y: 120px;
+}
+
+.aero-window--second{
+  --w: 320px;
+  --mw: 92%;
+  --x: 360px;
+  --y: 320px;
+}
+
+.aero-window--third{
+  --w: 620px;
+  --mw: 92%;
+  --x: 10px;
+  --y: 150px;
+}
+
+/* ==================================================
+  ≈ (between orbit and aero window)
+================================================== */
+.image-header{
+  width: 100%;
+  margin-top: 0px;
+  margin-bottom: -20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 25px;
+}
+
+.image-header-img{
+  width: var(--w, 600px);
+  max-width: 90vw;
+  height: auto;
+  display: block;
+}
+/* ==================================================
+ TABLE
+================================================== */
+.image-table-wrap{
+  width: 100%;
+  margin-top: 380px;
+  padding: 0px 16px 60px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.image-table{
+  width: min(1100px, 100%);
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.image-table td{
+  padding: 12px;
+  vertical-align: top;
+}
+
+.tbl-img{
+  display: block;
+  width: var(--w, 180px);
+  height: auto;
+  transform: translate(var(--x), var(--y)) rotate(var(--r));
+}
+
+@media (max-width: 640px){
+  .image-table{ table-layout: auto; }
+  .image-table td{
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+  .tbl-img{ width: min(var(--w, 220px), 92vw); }
+}
+
+/* ==================================================
+ AFFIRMATIONS
+================================================== */
+.tbl-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tbl-img-wrap{
+  position: relative;
+  display: inline-block;
+}
+
+.live-date{
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Comic Sans MS","Comic Sans",cursive;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #1e40ff;
+  text-shadow: 1px 1px 0 #ffffff;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tbl-caption{
+  margin-top: 8px;
+  padding: 8px 12px;
+  font-family: "Comic Sans MS","Comic Sans",cursive;
+  font-size: 20px;
+  font-weight: bold;
+  background: #a5ff00;
+  color: #7d43b2;
+  border-radius: 0px;
+  text-align: center;
+  width: fit-content;
+  max-width: 260px;
+}
+
+/* ==================================================
+ AERO GALLERY MODAL (GRID POPUP)
+================================================== */
+.aero-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  z-index: 999999;
+  background: rgba(60, 255, 0, 0);
+  backdrop-filter: blur(2px);
+}
+.aero-overlay.is-open { display: grid; }
+
+.aero-gallery {
+  width: min(880px, calc(100vw - 28px));
+  height: min(560px, calc(100vh - 28px));
+  overflow: hidden;
+  transform: none;
+}
+
+/* ✅ grid area (scrollable) */
+.aero-gallery-body{
+  height: calc(100% - 40px);
+  padding: 12px;
+  overflow: auto;
+  background: #e9e9e9;
+}
+
+/* ✅ 4 columns desktop, 2 columns mobile */
+.flyer-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.flyer-grid a{
+  display: block;
+}
+
+.flyer-grid img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 14px 38px rgba(0,0,0,0.22);
+  transition: transform 180ms ease;
+}
+.flyer-grid img:hover{
+  transform: scale(1.04);
+}
+
+@media (max-width: 640px) {
+  .flyer-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+.aero-close-btn {
+  margin-left: auto;
+  margin-right: 10px;
+  width: 34px;
+  height: 28px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: rgba(255,255,255,0.25);
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  min-width: 34px;
+  text-shadow: none;
+}
+.aero-close-btn:hover { background: rgba(255, 90, 90, 0.85); }
+
+/* ==================================================
+ ABOUT OVERLAY CONTENT (same look as Flyers overlay)
+================================================== */
+.about-window {
+  width: min(92vw, 980px);
+  height: min(88vh, 760px);
+  display: flex;
+  flex-direction: column;
+}
+
+.about-aero-content {
+  flex: 1;
+  padding: 0;
+  overflow: hidden;
+}
+
+.aero-about-body {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #000 #b7ff00;
+}
+
+/* Chrome / Safari / Edge scrollbar */
+.aero-about-body::-webkit-scrollbar {
+  width: 12px;
+}
+
+.aero-about-body::-webkit-scrollbar-track {
+  background: #b7ff00;
+}
+
+.aero-about-body::-webkit-scrollbar-thumb {
+  background: #000;
+  border: 2px solid #b7ff00;
+  border-radius: 0;
+}
+
+.aero-about-body::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+.about-ephemera-sheet {
+  background: rgba(183, 255, 0, 0);
+  color: #000;
+  padding: 20px 22px 28px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+}
+
+.about-topline {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.about-topline span:nth-child(2) {
+  text-align: center;
+}
+
+.about-topline span:nth-child(3) {
+  text-align: right;
+}
+
+.about-stars {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: "Courier New", monospace;
+  font-size: clamp(10px, 1.2vw, 16px);
+  line-height: 1;
+  margin: 14px 0 22px;
+}
+
+/* base star row */
+.about-stars::before {
+  content: "****************************************************************************************************************************************************************************************************************************************************************";
+  display: block;
+  color: #000;
+  opacity: 0.6;
+}
+
+/* twinkle layer */
+.about-stars::after {
+  content: "****************************************************************************************************************************************************************************************************************************************************************";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #000;
+  opacity: 0.1;
+  animation: starTwinkle 3s ease-in-out infinite alternate;
+}
+
+/* animation */
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+.about-brand {
+  margin: 0 0 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(52px, 9vw, 110px);
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.about-intro {
+  margin: 0 0 24px;
+  font-family: "Courier New", monospace;
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.3;
+  font-weight: bold;
+  max-width: 900px;
+}
+
+.about-label {
+  display: table;
+  margin: 0 auto 18px;
+  background: #000;
+  color: #b7ff00;
+  padding: 8px 14px;
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.about-label--lower {
+  margin-top: 28px;
+}
+
+.about-label--pdf {
+  margin-top: 28px;
+  margin-bottom: 14px;
+}
+
+.about-services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px dotted #000;
+  border-left: 1px dotted #000;
+}
+
+.about-head,
+.about-cell {
+  border-right: 1px dotted #000;
+  border-bottom: 1px dotted #000;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Courier New", monospace;
+  box-sizing: border-box;
+}
+
+.about-head {
+  background: #000;
+  color: #b7ff00;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 16px 8px;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-cell {
+  font-size: 11px;
+  line-height: 1.15;
+  padding: 14px 8px;
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 4px;
+}
+
+.about-stat {
+  text-align: left;
+}
+
+.about-stat-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  height: 68px;
+  padding: 0 10px;
+  background: #000;
+  color: #b7ff00;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.about-stat-text {
+  max-width: 150px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.15;
+  font-weight: bold;
+}
+
+.about-pdf-section {
+  text-align: center;
+  padding-bottom: 6px;
+}
+
+.about-pdf-btn {
+  display: inline-block;
+  background: #000;
+  color: #b7ff00;
+  text-decoration: none;
+  padding: 12px 18px;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid #000;
+}
+
+.about-pdf-btn:hover {
+  background: #b7ff00;
+  color: #000;
+}
+
+/* tablet */
+@media (max-width: 820px) {
+  .about-window {
+    width: min(94vw, 760px);
+    height: min(88vh, 720px);
+  }
+
+  .about-topline {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-topline span:nth-child(2),
+  .about-topline span:nth-child(3) {
+    text-align: center;
+  }
+
+  .about-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* mobile */
+@media (max-width: 540px) {
+  .about-ephemera-sheet {
+    padding: 14px;
+  }
+
+  .about-services-grid,
+  .about-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-stat {
+    text-align: center;
+  }
+
+  .about-stat-text {
+    max-width: none;
+    margin: 0 auto;
+  }
+
+  .about-stat-num {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* ==================================================
+ MUSIC PLAYER CSS (YOUR PROVIDED STYLES)
+ + draggable tweaks
+================================================== */
+#player-drag {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  touch-action: none;
+}
+
+.player {
+  width: fit-content;
+  border: #CECECE solid 2px;
+  border-radius: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(0deg, #c4e149 0%, #a0dc5b 30%, #a5ff00 100%);
+  padding: 5px;
+  user-select: none;
+}
+
+.player .window { cursor: grab !important; }
+.player.dragging .window { cursor: grabbing !important; }
+
+/* --- seek slider (your styles) --- */
+.seek_slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #d8e4d5;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 8px;
+}
+.seek_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 8px;
+  height: 8px;
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #cecece;
+  padding-top: 3px;
+  position: relative;
+  bottom: 3px;
+}
+
+button,input,label,option,select,table,textarea,ul.tree-view{-webkit-font-smoothing:none;font-family:"Myriad Pro";font-size:11px}
+h1{font-size:5rem}h2{font-size:2.5rem}h3{font-size:2rem}h4{font-size:1.5rem}
+u{border-bottom:.5px solid #222;text-decoration:none}
+button,input[type=reset],input[type=submit]{border:none;border-radius:0;box-sizing:border-box;color:transparent;min-height:23px;min-width:75px;padding:0 12px;text-shadow:0 0 #222}
+.vertical-bar,button,input[type=reset],input[type=submit].vertical-bar{height:20px;width:4px}
+button:not(:disabled):active,input[type=reset]:not(:disabled):active,input[type=submit]:not(:disabled):active{opacity:0.5}
+button:focus,input[type=reset]:focus,input[type=submit]:focus{opacity:1}
+button::-moz-focus-inner,input[type=reset]::-moz-focus-inner,input[type=submit]::-moz-focus-inner{border:0}
+:disabled,:disabled+label,input[readonly],input[readonly]+label{color:grey}
+:disabled+label,button:disabled,input[type=reset]:disabled,input[type=submit]:disabled{text-shadow:1px 1px 0 #fff}
+
+@font-face {
+  font-family: "Myriad Pro";
+  src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
+}
+
+.window, .title-bar { font-family: "Myriad Pro"; -webkit-font-smoothing: none; font-size: 11px; }
+.window { padding: 10px; width: 290px; }
+.window-body { display: block; margin: auto; border-radius: 0em; }
+
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; }
+input[type=range]:focus { outline: none; }
+
+input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 2px; cursor: pointer; }
+input[type=range]::-moz-range-track { width: 100%; height: 2px; cursor: pointer; }
+
+.flex { display: flex; }
+
+#musicplayer {
+  display: block;
+  float: right;
+  background: linear-gradient(0deg, #F1E3F0, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
+  border-radius: 60em;
+  border: 2px solid transparent;
+  margin-left: 8px;
+  padding-left: 10px;
+  box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+  -moz-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+}
+
+.wheel {
+  display: block;
+  justify-content: center;
+  margin: auto;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to top, white, #A2A2A2) border-box;
+  border-radius: 50em;
+  border: 2px solid transparent;
+  padding-top: 0px;
+  box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+  -moz-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.27) inset;
+}
+
+.innerwheel {
+  border-radius: 50em;
+  border: 2px solid #E2E2E2;
+  padding: 9px 12px 9px 10px;
+  margin: 0;
+  box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;
+  -moz-box-shadow: 1px 1px 10px 0px rgba(128,128,128,0.17) inset;
+}
+
+th { width: 20px; margin: 0; }
+.fas.fa-minus { margin: 0; padding-bottom: 5px; }
+
+.wheelcontrols {
+  font-size: 14px !important;
+  text-align: center;
+  padding-top: 2px;
+  color: #aaa;
+  opacity: 0.8;
+}
+.wheelcontrols button {
+  background: none;
+  border: none;
+  color: #79b830;
+  opacity: 0.6;
+  font-size: 14px;
+  padding: 2px;
+  cursor: pointer;
+}
+.wheelcontrols button:hover { opacity: 1; }
+
+.controls button:hover { opacity: 1; }
+
+.playpause-track { font-size: 22px !important; padding: 3px; color: #79b830; }
+
+.songtitle {
+  padding: 25px;
+  color: #79b830;
+  padding-bottom: 0;
+  margin-left: 15px;
+  margin-right: 20px;
+  font-size: 16px;
+  display: block;
+  font-family: "Helvetica";
+  font-weight: bold;
+}
+
+.controls button {
+  display: block;
+  margin-left: 15px;
+  font-size: 14px !important;
+  text-align: center;
+  color: #79b830;
+  opacity: 0.6;
+}
+
+button { min-width: 20px; background: none; text-align: center; }
+button:active { opacity: 0.7; }
+
+.seeking {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  padding-left: 0;
+  padding-bottom: 0px;
+  color: #A3A3A3;
+}
+
+.current-time { padding-right: 5px; }
+.total-duration { padding-left: 5px; }
+
+/* ==================================================
+ FLOATING MUTE BUTTON
+================================================== */
+#mute-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000002;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+#mute-float img {
+  width: 44px;
+  height: 44px;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+#mute-float:active { transform: translateY(1px); }
+
+/* ==================================================
+ ABOUT SECTION
+================================================== */
+
+
+.about-services-panel {
+  background: #b6ff00;
+  color: #000;
+  padding: 18px 18px 22px;
+  font-family: "Courier New", monospace;
+  text-align: center;
+}
+
+.panel-label {
+  display: inline-block;
+  background: #000;
+  color: #b6ff00;
+  padding: 8px 14px;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin: 0 auto 18px;
+}
+
+.panel-label--bottom {
+  margin-top: 28px;
+  margin-bottom: 20px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 2px dotted #000;
+  background: transparent;
+}
+
+.services-head,
+.services-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px 10px;
+  border-right: 2px dotted #000;
+  border-bottom: 2px dotted #000;
+  min-height: 54px;
+  box-sizing: border-box;
+}
+
+.services-head {
+  background: #000;
+  color: #b6ff00;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.services-cell {
+  color: #000;
+  font-size: 12px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.services-grid > div:nth-child(4n) {
+  border-right: none;
+}
+
+.services-grid > div:nth-last-child(-n + 4) {
+  border-bottom: none;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+  align-items: start;
+}
+
+.stat-item {
+  text-align: left;
+}
+
+.stat-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #b6ff00;
+  width: 92px;
+  height: 92px;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.stat-text {
+  font-size: 14px;
+  line-height: 1.15;
+  text-transform: none;
+}
+
+/* responsive version inside aero window */
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-grid > div:nth-child(4n) {
+    border-right: 2px dotted #000;
+  }
+
+  .services-grid > div:nth-child(2n) {
+    border-right: none;
+  }
+
+  .services-grid > div:nth-last-child(-n + 4) {
+    border-bottom: 2px dotted #000;
+  }
+
+  .services-grid > div:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .about-services-panel {
+    padding: 14px;
+  }
+
+  .panel-label {
+    font-size: 20px;
+    padding: 7px 12px;
+  }
+
+  .services-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid > div {
+    border-right: none !important;
+    border-bottom: 2px dotted #000 !important;
+  }
+
+  .services-grid > div:last-child {
+    border-bottom: none !important;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+</style>
+</head>
+
+<body>
+<div class="page-scale">
+  
+  <div class="image-header">
+    <img
+      src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_HEADER_BALLOON.png"
+      alt="Section header"
+      class="image-header-img"
+      style="--w:450px;">
+  </div>
+
+<div class="e-wrap">
+  <img id="decor-e"
+     src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
+     alt="EPHEMERA logo">
+
+  <div class="orbit-container">
+
+  <img class="orbit"
+    id="flyers-trigger"
+    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYERS_BUTTONS.gif"
+    style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:180px;"
+    alt="Flyers rough">
+
+  <img class="orbit"
+    id="about-trigger"
+    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
+    style="--x:50px; --y:-280px; --r:5deg; --s:1.0; width:180px;"
+    alt="about">
+
+  <img class="orbit"
+    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STAR_INSTAGRAM.png"
+    style="--x:-260px; --y:170px; --r:-15deg; --s:1.0;width:180px;"
+    alt="">
+
+  <img class="orbit"
+    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
+    style="--x:260px; --y:180px; --r:5deg; --s:0.95;width:630px;"
+    alt="">
+
+  <img class="orbit"
+    src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
+    style="--x:260px; --y:-65px; --r:25deg; --s:1.05;width:180px;"
+    alt="">
+
+  </div>
+</div>
+
+
+
+<div class="aero-window aero-window--third" style="--w:900px; --x:40px; --y:640px; visibility:;"> 
+   <div class="aero-header">
+    <div class="aero-title"> welcome message </div>
+  </div>
+  <div class="aero-content">
+    <p>
+      hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out 🙂 
+    </p>   
+  </div>
+</div>
+
+<div class="aero-window aero-window--second"style="--w:330px; --x:340px; --y:720px; visibility:;">
+  <div class="aero-header">
+    <div class="aero-title">under construction </div>
+  </div>
+  <div class="aero-content">
+    <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time.  </p>
+  </div>
+</div>
+
+<div class="aero-window aero-window--second"
+    style="--w:350px;  --x:20px; --y:1680px; visibility:;">
+
+  <div class="aero-header">
+    <div class="aero-title">come back soon </div>
+  </div>
+
+  <div class="aero-content">
+    <p>
+      click around, get lost, and have fun. thank you for being here <3
+    </p>
+  </div>
+
+</div>
+
+<!-- =========================================
+   START TABLE
+========================================= -->
+<div class="image-table-wrap">
+  <table class="image-table">
+    <tr>
+      <td>
+        <div class="tbl-card">
+          <div class="tbl-img-wrap">
+            <img
+              class="tbl-img"
+              src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED2.png"
+              alt=""
+              style="--w:250px; --x:0px; --y:0px;"
+            >
+            <div class="live-date" id="live-date"></div>
+          </div>
+
+          <div class="tbl-caption" style="--bg:#a5ff00; --color:#7d43b2;">
+            “i will outlive all my enemies”
+          </div>
+        </div>
+      </td>
+
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_stars.gif"
+          alt=""
+          style="--w:400px; --x:30px; --y:0px;"
+        >
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif"
+          alt=""
+          style="--w:250px; --x:0px; --y:0px;"
+        >
+      </td>
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bear_balloon.gif"
+          alt=""
+          style="--w:200px; --x:0px; --y:0px;"
+        >
+      </td>
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_SCARY_MOVIES_TEMP.gif"
+          alt=""
+          style="--w:220px; --x:0px; --y:0px;"
+        >
+      </td>
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif"
+          alt=""
+          style="--w:180px; --x:0px; --y:0px;"
+        >
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_VIRUS.png"
+          alt=""
+          style="--w:250px; --x:0px; --y:0px;"
+        >
+      </td>
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BEAR_STAMPS.png"
+          alt=""
+          style="--w:120px; --x:40px; --y:0px;"
+        >
+      </td>
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PREZENT.gif"
+          alt=""
+          style="--w:160px; --x:40px; --y:0px;"
+        >
+      </td>
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ALWAYS_ONLINE.gif"
+          alt=""
+          style="--w:180px; --x:0px; --y:0px;"
+        >
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div class="counter-cell">
+          <img
+            class="tbl-img"
+            src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BAR_COUNTER.png"
+            alt="counter decoration"
+            style="--w:220px; --x:0px; --y:-10px;"
+          >
+
+          <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
+            <img
+              src="https://hitwebcounter.com/counter/counter.php?page=21479206&style=0013&nbdigits=5&type=page&initCount=0"
+              alt="Visitor Counter"
+              border="0"
+            >
+          </a>
+
+          <br>
+          VISITORS!
+        </div>
+      </td>
+
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/fish_kissing.gif"
+          alt=""
+          style="--w:180px; --x:0px; --y:10px;"
+        >
+      </td>
+
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CONGRATS_AD_OH.gif"
+          alt=""
+          style="--w:200px; --x:0px; --y:60px;"
+        >
+      </td>
+
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
+          alt=""
+          style="--w:180px; --x:0px; --y:60px;"
+        >
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/KITTY_MANIFESTATION.gif"
+          alt=""
+          style="--w:180px; --x:-40px; --y:10px; --r:0deg; display:block; margin-bottom:30px;">
+
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/GOTH_STICKER.gif"
+          alt=""
+          style="--w:220px; --x:0px; --y:122px; display:block;">
+      </td>
+
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/AWESOME_DAY.gif"
+          alt=""
+          style="--w:180px; --x:-40px; --y:10px; --r:5deg;">
+      </td>
+
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CD_ROM.gif"
+          alt=""
+          style="--w:180px; --x:0px; --y:10px;"
+        >
+      </td>
+
+      <td>
+        <img
+          class="tbl-img"
+          src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BLINKEE_TOWER.gif"
+          alt=""
+          style="--w:152px; --x:0px; --y:0px;">
+      </td>
+    </tr>
+
+    <tr></tr>
+  </table>
+</div>
+<!-- =========================================
+   END TABLE
+========================================= -->
+
+<!-- ==================================================
+   FLYERS GRID POPUP (WORKING)
+================================================== -->
+<div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
+  <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
+
+    <div class="aero-header">
+      <div class="aero-title">our flyers</div>
+      <button class="aero-close-btn" id="aero-gallery-close-x" type="button" aria-label="Close">✕</button>
+    </div>
+
+    <div class="aero-gallery-body">
+      <div class="flyer-grid">
+
+        <!-- ✅ ADD / REMOVE FLYERS HERE -->
+        <a href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Ephemera%20Contact%20Flyer%2072.png" target="_blank" rel="noopener">
+          <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Ephemera%20Contact%20Flyer%2072.png" alt="">
+        </a>
+
+        <a href="https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png" target="_blank" rel="noopener">
+          <img src="https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/bad2569d-fcdd-4592-9618-2519bd5e3662/EPH_PINK_STAR.png" alt="">
+        </a>
+
+        <a href="https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png" target="_blank" rel="noopener">
+          <img src="https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/1df543d8-bc29-4b4b-9a1c-dd5509035dbe/EPH_GREEN_STAR.png" alt="">
+        </a>
+
+        <a href="https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png" target="_blank" rel="noopener">
+          <img src="https://images.squarespace-cdn.com/content/696470c0cb786e54bb4d51fc/09f463bd-691c-42de-a6b0-5878f2176910/EPH_BLUE_STAR.png" alt="">
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================================================
+   ABOUT MODAL (same look as Flyers overlay, but custom content)
+================================================== -->
+<div id="about-overlay" class="aero-overlay" aria-hidden="true">
+  <div class="aero-window aero-gallery about-window" role="dialog" aria-modal="true" aria-label="About">
+
+    <div class="aero-header">
+      <div class="aero-title">about us</div>
+      <button class="aero-close-btn" id="about-close-x" type="button" aria-label="Close">✕</button>
+    </div>
+
+    <div class="aero-content about-aero-content">
+      <div class="aero-about-body">
+        <div class="about-ephemera-sheet">
+
+          <div class="about-topline">
+            <span>HI@EPHEMERAONLINE.WORLD</span>
+            <span>FROM THE DESK OF EPHEMERA</span>
+            <span>@EPHEMERAONLINE.WORLD</span>
+          </div>
+
+          <div class="about-stars"></div>
+<center>
+          <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png" style="width:100%; max-width:500px;" >
+</center>
+          <p class="about-intro">
+            <br>
+            Ephemera is a specialist creative agency that runs on pop-culture. We offer creative services to our favorite brands and artists to help tell stories that actually hit — across screens, stages, and social feeds. Sometimes we make merch.
+          </p>
+
+          <div class="about-label">WHAT WE DO</div>
+
+          <div class="about-services-grid">
+            <div class="about-head">CREATIVE</div>
+            <div class="about-head">STRATEGY</div>
+            <div class="about-head">PRODUCT</div>
+            <div class="about-head">PRODUCTION</div>
+
+            <div class="about-cell">COPY WRITING</div>
+            <div class="about-cell">BRAND STRATEGY</div>
+            <div class="about-cell">IDEATION</div>
+            <div class="about-cell">POP-UP EVENTS</div>
+
+            <div class="about-cell">BRAND IDENTITY</div>
+            <div class="about-cell">DIGITAL STRATEGY</div>
+            <div class="about-cell">DESIGN</div>
+            <div class="about-cell">ACTIVATIONS</div>
+
+            <div class="about-cell">CREATIVE DIRECTION</div>
+            <div class="about-cell">STORY DEVELOPMENT</div>
+            <div class="about-cell">MARKETING STRATEGY</div>
+            <div class="about-cell">CONVENTIONS</div>
+
+            <div class="about-cell">BRAND CAMPAIGNS</div>
+            <div class="about-cell">CONTENT STRATEGY</div>
+            <div class="about-cell">PACKAGING</div>
+            <div class="about-cell">CONTENT PRODUCTION</div>
+
+            <div class="about-cell">ART DIRECTION</div>
+            <div class="about-cell">SOCIAL MEDIA STRATEGY</div>
+            <div class="about-cell">LICENSES &amp; PARTNERSHIPS</div>
+            <div class="about-cell">IMMERSIVE EXPERIENCES</div>
+
+            <div class="about-cell">GRAPHIC DESIGN</div>
+            <div class="about-cell">INFLUENCER PARTNERSHIPS</div>
+            <div class="about-cell">DEVELOPMENT</div>
+            <div class="about-cell">BRANDED ENVIRONMENTS</div>
+          </div>
+
+          <div class="about-label about-label--lower">WHAT WE DID</div>
+
+          <div class="about-stats-grid">
+            <div class="about-stat">
+              <div class="about-stat-num">15</div>
+              <div class="about-stat-text">Years working experience in the industry</div>
+            </div>
+
+            <div class="about-stat">
+              <div class="about-stat-num">75</div>
+              <div class="about-stat-text">Collaborations generating 100M+ in total sales</div>
+            </div>
+
+            <div class="about-stat">
+              <div class="about-stat-num">10</div>
+              <div class="about-stat-text">Shared Media Placements</div>
+            </div>
+
+            <div class="about-stat">
+              <div class="about-stat-num">500+</div>
+              <div class="about-stat-text">Influencer Partnerships Facilitated</div>
+            </div>
+          </div>
+          
+          <center>
+                    <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DOWNLOAD_BUTTOn.gif" style="width:100%; max-width:200px;" >
+          </center>
+
+       <div class="about-pdf-section">
+         <button onclick="openDownloadWindow()">DOWNLOAD</button>
+       </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="download-overlay" class="aero-overlay" aria-hidden="true">
+
+  <div class="aero-window" style="width:260px;" role="dialog">
+
+    <div class="aero-header">
+      <div class="aero-title">secure download</div>
+      <button class="aero-close" onclick="closeDownloadWindow()">✕</button>
+    </div>
+
+    <div class="aero-content" style="text-align:center; padding:20px;">
+
+      <p style="margin-bottom:10px;">enter password</p>
+
+      <input 
+        id="download-pass"
+        type="password"
+        style="
+          width:160px;
+          padding:4px;
+          border:1px solid #999;
+          font-family:Comic Sans MS;
+        ">
+
+      <br><br>
+
+      <button onclick="checkDownload()">unlock</button>
+
+      <p id="download-error"
+         style="color:red; font-size:11px; display:none;">
+         incorrect password
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- ==================================================
+   DRAGGABLE MUSIC PLAYER
+================================================== -->
+<div id="player-drag" aria-label="draggable music player">
+  <div class="player" id="player">
+    <div class="window" id="player-handle">
+      <div class="window-body">
+        <div class="flex">
+          <div class="wheel" style="height:100px;width:100px;">
+            <div class="wheelcontrols">
+              <button class="fas fa-plus" onclick="volumeUp()" style="padding-top:4px; padding-bottom:0;"></button>
+            </div>
+
+            <table class="wheelcontrols">
+              <th><button class="fas fa-backward" onclick="prevTrack()"></button></th>
+              <th class="innerwheel"><button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button></th>
+              <th><button class="fas fa-forward" onclick="nextTrack()"></button></th>
+            </table>
+
+            <div class="wheelcontrols" style="padding:0;">
+              <button class="fas fa-minus" onclick="volumeDown()"></button>
+            </div>
+          </div>
+
+          <div id="musicplayer">
+            <div class="flex">
+              <marquee scrollamount="4" class="songtitle"></marquee>
+            </div>
+
+            <div class="seeking">
+              <div class="current-time">00:00</div>
+              <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+              <div class="total-duration">0:00</div>
+            </div>
+
+            <table class="controls">
+              <tr>
+                <td><button type="button" title="Loop (visual only)"><div class="fas fa-sync"></div></button></td>
+                <td><button type="button" title="Playlist (visual only)"><div class="fas fa-music"></div></button></td>
+                <td><button type="button" title="Shuffle (visual only)"><div class="fas fa-random"></div></button></td>
+              </tr>
+            </table>
+
+            <audio id="music" src=""></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="mute-float" type="button" aria-label="Mute / unmute">
+  <img id="mute-float-img"
+       src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/MUTE.png"
+       alt="">
+</button>
+
+<script>
+/* ==================================================
+ FALLING STARS (UPDATED: always reach bottom)
+================================================== */
+const STAR_IMAGES = [
+  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BLUE_STAR.png",
+  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_GREEN_STAR.png",
+  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_PINK_STAR.png",
+  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_RED_STAR.png",
+  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ORANGE_STAR.png",
+  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_PURPLE.png",
+  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_YELLOW.png",
+  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_WKDBLUE.png",
+  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_MAGENTA.png",
+];
+
+function spawnStars(count = 50) {
+  for (let i = 0; i < count; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+
+    const img = document.createElement("img");
+    img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
+
+    star.style.left = (Math.random() * window.innerWidth) + "px";
+    star.style.width = (Math.random() * 18 + 12) + "px";
+    star.style.animationDuration = (Math.random() * 15 + 10) + "s";
+    star.style.animationDelay = (Math.random() * -15) + "s";
+
+    star.appendChild(img);
+    document.body.appendChild(star);
+  }
+}
+
+spawnStars(50);
+
+window.addEventListener("resize", () => {
+  document.querySelectorAll(".star").forEach(star => {
+    star.style.left = (Math.random() * window.innerWidth) + "px";
+  });
+});
+
+/* ==================================================
+ ORBIT HOVER RANDOMISER
+================================================== */
+(function setupRandomOrbitHover(){
+  const orbits = Array.from(document.querySelectorAll(".orbit"));
+  if (!orbits.length) return;
+
+  function rand(min, max){ return Math.random() * (max - min) + min; }
+  function pickSign(){ return Math.random() < 0.5 ? -1 : 1; }
+
+  function applyRandom(el){
+    const w1 = rand(0.4, 1.2) * pickSign();
+    const w2 = rand(0.6, 1.6) * pickSign();
+    const w3 = rand(0.4, 1.4) * pickSign();
+
+    const ws1 = rand(0.98, 1.04);
+    const ws2 = rand(0.98, 1.04);
+
+    const speed = rand(0.55, 1.05);
+
+    el.style.setProperty("--w1", w1.toFixed(2) + "deg");
+    el.style.setProperty("--w2", w2.toFixed(2) + "deg");
+    el.style.setProperty("--w3", w3.toFixed(2) + "deg");
+    el.style.setProperty("--ws1", ws1.toFixed(3));
+    el.style.setProperty("--ws2", ws2.toFixed(3));
+    el.style.setProperty("--wiggle-speed", speed.toFixed(2) + "s");
+  }
+
+  orbits.forEach((el) => {
+    applyRandom(el);
+    el.addEventListener("mouseenter", () => applyRandom(el), { passive: true });
+  });
+})();
+
+/* ==================================================
+ ✅ FLYERS POPUP (GRID) — THIS IS THE FIX
+================================================== */
+(function () {
+  const trigger = document.getElementById("flyers-trigger");
+  const overlay = document.getElementById("aero-gallery-overlay");
+  const closeX = document.getElementById("aero-gallery-close-x");
+
+  if (!trigger || !overlay || !closeX) return;
+
+  function open() {
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    closeX.focus();
+  }
+
+  function close() {
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  trigger.addEventListener("click", function (e) {
+    e.preventDefault();
+    open();
+  });
+
+  closeX.addEventListener("click", function (e) {
+    e.preventDefault();
+    close();
+  });
+
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) close();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (!overlay.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+  });
+})();
+
+/* ==================================================
+ ABOUT OVERLAY (same behaviour as Flyers trigger)
+================================================== */
+(function () {
+  const trigger = document.getElementById("about-trigger");
+  const overlay = document.getElementById("about-overlay");
+  const closeX = document.getElementById("about-close-x");
+  if (!trigger || !overlay || !closeX) return;
+
+  function open() {
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    closeX.focus();
+  }
+
+  function close() {
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  trigger.addEventListener("click", function (e) {
+    e.preventDefault();
+    open();
+  });
+
+  closeX.addEventListener("click", function (e) {
+    e.preventDefault();
+    close();
+  });
+
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) close();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (!overlay.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+  });
+})();
+
+/* ==================================================
+ MUSIC PLAYER SCRIPT (unchanged)
+================================================== */
+let track_name = document.querySelector(".songtitle");
+let seek_slider = document.querySelector(".seek_slider");
+let curr_time = document.querySelector(".current-time");
+let total_duration = document.querySelector(".total-duration");
+
+let track_index = 0;
+let isPlaying = false;
+let updateTimer;
+
+let curr_track = document.getElementById("music");
+
+let track_list = [
+  { name: "Charli xcx - Sympathy is knife featuring ariana grande", path: "https://files.catbox.moe/xlx839.mp3" },
+  { name: "Mckayla Twiggs - What A Girl Wants", path: "https://files.catbox.moe/xw4kit.mp3" },
+  { name: "Danny L Harle - Raft in the Sea Featuring Julia Michaels", path: "https://files.catbox.moe/7ehw00.mp3" },
+  { name: "My Sweetest Love - The Cat's Whiskers ft. Kazuma Mitchell", path: "https://files.catbox.moe/qe4he5.mp3" },
+  { name: "Mercy On Me - The Cat's Whiskers", path: "https://files.catbox.moe/w7nnf9.mp3" }
+];
+
+function loadTrack(index) {
+  clearInterval(updateTimer);
+  resetValues();
+
+  curr_track.src = track_list[index].path;
+  curr_track.load();
+
+  track_name.textContent = track_list[index].name;
+
+  updateTimer = setInterval(seekUpdate, 1000);
+  curr_track.addEventListener("ended", nextTrack);
+}
+
+function resetValues() {
+  curr_time.textContent = "0:00";
+  total_duration.textContent = "0:00";
+  seek_slider.value = 0;
+}
+
+function playpauseTrack() { if (!isPlaying) playTrack(); else pauseTrack(); }
+
+function playTrack() {
+  curr_track.play();
+  isPlaying = true;
+  let playButton = document.querySelector(".playpause-track");
+  playButton.className = "playpause-track fas fa-pause";
+}
+
+function pauseTrack() {
+  curr_track.pause();
+  isPlaying = false;
+  let playButton = document.querySelector(".playpause-track");
+  playButton.className = "playpause-track fas fa-play";
+}
+
+function nextTrack() {
+  if (track_index < track_list.length - 1) track_index += 1;
+  else track_index = 0;
+
+  loadTrack(track_index);
+  if (isPlaying) playTrack();
+}
+
+function prevTrack() {
+  if (track_index > 0) track_index -= 1;
+  else track_index = track_list.length - 1;
+
+  loadTrack(track_index);
+  if (isPlaying) playTrack();
+}
+
+let currentVolume = curr_track.volume;
+
+function volumeUp() {
+  if (currentVolume < 1.0) {
+    currentVolume = Math.min(1.0, currentVolume + 0.2);
+    curr_track.volume = currentVolume;
+  }
+}
+
+function volumeDown() {
+  if (currentVolume > 0.0) {
+    currentVolume = Math.max(0, currentVolume - 0.2);
+    curr_track.volume = currentVolume;
+  }
+}
+
+function seekTo() {
+  let seekto = curr_track.duration * (seek_slider.value / 100);
+  curr_track.currentTime = seekto;
+}
+
+function seekUpdate() {
+  let seekPosition = 0;
+
+  if (!isNaN(curr_track.duration)) {
+    seekPosition = curr_track.currentTime * (100 / curr_track.duration);
+    seek_slider.value = seekPosition;
+
+    let currentMinutes = Math.floor(curr_track.currentTime / 60);
+    let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+    let durationMinutes = Math.floor(curr_track.duration / 60);
+    let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+
+    if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
+    if (durationSeconds < 10) durationSeconds = "0" + durationSeconds;
+
+    curr_time.textContent = currentMinutes + ":" + currentSeconds;
+    total_duration.textContent = durationMinutes + ":" + durationSeconds;
+  }
+}
+
+loadTrack(track_index);
+
+/* ==================================================
+ LIVE DATE
+================================================== */
+function updateLiveDate(){
+  const now = new Date();
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const year = now.getFullYear();
+
+  const hours24 = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2,"0");
+
+  const ampm = hours24 >= 12 ? "PM" : "AM";
+  const hours = hours24 % 12 || 12;
+
+  const line = month + "/" + day + "/" + year + " " + hours + ":" + minutes + " " + ampm;
+
+  const el = document.getElementById("live-date");
+  if(el) el.textContent = line;
+}
+
+updateLiveDate();
+setInterval(updateLiveDate, 60000);
+</script>
+
+</div>
+
+<script>
+
+function openDownloadWindow(){
+  document.getElementById("download-overlay").style.display = "flex";
+}
+
+function closeDownloadWindow(){
+  document.getElementById("download-overlay").style.display = "none";
+}
+
+function checkDownload(){
+
+  const pass = document.getElementById("download-pass").value;
+
+  if(pass === "ephemera"){   // change password here
+
+    window.location.href = "YOUR_FILE_LINK_HERE";
+
+  } else {
+
+    document.getElementById("download-error").style.display = "block";
+
+  }
+
+}
+
+</script>
+</body>
+</html>
