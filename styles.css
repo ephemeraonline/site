@@ -43,6 +43,36 @@ body {
 }
 
 /* ==================================================
+   MOBILE STAGE
+================================================== */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#scale-stage {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#scale-root {
+  width: 1400px; /* desktop canvas width */
+  transform-origin: top left;
+  position: relative;
+}
+
+/* desktop stays normal */
+@media (min-width: 769px) {
+  #scale-root {
+	transform: none !important;
+  }
+}
+
+/* ==================================================
    FALLING STARS
 ================================================== */
 .star {
