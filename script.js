@@ -337,6 +337,39 @@ function seekUpdate() {
 loadTrack(track_index);
 
 /* ==================================================
+   MOBILE SCALE LAYOUT
+================================================== */
+function applyMobileScale() {
+  const stage = document.getElementById("scale-stage");
+  const root = document.getElementById("scale-root");
+  if (!stage || !root) return;
+
+  const DESIGN_WIDTH = 1400;
+  const isMobile = window.innerWidth <= 768;
+
+  if (!isMobile) {
+	root.style.transform = "none";
+	root.style.width = DESIGN_WIDTH + "px";
+	stage.style.height = "auto";
+	stage.style.minHeight = "";
+	return;
+  }
+
+  const scale = window.innerWidth / DESIGN_WIDTH;
+
+  root.style.width = DESIGN_WIDTH + "px";
+  root.style.transform = `scale(${scale})`;
+
+  const scaledHeight = root.scrollHeight * scale;
+  stage.style.height = scaledHeight + "px";
+  stage.style.minHeight = scaledHeight + "px";
+}
+
+window.addEventListener("load", applyMobileScale);
+window.addEventListener("resize", applyMobileScale);
+setTimeout(applyMobileScale, 300);
+
+/* ==================================================
    LIVE DATE
 ================================================== */
 function updateLiveDate() {
