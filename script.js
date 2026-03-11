@@ -120,13 +120,68 @@ window.addEventListener("resize", () => {
 })();
 
 /* ==================================================
+   FLYER LIGHTBOX / ZOOM
+================================================== */
+(function () {
+  const thumbs = Array.from(document.querySelectorAll(".flyer-thumb"));
+  const lightbox = document.getElementById("flyer-lightbox");
+  const lightboxImg = document.getElementById("flyer-lightbox-img");
+  const lightboxClose = document.getElementById("flyer-lightbox-close");
+
+  if (!thumbs.length || !lightbox || !lightboxImg || !lightboxClose) return;
+
+  function openLightbox(src, altText) {
+	lightboxImg.src = src;
+	lightboxImg.alt = altText || "Expanded flyer";
+	lightboxImg.classList.remove("is-zoomed");
+	lightbox.classList.add("is-open");
+	lightbox.setAttribute("aria-hidden", "false");
+	document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+	lightbox.classList.remove("is-open");
+	lightbox.setAttribute("aria-hidden", "true");
+	lightboxImg.classList.remove("is-zoomed");
+	lightboxImg.src = "";
+	document.body.style.overflow = "";
+  }
+
+  thumbs.forEach((thumb) => {
+	thumb.addEventListener("click", function (e) {
+	  e.preventDefault();
+	  const img = thumb.querySelector("img");
+	  const fullSrc = thumb.getAttribute("data-full") || thumb.getAttribute("href");
+	  openLightbox(fullSrc, img ? img.alt : "Expanded flyer");
+	});
+  });
+
+  lightboxClose.addEventListener("click", function () {
+	closeLightbox();
+  });
+
+  lightbox.addEventListener("click", function (e) {
+	if (e.target === lightbox) closeLightbox();
+  });
+
+  lightboxImg.addEventListener("click", function (e) {
+	e.stopPropagation();
+	lightboxImg.classList.toggle("is-zoomed");
+  });
+
+  document.addEventListener("keydown", function (e) {
+	if (!lightbox.classList.contains("is-open")) return;
+	if (e.key === "Escape") closeLightbox();
+  });
+})();
+
+/* ==================================================
    ABOUT OVERLAY
 ================================================== */
 (function () {
   const trigger = document.getElementById("about-trigger");
   const overlay = document.getElementById("about-overlay");
   const closeX = document.getElementById("about-close-x");
-
   if (!trigger || !overlay || !closeX) return;
 
   function open() {
@@ -291,13 +346,12 @@ function updateLiveDate() {
   const year = now.getFullYear();
 
   const hours24 = now.getHours();
-  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2,"0");
 
   const ampm = hours24 >= 12 ? "PM" : "AM";
   const hours = hours24 % 12 || 12;
 
   const line = month + "/" + day + "/" + year + " " + hours + ":" + minutes + " " + ampm;
-
   const el = document.getElementById("live-date");
   if (el) el.textContent = line;
 }
@@ -311,15 +365,14 @@ setInterval(updateLiveDate, 60000);
 function openDownloadWindow() {
   const overlay = document.getElementById("download-overlay");
   if (!overlay) return;
-
   overlay.classList.add("is-open");
   overlay.setAttribute("aria-hidden", "false");
+  document.getElementById("download-error").style.display = "none";
 }
 
 function closeDownloadWindow() {
   const overlay = document.getElementById("download-overlay");
   if (!overlay) return;
-
   overlay.classList.remove("is-open");
   overlay.setAttribute("aria-hidden", "true");
 }
@@ -335,9 +388,6 @@ function checkDownload() {
   }
 }
 
-/* ==================================================
-   OPTIONAL: CLOSE DOWNLOAD MODAL ON BACKDROP CLICK
-================================================== */
 (function () {
   const overlay = document.getElementById("download-overlay");
   if (!overlay) return;
