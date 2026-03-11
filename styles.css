@@ -832,7 +832,6 @@ html, body {
    MUSIC PLAYER
 ================================================== */
 #player-drag {
-  display: none;
   position: fixed;
   left: 20px;
   bottom: 20px;
@@ -842,10 +841,9 @@ html, body {
 
 @media (max-width: 768px) {
   #player-drag {
-    display: block;
+    display: none !important;
   }
 }
-
 .player {
   width: fit-content;
   border: #CECECE solid 2px;
@@ -1179,6 +1177,20 @@ button:active {
   display: none;
 }
 
+@media (max-width: 768px) {
+  #mobile-player {
+    display: flex;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 1000003;
+    margin: 0;
+    width: auto;
+    max-width: none;
+    transform: none !important;
+  }
+}
 .mobile-player .mobile-player-body {
   display: flex;
   align-items: center;
