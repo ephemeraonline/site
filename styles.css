@@ -1229,8 +1229,8 @@ overflow: hidden;
 .mobile-player .mobile-player-body {
   border-radius: 0;
   width: auto;
-  max-width: 90vw;
-  min-width: 260px;
+  max-width: 96vw;
+  min-width: 320px;
 }
 
   .mobile-player .mute-track {
