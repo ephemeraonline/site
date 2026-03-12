@@ -541,3 +541,18 @@ function checkDownload() {
 
   setTimeout(updateMobilePlayerOffset, 100);
 })();
+
+function toggleMute() {
+  const audio = document.querySelector("audio");
+  const icon = document.querySelector(".mute-track i");
+
+  audio.muted = !audio.muted;
+
+  if (audio.muted) {
+	icon.classList.remove("fa-volume-up");
+	icon.classList.add("fa-volume-mute");
+  } else {
+	icon.classList.remove("fa-volume-mute");
+	icon.classList.add("fa-volume-up");
+  }
+}
