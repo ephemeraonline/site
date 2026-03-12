@@ -1302,7 +1302,7 @@ button:active {
     border-collapse: collapse;
     table-layout: fixed;
     display: inline-table;
-    transform: scale(0.72);
+    transform: translateX(-40px) scale(0.72);
     transform-origin: top center;
   }
 
