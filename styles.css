@@ -1147,6 +1147,9 @@ button:active {
   font-family: "Helvetica", sans-serif;
   font-weight: bold;
   line-height: 1;
+overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* ==================================================
@@ -1223,10 +1226,12 @@ button:active {
     user-select: none;
   }
 
-  .mobile-player .mobile-player-body {
-    border-radius: 0;
-    width: 420px;
-  }
+.mobile-player .mobile-player-body {
+  border-radius: 0;
+  width: auto;
+  max-width: 90vw;
+  min-width: 260px;
+}
 
   .mobile-player .mute-track {
     margin-left: auto;
