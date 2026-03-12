@@ -1229,7 +1229,7 @@ overflow: hidden;
 .mobile-player .mobile-player-body {
   border-radius: 0;
   width: auto;
-  max-width: 96vw;
+  max-width: 99vw;
   min-width: 320px;
 }
 
