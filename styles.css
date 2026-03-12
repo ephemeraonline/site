@@ -1147,9 +1147,6 @@ button:active {
   font-family: "Helvetica", sans-serif;
   font-weight: bold;
   line-height: 1;
-overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 /* ==================================================
