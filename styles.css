@@ -1,3 +1,4 @@
+```css
 /* ==================================================
    COUNTER
 ================================================== */
@@ -1223,12 +1224,12 @@ button:active {
     user-select: none;
   }
 
-.mobile-player .mobile-player-body {
-  border-radius: 0;
-  width: auto;
-  max-width: 99vw;
-  min-width: 320px;
-}
+  .mobile-player .mobile-player-body {
+    border-radius: 0;
+    width: auto;
+    max-width: 99vw;
+    min-width: 320px;
+  }
 
   .mobile-player .mute-track {
     margin-left: auto;
@@ -1287,31 +1288,26 @@ button:active {
 }
 
 @media (max-width: 640px) {
-
   .image-table-wrap {
-    --table-base-width: 1100;
-    --table-scale: min(0.72, calc((100vw - 24px) / (var(--table-base-width) * 1px)));
-
     width: 100%;
-    margin-top: 90px !important;
-    padding: 0 12px 20px;
+    margin-top: 380px;
+    padding: 0 16px 60px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     overflow: visible;
   }
 
   .image-table {
-    width: calc(var(--table-base-width) * 1px);
+    width: 1100px;
     border-collapse: collapse;
     table-layout: fixed;
-    transform: scale(var(--table-scale));
+    transform: scale(0.72);
     transform-origin: top center;
-    margin: 0;
   }
 
   .image-table td {
-    padding: 12px 28px;
+    padding: 12px;
     vertical-align: top;
   }
 
@@ -1322,11 +1318,6 @@ button:active {
     transform: translate(var(--x), var(--y)) rotate(var(--r, 0deg));
   }
 
-  #welcome-stars {
-    width: 260px !important;
-    transform: translate(0px, 0px) !important;
-  }
-}
   .flyer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1356,3 +1347,4 @@ button:active {
     margin-right: auto;
   }
 }
+```
