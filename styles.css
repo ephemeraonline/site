@@ -1083,11 +1083,17 @@ button:active {
 .mobile-player {
   border-radius: 0;
   overflow: hidden;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 .mobile-player .aero-header {
   display: none;
 }
+
+
 
 .mobile-player .mobile-player-body {
   display: flex;
