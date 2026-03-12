@@ -15,19 +15,19 @@ const STAR_IMAGES = [
 
 function spawnStars(count = 50) {
   for (let i = 0; i < count; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
+	const star = document.createElement("div");
+	star.className = "star";
 
-    const img = document.createElement("img");
-    img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
+	const img = document.createElement("img");
+	img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
 
-    star.style.left = Math.random() * window.innerWidth + "px";
-    star.style.width = Math.random() * 18 + 12 + "px";
-    star.style.animationDuration = Math.random() * 15 + 10 + "s";
-    star.style.animationDelay = Math.random() * -15 + "s";
+	star.style.left = Math.random() * window.innerWidth + "px";
+	star.style.width = Math.random() * 18 + 12 + "px";
+	star.style.animationDuration = Math.random() * 15 + 10 + "s";
+	star.style.animationDelay = Math.random() * -15 + "s";
 
-    star.appendChild(img);
-    document.body.appendChild(star);
+	star.appendChild(img);
+	document.body.appendChild(star);
   }
 }
 
@@ -35,7 +35,7 @@ spawnStars(50);
 
 window.addEventListener("resize", () => {
   document.querySelectorAll(".star").forEach((star) => {
-    star.style.left = Math.random() * window.innerWidth + "px";
+	star.style.left = Math.random() * window.innerWidth + "px";
   });
 });
 
@@ -47,32 +47,32 @@ window.addEventListener("resize", () => {
   if (!orbits.length) return;
 
   function rand(min, max) {
-    return Math.random() * (max - min) + min;
+	return Math.random() * (max - min) + min;
   }
 
   function pickSign() {
-    return Math.random() < 0.5 ? -1 : 1;
+	return Math.random() < 0.5 ? -1 : 1;
   }
 
   function applyRandom(el) {
-    const w1 = rand(0.4, 1.2) * pickSign();
-    const w2 = rand(0.6, 1.6) * pickSign();
-    const w3 = rand(0.4, 1.4) * pickSign();
-    const ws1 = rand(0.98, 1.04);
-    const ws2 = rand(0.98, 1.04);
-    const speed = rand(0.55, 1.05);
+	const w1 = rand(0.4, 1.2) * pickSign();
+	const w2 = rand(0.6, 1.6) * pickSign();
+	const w3 = rand(0.4, 1.4) * pickSign();
+	const ws1 = rand(0.98, 1.04);
+	const ws2 = rand(0.98, 1.04);
+	const speed = rand(0.55, 1.05);
 
-    el.style.setProperty("--w1", w1.toFixed(2) + "deg");
-    el.style.setProperty("--w2", w2.toFixed(2) + "deg");
-    el.style.setProperty("--w3", w3.toFixed(2) + "deg");
-    el.style.setProperty("--ws1", ws1.toFixed(3));
-    el.style.setProperty("--ws2", ws2.toFixed(3));
-    el.style.setProperty("--wiggle-speed", speed.toFixed(2) + "s");
+	el.style.setProperty("--w1", w1.toFixed(2) + "deg");
+	el.style.setProperty("--w2", w2.toFixed(2) + "deg");
+	el.style.setProperty("--w3", w3.toFixed(2) + "deg");
+	el.style.setProperty("--ws1", ws1.toFixed(3));
+	el.style.setProperty("--ws2", ws2.toFixed(3));
+	el.style.setProperty("--wiggle-speed", speed.toFixed(2) + "s");
   }
 
   orbits.forEach((el) => {
-    applyRandom(el);
-    el.addEventListener("mouseenter", () => applyRandom(el), { passive: true });
+	applyRandom(el);
+	el.addEventListener("mouseenter", () => applyRandom(el), { passive: true });
   });
 })();
 
@@ -87,35 +87,35 @@ window.addEventListener("resize", () => {
   if (!trigger || !overlay || !closeX) return;
 
   function open() {
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    closeX.focus();
+	overlay.classList.add("is-open");
+	overlay.setAttribute("aria-hidden", "false");
+	document.body.style.overflow = "hidden";
+	closeX.focus();
   }
 
   function close() {
-    overlay.classList.remove("is-open");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+	overlay.classList.remove("is-open");
+	overlay.setAttribute("aria-hidden", "true");
+	document.body.style.overflow = "";
   }
 
   trigger.addEventListener("click", function (e) {
-    e.preventDefault();
-    open();
+	e.preventDefault();
+	open();
   });
 
   closeX.addEventListener("click", function (e) {
-    e.preventDefault();
-    close();
+	e.preventDefault();
+	close();
   });
 
   overlay.addEventListener("click", function (e) {
-    if (e.target === overlay) close();
+	if (e.target === overlay) close();
   });
 
   document.addEventListener("keydown", function (e) {
-    if (!overlay.classList.contains("is-open")) return;
-    if (e.key === "Escape") close();
+	if (!overlay.classList.contains("is-open")) return;
+	if (e.key === "Escape") close();
   });
 })();
 
@@ -131,45 +131,45 @@ window.addEventListener("resize", () => {
   if (!thumbs.length || !lightbox || !lightboxImg || !lightboxClose) return;
 
   function openLightbox(src, altText) {
-    lightboxImg.src = src;
-    lightboxImg.alt = altText || "Expanded flyer";
-    lightboxImg.classList.remove("is-zoomed");
-    lightbox.classList.add("is-open");
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+	lightboxImg.src = src;
+	lightboxImg.alt = altText || "Expanded flyer";
+	lightboxImg.classList.remove("is-zoomed");
+	lightbox.classList.add("is-open");
+	lightbox.setAttribute("aria-hidden", "false");
+	document.body.style.overflow = "hidden";
   }
 
   function closeLightbox() {
-    lightbox.classList.remove("is-open");
-    lightbox.setAttribute("aria-hidden", "true");
-    lightboxImg.classList.remove("is-zoomed");
-    lightboxImg.src = "";
-    document.body.style.overflow = "";
+	lightbox.classList.remove("is-open");
+	lightbox.setAttribute("aria-hidden", "true");
+	lightboxImg.classList.remove("is-zoomed");
+	lightboxImg.src = "";
+	document.body.style.overflow = "";
   }
 
   thumbs.forEach((thumb) => {
-    thumb.addEventListener("click", function (e) {
-      e.preventDefault();
-      const img = thumb.querySelector("img");
-      const fullSrc = thumb.getAttribute("data-full") || thumb.getAttribute("href");
-      openLightbox(fullSrc, img ? img.alt : "Expanded flyer");
-    });
+	thumb.addEventListener("click", function (e) {
+	  e.preventDefault();
+	  const img = thumb.querySelector("img");
+	  const fullSrc = thumb.getAttribute("data-full") || thumb.getAttribute("href");
+	  openLightbox(fullSrc, img ? img.alt : "Expanded flyer");
+	});
   });
 
   lightboxClose.addEventListener("click", closeLightbox);
 
   lightbox.addEventListener("click", function (e) {
-    if (e.target === lightbox) closeLightbox();
+	if (e.target === lightbox) closeLightbox();
   });
 
   lightboxImg.addEventListener("click", function (e) {
-    e.stopPropagation();
-    lightboxImg.classList.toggle("is-zoomed");
+	e.stopPropagation();
+	lightboxImg.classList.toggle("is-zoomed");
   });
 
   document.addEventListener("keydown", function (e) {
-    if (!lightbox.classList.contains("is-open")) return;
-    if (e.key === "Escape") closeLightbox();
+	if (!lightbox.classList.contains("is-open")) return;
+	if (e.key === "Escape") closeLightbox();
   });
 })();
 
@@ -184,35 +184,35 @@ window.addEventListener("resize", () => {
   if (!trigger || !overlay || !closeX) return;
 
   function open() {
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    closeX.focus();
+	overlay.classList.add("is-open");
+	overlay.setAttribute("aria-hidden", "false");
+	document.body.style.overflow = "hidden";
+	closeX.focus();
   }
 
   function close() {
-    overlay.classList.remove("is-open");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+	overlay.classList.remove("is-open");
+	overlay.setAttribute("aria-hidden", "true");
+	document.body.style.overflow = "";
   }
 
   trigger.addEventListener("click", function (e) {
-    e.preventDefault();
-    open();
+	e.preventDefault();
+	open();
   });
 
   closeX.addEventListener("click", function (e) {
-    e.preventDefault();
-    close();
+	e.preventDefault();
+	close();
   });
 
   overlay.addEventListener("click", function (e) {
-    if (e.target === overlay) close();
+	if (e.target === overlay) close();
   });
 
   document.addEventListener("keydown", function (e) {
-    if (!overlay.classList.contains("is-open")) return;
-    if (e.key === "Escape") close();
+	if (!overlay.classList.contains("is-open")) return;
+	if (e.key === "Escape") close();
   });
 })();
 
@@ -244,25 +244,25 @@ const track_list = [
 function syncDesktopPlayerUI() {
   const desktopPlayButton = document.querySelector("#player-drag .playpause-track");
   if (desktopPlayButton) {
-    desktopPlayButton.className = isPlaying
-      ? "playpause-track fas fa-pause"
-      : "playpause-track fas fa-play";
+	desktopPlayButton.className = isPlaying
+	  ? "playpause-track fas fa-pause"
+	  : "playpause-track fas fa-play";
   }
 
   if (track_name) {
-    track_name.textContent = track_list[track_index].name;
+	track_name.textContent = track_list[track_index].name;
   }
 }
 
 function syncMobilePlayerUI() {
   if (mobile_track_name) {
-    mobile_track_name.textContent = track_list[track_index].name;
+	mobile_track_name.textContent = track_list[track_index].name;
   }
 
   if (mobile_play_button) {
-    mobile_play_button.className = isPlaying
-      ? "playpause-track fas fa-pause"
-      : "playpause-track fas fa-play";
+	mobile_play_button.className = isPlaying
+	  ? "playpause-track fas fa-pause"
+	  : "playpause-track fas fa-play";
   }
 }
 
@@ -390,11 +390,11 @@ function applyMobileScale() {
   const isMobile = mobileWidth <= 768;
 
   if (!isMobile) {
-    shell.style.transform = "none";
-    shell.style.webkitTransform = "none";
-    stage.style.height = "auto";
-    stage.style.minHeight = "";
-    return;
+	shell.style.transform = "none";
+	shell.style.webkitTransform = "none";
+	stage.style.height = "auto";
+	stage.style.minHeight = "";
+	return;
   }
 
   const scale = mobileWidth / DESIGN_WIDTH;
@@ -403,11 +403,11 @@ function applyMobileScale() {
   shell.style.webkitTransform = `scale(${scale}) translateZ(0)`;
 
   requestAnimationFrame(() => {
-    const unscaledHeight = root.offsetHeight;
-    const scaledHeight = Math.ceil(unscaledHeight * scale);
+	const unscaledHeight = root.offsetHeight;
+	const scaledHeight = Math.ceil(unscaledHeight * scale);
 
-    stage.style.height = scaledHeight + "px";
-    stage.style.minHeight = scaledHeight + "px";
+	stage.style.height = scaledHeight + "px";
+	stage.style.minHeight = scaledHeight + "px";
   });
 }
 
@@ -415,8 +415,8 @@ function queueMobileScale() {
   if (mobileScaleRaf) cancelAnimationFrame(mobileScaleRaf);
 
   mobileScaleRaf = requestAnimationFrame(() => {
-    applyMobileScale();
-    mobileScaleRaf = null;
+	applyMobileScale();
+	mobileScaleRaf = null;
   });
 }
 
@@ -487,9 +487,9 @@ function checkDownload() {
   if (!passInput) return;
 
   if (passInput.value === "ephemera") {
-    window.location.href = "YOUR_FILE_LINK_HERE";
+	window.location.href = "YOUR_FILE_LINK_HERE";
   } else if (error) {
-    error.style.display = "block";
+	error.style.display = "block";
   }
 }
 
@@ -498,11 +498,46 @@ function checkDownload() {
   if (!overlay) return;
 
   overlay.addEventListener("click", function (e) {
-    if (e.target === overlay) closeDownloadWindow();
+	if (e.target === overlay) closeDownloadWindow();
   });
 
   document.addEventListener("keydown", function (e) {
-    if (!overlay.classList.contains("is-open")) return;
-    if (e.key === "Escape") closeDownloadWindow();
+	if (!overlay.classList.contains("is-open")) return;
+	if (e.key === "Escape") closeDownloadWindow();
   });
+})();
+
+/* ==================================================
+   MOBILE PLAYER COLLAPSE
+================================================== */
+(function () {
+  const mobilePlayer = document.getElementById("mobile-player");
+  if (!mobilePlayer) return;
+
+  const header = mobilePlayer.querySelector(".aero-header");
+  if (!header) return;
+
+  function updateMobilePlayerOffset() {
+	const isMobile = window.innerWidth <= 768;
+
+	if (!isMobile) {
+	  document.documentElement.style.removeProperty("--mobile-player-offset");
+	  return;
+	}
+
+	const height = mobilePlayer.offsetHeight || 72;
+	document.documentElement.style.setProperty("--mobile-player-offset", `${height}px`);
+  }
+
+  header.addEventListener("click", function (e) {
+	if (e.target.closest("button")) return;
+	mobilePlayer.classList.toggle("is-collapsed");
+	updateMobilePlayerOffset();
+  });
+
+  window.addEventListener("load", updateMobilePlayerOffset);
+  window.addEventListener("resize", updateMobilePlayerOffset);
+  window.addEventListener("orientationchange", updateMobilePlayerOffset);
+
+  setTimeout(updateMobilePlayerOffset, 100);
 })();
