@@ -1309,7 +1309,7 @@ button:active {
     overflow: hidden;
   }
 
-  .mobile-image-table {
+.mobile-image-table {
     width: 100%;
     max-width: 390px;
     border-collapse: collapse;
@@ -1317,7 +1317,15 @@ button:active {
     margin: 0 auto;
   }
 
+  .mobile-image-table tr {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
   .mobile-image-table td {
+    width: 50%;
+    box-sizing: border-box;
     padding: 8px 6px;
     vertical-align: top;
     text-align: center;
@@ -1326,6 +1334,8 @@ button:active {
   .mobile-image-table .tbl-img {
     max-width: 100%;
     height: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .mobile-image-table .tbl-caption {
