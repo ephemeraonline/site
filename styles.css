@@ -338,6 +338,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+/* force Comic Sans inside affirmation card */
+.tbl-card * {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
 .tbl-img-wrap {
