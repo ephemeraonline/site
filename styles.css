@@ -63,11 +63,12 @@ body {
 #scale-shell {
   transform-origin: top left;
   position: relative;
-  will-change: transform;
+  will-change: auto;
+  transform: none !important;
 }
 
 #scale-root {
-  width: 1400px;
+  width: 100%;
   position: relative;
 }
 
@@ -79,6 +80,10 @@ body {
   #scale-stage {
     height: auto !important;
     min-height: 0 !important;
+  }
+
+  #scale-root {
+    width: 1400px;
   }
 }
 
@@ -293,6 +298,7 @@ body {
   height: auto;
   display: block;
 }
+
 /* ==================================================
    TABLE
 ================================================== */
@@ -325,12 +331,13 @@ body {
 
 /* desktop default */
 .desktop-image-table-wrap {
-  display: flex;
+  display: flex !important;
 }
 
 .mobile-image-table-wrap {
-  display: none;
+  display: none !important;
 }
+
 /* ==================================================
    AFFIRMATIONS
 ================================================== */
@@ -341,7 +348,6 @@ body {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
-/* force Comic Sans inside affirmation card */
 .tbl-card * {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
@@ -1195,7 +1201,12 @@ button:active {
 
 @media (max-width: 768px) {
   :root {
-    --mobile-player-offset: 96px;
+    --mobile-player-offset: 120px;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
   }
 
   #player-drag,
@@ -1211,63 +1222,93 @@ button:active {
     width: 100%;
     height: 50px;
     background: #a5ff00;
-    z-index: 999999;
+    z-index: 999998;
     pointer-events: none;
   }
 
+  #scale-stage,
+  #scale-shell,
+  #scale-root {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative;
+    transform: none !important;
+  }
+
+  #scale-root {
+    padding-top: var(--mobile-player-offset);
+    box-sizing: border-box;
+  }
+
+  .page-scale {
+    width: 100%;
+  }
+
   #mobile-player {
-    display: block !important;
-    position: fixed;
+    display: flex !important;
+    position: fixed !important;
     top: 25px;
-    left: 50%;
-    right: auto;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    z-index: 1000003;
-    transform: translate(-50%, -50%);
+    left: 10px;
+    right: 10px;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 1000003 !important;
+    transform: none !important;
     box-sizing: border-box;
   }
 
   #mobile-player .aero-header {
-    display: none;
-    cursor: pointer;
-    user-select: none;
+    display: none !important;
+  }
+
+  .mobile-player {
+    border-radius: 0 !important;
+    overflow: hidden;
   }
 
   .mobile-player .mobile-player-body {
-    border-radius: 0;
-    width: auto;
-    max-width: 99vw;
-    min-width: 320px;
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    padding: 10px 12px;
+    background: #e9e9e9;
+    box-sizing: border-box;
+  }
+
+  .mobile-player .mobile-player-body button {
+    min-width: 28px;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+  }
+
+  .mobile-player .songtitle {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .mobile-player .mute-track {
     margin-left: auto;
-    margin-right: 4px;
+    margin-right: 0;
   }
 
   #mobile-player.is-collapsed .mobile-player-body {
     display: none;
   }
 
-  #scale-stage,
-  #scale-shell,
-  #scale-root {
-    position: relative;
-  }
-
-  #scale-root {
-    width: 100%;
-    padding-top: var(--mobile-player-offset);
-    box-sizing: border-box;
-  }
-
   .image-header {
     top: 0;
-    margin-top: 70px;
-    margin-bottom: 12px;
+    margin-top: 24px;
+    margin-bottom: 14px;
   }
 
   .image-header-img {
@@ -1275,30 +1316,74 @@ button:active {
   }
 
   .e-wrap {
-    --y: 75px;
-    transform:
-      translate(var(--x), calc(var(--y) - 40px))
-      scale(0.5);
-    transform-origin: center top;
-    margin-top: 0;
-    margin-bottom: 30px;
+    --y: 0px;
+    width: min(94vw, 360px);
+    height: 260px;
+    margin: 0 auto 40px;
+    transform: none !important;
+  }
+
+  #decor-e {
+    width: 120px;
+    transform: translate(-50%, -50%);
+  }
+
+  .orbit-container {
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+  }
+
+  .orbit {
+    min-width: 0;
+    max-width: none;
+  }
+
+  #flyers-trigger {
+    width: 110px !important;
+    --x: -100px !important;
+    --y: -40px !important;
+  }
+
+  #about-trigger {
+    width: 110px !important;
+    --x: 0px !important;
+    --y: -110px !important;
+  }
+
+  .orbit[src*="EPHEMERA_STAR_INSTAGRAM"] {
+    width: 105px !important;
+    --x: -110px !important;
+    --y: 55px !important;
+  }
+
+  .orbit[src*="NOTEPAD_STORE"] {
+    width: 120px !important;
+    --x: 105px !important;
+    --y: 75px !important;
+  }
+
+  .orbit[src*="EPHEMERA_CONTACT"] {
+    width: 110px !important;
+    --x: 105px !important;
+    --y: -10px !important;
   }
 
   .aero-window:not(#mobile-player),
   .aero-window--first,
   .aero-window--second,
-  .aero-window--third {
+  .aero-window--third,
+  .comeback-window {
     width: min(92vw, 420px) !important;
     max-width: 92vw !important;
-    margin: 8px auto 18px !important;
-    transform: translateY(80px) !important;
+    margin: 10px auto 16px !important;
+    transform: none !important;
   }
 
   .aero-window .aero-content {
     font-size: 15px;
   }
 
-  /* desktop table off, mobile table on */
   .desktop-image-table-wrap {
     display: none !important;
   }
@@ -1308,7 +1393,7 @@ button:active {
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    margin-top: 140px;
+    margin-top: 40px;
     padding: 0 10px 40px;
     box-sizing: border-box;
     overflow: hidden;
@@ -1337,6 +1422,7 @@ button:active {
   }
 
   .mobile-image-table .tbl-img {
+    transform: none !important;
     max-width: 100%;
     height: auto;
     margin-left: auto;
@@ -1392,7 +1478,7 @@ button:active {
   }
 
   .mobile-image-table-wrap {
-    margin-top: 120px;
+    margin-top: 24px;
     padding: 0 8px 32px;
   }
 
