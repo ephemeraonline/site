@@ -54,7 +54,8 @@
 		  alt="">
 	  </div>
 	</div>
-<!-- MOBILE AERO MUSIC PLAYER -->
+
+	<!-- MOBILE AERO MUSIC PLAYER -->
 	<div id="mobile-player" class="aero-window mobile-player">
 	  <div class="aero-header">
 		<div class="aero-title">now playing</div>
@@ -68,8 +69,13 @@
 		<button class="fas fa-forward" onclick="nextTrack()"></button>
 	
 		<marquee scrollamount="4" class="songtitle"></marquee>
+
+		<button class="mute-track" onclick="toggleMute()">
+		  <i class="fas fa-volume-up"></i>
+		</button>
 	  </div>
 	</div>
+
 	<div class="aero-window aero-window--third" style="--w:900px; --x:40px; --y:640px;">
 	  <div class="aero-header">
 		<div class="aero-title"> welcome message </div>
@@ -90,8 +96,7 @@
 	  </div>
 	</div>
 
-	<div class="aero-window aero-window--second" style="--w:350px; --x:20px; --y:1680px;">
-	  <div class="aero-header">
+<div class="aero-window aero-window--second comeback-window" style="--w:350px; --x:20px; --y:1680px;">	  <div class="aero-header">
 		<div class="aero-title">come back soon </div>
 	  </div>
 	  <div class="aero-content">
@@ -121,6 +126,7 @@
 
 		  <td>
 			<img
+			  id="welcome-stars"
 			  class="tbl-img"
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_stars.gif"
 			  alt=""
@@ -285,6 +291,8 @@
 		</tr>
 	  </table>
 	</div>
+
+
 
 	<div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
 	  <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
@@ -532,12 +540,6 @@
 		</div>
 	  </div>
 	</div>
-
-	<button id="mute-float" type="button" aria-label="Mute / unmute">
-	  <img id="mute-float-img"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/MUTE.png"
-		  alt="">
-	</button>
 
   </div>
 
