@@ -1221,20 +1221,20 @@ button:active {
     pointer-events: none;
   }
 
-  #mobile-player {
-    display: block !important;
-    position: fixed !important;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    width: auto !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    z-index: 1000003 !important;
-    transform: none !important;
-    box-sizing: border-box;
-  }
+#mobile-player {
+  display: block !important;
+  position: fixed !important;
+  top: 20px;
+  left: 50%;
+  right: auto;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 1000003 !important;
+  transform: translateX(-50%) !important;
+  box-sizing: border-box;
+}
 
   #mobile-player .aero-header {
     display: none !important;
@@ -1242,12 +1242,12 @@ button:active {
     user-select: none;
   }
 
-  .mobile-player .mobile-player-body {
-    border-radius: 0;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-  }
+.mobile-player .mobile-player-body {
+  border-radius: 28px;
+  width: auto;
+  max-width: 92vw;
+  min-width: 320px;
+}
 
   #mobile-player.is-collapsed .mobile-player-body {
     display: none;
