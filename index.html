@@ -1,3 +1,21 @@
+Perfect — this HTML is in a good place to do it cleanly.
+
+The move now is:
+
+* keep your current `.image-table-wrap` exactly as the **desktop table**
+* add a second table right underneath it for **mobile only**
+* then hide/show each one with CSS
+
+Below is your HTML with a **mobile duplicate table wrapper added**. I kept the desktop one untouched.
+
+The only thing I changed is:
+
+* added class `desktop-image-table-wrap` to your current table wrapper
+* added a new `mobile-image-table-wrap` block right after it
+
+---
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,13 +81,9 @@
 	
 	  <div class="mobile-player-body">
 		<button class="fas fa-backward" onclick="prevTrack()"></button>
-	
 		<button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button>
-	
 		<button class="fas fa-forward" onclick="nextTrack()"></button>
-	
 		<marquee scrollamount="4" class="songtitle"></marquee>
-
 		<button class="mute-track" onclick="toggleMute()">
 		  <i class="fas fa-volume-up"></i>
 		</button>
@@ -96,7 +110,8 @@
 	  </div>
 	</div>
 
-<div class="aero-window aero-window--second comeback-window" style="--w:350px; --x:20px; --y:1680px;">	  <div class="aero-header">
+	<div class="aero-window aero-window--second comeback-window" style="--w:350px; --x:20px; --y:1680px;">
+	  <div class="aero-header">
 		<div class="aero-title">come back soon </div>
 	  </div>
 	  <div class="aero-content">
@@ -104,7 +119,8 @@
 	  </div>
 	</div>
 
-	<div class="image-table-wrap">
+	<!-- DESKTOP TABLE -->
+	<div class="image-table-wrap desktop-image-table-wrap">
 	  <table class="image-table">
 		<tr>
 		  <td>
@@ -292,7 +308,105 @@
 	  </table>
 	</div>
 
+	<!-- MOBILE TABLE -->
+	<div class="image-table-wrap mobile-image-table-wrap">
+	  <table class="image-table mobile-image-table">
+		<tr>
+		  <td>
+			<div class="tbl-card">
+			  <div class="tbl-img-wrap">
+				<img
+				  class="tbl-img"
+				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED2.png"
+				  alt=""
+				  style="--w:220px; --x:0px; --y:0px;">
+				<div class="live-date" id="live-date-mobile"></div>
+			  </div>
 
+			  <div class="tbl-caption" style="--bg:#a5ff00; --color:#7d43b2;">
+				“i will outlive all my enemies”
+			  </div>
+			</div>
+		  </td>
+
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_stars.gif"
+			  alt=""
+			  style="--w:320px; --x:0px; --y:0px;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif" alt="" style="--w:220px; --x:0px; --y:0px;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bear_balloon.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_SCARY_MOVIES_TEMP.gif" alt="" style="--w:200px; --x:0px; --y:0px;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif" alt="" style="--w:160px; --x:0px; --y:0px;"></td>
+		</tr>
+
+		<tr>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_VIRUS.png" alt="" style="--w:220px; --x:0px; --y:0px;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BEAR_STAMPS.png" alt="" style="--w:110px; --x:20px; --y:0px;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PREZENT.gif" alt="" style="--w:140px; --x:20px; --y:0px;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ALWAYS_ONLINE.gif" alt="" style="--w:160px; --x:0px; --y:0px;"></td>
+		</tr>
+
+		<tr>
+		  <td>
+			<div class="counter-cell">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BAR_COUNTER.png"
+				alt="counter decoration"
+				style="--w:200px; --x:0px; --y:-10px;">
+
+			  <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
+				<img
+				  src="https://hitwebcounter.com/counter/counter.php?page=21479206&style=0013&nbdigits=5&type=page&initCount=0"
+				  alt="Visitor Counter"
+				  border="0">
+			  </a>
+
+			  <br>
+			  VISITORS!
+			</div>
+		  </td>
+
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/fish_kissing.gif" alt="" style="--w:160px; --x:0px; --y:10px;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CONGRATS_AD_OH.gif" alt="" style="--w:180px; --x:0px; --y:0px;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif" alt="" style="--w:160px; --x:0px; --y:0px;"></td>
+		</tr>
+
+		<tr>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/KITTY_MANIFESTATION.gif"
+			  alt=""
+			  style="--w:160px; --x:-20px; --y:10px; --r:0deg; display:block; margin-bottom:20px;">
+
+			<div style="display:flex; gap:10px; align-items:flex-start; overflow:visible;">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/GOTH_STICKER.gif"
+				alt=""
+				style="width:180px; height:auto; display:block; object-fit:contain; transform:none;">
+
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FAIRY_DOLLZ.gif"
+				alt=""
+				style="width:100px; height:auto; display:block; object-fit:contain; transform:none;">
+			</div>
+		  </td>
+
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/AWESOME_DAY.gif" alt="" style="--w:160px; --x:-20px; --y:10px; --r:5deg;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CD_ROM.gif" alt="" style="--w:160px; --x:0px; --y:10px;"></td>
+		  <td><img class="tbl-img" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BLINKEE_TOWER.gif" alt="" style="--w:140px; --x:0px; --y:0px;"></td>
+		</tr>
+	  </table>
+	</div>
 
 	<div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
 	  <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
@@ -545,4 +659,4 @@
 
   <script src="script.js"></script>
 </body>
-</html>
+</html> 
