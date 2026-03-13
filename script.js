@@ -233,13 +233,13 @@ let updateTimer = null;
 
 const curr_track = document.getElementById("music");
 
-const track_list = [
-  { name: "HYD- Angel", path: "https://files.catbox.moe/sre606.mp3" },	
+const track_list = [	
+  { name: "HYD - Angel", path: "https://files.catbox.moe/sre606.mp3" },	
   { name: "2Charm - prerogative", path: "https://files.catbox.moe/srlpzf.mp3" },	
   { name: "Charli xcx - Sympathy is a knife featuring ariana grande", path: "https://files.catbox.moe/xlx839.mp3" },
   { name: "Mckayla Twiggs - What A Girl Wants", path: "https://files.catbox.moe/xw4kit.mp3" },
   { name: "Danny L Harle - Raft in the Sea Featuring Julia Michaels", path: "https://files.catbox.moe/7ehw00.mp3" },
-  { name: "Mercy On Me - The Cat's Whiskers", path: "https://files.catbox.moe/w7nnf9.mp3" }
+  { name: "Metric - Time is a Bomb", path: "https://files.catbox.moe/txd5we.mp3" }
 ];
 
 function syncDesktopPlayerUI() {
