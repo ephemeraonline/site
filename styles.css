@@ -343,7 +343,8 @@ body {
   top: -10%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: "Comic Sans MS", "Comic Sans";
+  font-weight: bold;
   font-weight: bold;
   font-size: 18px;
   text-align: center;
@@ -356,7 +357,8 @@ body {
 .tbl-caption {
   margin-top: 8px;
   padding: 8px 12px;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: "Comic Sans MS", "Comic Sans";
+  font-weight: bold;
   font-size: 20px;
   font-weight: bold;
   background: var(--bg, #a5ff00);
