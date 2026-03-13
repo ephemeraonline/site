@@ -1091,7 +1091,9 @@ button:active {
   box-sizing: border-box;
 
   width: auto;
-  margin: 0 clamp(8px, 3vw, 20px);}
+  margin: 0 clamp(6px, 2vw, 12px);
+}
+
 .mobile-player .mobile-player-body button {
   min-width: 28px;
   width: 28px;
