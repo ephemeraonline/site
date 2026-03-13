@@ -343,9 +343,8 @@ body {
   top: -10%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Comic Sans MS", "Comic Sans";
-  font-weight: bold;
-  font-weight: bold;
+  font-family: "Comic Sans MS", "Comic Sans" !important;
+  font-weight: 700;
   font-size: 18px;
   text-align: center;
   color: #1e40ff;
