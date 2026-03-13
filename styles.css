@@ -1,548 +1,1353 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
-  <title>★EPHEMERA★</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-  <div class="page-scale">
-
-	<div class="image-header">
-	  <img
-		src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_HEADER_BALLOON.png"
-		alt="Section header"
-		class="image-header-img"
-		style="--w:450px;">
-	</div>
-
-	<div class="e-wrap">
-	  <img id="decor-e"
-		src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
-		alt="EPHEMERA logo">
-
-	  <div class="orbit-container">
-		<img class="orbit"
-		  id="flyers-trigger"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYERS_BUTTON.gif"
-		  style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:180px;"
-		  alt="Flyers rough">
-
-		<img class="orbit"
-		  id="about-trigger"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
-		  style="--x:50px; --y:-280px; --r:5deg; --s:1.0; width:180px;"
-		  alt="about">
-
-		<img class="orbit"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STAR_INSTAGRAM.png"
-		  style="--x:-260px; --y:170px; --r:-15deg; --s:1.0; width:180px;"
-		  alt="">
-
-		<img class="orbit"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
-		  style="--x:260px; --y:180px; --r:5deg; --s:0.95; width:630px;"
-		  alt="">
-
-		<img class="orbit"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-		  style="--x:260px; --y:-65px; --r:25deg; --s:1.05; width:180px;"
-		  alt="">
-	  </div>
-	</div>
-
-	<!-- MOBILE AERO MUSIC PLAYER -->
-	<div id="mobile-player" class="aero-window mobile-player">
-	  <div class="aero-header">
-		<div class="aero-title">now playing</div>
-	  </div>
-	
-	  <div class="mobile-player-body">
-		<button class="fas fa-backward" onclick="prevTrack()"></button>
-	
-		<button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button>
-	
-		<button class="fas fa-forward" onclick="nextTrack()"></button>
-	
-		<marquee scrollamount="4" class="songtitle"></marquee>
-
-		<button class="mute-track" onclick="toggleMute()">
-		  <i class="fas fa-volume-up"></i>
-		</button>
-	  </div>
-	</div>
-
-	<div class="aero-window aero-window--third" style="--w:900px; --x:40px; --y:640px;">
-	  <div class="aero-header">
-		<div class="aero-title"> welcome message </div>
-	  </div>
-	  <div class="aero-content">
-		<p>
-		  hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out 🙂
-		</p>
-	  </div>
-	</div>
-
-	<div class="aero-window aero-window--second" style="--w:330px; --x:340px; --y:720px;">
-	  <div class="aero-header">
-		<div class="aero-title">under construction </div>
-	  </div>
-	  <div class="aero-content">
-		<p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time.</p>
-	  </div>
-	</div>
-
-<div class="aero-window aero-window--second comeback-window" style="--w:350px; --x:20px; --y:1680px;">	  <div class="aero-header">
-		<div class="aero-title">come back soon </div>
-	  </div>
-	  <div class="aero-content">
-		<p>click around, get lost, and have fun. thank you for being here &lt;3</p>
-	  </div>
-	</div>
-
-	<div class="image-table-wrap">
-	  <table class="image-table">
-		<tr>
-		  <td>
-			<div class="tbl-card">
-			  <div class="tbl-img-wrap">
-				<img
-				  class="tbl-img"
-				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED2.png"
-				  alt=""
-				  style="--w:250px; --x:0px; --y:0px;">
-				<div class="live-date" id="live-date"></div>
-			  </div>
-
-			  <div class="tbl-caption" style="--bg:#a5ff00; --color:#7d43b2;">
-				“i will outlive all my enemies”
-			  </div>
-			</div>
-		  </td>
-
-		  <td>
-			<img
-			  id="welcome-stars"
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_stars.gif"
-			  alt=""
-			  style="--w:400px; --x:30px; --y:0px;">
-		  </td>
-		</tr>
-
-		<tr>
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif"
-			  alt=""
-			  style="--w:250px; --x:0px; --y:0px;">
-		  </td>
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bear_balloon.gif"
-			  alt=""
-			  style="--w:200px; --x:0px; --y:0px;">
-		  </td>
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_SCARY_MOVIES_TEMP.gif"
-			  alt=""
-			  style="--w:220px; --x:0px; --y:0px;">
-		  </td>
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif"
-			  alt=""
-			  style="--w:180px; --x:0px; --y:0px;">
-		  </td>
-		</tr>
-
-		<tr>
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_VIRUS.png"
-			  alt=""
-			  style="--w:250px; --x:0px; --y:0px;">
-		  </td>
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BEAR_STAMPS.png"
-			  alt=""
-			  style="--w:120px; --x:40px; --y:0px;">
-		  </td>
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PREZENT.gif"
-			  alt=""
-			  style="--w:160px; --x:40px; --y:0px;">
-		  </td>
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ALWAYS_ONLINE.gif"
-			  alt=""
-			  style="--w:180px; --x:0px; --y:0px;">
-		  </td>
-		</tr>
-
-		<tr>
-		  <td>
-			<div class="counter-cell">
-			  <img
-				class="tbl-img"
-				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BAR_COUNTER.png"
-				alt="counter decoration"
-				style="--w:220px; --x:0px; --y:-10px;">
-
-			  <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
-				<img
-				  src="https://hitwebcounter.com/counter/counter.php?page=21479206&style=0013&nbdigits=5&type=page&initCount=0"
-				  alt="Visitor Counter"
-				  border="0">
-			  </a>
-
-			  <br>
-			  VISITORS!
-			</div>
-		  </td>
-
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/fish_kissing.gif"
-			  alt=""
-			  style="--w:180px; --x:0px; --y:10px;">
-		  </td>
-
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CONGRATS_AD_OH.gif"
-			  alt=""
-			  style="--w:200px; --x:0px; --y:0px;">
-		  </td>
-
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
-			  alt=""
-			  style="--w:180px; --x:0px; --y:0px;">
-		  </td>
-		</tr>
-
-		<tr>
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/KITTY_MANIFESTATION.gif"
-			  alt=""
-			  style="--w:180px; --x:-40px; --y:10px; --r:0deg; display:block; margin-bottom:30px;">
-
-			<div style="display:flex; gap:12px; align-items:flex-start; overflow:visible;">
-			  <img
-				class="tbl-img"
-				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/GOTH_STICKER.gif"
-				alt=""
-				style="width:220px; height:auto; display:block; object-fit:contain; transform:none;">
-
-			  <img
-				class="tbl-img"
-				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FAIRY_DOLLZ.gif"
-				alt=""
-				style="width:120px; height:auto; display:block; object-fit:contain; transform:none;">
-			</div>
-		  </td>
-
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/AWESOME_DAY.gif"
-			  alt=""
-			  style="--w:180px; --x:-40px; --y:10px; --r:5deg;">
-		  </td>
-
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CD_ROM.gif"
-			  alt=""
-			  style="--w:180px; --x:0px; --y:10px;">
-		  </td>
-
-		  <td>
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BLINKEE_TOWER.gif"
-			  alt=""
-			  style="--w:152px; --x:0px; --y:0px;">
-		  </td>
-		</tr>
-	  </table>
-	</div>
-
-
-
-	<div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
-	  <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
-		<div class="aero-header">
-		  <div class="aero-title">our flyers</div>
-		  <button class="aero-close-btn" id="aero-gallery-close-x" type="button" aria-label="Close">✕</button>
-		</div>
-
-		<div class="aero-gallery-body">
-		  <div class="flyer-grid">
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_THE_MOMENT.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_THE_MOMENT.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_THE_MOMENT.png" alt="The Moment flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_MADISON_BEER.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_MADISON_BEER.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_MADISON_BEER.png" alt="Madison Beer flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png" alt="Hemlocke Apple flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png" alt="Addison flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png" alt="Daya flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png" alt="5SOS flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png" alt="Freakier flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png" alt="Affirmations flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png" alt="EOW flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" alt="Fungies flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png" alt="Hire Ephemera flyer">
-			</a>
-
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" alt="Launch flyer">
-			</a>
-		  </div>
-		</div>
-	  </div>
-	</div>
-
-	<div id="flyer-lightbox" class="flyer-lightbox" aria-hidden="true">
-	  <div class="flyer-lightbox-inner">
-		<button id="flyer-lightbox-close" class="flyer-lightbox-close" type="button" aria-label="Close">✕</button>
-		<img id="flyer-lightbox-img" class="flyer-lightbox-img" src="" alt="Expanded flyer">
-	  </div>
-	</div>
-
-	<div id="about-overlay" class="aero-overlay" aria-hidden="true">
-	  <div class="aero-window aero-gallery about-window" role="dialog" aria-modal="true" aria-label="About">
-		<div class="aero-header">
-		  <div class="aero-title">about us</div>
-		  <button class="aero-close-btn" id="about-close-x" type="button" aria-label="Close">✕</button>
-		</div>
-
-		<div class="aero-content about-aero-content">
-		  <div class="aero-about-body">
-			<div class="about-ephemera-sheet">
-			  <div class="about-topline">
-				<span>HI@EPHEMERAONLINE.WORLD</span>
-				<span>FROM THE DESK OF EPHEMERA</span>
-				<span>@EPHEMERAONLINE.WORLD</span>
-			  </div>
-
-			  <div class="about-stars"></div>
-
-			  <center>
-				<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png" style="width:100%; max-width:500px;" alt="">
-			  </center>
-
-			  <p class="about-intro">
-				<br>
-				Ephemera is a specialist creative agency that runs on pop-culture. We offer creative services to our favorite brands and artists to help tell stories that actually hit — across screens, stages, and social feeds. Sometimes we make merch.
-			  </p>
-
-			  <div class="about-label">WHAT WE DO</div>
-
-			  <div class="about-services-grid">
-				<div class="about-head">CREATIVE</div>
-				<div class="about-head">STRATEGY</div>
-				<div class="about-head">PRODUCT</div>
-				<div class="about-head">PRODUCTION</div>
-
-				<div class="about-cell">COPY WRITING</div>
-				<div class="about-cell">BRAND STRATEGY</div>
-				<div class="about-cell">IDEATION</div>
-				<div class="about-cell">POP-UP EVENTS</div>
-
-				<div class="about-cell">BRAND IDENTITY</div>
-				<div class="about-cell">DIGITAL STRATEGY</div>
-				<div class="about-cell">DESIGN</div>
-				<div class="about-cell">ACTIVATIONS</div>
-
-				<div class="about-cell">CREATIVE DIRECTION</div>
-				<div class="about-cell">STORY DEVELOPMENT</div>
-				<div class="about-cell">MARKETING STRATEGY</div>
-				<div class="about-cell">CONVENTIONS</div>
-
-				<div class="about-cell">BRAND CAMPAIGNS</div>
-				<div class="about-cell">CONTENT STRATEGY</div>
-				<div class="about-cell">PACKAGING</div>
-				<div class="about-cell">CONTENT PRODUCTION</div>
-
-				<div class="about-cell">ART DIRECTION</div>
-				<div class="about-cell">SOCIAL MEDIA STRATEGY</div>
-				<div class="about-cell">LICENSES &amp; PARTNERSHIPS</div>
-				<div class="about-cell">IMMERSIVE EXPERIENCES</div>
-
-				<div class="about-cell">GRAPHIC DESIGN</div>
-				<div class="about-cell">INFLUENCER PARTNERSHIPS</div>
-				<div class="about-cell">DEVELOPMENT</div>
-				<div class="about-cell">BRANDED ENVIRONMENTS</div>
-			  </div>
-
-			  <div class="about-label about-label--lower">WHAT WE DID</div>
-
-			  <div class="about-stats-grid">
-				<div class="about-stat">
-				  <div class="about-stat-num">15</div>
-				  <div class="about-stat-text">Years working experience in the industry</div>
-				</div>
-
-				<div class="about-stat">
-				  <div class="about-stat-num">75</div>
-				  <div class="about-stat-text">Collaborations generating 100M+ in total sales</div>
-				</div>
-
-				<div class="about-stat">
-				  <div class="about-stat-num">10</div>
-				  <div class="about-stat-text">Shared Media Placements</div>
-				</div>
-
-				<div class="about-stat">
-				  <div class="about-stat-num">500+</div>
-				  <div class="about-stat-text">Influencer Partnerships Facilitated</div>
-				</div>
-			  </div>
-
-			  <center>
-				<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DOWNLOAD_BUTTOn.gif" style="width:100%; max-width:200px;" alt="">
-			  </center>
-
-			  <div class="about-pdf-section">
-				<button onclick="openDownloadWindow()">DOWNLOAD</button>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</div>
-
-	<div id="download-overlay" class="aero-overlay" aria-hidden="true">
-	  <div class="aero-window" style="width:260px; transform:none;" role="dialog" aria-modal="true" aria-label="secure download">
-		<div class="aero-header">
-		  <div class="aero-title">secure download</div>
-		  <button class="aero-close-btn" type="button" onclick="closeDownloadWindow()" aria-label="Close">✕</button>
-		</div>
-
-		<div class="aero-content" style="text-align:center; padding:20px;">
-		  <p style="margin-bottom:10px;">enter password</p>
-
-		  <input
-			id="download-pass"
-			type="password"
-			style="width:160px; padding:4px; border:1px solid #999; font-family:Comic Sans MS;">
-
-		  <br><br>
-
-		  <button onclick="checkDownload()">unlock</button>
-
-		  <p id="download-error" style="color:red; font-size:11px; display:none;">
-			incorrect password
-		  </p>
-		</div>
-	  </div>
-	</div>
-
-	<div id="player-drag" aria-label="draggable music player">
-	  <div class="player" id="player">
-		<div class="window" id="player-handle">
-		  <div class="window-body">
-			<div class="flex">
-			  <div class="wheel" style="height:100px;width:100px;">
-				<div class="wheelcontrols">
-				  <button class="fas fa-plus" onclick="volumeUp()" style="padding-top:4px; padding-bottom:0;"></button>
-				</div>
-
-				<table class="wheelcontrols">
-				  <tr>
-					<th><button class="fas fa-backward" onclick="prevTrack()"></button></th>
-					<th class="innerwheel"><button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button></th>
-					<th><button class="fas fa-forward" onclick="nextTrack()"></button></th>
-				  </tr>
-				</table>
-
-				<div class="wheelcontrols" style="padding:0;">
-				  <button class="fas fa-minus" onclick="volumeDown()"></button>
-				</div>
-			  </div>
-
-			  <div id="musicplayer">
-				<div class="flex">
-				  <marquee scrollamount="4" class="songtitle"></marquee>
-				</div>
-
-				<div class="seeking">
-				  <div class="current-time">00:00</div>
-				  <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
-				  <div class="total-duration">0:00</div>
-				</div>
-
-				<table class="controls">
-				  <tr>
-					<td><button type="button" title="Loop (visual only)"><div class="fas fa-sync"></div></button></td>
-					<td><button type="button" title="Playlist (visual only)"><div class="fas fa-music"></div></button></td>
-					<td><button type="button" title="Shuffle (visual only)"><div class="fas fa-random"></div></button></td>
-				  </tr>
-				</table>
-
-				<audio id="music" src=""></audio>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</div>
-
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+/* ==================================================
+   COUNTER
+================================================== */
+.counter-cell {
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  width: 200px;
+  font-family: "Comic Sans MS";
+  font-weight: bold;
+  font-size: 20px;
+  color: #000aff;
+}
+
+/* ==================================================
+   GLOBAL / CURSOR
+================================================== */
+* {
+  cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_GOOD.png"), auto !important;
+}
+
+a,
+button,
+img,
+.orbit {
+  cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_BAD.png"), pointer !important;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: #ffffff;
+  color: #000;
+  font-family: "Helvetica", sans-serif;
+  font-size: 12px;
+}
+
+@font-face {
+  font-family: "NurealRegular";
+  src: url("https://files.catbox.moe/zcgiwn.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Myriad Pro";
+  src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
+}
+
+/* ==================================================
+   MOBILE STAGE
+================================================== */
+#scale-stage {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#scale-shell {
+  transform-origin: top left;
+  position: relative;
+  will-change: transform;
+}
+
+#scale-root {
+  width: 1400px;
+  position: relative;
+}
+
+@media (min-width: 769px) {
+  #scale-shell {
+    transform: none !important;
+  }
+
+  #scale-stage {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+}
+
+/* ==================================================
+   FALLING STARS
+================================================== */
+.star {
+  position: fixed;
+  top: -80px;
+  left: 0;
+  pointer-events: none;
+  z-index: -9999;
+  animation: fall linear infinite;
+  will-change: transform, opacity;
+}
+
+.star img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(calc(100vh + 160px)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ==================================================
+   DECOR PLANET
+================================================== */
+.e-wrap {
+  --w: 80%;
+  --x: 0px;
+  --y: 170px;
+  width: var(--w);
+  max-width: 420px;
+  min-width: 120px;
+  height: 200px;
+  margin: 10px auto 0;
+  margin-bottom: -190px;
+  position: relative;
+  transform: translate(var(--x), var(--y));
+  z-index: 50;
+}
+
+#decor-e {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) translateY(40px);
+  width: 60%;
+  height: auto;
+  z-index: 50;
+}
+
+.orbit-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  height: 60%;
+  transform: translate(-50%, -50%) translateY(40px);
+  pointer-events: none;
+  z-index: 60;
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18%;
+  max-width: 240px;
+  min-width: 60px;
+  pointer-events: auto;
+  z-index: 10;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    rotate(var(--r, 0deg))
+    scale(var(--s, 1));
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+@keyframes float {
+  0% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1));
+  }
+  50% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), calc(var(--y) - 8px))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1));
+  }
+  100% {
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r, 0deg))
+      scale(var(--s, 1));
+  }
+}
+
+/* ==================================================
+   AERO WINDOW
+================================================== */
+.aero-window {
+  position: relative;
+  margin: 6px auto 24px;
+  width: var(--w, 900px);
+  max-width: var(--mw, 90%);
+  box-sizing: border-box;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  box-shadow:
+    0 0 20px rgba(0, 150, 255, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  transform:
+    translate(var(--x, 0px), var(--y, 120px))
+    rotate(var(--r, 0deg))
+    scale(var(--s, 1));
+}
+
+.aero-window .aero-header {
+  height: 40px;
+  background-color: #907cff;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  border-bottom: 1px solid #0d3882;
+  box-sizing: border-box;
+}
+
+.aero-window .aero-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.aero-window .aero-content {
+  padding: 15px;
+  background-color: #e9e9e9;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: Verdana, Geneva, sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.aero-window .aero-content p {
+  margin: 0 0 10px;
+  font-weight: inherit;
+}
+
+.aero-window .aero-content p:last-child {
+  margin-bottom: 0;
+}
+
+.aero-window--first {
+  --w: 900px;
+  --mw: 90%;
+  --x: 0px;
+  --y: 120px;
+}
+
+.aero-window--second {
+  --w: 320px;
+  --mw: 92%;
+  --x: 360px;
+  --y: 320px;
+}
+
+.aero-window--third {
+  --w: 620px;
+  --mw: 92%;
+  --x: 10px;
+  --y: 150px;
+}
+
+/* ==================================================
+   IMAGE HEADER
+================================================== */
+.image-header {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: -20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 25px;
+}
+
+.image-header-img {
+  width: var(--w, 600px);
+  max-width: 90vw;
+  height: auto;
+  display: block;
+}
+
+/* ==================================================
+   TABLE
+================================================== */
+.image-table-wrap {
+  width: 100%;
+  margin-top: 380px;
+  padding: 0 16px 60px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.image-table {
+  width: min(1100px, 100%);
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.image-table td {
+  padding: 12px;
+  vertical-align: top;
+}
+
+.tbl-img {
+  display: block;
+  width: var(--w, 180px);
+  height: auto;
+  transform: translate(var(--x), var(--y)) rotate(var(--r, 0deg));
+}
+
+/* ==================================================
+   AFFIRMATIONS
+================================================== */
+.tbl-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tbl-img-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.live-date {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #1e40ff;
+  text-shadow: 1px 1px 0 #ffffff;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tbl-caption {
+  margin-top: 8px;
+  padding: 8px 12px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  background: var(--bg, #a5ff00);
+  color: var(--color, #7d43b2);
+  border-radius: 0;
+  text-align: center;
+  width: fit-content;
+  max-width: 260px;
+}
+
+/* ==================================================
+   AERO GALLERY MODAL
+================================================== */
+.aero-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  z-index: 999999;
+  background: rgba(60, 255, 0, 0);
+  backdrop-filter: blur(2px);
+}
+
+.aero-overlay.is-open {
+  display: grid;
+}
+
+.aero-gallery {
+  width: min(960px, calc(100vw - 28px));
+  height: min(620px, calc(100vh - 28px));
+  overflow: hidden;
+  transform: none;
+}
+
+.aero-gallery-body {
+  height: calc(100% - 40px);
+  padding: 14px;
+  overflow: auto;
+  background: #e9e9e9;
+}
+
+.flyer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.flyer-thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #dcdcdc;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
+  text-decoration: none;
+}
+
+.flyer-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 220ms ease;
+}
+
+.flyer-thumb::after {
+  content: "\f00e";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+
+.flyer-thumb:hover img {
+  transform: scale(1.06);
+}
+
+.flyer-thumb:hover::after {
+  opacity: 1;
+}
+
+.aero-close-btn {
+  margin-left: auto;
+  margin-right: 10px;
+  width: 34px;
+  height: 28px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  min-width: 34px;
+  text-shadow: none;
+}
+
+.aero-close-btn:hover {
+  background: rgba(255, 90, 90, 0.85);
+}
+
+/* ==================================================
+   FLYER LIGHTBOX
+================================================== */
+.flyer-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000001;
+  display: none;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  padding: 20px;
+}
+
+.flyer-lightbox.is-open {
+  display: grid;
+}
+
+.flyer-lightbox-inner {
+  position: relative;
+  width: min(92vw, 1000px);
+  height: min(90vh, 900px);
+  display: grid;
+  place-items: center;
+  overflow: auto;
+}
+
+.flyer-lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  transition: transform 220ms ease;
+  transform-origin: center center;
+  cursor: zoom-in !important;
+}
+
+.flyer-lightbox-img.is-zoomed {
+  transform: scale(1.8);
+  cursor: zoom-out !important;
+}
+
+.flyer-lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #000;
+  font-size: 18px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.flyer-lightbox-close:hover {
+  background: #fff;
+}
+
+/* ==================================================
+   ABOUT OVERLAY CONTENT
+================================================== */
+.about-window {
+  width: min(92vw, 980px);
+  height: min(88vh, 760px);
+  display: flex;
+  flex-direction: column;
+}
+
+.about-aero-content {
+  flex: 1;
+  padding: 0;
+  overflow: hidden;
+}
+
+.aero-about-body {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.about-ephemera-sheet {
+  background: rgba(183, 255, 0, 0);
+  color: #000;
+  padding: 20px 22px 28px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+}
+
+.about-topline {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.about-topline span:nth-child(2) {
+  text-align: center;
+}
+
+.about-topline span:nth-child(3) {
+  text-align: right;
+}
+
+.about-stars {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: "Courier New", monospace;
+  font-size: clamp(10px, 1.2vw, 16px);
+  line-height: 1;
+  margin: 14px 0 22px;
+}
+
+.about-stars::before {
+  content: "****************************************************************************************************************************************************************************************************************************************************************";
+  display: block;
+  color: #000;
+  opacity: 0.6;
+}
+
+.about-stars::after {
+  content: "****************************************************************************************************************************************************************************************************************************************************************";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #000;
+  opacity: 0.1;
+  animation: starTwinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes starTwinkle {
+  0% { opacity: 0.05; }
+  50% { opacity: 0.35; }
+  100% { opacity: 0.1; }
+}
+
+.about-brand {
+  margin: 0 0 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(52px, 9vw, 110px);
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.about-intro {
+  margin: 0 0 24px;
+  font-family: "Courier New", monospace;
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.3;
+  font-weight: bold;
+  max-width: 900px;
+}
+
+.about-label {
+  display: table;
+  margin: 0 auto 18px;
+  background: #000;
+  color: #b7ff00;
+  padding: 8px 14px;
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.about-label--lower {
+  margin-top: 28px;
+}
+
+.about-label--pdf {
+  margin-top: 28px;
+  margin-bottom: 14px;
+}
+
+.about-services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px dotted #000;
+  border-left: 1px dotted #000;
+}
+
+.about-head,
+.about-cell {
+  border-right: 1px dotted #000;
+  border-bottom: 1px dotted #000;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Courier New", monospace;
+  box-sizing: border-box;
+}
+
+.about-head {
+  background: #000;
+  color: #b7ff00;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 16px 8px;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-cell {
+  font-size: 11px;
+  line-height: 1.15;
+  padding: 14px 8px;
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 4px;
+}
+
+.about-stat {
+  text-align: left;
+}
+
+.about-stat-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  height: 68px;
+  padding: 0 10px;
+  background: #000;
+  color: #b7ff00;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.about-stat-text {
+  max-width: 150px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.15;
+  font-weight: bold;
+}
+
+.about-pdf-section {
+  text-align: center;
+  padding-bottom: 6px;
+}
+
+.about-pdf-btn {
+  display: inline-block;
+  background: #000;
+  color: #b7ff00;
+  text-decoration: none;
+  padding: 12px 18px;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid #000;
+}
+
+.about-pdf-btn:hover {
+  background: #b7ff00;
+  color: #000;
+}
+
+/* ==================================================
+   MUSIC PLAYER
+================================================== */
+#player-drag {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  touch-action: none;
+}
+
+.player {
+  width: fit-content;
+  border: #cecece solid 2px;
+  border-radius: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(0deg, #c4e149 0%, #a0dc5b 30%, #a5ff00 100%);
+  padding: 5px;
+  user-select: none;
+}
+
+.player .window {
+  cursor: grab !important;
+}
+
+.player.dragging .window {
+  cursor: grabbing !important;
+}
+
+.seek_slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #d8e4d5;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  border-radius: 8px;
+}
+
+.seek_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 8px;
+  height: 8px;
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #cecece;
+  padding-top: 3px;
+  position: relative;
+  bottom: 3px;
+}
+
+button,
+input,
+label,
+option,
+select,
+table,
+textarea,
+ul.tree-view {
+  -webkit-font-smoothing: none;
+  font-family: "Myriad Pro";
+  font-size: 11px;
+}
+
+h1 { font-size: 5rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.5rem; }
+
+u {
+  border-bottom: 0.5px solid #222;
+  text-decoration: none;
+}
+
+button,
+input[type="reset"],
+input[type="submit"] {
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: transparent;
+  min-height: 23px;
+  min-width: 75px;
+  padding: 0 12px;
+  text-shadow: 0 0 #222;
+}
+
+.vertical-bar,
+button.vertical-bar,
+input[type="reset"].vertical-bar,
+input[type="submit"].vertical-bar {
+  height: 20px;
+  width: 4px;
+}
+
+button:not(:disabled):active,
+input[type="reset"]:not(:disabled):active,
+input[type="submit"]:not(:disabled):active {
+  opacity: 0.5;
+}
+
+button:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus {
+  opacity: 1;
+}
+
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner {
+  border: 0;
+}
+
+:disabled,
+:disabled + label,
+input[readonly],
+input[readonly] + label {
+  color: grey;
+}
+
+:disabled + label,
+button:disabled,
+input[type="reset"]:disabled,
+input[type="submit"]:disabled {
+  text-shadow: 1px 1px 0 #fff;
+}
+
+.window,
+.title-bar {
+  font-family: "Myriad Pro";
+  -webkit-font-smoothing: none;
+  font-size: 11px;
+}
+
+.window {
+  padding: 10px;
+  width: 290px;
+}
+
+.window-body {
+  display: block;
+  margin: auto;
+  border-radius: 0;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+#musicplayer {
+  display: block;
+  float: right;
+  background: linear-gradient(0deg, #f1e3f0, white) padding-box, linear-gradient(to top, white, #a2a2a2) border-box;
+  border-radius: 60em;
+  border: 2px solid transparent;
+  margin-left: 8px;
+  padding-left: 10px;
+  box-shadow: 1px 1px 10px 0 rgba(128, 128, 128, 0.27) inset;
+}
+
+.wheel {
+  display: block;
+  justify-content: center;
+  margin: auto;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to top, white, #a2a2a2) border-box;
+  border-radius: 50em;
+  border: 2px solid transparent;
+  padding-top: 0;
+  box-shadow: 1px 1px 10px 0 rgba(128, 128, 128, 0.27) inset;
+}
+
+.innerwheel {
+  border-radius: 50em;
+  border: 2px solid #e2e2e2;
+  padding: 9px 12px 9px 10px;
+  margin: 0;
+  box-shadow: 1px 1px 10px 0 rgba(128, 128, 128, 0.17) inset;
+}
+
+th {
+  width: 20px;
+  margin: 0;
+}
+
+.fas.fa-minus {
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+.wheelcontrols {
+  font-size: 14px !important;
+  text-align: center;
+  padding-top: 2px;
+  color: #aaa;
+  opacity: 0.8;
+}
+
+.wheelcontrols button {
+  background: none;
+  border: none;
+  color: #79b830;
+  opacity: 0.6;
+  font-size: 14px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.wheelcontrols button:hover,
+.controls button:hover {
+  opacity: 1;
+}
+
+.playpause-track {
+  font-size: 22px !important;
+  padding: 3px;
+  color: #79b830;
+}
+
+.songtitle {
+  padding: 25px;
+  color: #79b830;
+  padding-bottom: 0;
+  margin-left: 15px;
+  margin-right: 20px;
+  font-size: 16px;
+  display: block;
+  font-family: "Helvetica";
+  font-weight: bold;
+}
+
+.controls button {
+  display: block;
+  margin-left: 15px;
+  font-size: 14px !important;
+  text-align: center;
+  color: #79b830;
+  opacity: 0.6;
+}
+
+button {
+  min-width: 20px;
+  background: none;
+  text-align: center;
+}
+
+button:active {
+  opacity: 0.7;
+}
+
+.seeking {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  padding-left: 0;
+  padding-bottom: 0;
+  color: #a3a3a3;
+}
+
+.current-time {
+  padding-right: 5px;
+}
+
+.total-duration {
+  padding-left: 5px;
+}
+
+/* ==================================================
+   FLOATING MUTE BUTTON
+================================================== */
+#mute-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000002;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+#mute-float img {
+  width: 44px;
+  height: 44px;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#mute-float:active {
+  transform: translateY(1px);
+}
+
+/* ==================================================
+   SCROLL BAR MATCH
+================================================== */
+.aero-about-body,
+.aero-gallery-body {
+  scrollbar-width: thin;
+  scrollbar-color: #000 #b7ff00;
+}
+
+.aero-about-body::-webkit-scrollbar,
+.aero-gallery-body::-webkit-scrollbar {
+  width: 12px;
+}
+
+.aero-about-body::-webkit-scrollbar-track,
+.aero-gallery-body::-webkit-scrollbar-track {
+  background: #b7ff00;
+}
+
+.aero-about-body::-webkit-scrollbar-thumb,
+.aero-gallery-body::-webkit-scrollbar-thumb {
+  background: #000;
+  border: 2px solid #b7ff00;
+}
+
+.aero-about-body::-webkit-scrollbar-thumb:hover,
+.aero-gallery-body::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+/* ==================================================
+   MOBILE AERO MUSIC PLAYER
+================================================== */
+#mobile-player {
+  display: none;
+}
+
+.mobile-player .mobile-player-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  background: #e9e9e9;
+  box-sizing: border-box;
+}
+
+.mobile-player .mobile-player-body button {
+  min-width: 28px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #3947ef;
+  text-shadow: none;
+  font-size: 14px !important;
+  opacity: 0.8;
+  display: grid;
+  place-items: center;
+}
+
+.mobile-player .mobile-player-body button:hover {
+  opacity: 1;
+}
+
+.mobile-player .songtitle {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-width: 0;
+  color: #7d43b2;
+  font-size: 13px;
+  font-family: "Helvetica", sans-serif;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+@media (max-width: 900px) {
+  .flyer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .about-window {
+    width: min(94vw, 760px);
+    height: min(88vh, 720px);
+  }
+
+  .about-topline {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-topline span:nth-child(2),
+  .about-topline span:nth-child(3) {
+    text-align: center;
+  }
+
+  .about-services-grid,
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --mobile-player-offset: 96px;
+  }
+
+  #player-drag,
+  #mute-float {
+    display: none !important;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #a5ff00;
+    z-index: 999999;
+    pointer-events: none;
+  }
+
+  #mobile-player {
+    display: block !important;
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    right: auto;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000003;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+  }
+
+  #mobile-player .aero-header {
+    display: none;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .mobile-player .mobile-player-body {
+    border-radius: 0;
+    width: 420px;
+  }
+
+  .mobile-player .mute-track {
+    margin-left: auto;
+    margin-right: 4px;
+  }
+
+  #mobile-player.is-collapsed .mobile-player-body {
+    display: none;
+  }
+
+  #scale-stage,
+  #scale-shell,
+  #scale-root {
+    position: relative;
+  }
+
+  #scale-root {
+    width: 100%;
+    padding-top: var(--mobile-player-offset);
+    box-sizing: border-box;
+  }
+
+  .image-header {
+    top: 0;
+    margin-top: 70px;
+    margin-bottom: 12px;
+  }
+
+  .image-header-img {
+    width: min(88vw, 360px);
+  }
+
+  .e-wrap {
+    --y: 75px;
+    transform:
+      translate(var(--x), calc(var(--y) - 40px))
+      scale(0.5);
+    transform-origin: center top;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .aero-window:not(#mobile-player),
+  .aero-window--first,
+  .aero-window--second,
+  .aero-window--third {
+    width: min(92vw, 420px) !important;
+    max-width: 92vw !important;
+    margin: 8px auto 8px !important;
+    transform: translateY(40px) !important;
+  }
+
+  .aero-window .aero-content {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  .image-table {
+    width: 1100px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    transform: scale(0.75);
+    transform-origin: top center;
+    margin: 0 auto;
+  }
+
+  .image-table-wrap {
+    margin-top: 90px !important;
+    padding: 0 12px 20px;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .image-table td {
+    padding: 12px 28px;
+    vertical-align: top;
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+
+  .tbl-img {
+    display: block;
+    width: var(--w, 180px);
+    height: auto;
+    transform: translate(var(--x), var(--y)) rotate(var(--r, 0deg));
+  }
+
+  #welcome-stars {
+    width: 260px !important;
+    transform: translate(0px, 0px) !important;
+  }
+
+  .flyer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .about-ephemera-sheet {
+    padding: 14px;
+  }
+
+  .about-services-grid,
+  .about-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-stat {
+    text-align: center;
+  }
+
+  .about-stat-text {
+    max-width: none;
+    margin: 0 auto;
+  }
+
+  .about-stat-num {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
