@@ -233,7 +233,7 @@ let updateTimer = null;
 
 const curr_track = document.getElementById("music");
 
-const track_list = [	
+const track_list = [
   { name: "HYD - Angel", path: "https://files.catbox.moe/sre606.mp3" },	
   { name: "2Charm - prerogative", path: "https://files.catbox.moe/srlpzf.mp3" },	
   { name: "Charli xcx - Sympathy is a knife featuring ariana grande", path: "https://files.catbox.moe/xlx839.mp3" },
@@ -245,25 +245,25 @@ const track_list = [
 function syncDesktopPlayerUI() {
   const desktopPlayButton = document.querySelector("#player-drag .playpause-track");
   if (desktopPlayButton) {
-	desktopPlayButton.className = isPlaying
-	  ? "playpause-track fas fa-pause"
-	  : "playpause-track fas fa-play";
+    desktopPlayButton.className = isPlaying
+      ? "playpause-track fas fa-pause"
+      : "playpause-track fas fa-play";
   }
 
   if (track_name) {
-	track_name.textContent = track_list[track_index].name;
+    track_name.textContent = track_list[track_index].name;
   }
 }
 
 function syncMobilePlayerUI() {
   if (mobile_track_name) {
-	mobile_track_name.textContent = track_list[track_index].name;
+    mobile_track_name.textContent = track_list[track_index].name;
   }
 
   if (mobile_play_button) {
-	mobile_play_button.className = isPlaying
-	  ? "playpause-track fas fa-pause"
-	  : "playpause-track fas fa-play";
+    mobile_play_button.className = isPlaying
+      ? "playpause-track fas fa-pause"
+      : "playpause-track fas fa-play";
   }
 }
 
@@ -302,9 +302,22 @@ function playpauseTrack() {
 function playTrack() {
   if (!curr_track) return;
 
-  curr_track.play();
-  isPlaying = true;
-  syncAllPlayerUI();
+  const playPromise = curr_track.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        isPlaying = true;
+        syncAllPlayerUI();
+      })
+      .catch(() => {
+        isPlaying = false;
+        syncAllPlayerUI();
+      });
+  } else {
+    isPlaying = true;
+    syncAllPlayerUI();
+  }
 }
 
 function pauseTrack() {
@@ -372,6 +385,26 @@ function seekUpdate() {
 if (curr_track) {
   loadTrack(track_index);
   syncAllPlayerUI();
+
+  /* try autoplay on page load */
+  playTrack();
+
+  /* fallback: first click/tap anywhere starts music if browser blocks autoplay */
+  document.addEventListener(
+    "click",
+    () => {
+      if (!isPlaying) playTrack();
+    },
+    { once: true }
+  );
+
+  document.addEventListener(
+    "touchstart",
+    () => {
+      if (!isPlaying) playTrack();
+    },
+    { once: true }
+  );
 }
 
 /* ==================================================
