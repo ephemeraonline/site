@@ -1042,35 +1042,6 @@ button:active {
   padding-left: 5px;
 }
 
-/* ==================================================
-   FLOATING MUTE BUTTON
-================================================== */
-#mute-float {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 1000002;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-}
-
-#mute-float img {
-  width: 44px;
-  height: 44px;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-#mute-float:active {
-  transform: translateY(1px);
-}
 
 /* ==================================================
    SCROLL BAR MATCH
@@ -1120,8 +1091,7 @@ button:active {
   box-sizing: border-box;
 
   width: auto;
-  margin: 0 clamp(12px, 5vw, 28px);
-}
+  margin: 0 clamp(8px, 3vw, 20px);}
 .mobile-player .mobile-player-body button {
   min-width: 28px;
   width: 28px;
