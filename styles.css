@@ -1119,7 +1119,7 @@ button:active {
   border-radius: 28px;
   box-sizing: border-box;
 
-  margin: 0 20px;   /* increase this number to shrink the bar */
+  margin: 0 5vw;
 }
 .mobile-player .mobile-player-body button {
   min-width: 28px;
