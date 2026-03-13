@@ -234,7 +234,8 @@ let updateTimer = null;
 const curr_track = document.getElementById("music");
 
 const track_list = [
-  { name: "Charli xcx - Sympathy is knife featuring ariana grande", path: "https://files.catbox.moe/xlx839.mp3" },
+  { name: "HYD- Angel", path: "https://files.catbox.moe/sre606.mp3" },
+  { name: "Charli xcx - Sympathy is a knife featuring ariana grande", path: "https://files.catbox.moe/xlx839.mp3" },
   { name: "Mckayla Twiggs - What A Girl Wants", path: "https://files.catbox.moe/xw4kit.mp3" },
   { name: "Danny L Harle - Raft in the Sea Featuring Julia Michaels", path: "https://files.catbox.moe/7ehw00.mp3" },
   { name: "My Sweetest Love - The Cat's Whiskers ft. Kazuma Mitchell", path: "https://files.catbox.moe/qe4he5.mp3" },
