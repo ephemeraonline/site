@@ -1102,7 +1102,7 @@ button:active {
   background: #333;
 }
 
-/* ==================================================
+* ==================================================
    MOBILE AERO MUSIC PLAYER
 ================================================== */
 #mobile-player {
@@ -1119,7 +1119,8 @@ button:active {
   border-radius: 28px;
   box-sizing: border-box;
 
-  margin: 0 5vw;
+  width: auto;
+  margin: 0 clamp(12px, 5vw, 28px);
 }
 .mobile-player .mobile-player-body button {
   min-width: 28px;
@@ -1227,8 +1228,9 @@ button:active {
   }
 
   .mobile-player .mobile-player-body {
-    border-radius: 0;
-    width: 420px;
+    border-radius: 28px;
+    width: auto;
+    margin: 0 clamp(12px, 5vw, 28px);
   }
 
   .mobile-player .mute-track {
