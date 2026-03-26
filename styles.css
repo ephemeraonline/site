@@ -1076,6 +1076,21 @@ button:active {
    MOBILE AERO MUSIC PLAYER
 ================================================== */
 #mobile-player {
+  display: block;
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  right: auto;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1000003;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+}
+
+#mobile-player .aero-header {
   display: none;
 }
 
@@ -1118,6 +1133,28 @@ button:active {
   font-family: "Helvetica", sans-serif;
   font-weight: bold;
   line-height: 1;
+}
+
+.mobile-player .mute-track {
+  margin-left: auto;
+  margin-right: 4px;
+}
+
+/* ==================================================
+   TOP GREEN BAR (PLAYER BACKDROP)
+================================================== */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+
+  background: #a5ff00; /* your green */
+
+  z-index: 1000002; /* just under player */
+  pointer-events: none;
 }
 
 /* ==================================================
