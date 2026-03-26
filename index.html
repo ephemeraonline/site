@@ -684,47 +684,7 @@
 	  </div>
 	</div>
 
-	<div id="player-drag" aria-label="draggable music player">
-	  <div class="player" id="player">
-		<div class="window" id="player-handle">
-		  <div class="window-body">
-			<div class="flex">
-			  <div class="wheel" style="height:100px;width:100px;">
-				<div class="wheelcontrols">
-				  <button class="fas fa-plus" onclick="volumeUp()" style="padding-top:4px; padding-bottom:0;"></button>
-				</div>
-
-				<table class="wheelcontrols">
-				  <tr>
-					<th><button class="fas fa-backward" onclick="prevTrack()"></button></th>
-					<th class="innerwheel"><button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button></th>
-					<th><button class="fas fa-forward" onclick="nextTrack()"></button></th>
-				  </tr>
-				</table>
-
-				<div class="wheelcontrols" style="padding:0;">
-				  <button class="fas fa-minus" onclick="volumeDown()"></button>
-				</div>
-			  </div>
-
-			  <div id="musicplayer">
-				<div class="flex">
-				  <marquee scrollamount="4" class="songtitle"></marquee>
-				</div>
-
-				<div class="seeking">
-				  <div class="current-time">00:00</div>
-				  <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
-				  <div class="total-duration">0:00</div>
-				</div>
-
-				<table class="controls">
-				  <tr>
-					<td><button type="button" title="Loop (visual only)"><div class="fas fa-sync"></div></button></td>
-					<td><button type="button" title="Playlist (visual only)"><div class="fas fa-music"></div></button></td>
-					<td><button type="button" title="Shuffle (visual only)"><div class="fas fa-random"></div></button></td>
-				  </tr>
-				</table>
+	
 
 				<audio id="music" src=""></audio>
 			  </div>
