@@ -69,6 +69,8 @@ body {
 #scale-root {
   width: 1400px;
   position: relative;
+  padding-top: 220px;
+  box-sizing: border-box;
 }
 
 @media (min-width: 769px) {
@@ -116,7 +118,7 @@ body {
 .e-wrap {
   --w: 80%;
   --x: 0px;
-  --y: 170px;
+  --y: 490px;
   width: var(--w);
   max-width: 420px;
   min-width: 120px;
@@ -257,7 +259,7 @@ body {
   --w: 900px;
   --mw: 90%;
   --x: 0px;
-  --y: 120px;
+  --y: 250px;
 }
 
 .aero-window--second {
@@ -275,23 +277,112 @@ body {
 }
 
 /* ==================================================
-   IMAGE HEADER
+   HIDDEN AERO WINDOW (PIKACHU TRIGGER)
 ================================================== */
-.image-header {
-  width: 100%;
-  margin-top: 0;
-  margin-bottom: -20px;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  top: 25px;
+.hidden-window {
+  opacity: 0;
+  pointer-events: none;
+  transform:
+    translate(var(--x, 0px), var(--y, 0px))
+    rotate(var(--r, 0deg))
+    scale(0.94);
+  transition:
+    opacity 240ms ease,
+    transform 240ms ease;
 }
 
+.hidden-window.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform:
+    translate(var(--x, 0px), var(--y, 0px))
+    rotate(var(--r, 0deg))
+    scale(1);
+}
+
+/* ==================================================
+   BLOG WINDOW (UNIFIED WITH AERO)
+================================================== */
+#blog-window {
+  position: absolute;
+  z-index: 10000;
+}
+
+#blog-window .blog-content {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+#blog-window .blog-content img {
+  width: 180px;
+  max-width: 42%;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+#blog-window .blog-text {
+  min-width: 0;
+}
+
+#blog-window .blog-text h2 {
+  margin: 0 0 8px;
+}
+
+#blog-window .blog-text p {
+  margin: 0;
+}
+
+/* ==================================================
+   IMAGE HEADER
+================================================== */
 .image-header-img {
   width: var(--w, 600px);
   max-width: 90vw;
   height: auto;
   display: block;
+}
+
+/* mobile-only alternate bottom header */
+.image-header-bottom-mobile {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .image-header-top {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 260ms ease, transform 260ms ease;
+    will-change: opacity, transform;
+  }
+
+  .image-header-top.is-hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-12px);
+  }
+
+  .image-header-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 125px 0 40px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 320ms ease, transform 320ms ease;
+    pointer-events: none;
+  }
+
+  .image-header-bottom.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==================================================
@@ -304,6 +395,7 @@ body {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  transform: translateY(160px);
 }
 
 .image-table {
@@ -925,122 +1017,7 @@ input[type="range"]::-moz-range-track {
   display: flex;
 }
 
-#musicplayer {
-  display: block;
-  float: right;
-  background: linear-gradient(0deg, #f1e3f0, white) padding-box, linear-gradient(to top, white, #a2a2a2) border-box;
-  border-radius: 60em;
-  border: 2px solid transparent;
-  margin-left: 8px;
-  padding-left: 10px;
-  box-shadow: 1px 1px 10px 0 rgba(128, 128, 128, 0.27) inset;
-}
 
-.wheel {
-  display: block;
-  justify-content: center;
-  margin: auto;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to top, white, #a2a2a2) border-box;
-  border-radius: 50em;
-  border: 2px solid transparent;
-  padding-top: 0;
-  box-shadow: 1px 1px 10px 0 rgba(128, 128, 128, 0.27) inset;
-}
-
-.innerwheel {
-  border-radius: 50em;
-  border: 2px solid #e2e2e2;
-  padding: 9px 12px 9px 10px;
-  margin: 0;
-  box-shadow: 1px 1px 10px 0 rgba(128, 128, 128, 0.17) inset;
-}
-
-th {
-  width: 20px;
-  margin: 0;
-}
-
-.fas.fa-minus {
-  margin: 0;
-  padding-bottom: 5px;
-}
-
-.wheelcontrols {
-  font-size: 14px !important;
-  text-align: center;
-  padding-top: 2px;
-  color: #aaa;
-  opacity: 0.8;
-}
-
-.wheelcontrols button {
-  background: none;
-  border: none;
-  color: #79b830;
-  opacity: 0.6;
-  font-size: 14px;
-  padding: 2px;
-  cursor: pointer;
-}
-
-.wheelcontrols button:hover,
-.controls button:hover {
-  opacity: 1;
-}
-
-.playpause-track {
-  font-size: 22px !important;
-  padding: 3px;
-  color: #79b830;
-}
-
-.songtitle {
-  padding: 25px;
-  color: #79b830;
-  padding-bottom: 0;
-  margin-left: 15px;
-  margin-right: 20px;
-  font-size: 16px;
-  display: block;
-  font-family: "Helvetica";
-  font-weight: bold;
-}
-
-.controls button {
-  display: block;
-  margin-left: 15px;
-  font-size: 14px !important;
-  text-align: center;
-  color: #79b830;
-  opacity: 0.6;
-}
-
-button {
-  min-width: 20px;
-  background: none;
-  text-align: center;
-}
-
-button:active {
-  opacity: 0.7;
-}
-
-.seeking {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 10px;
-  padding-left: 0;
-  padding-bottom: 0;
-  color: #a3a3a3;
-}
-
-.current-time {
-  padding-right: 5px;
-}
-
-.total-duration {
-  padding-left: 5px;
-}
 
 /* ==================================================
    SCROLL BAR MATCH
@@ -1150,10 +1127,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 60px;
-
-  background: #a5ff00; /* your green */
-
-  z-index: 1000002; /* just under player */
+  background: #a5ff00;
+  z-index: 1000002;
   pointer-events: none;
 }
 
@@ -1217,6 +1192,10 @@ body::before {
     user-select: none;
   }
 
+  .mobile-player .mobile-player-body {
+    width: min(380px, calc(100vw - 24px));
+  }
+
   .mobile-player .mute-track {
     margin-left: auto;
     margin-right: 4px;
@@ -1238,19 +1217,28 @@ body::before {
     box-sizing: border-box;
   }
 
-  .image-header {
-    top: 0;
-    margin-top: 70px;
-    margin-bottom: 12px;
+  .image-header-top {
+    display: flex !important;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .image-header-bottom {
+    display: none !important;
+  }
+
+  .image-header-bottom-mobile {
+    display: flex !important;
+    justify-content: center;
+    width: 100%;
+    margin: 140px 0 24px;
+    pointer-events: none;
   }
 
   .image-header-img {
     width: min(88vw, 360px);
   }
 
-  /* ==================================================
-     MOBILE GRID
-  ================================================== */
   .mobile-grid-item {
     display: flex;
     justify-content: center;
@@ -1266,9 +1254,6 @@ body::before {
     width: 100%;
   }
 
-  /* ==================================================
-     E-WRAP
-  ================================================== */
   .e-wrap {
     --y: 75px;
     transform:
@@ -1282,7 +1267,8 @@ body::before {
   .aero-window:not(#mobile-player),
   .aero-window--first,
   .aero-window--second,
-  .aero-window--third {
+  .aero-window--third,
+  #blog-window {
     width: min(92vw, 420px) !important;
     max-width: 92vw !important;
     margin: 8px auto 8px !important;
@@ -1290,6 +1276,14 @@ body::before {
   }
 
   .aero-window .aero-content {
+    font-size: 15px;
+  }
+
+  #blog-window .blog-content {
+    gap: 14px;
+  }
+
+  #blog-window .blog-text p {
     font-size: 15px;
   }
 }
@@ -1352,5 +1346,33 @@ body::before {
 
   .flyer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #blog-window .blog-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #blog-window .blog-content img {
+    width: min(220px, 100%);
+    max-width: 100%;
+  }
+
+  #blog-window .blog-text {
+    width: 100%;
+  }
+
+  #blog-window .blog-text h2 {
+    font-size: 13px;
+  }
+
+  #blog-window .blog-text p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .image-header-bottom-mobile {
+    margin: 120px 0 24px;
   }
 }
