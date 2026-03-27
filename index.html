@@ -5,16 +5,16 @@
   <meta charset="UTF-8">
   <title>★EPHEMERA★</title>
 
-<meta property="og:title" content="★EPHEMERA★">
-<meta property="og:description" content="A small creative studio run by two friends with too many browser tabs open.">
-<meta property="og:image" content="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_PREVIEW.png">
-<meta property="og:url" content="https://ephemeraonline.world/">
-<meta property="og:type" content="website">
+  <meta property="og:title" content="★EPHEMERA★">
+  <meta property="og:description" content="A small creative studio run by two friends with too many browser tabs open.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_PREVIEW.png">
+  <meta property="og:url" content="https://ephemeraonline.world/">
+  <meta property="og:type" content="website">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="★EPHEMERA★">
-<meta name="twitter:description" content="A small creative studio run by two friends with too many browser tabs open.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_PREVIEW.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="★EPHEMERA★">
+  <meta name="twitter:description" content="A small creative studio run by two friends with too many browser tabs open.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_PREVIEW.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
@@ -23,7 +23,7 @@
 <body>
   <div class="page-scale">
 
-	<div class="image-header">
+	<div class="image-header image-header-top">
 	  <img
 		src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_HEADER_BALLOON.png"
 		alt="Section header"
@@ -38,13 +38,18 @@
 		alt="EPHEMERA logo">
 
 	  <div class="orbit-container">
-		<img
-		  class="orbit"
-		  id="flyers-trigger"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYERS_BUTTON.gif"
-		  style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:180px;"
-		  alt="Flyers rough">
 
+		<!-- FLYERS -->
+		<a href="/flyers">
+		  <img
+			class="orbit"
+			id="flyers-trigger"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYERS_BUTTON.gif"
+			style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:180px;"
+			alt="Flyers">
+		</a>
+
+		<!-- ABOUT -->
 		<img
 		  class="orbit"
 		  id="about-trigger"
@@ -52,23 +57,33 @@
 		  style="--x:50px; --y:-280px; --r:5deg; --s:1.0; width:180px;"
 		  alt="about">
 
-		<img
-		  class="orbit"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STAR_INSTAGRAM.png"
-		  style="--x:-260px; --y:170px; --r:-15deg; --s:1.0; width:180px;"
-		  alt="">
+		<!-- INSTAGRAM -->
+		<a href="https://www.instagram.com/ephemeraonline.world/" target="_blank">
+		  <img
+			class="orbit"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STAR_INSTAGRAM.png"
+			style="--x:-260px; --y:170px; --r:-15deg; --s:1.0; width:180px;"
+			alt="Instagram">
+		</a>
 
-		<img
-		  class="orbit"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
-		  style="--x:260px; --y:180px; --r:5deg; --s:0.95; width:630px;"
-		  alt="">
+		<!-- STORE -->
+		<a href="/store">
+		  <img
+			class="orbit"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
+			style="--x:260px; --y:180px; --r:5deg; --s:0.95; width:630px;"
+			alt="Store">
+		</a>
 
-		<img
-		  class="orbit"
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-		  style="--x:260px; --y:-65px; --r:25deg; --s:1.05; width:180px;"
-		  alt="">
+		<!-- CONTACT -->
+		<a href="mailto:hi@ephemeraonline.world">
+		  <img
+			class="orbit"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
+			style="--x:260px; --y:-65px; --r:25deg; --s:1.05; width:180px;"
+			alt="Contact">
+		</a>
+
 	  </div>
 	</div>
 
@@ -91,7 +106,7 @@
 	  </div>
 	</div>
 
-	<div class="aero-window aero-window--third" style="--w:900px; --x:40px; --y:640px;">
+	<div class="aero-window aero-window--third" style="--w:900px; --x:40px; --y:920px;">
 	  <div class="aero-header">
 		<div class="aero-title"> welcome message </div>
 	  </div>
@@ -102,7 +117,7 @@
 	  </div>
 	</div>
 
-	<div class="aero-window aero-window--second" style="--w:330px; --x:340px; --y:720px;">
+	<div class="aero-window aero-window--second hidden-window" style="--w:330px; --x:340px; --y:920px;">
 	  <div class="aero-header">
 		<div class="aero-title">under construction </div>
 	  </div>
@@ -111,12 +126,35 @@
 	  </div>
 	</div>
 
-	<div class="aero-window aero-window--second comeback-window" style="--w:350px; --x:20px; --y:1680px;">
+	<div class="aero-window aero-window--second comeback-window" style="--w:350px; --x:50px; --y:1850px;">
 	  <div class="aero-header">
 		<div class="aero-title">come back soon </div>
 	  </div>
 	  <div class="aero-content">
 		<p>click around, get lost, and have fun. thank you for being here &lt;3</p>
+	  </div>
+	</div>
+
+	<!-- BLOG WINDOW -->
+	<div id="blog-window" class="aero-window hidden-window" style="--w:520px; --x:950px; --y:1300px;">
+	  <div class="aero-header">
+		<div class="aero-title">BLOG.EXE</div>
+		<button class="aero-close-btn" id="close-blog-window" type="button" aria-label="Close">✕</button>
+	  </div>
+
+	  <div class="aero-content blog-content">
+		<img
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
+		  alt="Blog visual">
+
+		<div class="blog-text">
+		  <h2>EPHEMERA LOG 001</h2>
+		  <p>
+			early fragments from the archive.<br>
+			things that weren’t meant to last,<br>
+			but somehow did.
+		  </p>
+		</div>
 	  </div>
 	</div>
 
@@ -174,10 +212,11 @@
 		  </td>
 		  <td>
 			<img
+			  id="pikachu-trigger"
 			  class="tbl-img"
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif"
 			  alt=""
-			  style="--w:180px; --x:0px; --y:0px;">
+			  style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
 		  </td>
 		</tr>
 
@@ -251,10 +290,10 @@
 
 		  <td>
 			<img
-			  class="tbl-img"
+			  class="tbl-img blog-window-trigger"
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
 			  alt=""
-			  style="--w:180px; --x:0px; --y:0px;">
+			  style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
 		  </td>
 		</tr>
 
@@ -308,6 +347,14 @@
 	  </table>
 	</div>
 
+	<div class="image-header image-header-bottom">
+	  <img
+		src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_HEADER_BALLOON.png"
+		alt="Section header"
+		class="image-header-img"
+		style="--w:450px;">
+	</div>
+
 	<!-- MOBILE-ONLY GRID TEST -->
 	<div class="mobile-grid-wrap">
 	  <div class="mobile-grid">
@@ -321,13 +368,13 @@
 				style="--w:250px; --x:0px; --y:0px;">
 			  <div class="live-date" id="live-date-mobile"></div>
 			</div>
-	
+
 			<div class="tbl-caption" style="--bg:#a5ff00; --color:#7d43b2;">
 			  “i will outlive all my enemies”
 			</div>
 		  </div>
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			id="welcome-stars-mobile"
@@ -336,7 +383,7 @@
 			alt=""
 			style="--w:400px; --x:0px; --y:0px;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
@@ -344,7 +391,7 @@
 			alt=""
 			style="--w:250px; --x:0px; --y:0px;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
@@ -352,7 +399,7 @@
 			alt=""
 			style="--w:200px; --x:0px; --y:0px;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
@@ -360,15 +407,16 @@
 			alt=""
 			style="--w:220px; --x:0px; --y:0px;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
+			id="pikachu-trigger-mobile"
 			class="tbl-img"
 			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif"
 			alt=""
-			style="--w:180px; --x:0px; --y:0px;">
+			style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
@@ -376,7 +424,7 @@
 			alt=""
 			style="--w:250px; --x:0px; --y:0px;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
@@ -384,7 +432,7 @@
 			alt=""
 			style="--w:120px; --x:0px; --y:0px;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
@@ -392,7 +440,7 @@
 			alt=""
 			style="--w:160px; --x:0px; --y:0px;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
@@ -400,7 +448,7 @@
 			alt=""
 			style="--w:180px; --x:0px; --y:0px;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <div class="counter-cell">
 			<img
@@ -408,19 +456,19 @@
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BAR_COUNTER.png"
 			  alt="counter decoration"
 			  style="--w:220px; --x:0px; --y:-10px;">
-	
+
 			<a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
 			  <img
 				src="https://hitwebcounter.com/counter/counter.php?page=21479206&style=0013&nbdigits=5&type=page&initCount=0"
 				alt="Visitor Counter"
 				border="0">
 			</a>
-	
+
 			<br>
 			VISITORS!
 		  </div>
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
@@ -428,7 +476,7 @@
 			alt=""
 			style="--w:180px; --x:0px; --y:10px;">
 		</div>
-	
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
@@ -436,48 +484,48 @@
 			alt=""
 			style="--w:200px; --x:0px; --y:0px;">
 		</div>
-	
+
+		<div class="mobile-grid-item">
+		  <img
+			class="tbl-img blog-window-trigger"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
+			alt=""
+			style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
+		</div>
+
 		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
-			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/KITTY_MANIFESTATION.gif"
 			alt=""
-			style="--w:180px; --x:0px; --y:0px;">
+			style="--w:180px; --x:0px; --y:0px; --r:0deg; display:block; margin-bottom:20px;">
 		</div>
-	
-	<div class="mobile-grid-item">
-	  <img
-		class="tbl-img"
-		src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/KITTY_MANIFESTATION.gif"
-		alt=""
-		style="--w:180px; --x:0px; --y:0px; --r:0deg; display:block; margin-bottom:20px;">
-	</div>
-	
-	<div class="mobile-grid-item">
-	  <img
-		class="tbl-img"
-		src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/GOTH_STICKER.gif"
-		alt=""
-		style="--w:180px; --x:0px; --y:0px; --r:0deg; display:block; margin-bottom:20px;">
-	</div>
 
-		<div class="mobile-grid-item ">
+		<div class="mobile-grid-item">
+		  <img
+			class="tbl-img"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/GOTH_STICKER.gif"
+			alt=""
+			style="--w:180px; --x:0px; --y:0px; --r:0deg; display:block; margin-bottom:20px;">
+		</div>
+
+		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
 			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/AWESOME_DAY.gif"
 			alt=""
 			style="--w:180px; --x:0px; --y:0px; --r:0deg;">
 		</div>
-	
-		<div class="mobile-grid-item ">
+
+		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
 			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CD_ROM.gif"
 			alt=""
 			style="--w:180px; --x:0px; --y:0px;">
 		</div>
-	
-		<div class="mobile-grid-item ">
+
+		<div class="mobile-grid-item">
 		  <img
 			class="tbl-img"
 			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BLINKEE_TOWER.gif"
@@ -684,16 +732,7 @@
 	  </div>
 	</div>
 
-	
-
-				<audio id="music" src=""></audio>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</div>
-
+	<audio id="music" src=""></audio>
   </div>
 
   <script src="script.js"></script>
