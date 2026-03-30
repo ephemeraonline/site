@@ -276,6 +276,32 @@ body {
   --y: 150px;
 }
 
+/* desktop: second aero window should always be visible */
+@media (min-width: 769px) {
+  .aero-window--second {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform:
+      translate(var(--x, 0px), var(--y, 0px))
+      rotate(var(--r, 0deg))
+      scale(1) !important;
+  }
+
+  .aero-window--second.hidden-window,
+  .aero-window--second.hidden-window.is-visible {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform:
+      translate(var(--x, 0px), var(--y, 0px))
+      rotate(var(--r, 0deg))
+      scale(1) !important;
+  }
+}
+
 /* ==================================================
    HIDDEN AERO WINDOW (PIKACHU TRIGGER)
 ================================================== */
@@ -485,16 +511,41 @@ body {
 }
 
 .aero-gallery-body {
+  position: relative;
   height: calc(100% - 40px);
   padding: 14px;
   overflow: auto;
   background: #e9e9e9;
 }
 
+.flyer-intro {
+  max-width: 760px;
+  margin: 0 auto 24px;
+  text-align: center;
+  transition: filter 220ms ease, opacity 220ms ease;
+}
+
+.flyer-intro p {
+  margin: 0;
+  color: #7d43b2;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
 .flyer-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
+  transition: filter 220ms ease, opacity 220ms ease;
+}
+
+.flyer-grid.is-blurred,
+.flyer-intro.is-blurred {
+  filter: blur(4px);
+  opacity: 0.35;
+  pointer-events: none;
 }
 
 .flyer-thumb {
@@ -538,6 +589,73 @@ body {
 
 .flyer-thumb:hover::after {
   opacity: 1;
+}
+
+.flyer-inline-view {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(233, 233, 233, 0.24);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 20;
+}
+
+.flyer-inline-view.is-open {
+  display: flex;
+}
+
+.flyer-inline-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.flyer-inline-img {
+  max-width: min(100%, 720px);
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+.flyer-inline-close {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  transform: none;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(166, 255, 0, 0.95);
+  color: #000;
+  font-size: 18px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+.flyer-inline-close:hover {
+  background: #fff;
+}
+
+/* hide scrollbar only when flyer is open */
+.aero-gallery-body:has(.flyer-inline-view.is-open) {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.aero-gallery-body:has(.flyer-inline-view.is-open)::-webkit-scrollbar {
+  display: none;
 }
 
 .aero-close-btn {
@@ -1017,8 +1135,6 @@ input[type="range"]::-moz-range-track {
   display: flex;
 }
 
-
-
 /* ==================================================
    SCROLL BAR MATCH
 ================================================== */
@@ -1264,9 +1380,15 @@ body::before {
     margin-bottom: 0;
   }
 
+  /* mobile: hide second aero window for future tap trigger */
+  .aero-window--second {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
   .aero-window:not(#mobile-player),
   .aero-window--first,
-  .aero-window--second,
   .aero-window--third,
   #blog-window {
     width: min(92vw, 420px) !important;
@@ -1285,6 +1407,31 @@ body::before {
 
   #blog-window .blog-text p {
     font-size: 15px;
+  }
+
+  .flyer-intro {
+    margin-bottom: 20px;
+  }
+
+  .flyer-intro p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .flyer-inline-view {
+    inset: 10px;
+    padding: 14px;
+  }
+
+  .flyer-inline-img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .flyer-grid.is-blurred,
+  .flyer-intro.is-blurred {
+    filter: blur(3px);
+    opacity: 0.3;
   }
 }
 
