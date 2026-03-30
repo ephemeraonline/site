@@ -84,19 +84,82 @@ window.addEventListener("resize", () => {
   const overlay = document.getElementById("aero-gallery-overlay");
   const closeX = document.getElementById("aero-gallery-close-x");
 
+  const flyerThumbs = document.querySelectorAll(".flyer-thumb");
+  const flyerGrid = document.querySelector(".flyer-grid");
+  const flyerIntro = document.querySelector(".flyer-intro");
+  const flyerInlineView = document.getElementById("flyer-inline-view");
+  const flyerInlineImg = document.getElementById("flyer-inline-img");
+  const flyerInlineClose = document.getElementById("flyer-inline-close");
+  const flyerBody = document.querySelector(".aero-gallery-body");
+
   if (!trigger || !overlay || !closeX) return;
+
+  function lockFlyerStage() {
+    document.body.style.overflow = "hidden";
+
+    if (flyerBody) {
+      flyerBody.style.overflow = "hidden";
+      flyerBody.scrollTop = 0;
+    }
+  }
+
+  function unlockFlyerStage() {
+    document.body.style.overflow = overlay.classList.contains("is-open") ? "hidden" : "";
+
+    if (flyerBody) {
+      flyerBody.style.overflow = "auto";
+    }
+  }
+
+  function openInlineFlyer(src, altText = "Expanded flyer preview") {
+    if (!flyerInlineView || !flyerInlineImg) return;
+
+    flyerInlineImg.src = src;
+    flyerInlineImg.alt = altText;
+
+    flyerInlineView.classList.add("is-open");
+    flyerInlineView.setAttribute("aria-hidden", "false");
+
+    if (flyerGrid) flyerGrid.classList.add("is-blurred");
+    if (flyerIntro) flyerIntro.classList.add("is-blurred");
+
+    lockFlyerStage();
+  }
+
+  function closeInlineFlyer() {
+    if (!flyerInlineView || !flyerInlineImg) return;
+
+    flyerInlineView.classList.remove("is-open");
+    flyerInlineView.setAttribute("aria-hidden", "true");
+    flyerInlineImg.src = "";
+
+    if (flyerGrid) flyerGrid.classList.remove("is-blurred");
+    if (flyerIntro) flyerIntro.classList.remove("is-blurred");
+
+    unlockFlyerStage();
+  }
 
   function open() {
     overlay.classList.add("is-open");
     overlay.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+
+    if (flyerBody) {
+      flyerBody.style.overflow = "auto";
+    }
+
     closeX.focus();
   }
 
   function close() {
+    closeInlineFlyer();
     overlay.classList.remove("is-open");
     overlay.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+
+    if (flyerBody) {
+      flyerBody.style.overflow = "auto";
+    }
   }
 
   trigger.addEventListener("click", (e) => {
@@ -113,12 +176,46 @@ window.addEventListener("resize", () => {
     if (e.target === overlay) close();
   });
 
+  flyerThumbs.forEach((thumb) => {
+    thumb.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const src = thumb.getAttribute("data-full") || thumb.getAttribute("href");
+      const img = thumb.querySelector("img");
+      const altText = img ? img.alt : "Expanded flyer preview";
+
+      openInlineFlyer(src, altText);
+    });
+  });
+
+  if (flyerInlineClose) {
+    flyerInlineClose.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeInlineFlyer();
+    });
+  }
+
+  if (flyerInlineView) {
+    flyerInlineView.addEventListener("click", (e) => {
+      if (e.target === flyerInlineView) {
+        closeInlineFlyer();
+      }
+    });
+  }
+
   document.addEventListener("keydown", (e) => {
     if (!overlay.classList.contains("is-open")) return;
-    if (e.key === "Escape") close();
+
+    if (e.key === "Escape") {
+      if (flyerInlineView && flyerInlineView.classList.contains("is-open")) {
+        closeInlineFlyer();
+      } else {
+        close();
+      }
+    }
   });
 })();
-
 /* ==================================================
    MUSIC PLAYER (FIXED)
 ================================================== */
@@ -212,6 +309,7 @@ if (curr_track) {
   isPlaying = false;
   syncUI();
 }
+
 /* ==================================================
    EPHEMERA HEADER FADE / RETURN
    desktop only for now
@@ -275,50 +373,10 @@ if (curr_track) {
 })();
 
 /* ==================================================
-   PIKACHU TRIGGER → TOGGLE / CLOSE WINDOW
+   PIKACHU TRIGGER
+   desktop trigger removed for now
+   mobile interaction will be added back separately
 ================================================== */
-(function () {
-  const triggers = document.querySelectorAll("#pikachu-trigger, #pikachu-trigger-mobile");
-  const windowEl = document.querySelector(".aero-window--second.hidden-window");
-
-  if (!triggers.length || !windowEl) return;
-
-  function closeWindow() {
-    windowEl.classList.remove("is-visible");
-    windowEl.classList.remove("alt-position");
-  }
-
-  function openWindow() {
-    windowEl.classList.add("alt-position");
-    windowEl.classList.add("is-visible");
-  }
-
-  triggers.forEach((trigger) => {
-    trigger.addEventListener("click", function (e) {
-      e.stopPropagation();
-
-      const isOpen = windowEl.classList.contains("is-visible");
-
-      if (isOpen) {
-        closeWindow();
-      } else {
-        openWindow();
-      }
-    });
-  });
-
-  windowEl.addEventListener("click", function (e) {
-    e.stopPropagation();
-  });
-
-  document.addEventListener("click", function () {
-    closeWindow();
-  });
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeWindow();
-  });
-})();
 
 /* ==================================================
    BLOG WINDOW
@@ -371,6 +429,7 @@ if (curr_track) {
     if (e.key === "Escape") closeWindow();
   });
 })();
+
 /* ==================================================
    ABOUT POPUP
 ================================================== */
