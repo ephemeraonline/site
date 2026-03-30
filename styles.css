@@ -6,7 +6,7 @@
   padding: 10px;
   position: relative;
   width: 200px;
-  font-family: "Comic Sans MS";
+  font-family: "ComicSansWeb", "Comic Sans MS", "Comic Sans", cursive;
   font-weight: bold;
   font-size: 20px;
   color: #000aff;
@@ -49,6 +49,14 @@ body {
 @font-face {
   font-family: "Myriad Pro";
   src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
+}
+
+@font-face {
+  font-family: "ComicSansWeb";
+  src: url("https://github.com/ephemeraonline/site/raw/refs/heads/main/FONTS/comic-sans.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* ==================================================
@@ -461,7 +469,7 @@ body {
   top: -10%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Comic Sans MS", "Comic Sans" !important;
+  font-family: "ComicSansWeb", "Comic Sans MS", "Comic Sans", cursive !important;
   font-weight: 700;
   font-size: 18px;
   text-align: center;
@@ -474,7 +482,7 @@ body {
 .tbl-caption {
   margin-top: 8px;
   padding: 8px 12px;
-  font-family: "Comic Sans MS", "Comic Sans";
+  font-family: "ComicSansWeb", "Comic Sans MS", "Comic Sans", cursive;
   font-weight: bold;
   font-size: 20px;
   font-weight: bold;
