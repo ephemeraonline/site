@@ -312,6 +312,41 @@ if (curr_track) {
 }
 
 /* ==================================================
+   LIVE AFFIRMATIONS DATE + TIME
+================================================== */
+(function () {
+  const desktopClock = document.getElementById("live-date");
+  const mobileClock = document.getElementById("live-date-mobile");
+
+  if (!desktopClock && !mobileClock) return;
+
+  function updateLiveDateTime() {
+    const now = new Date();
+
+    const timeString = now.toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+
+    const dateString = now.toLocaleDateString([], {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
+
+    const output = `${timeString}<br>${dateString}`;
+
+    if (desktopClock) desktopClock.innerHTML = output;
+    if (mobileClock) mobileClock.innerHTML = output;
+  }
+
+  updateLiveDateTime();
+  setInterval(updateLiveDateTime, 1000);
+})();
+
+/* ==================================================
    EPHEMERA HEADER FADE / RETURN
    desktop only for now
 ================================================== */
