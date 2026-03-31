@@ -106,7 +106,7 @@
 	  </div>
 	</div>
 
-	<div class="aero-window aero-window--third" style="--w:900px; --x:40px; --y:920px;">
+	<div id="welcome-window" class="aero-window aero-window--third" style="--w:900px; --x:40px; --y:920px;">
 	  <div class="aero-header">
 		<div class="aero-title"> welcome message </div>
 	  </div>
@@ -117,7 +117,7 @@
 	  </div>
 	</div>
 
-	<div class="aero-window aero-window--second hidden-window" style="--w:330px; --x:340px; --y:920px;">
+	<div id="under-construction-window" class="aero-window aero-window--second hidden-window" style="--w:330px; --x:340px; --y:920px;">
 	  <div class="aero-header">
 		<div class="aero-title">under construction </div>
 	  </div>
@@ -126,7 +126,7 @@
 	  </div>
 	</div>
 
-	<div class="aero-window aero-window--second comeback-window" style="--w:350px; --x:50px; --y:1850px;">
+	<div id="comeback-window" class="aero-window aero-window--second comeback-window" style="--w:350px; --x:50px; --y:1850px;">
 	  <div class="aero-header">
 		<div class="aero-title">come back soon </div>
 	  </div>
@@ -135,25 +135,40 @@
 	  </div>
 	</div>
 
-	<!-- BLOG WINDOW -->
-	<div id="blog-window" class="aero-window hidden-window" style="--w:520px; --x:950px; --y:1300px;">
+	<!-- PETS WINDOW -->
+	<div id="pets-window" class="aero-window hidden-window" style="--w:560px; --x:530px; --y:1280px;">
 	  <div class="aero-header">
-		<div class="aero-title">BLOG.EXE</div>
-		<button class="aero-close-btn" id="close-blog-window" type="button" aria-label="Close">✕</button>
+		<div class="aero-title">EPHEMERA PETS</div>
+		<button class="aero-close-btn" id="close-pets-window" type="button" aria-label="Close">✕</button>
 	  </div>
 
-	  <div class="aero-content blog-content">
-		<img
-		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
-		  alt="Blog visual">
+	  <div class="aero-content pets-content">
+		<div class="pets-frame-wrap">
+		  <button class="pets-arrow pets-arrow-left" id="pets-prev" type="button" aria-label="Previous pet">‹</button>
 
-		<div class="blog-text">
-		  <h2>EPHEMERA LOG 001</h2>
-		  <p>
-			early fragments from the archive.<br>
-			things that weren’t meant to last,<br>
-			but somehow did.
-		  </p>
+		  <div class="pets-card">
+			<div class="pets-glitter-frame">
+			  <img
+				id="pets-image"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PETS_PLACEHOLDER.png"
+				alt="Featured pet">
+			</div>
+
+			<div class="pets-text">
+			  <h2 id="pets-name">PET NAME</h2>
+			  <p id="pets-caption">
+				a very important creature from the EPHEMERA extended universe.
+			  </p>
+
+			  <a
+				class="pets-submit-btn"
+				href="mailto:hi@ephemeraonline.world?subject=PETS%20PLEASE">
+				submit your own pet
+			  </a>
+			</div>
+		  </div>
+
+		  <button class="pets-arrow pets-arrow-right" id="pets-next" type="button" aria-label="Next pet">›</button>
 		</div>
 	  </div>
 	</div>
@@ -223,7 +238,7 @@
 		  <td>
 			<img
 			  id="pikachu-trigger"
-			  class="tbl-img"
+			  class="tbl-img under-construction-trigger"
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif"
 			  alt=""
 			  style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
@@ -301,7 +316,7 @@
 		  </td>
 
 		  <td>
-			<a href="#" target="_blank" rel="noopener noreferrer">
+			<a href="401.html" target="_blank" rel="noopener noreferrer">
 			  <img
 				class="tbl-img"
 				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CONGRATS_AD_OH.gif"
@@ -312,9 +327,9 @@
 
 		  <td>
 			<img
-			  class="tbl-img blog-window-trigger"
+			  class="tbl-img pets-window-trigger"
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
-			  alt=""
+			  alt="Open pets window"
 			  style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
 		  </td>
 		</tr>
@@ -419,7 +434,7 @@
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_stars.gif"
 			  alt=""
 			  style="--w:400px; --x:0px; --y:0px;">
-		  </a>
+			</a>
 		</div>
 
 		<div class="mobile-grid-item">
@@ -429,7 +444,7 @@
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif"
 			  alt=""
 			  style="--w:250px; --x:0px; --y:0px;">
-		  </a>
+			</a>
 		</div>
 
 		<div class="mobile-grid-item">
@@ -439,7 +454,7 @@
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bear_balloon.gif"
 			  alt=""
 			  style="--w:200px; --x:0px; --y:0px;">
-		  </a>
+			</a>
 		</div>
 
 		<div class="mobile-grid-item">
@@ -449,13 +464,13 @@
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_SCARY_MOVIES_TEMP.gif"
 			  alt=""
 			  style="--w:220px; --x:0px; --y:0px;">
-		  </a>
+			</a>
 		</div>
 
 		<div class="mobile-grid-item">
 		  <img
 			id="pikachu-trigger-mobile"
-			class="tbl-img"
+			class="tbl-img under-construction-trigger"
 			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif"
 			alt=""
 			style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
@@ -543,9 +558,9 @@
 
 		<div class="mobile-grid-item">
 		  <img
-			class="tbl-img blog-window-trigger"
+			class="tbl-img pets-window-trigger"
 			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
-			alt=""
+			alt="Open pets window"
 			style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
 		</div>
 
@@ -644,12 +659,12 @@
 			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png" alt="Hemlocke Apple flyer">
 			</a>
 
-			<a class="flyer-thumb" href="https: //raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" alt="Addison flyer">
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png">
+			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" alt="Fungies flyer">
 			</a>
 
 			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png" alt="Daya flyer">
+			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png" alt="Affirmations flyer">
 			</a>
 
 			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png">
@@ -657,31 +672,31 @@
 			</a>
 
 			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png" alt="Freakier flyer">
+			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png" alt="EOW flyer">
 			</a>
 
 			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png" alt="Affirmations flyer">
+			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png" alt="Addison flyer">
 			</a>
 
 			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png" alt="EOW flyer">
+			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png" alt="Halloween flyer">
 			</a>
 
 			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png" alt="Fungies flyer">
+			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png" alt="Hemlocke Apple flyer">
 			</a>
 
 			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png">
 			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png" alt="Hire Ephemera flyer">
 			</a>
 
-			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.pngg" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png">
-			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png" alt="Launch flyer">
-			  
-			  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png">
-				<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" alt="Launch flyer">
-				
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png">
+			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png" alt="Daya flyer">
+			</a>
+
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png">
+			  <img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" alt="Launch flyer">
 			</a>
 		  </div>
 		</div>
