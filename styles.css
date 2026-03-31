@@ -1440,12 +1440,12 @@ body::after {
     box-sizing: border-box;
   }
 
- .image-header-top {
-   display: flex !important;
-   justify-content: center;
-   width: 100%;
-   margin-top: 50px;
- }
+  .image-header-top {
+    display: flex !important;
+    justify-content: center;
+    width: 100%;
+    margin-top: 50px;
+  }
 
   .image-header-bottom {
     display: none !important;
@@ -1495,18 +1495,18 @@ body::after {
   }
 
   #under-construction-window,
-  #comeback-window {
+  #come-back-soon-window {
     display: none !important;
   }
 
   #under-construction-window.is-visible,
-  #comeback-window.is-visible {
+  #come-back-soon-window.is-visible {
     display: flex !important;
     opacity: 1 !important;
     pointer-events: auto !important;
   }
 
-  .aero-window:not(#mobile-player):not(#welcome-window):not(#pets-window):not(#under-construction-window):not(#comeback-window),
+  .aero-window:not(#mobile-player):not(#welcome-window):not(#pets-window):not(#under-construction-window):not(#come-back-soon-window),
   .aero-window--first {
     width: min(92vw, 420px) !important;
     max-width: 92vw !important;
@@ -1524,7 +1524,7 @@ body::after {
   /* mobile trigger windows open centered */
   #pets-window,
   #under-construction-window,
-  #comeback-window {
+  #come-back-soon-window {
     position: fixed !important;
     top: 50% !important;
     left: 50% !important;
@@ -1540,7 +1540,7 @@ body::after {
 
   #pets-window .aero-content,
   #under-construction-window .aero-content,
-  #comeback-window .aero-content {
+  #come-back-soon-window .aero-content {
     overflow-y: auto;
   }
 
