@@ -542,18 +542,19 @@ body {
 }
 
 .live-date {
-  position: absolute;
-  top: -10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: static;
+  transform: none;
+  z-index: auto;
+  width: 100%;
+  margin-top: -10px;
+  text-align: center;
   font-family: "ComicSansWeb", "Comic Sans MS", "Comic Sans", cursive !important;
   font-weight: 700;
-  font-size: 18px;
-  text-align: center;
-  color: #1e40ff;
-  text-shadow: 1px 1px 0 #ffffff;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #7c42b2;
   pointer-events: none;
-  white-space: nowrap;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 .tbl-caption {
@@ -562,7 +563,6 @@ body {
   font-family: "ComicSansWeb", "Comic Sans MS", "Comic Sans", cursive;
   font-weight: bold;
   font-size: 20px;
-  font-weight: bold;
   background: var(--bg, #a5ff00);
   color: var(--color, #7d43b2);
   border-radius: 0;
@@ -1661,6 +1661,13 @@ body::after {
     font-size: 18px;
   }
 
+  .live-date {
+      margin-top: 8px;
+      width: 100%;
+      font-size: 14px;
+      line-height: 1.15;
+    }
+  
   #welcome-stars-mobile {
     width: min(260px, 100%) !important;
   }
