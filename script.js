@@ -372,18 +372,13 @@ if (curr_track) {
 })();
 
 /* ==================================================
-   PIKACHU TRIGGER
-   desktop trigger removed for now
-   mobile interaction will be added back separately
-================================================== */
-
-/* ==================================================
    UNDER CONSTRUCTION WINDOW
    mobile trigger only
 ================================================== */
 (function () {
   const trigger = document.getElementById("pikachu-trigger-mobile");
   const windowEl = document.getElementById("under-construction-window");
+  const closeBtn = document.getElementById("close-under-construction-window");
 
   if (!trigger || !windowEl) return;
 
@@ -408,14 +403,17 @@ if (curr_track) {
     }
   });
 
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeWindow();
+    });
+  }
+
   windowEl.addEventListener("click", function (e) {
     e.stopPropagation();
   });
-
-  // TEMP TEST: disabled so we can see if immediate closing is the issue
-  // document.addEventListener("click", function () {
-  //   closeWindow();
-  // });
 
   document.addEventListener("keydown", function (e) {
     if (!windowEl.classList.contains("is-visible")) return;
@@ -425,7 +423,6 @@ if (curr_track) {
     }
   });
 })();
-
 
 /* ==================================================
    PETS WINDOW
@@ -558,6 +555,63 @@ if (curr_track) {
   });
 
   renderPet(currentPetIndex);
+})();
+
+/* ==================================================
+   COME BACK SOON WINDOW
+   mobile trigger
+================================================== */
+(function () {
+  const trigger = document.getElementById("come-back-soon-trigger-mobile");
+  const windowEl = document.getElementById("come-back-soon-window");
+  const closeBtn = document.getElementById("close-come-back-soon-window");
+
+  if (!trigger || !windowEl) return;
+
+  function openWindow() {
+    windowEl.classList.add("is-visible");
+  }
+
+  function closeWindow() {
+    windowEl.classList.remove("is-visible");
+  }
+
+  trigger.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const isOpen = windowEl.classList.contains("is-visible");
+
+    if (isOpen) {
+      closeWindow();
+    } else {
+      openWindow();
+    }
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeWindow();
+    });
+  }
+
+  windowEl.addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
+
+  document.addEventListener("click", function () {
+    closeWindow();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (!windowEl.classList.contains("is-visible")) return;
+
+    if (e.key === "Escape") {
+      closeWindow();
+    }
+  });
 })();
 
 /* ==================================================
