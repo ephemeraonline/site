@@ -1646,28 +1646,40 @@ body::after {
     margin: 0 auto;
   }
 
-  .mobile-grid-item .tbl-img-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .mobile-grid-item .tbl-card {
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
 
+  .mobile-grid-item .tbl-img-wrap {
+    position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .mobile-grid-item .live-date {
+    position: static !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.15;
+  }
+
   .mobile-grid-item .tbl-caption {
+    margin-top: 8px;
     max-width: 240px;
     font-size: 18px;
   }
 
-  .live-date {
-      margin-top: 8px;
-      width: 100%;
-      font-size: 14px;
-      line-height: 1.15;
-    }
-  
   #welcome-stars-mobile {
     width: min(260px, 100%) !important;
   }
