@@ -216,6 +216,7 @@ window.addEventListener("resize", () => {
     }
   });
 })();
+
 /* ==================================================
    MUSIC PLAYER (FIXED)
 ================================================== */
@@ -229,8 +230,8 @@ let isPlaying = false;
 const curr_track = document.getElementById("music");
 
 const track_list = [
-  { name: "HYD - Angel", path: "https://files.catbox.moe/sre606.mp3" },	
-  { name: "2Charm - prerogative", path: "https://files.catbox.moe/srlpzf.mp3" },	
+  { name: "HYD - Angel", path: "https://files.catbox.moe/sre606.mp3" },
+  { name: "2Charm - prerogative", path: "https://files.catbox.moe/srlpzf.mp3" },
   { name: "Charli xcx - Sympathy is a knife featuring ariana grande", path: "https://files.catbox.moe/xlx839.mp3" },
   { name: "Mckayla Twiggs - What A Girl Wants", path: "https://files.catbox.moe/xw4kit.mp3" },
   { name: "Danny L Harle - Raft in the Sea Featuring Julia Michaels", path: "https://files.catbox.moe/7ehw00.mp3" },
@@ -341,7 +342,6 @@ if (curr_track) {
 
     const scrollY = window.scrollY || window.pageYOffset;
 
-    /* top header fades out as you scroll down */
     const fadeDistance = 260;
     const topOpacity = Math.max(0, 1 - scrollY / fadeDistance);
 
@@ -353,7 +353,6 @@ if (curr_track) {
       topHeader.classList.remove("is-hidden");
     }
 
-    /* bottom header fades in near the end of the table */
     const tableRect = tableWrap.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
     const revealPoint = viewportHeight * 0.92;
@@ -379,14 +378,14 @@ if (curr_track) {
 ================================================== */
 
 /* ==================================================
-   BLOG WINDOW
+   UNDER CONSTRUCTION WINDOW
+   mobile trigger only
 ================================================== */
 (function () {
-  const triggers = document.querySelectorAll(".blog-window-trigger");
-  const windowEl = document.getElementById("blog-window");
-  const closeBtn = document.getElementById("close-blog-window");
+  const trigger = document.getElementById("pikachu-trigger-mobile");
+  const windowEl = document.getElementById("under-construction-window");
 
-  if (!triggers.length || !windowEl) return;
+  if (!trigger || !windowEl) return;
 
   function openWindow() {
     windowEl.classList.add("is-visible");
@@ -394,6 +393,109 @@ if (curr_track) {
 
   function closeWindow() {
     windowEl.classList.remove("is-visible");
+  }
+
+  trigger.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const isOpen = windowEl.classList.contains("is-visible");
+
+    if (isOpen) {
+      closeWindow();
+    } else {
+      openWindow();
+    }
+  });
+
+  windowEl.addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
+
+  // TEMP TEST: disabled so we can see if immediate closing is the issue
+  // document.addEventListener("click", function () {
+  //   closeWindow();
+  // });
+
+  document.addEventListener("keydown", function (e) {
+    if (!windowEl.classList.contains("is-visible")) return;
+
+    if (e.key === "Escape") {
+      closeWindow();
+    }
+  });
+})();
+
+
+/* ==================================================
+   PETS WINDOW
+================================================== */
+(function () {
+  const triggers = document.querySelectorAll(".pets-window-trigger");
+  const windowEl = document.getElementById("pets-window");
+  const closeBtn = document.getElementById("close-pets-window");
+  const prevBtn = document.getElementById("pets-prev");
+  const nextBtn = document.getElementById("pets-next");
+  const petImage = document.getElementById("pets-image");
+  const petName = document.getElementById("pets-name");
+  const petCaption = document.getElementById("pets-caption");
+
+  const pets = [
+    {
+      name: "Daisy",
+      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PETS_PLACEHOLDER.png",
+      caption: "gone but never forgotten, prayers up for this diva."
+    },
+    {
+      name: "Toona",
+      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PETS_PLACEHOLDER.png",
+      caption: "sub copy here"
+    },
+    {
+      name: "Pixel",
+      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PETS_PLACEHOLDER.png",
+      caption: "professionally cute and possibly in charge of the whole site."
+    }
+  ];
+
+  let currentPetIndex = 0;
+
+  if (!triggers.length || !windowEl) return;
+
+  function renderPet(index) {
+    if (!pets[index]) return;
+
+    if (petImage) {
+      petImage.src = pets[index].image;
+      petImage.alt = pets[index].name;
+    }
+
+    if (petName) {
+      petName.textContent = pets[index].name;
+    }
+
+    if (petCaption) {
+      petCaption.textContent = pets[index].caption;
+    }
+  }
+
+  function openWindow() {
+    windowEl.classList.add("is-visible");
+    renderPet(currentPetIndex);
+  }
+
+  function closeWindow() {
+    windowEl.classList.remove("is-visible");
+  }
+
+  function showNextPet() {
+    currentPetIndex = (currentPetIndex + 1) % pets.length;
+    renderPet(currentPetIndex);
+  }
+
+  function showPrevPet() {
+    currentPetIndex = (currentPetIndex - 1 + pets.length) % pets.length;
+    renderPet(currentPetIndex);
   }
 
   triggers.forEach((trigger) => {
@@ -417,6 +519,20 @@ if (curr_track) {
     });
   }
 
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      showNextPet();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      showPrevPet();
+    });
+  }
+
   windowEl.addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -426,8 +542,22 @@ if (curr_track) {
   });
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeWindow();
+    if (!windowEl.classList.contains("is-visible")) return;
+
+    if (e.key === "Escape") {
+      closeWindow();
+    }
+
+    if (e.key === "ArrowRight") {
+      showNextPet();
+    }
+
+    if (e.key === "ArrowLeft") {
+      showPrevPet();
+    }
   });
+
+  renderPet(currentPetIndex);
 })();
 
 /* ==================================================
