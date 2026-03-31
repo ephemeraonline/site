@@ -1440,11 +1440,12 @@ body::after {
     box-sizing: border-box;
   }
 
-  .image-header-top {
-    display: flex !important;
-    justify-content: center;
-    width: 100%;
-  }
+ .image-header-top {
+   display: flex !important;
+   justify-content: center;
+   width: 100%;
+   margin-top: 50px;
+ }
 
   .image-header-bottom {
     display: none !important;
@@ -1478,7 +1479,7 @@ body::after {
   }
 
   .e-wrap {
-    --y: 105px;
+    --y: 138px;
     transform:
       translate(var(--x), calc(var(--y) - 10px))
       scale(0.5);
@@ -1517,7 +1518,7 @@ body::after {
     width: min(92vw, 420px) !important;
     max-width: 92vw !important;
     margin: 8px auto 8px !important;
-    transform: translateY(120px) !important;
+    transform: translateY(142px) !important;
   }
 
   /* mobile trigger windows open centered */
