@@ -338,7 +338,10 @@ body {
    PETS WINDOW
 ================================================== */
 #pets-window {
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10000;
 }
 
@@ -839,6 +842,14 @@ body {
   flex-direction: column;
 }
 
+.about-desktop-content {
+  display: block;
+}
+
+.about-mobile-content {
+  display: none;
+}
+
 .about-aero-content {
   flex: 1;
   padding: 0;
@@ -1032,6 +1043,28 @@ body {
 .about-pdf-section {
   text-align: center;
   padding-bottom: 6px;
+}
+
+/* mobile image version */
+.about-image-content {
+  padding: 14px;
+  background: #e9e9e9;
+}
+
+.about-poster-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.about-poster-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
 }
 
 .about-pdf-btn {
@@ -1607,6 +1640,22 @@ body::after {
     filter: blur(3px);
     opacity: 0.3;
   }
+
+  /* ABOUT: mobile poster version only */
+  .about-window {
+    width: min(92vw, 420px) !important;
+    max-width: 92vw !important;
+    height: auto !important;
+    max-height: 88vh !important;
+  }
+
+  .about-desktop-content {
+    display: none !important;
+  }
+
+  .about-mobile-content {
+    display: block !important;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1733,5 +1782,14 @@ body::after {
 
   .image-header-bottom-mobile {
     margin: 120px 0 24px;
+  }
+
+  .about-window {
+    width: calc(100vw - 12px) !important;
+    max-width: calc(100vw - 12px) !important;
+  }
+
+  .about-image-content {
+    padding: 10px;
   }
 }
