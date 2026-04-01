@@ -931,6 +931,7 @@ body {
   flex: 1;
   padding: 0;
   overflow: hidden;
+  background: #e9e9e9;
 }
 
 .aero-about-body {
@@ -939,187 +940,173 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  background: #e9e9e9;
 }
 
-.about-ephemera-sheet {
-  background: rgba(183, 255, 0, 0);
-  color: #000;
-  padding: 20px 22px 28px;
-  box-sizing: border-box;
+/* new inside layout */
+.about-sheet-v2 {
   width: 100%;
   min-height: 100%;
+  padding: 20px 22px 0;
+  box-sizing: border-box;
+  background: #e9e9e9;
+  color: #000;
+  font-family: "Roboto Mono", monospace;
 }
 
-.about-topline {
+.about-top-meta {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   font-size: 11px;
-  font-weight: bold;
+  font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 10px;
+  letter-spacing: -0.02em;
 }
 
-.about-topline span:nth-child(2) {
+.about-top-meta span:nth-child(2) {
   text-align: center;
 }
 
-.about-topline span:nth-child(3) {
+.about-top-meta span:nth-child(3) {
   text-align: right;
 }
 
-.about-stars {
+.about-star-divider {
   position: relative;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  font-family: "Courier New", monospace;
   font-size: clamp(10px, 1.2vw, 16px);
   line-height: 1;
   margin: 14px 0 22px;
+  font-weight: 700;
 }
 
-.about-stars::before {
-  content: "****************************************************************************************************************************************************************************************************************************************************************";
-  display: block;
-  color: #000;
-  opacity: 0.6;
+.about-hero-v2 {
+  margin-bottom: 24px;
 }
 
-.about-stars::after {
-  content: "****************************************************************************************************************************************************************************************************************************************************************";
-  position: absolute;
-  top: 0;
-  left: 0;
+.about-brand-image-wrap {
   width: 100%;
-  color: #000;
-  opacity: 0.1;
-  animation: starTwinkle 3s ease-in-out infinite alternate;
-}
-
-@keyframes starTwinkle {
-  0% { opacity: 0.05; }
-  50% { opacity: 0.35; }
-  100% { opacity: 0.1; }
-}
-
-.about-brand {
   margin: 0 0 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(52px, 9vw, 110px);
-  line-height: 0.9;
-  font-weight: 900;
-  letter-spacing: -2px;
+  display: flex;
+  justify-content: center;
 }
 
-.about-intro {
+.about-brand-image-v2 {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.about-intro-v2 {
   margin: 0 0 24px;
-  font-family: "Courier New", monospace;
+  font-family: "Roboto Mono", monospace;
   font-size: clamp(14px, 2vw, 18px);
   line-height: 1.3;
-  font-weight: bold;
+  font-weight: 700;
   max-width: 900px;
+  letter-spacing: -0.02em;
+  color: #222;
 }
 
-.about-label {
-  display: table;
-  margin: 0 auto 18px;
-  background: #000;
-  color: #b7ff00;
-  padding: 8px 14px;
-  font-family: "Courier New", monospace;
-  font-size: 15px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.about-label--lower {
-  margin-top: 28px;
-}
-
-.about-label--pdf {
-  margin-top: 28px;
-  margin-bottom: 14px;
-}
-
-.about-services-grid {
+.about-services-v2 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px dotted #000;
-  border-left: 1px dotted #000;
-}
-
-.about-head,
-.about-cell {
-  border-right: 1px dotted #000;
-  border-bottom: 1px dotted #000;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: "Courier New", monospace;
-  box-sizing: border-box;
-}
-
-.about-head {
-  background: #000;
-  color: #b7ff00;
-  font-size: 13px;
-  font-weight: bold;
-  padding: 16px 8px;
-  min-height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-cell {
-  font-size: 11px;
-  line-height: 1.15;
-  padding: 14px 8px;
-  min-height: 62px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
-  margin-top: 4px;
+  margin-bottom: 24px;
 }
 
-.about-stat {
-  text-align: left;
+.service-card {
+  position: relative;
+  padding-top: 18px;
 }
 
-.about-stat-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 88px;
-  height: 68px;
-  padding: 0 10px;
-  background: #000;
-  color: #b7ff00;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(32px, 4vw, 46px);
-  font-weight: 900;
-  line-height: 1;
-  margin-bottom: 10px;
+.service-card-body {
+  min-height: 196px;
+  padding: 36px 16px 16px;
+  border: 3px solid #000;
+  border-radius: 28px;
+  background: #f3eff1;
   box-sizing: border-box;
 }
 
-.about-stat-text {
-  max-width: 150px;
-  font-family: "Courier New", monospace;
-  font-size: 11px;
-  line-height: 1.15;
-  font-weight: bold;
+.service-card-body ul {
+  margin: 0 0 18px;
+  padding-left: 22px;
 }
 
-.about-pdf-section {
+.service-card-body li {
+  font-family: "Roboto Mono", monospace;
+  font-size: clamp(13px, 1.15vw, 16px);
+  line-height: 1.28;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.service-pill {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 66%;
+  padding: 8px 14px;
+  border: 3px solid #000;
+  border-radius: 999px;
   text-align: center;
-  padding-bottom: 6px;
+  color: #000;
+  font-family: "Roboto Mono", monospace;
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  box-sizing: border-box;
+}
+
+.service-card--pink .service-pill {
+  background: #f27db1;
+}
+
+.service-card--green .service-pill {
+  background: #a5ff00;
+}
+
+.service-card--blue .service-pill {
+  background: #73b9db;
+}
+
+.service-card--yellow .service-pill {
+  background: #f6d300;
+}
+
+.service-tldr {
+  margin: 0;
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+  font-size: clamp(12px, 1vw, 15px);
+  line-height: 1.2;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  letter-spacing: -0.02em;
+  color: #222;
+}
+
+.about-logo-strip {
+  margin: 24px -22px 0;
+  background: #ff0a9f;
+  min-height: 230px;
+}
+
+.about-logo-strip-inner {
+  width: 100%;
+  min-height: 230px;
+  padding: 24px;
+  box-sizing: border-box;
 }
 
 /* mobile image version */
@@ -1161,7 +1148,6 @@ body {
   background: #b7ff00;
   color: #000;
 }
-
 /* ==================================================
    MUSIC PLAYER
 ================================================== */
