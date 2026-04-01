@@ -230,7 +230,6 @@ let isPlaying = false;
 const curr_track = document.getElementById("music");
 
 const track_list = [
-const track_list = [
   { name: "HYD - Angel", path: "https://files.catbox.moe/sre606.mp3" },
   { name: "2Charm - prerogative", path: "https://files.catbox.moe/srlpzf.mp3" },
   { name: "Charli xcx - Sympathy is a knife featuring ariana grande", path: "https://files.catbox.moe/xlx839.mp3" },
@@ -253,6 +252,7 @@ const track_list = [
   { name: "Placeholder Track 19", path: "https://files.catbox.moe/sre606.mp3" },
   { name: "Placeholder Track 20", path: "https://files.catbox.moe/sre606.mp3" }
 ];
+
 function syncUI() {
   if (mobile_track_name) {
     mobile_track_name.textContent = track_list[track_index].name;
@@ -344,12 +344,7 @@ if (curr_track) {
       second: "2-digit"
     });
 
-    const dateString = now.toLocaleDateString([], {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric"
-    });
+    const dateString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
     const output = `${timeString}<br>${dateString}`;
 
