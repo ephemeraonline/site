@@ -236,9 +236,8 @@ const track_list = [
   { name: "Mckayla Twiggs - What A Girl Wants", path: "https://files.catbox.moe/xw4kit.mp3" },
   { name: "Danny L Harle - Raft in the Sea Featuring Julia Michaels", path: "https://files.catbox.moe/7ehw00.mp3" },
   { name: "Metric - Time is a Bomb", path: "https://files.catbox.moe/txd5we.mp3" },
-
-  { name: "Placeholder Track 07", path: "https://files.catbox.moe/sre606.mp3" },
-  { name: "Placeholder Track 08", path: "https://files.catbox.moe/sre606.mp3" },
+  { name: "Justine Skye - Jus A Girl", path: "https://files.catbox.moe/29chhm.mp3" },
+  { name: "Daya - Bandit", path: "https://files.catbox.moe/lzmwtq.mp3" },
   { name: "Placeholder Track 09", path: "https://files.catbox.moe/sre606.mp3" },
   { name: "Placeholder Track 10", path: "https://files.catbox.moe/sre606.mp3" },
   { name: "Placeholder Track 11", path: "https://files.catbox.moe/sre606.mp3" },
