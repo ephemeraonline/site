@@ -240,7 +240,7 @@ const track_list = [
   { name: "Daya - Bandit", path: "https://files.catbox.moe/lzmwtq.mp3" },
   { name: "Camila Cabello feat. JT & Yung Miami - Dade County Dreaming", path: "https://files.catbox.moe/ulber5.mp3" },
   { name: "Hemloke Springs - Sever the Blight", path: "https://files.catbox.moe/5zb6s6.mp3" },
-  { name: "Placeholder Track 11", path: "https://files.catbox.moe/sre606.mp3" },
+  { name: "PinkPantheress - Stateside + Zara Larsson", path: "https://files.catbox.moe/sre606.mp3" },
   { name: "Placeholder Track 12", path: "https://files.catbox.moe/sre606.mp3" },
   { name: "Placeholder Track 13", path: "https://files.catbox.moe/sre606.mp3" },
   { name: "Placeholder Track 14", path: "https://files.catbox.moe/sre606.mp3" },
