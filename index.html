@@ -16,6 +16,10 @@
   <meta name="twitter:description" content="A small creative studio run by two friends with too many browser tabs open.">
   <meta name="twitter:image" content="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_PREVIEW.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -367,7 +371,7 @@
 		  </td>
 
 		  <td>
-			<a href="#" target="_blank" rel="noopener noreferrer">
+			<a href="#" id="come-back-soon-trigger-mobile" rel="noopener noreferrer">
 			  <img
 				class="tbl-img"
 				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/AWESOME_DAY.gif"
@@ -520,24 +524,25 @@
 		</div>
 
 		<div class="mobile-grid-item">
-			<a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
-        <div class="counter-cell">
-			<img
-			  class="tbl-img"
-			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BAR_COUNTER.png"
-			  alt="counter decoration"
-			  style="--w:220px; --x:0px; --y:-10px;">
-
-			<a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
+		  <a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+			<div class="counter-cell">
 			  <img
-				src="https://hitwebcounter.com/counter/counter.php?page=21479206&style=0013&nbdigits=5&type=page&initCount=0"
-				alt="Visitor Counter"
-				border="0">
-			</a>
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BAR_COUNTER.png"
+				alt="counter decoration"
+				style="--w:220px; --x:0px; --y:-10px;">
 
-			<br>
-			VISITORS!
-		  </div>
+			  <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
+				<img
+				  src="https://hitwebcounter.com/counter/counter.php?page=21479206&style=0013&nbdigits=5&type=page&initCount=0"
+				  alt="Visitor Counter"
+				  border="0">
+			  </a>
+
+			  <br>
+			  VISITORS!
+			</div>
+		  </a>
 		</div>
 
 		<div class="mobile-grid-item">
@@ -597,7 +602,7 @@
 			  style="--w:180px; --x:0px; --y:0px; --r:0deg;">
 		  </a>
 		</div>
-		
+
 		<div class="mobile-grid-item">
 		  <a href="https://open.spotify.com/playlist/6eNQRcbq2fcD1Yn73woxOk" target="_blank" rel="noopener noreferrer">
 			<img
@@ -733,122 +738,98 @@
 
 		<div class="aero-content about-aero-content">
 		  <div class="aero-about-body">
-			<div class="about-ephemera-sheet">
-			  <div class="about-topline">
+			<div class="about-sheet-v2">
+
+			  <div class="about-top-meta">
 				<span>HI@EPHEMERAONLINE.WORLD</span>
 				<span>FROM THE DESK OF EPHEMERA</span>
 				<span>@EPHEMERAONLINE.WORLD</span>
 			  </div>
 
-			  <div class="about-stars"></div>
-
-			  <center>
-				<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png" style="width:100%; max-width:500px;" alt="">
-			  </center>
-
-			  <p class="about-intro">
-				<br>
-				Ephemera is a specialist creative agency that runs on pop-culture. We offer creative services to our favorite brands and artists to help tell stories that actually hit — across screens, stages, and social feeds. Sometimes we make merch.
-			  </p>
-
-			  <div class="about-label">WHAT WE DO</div>
-
-			  <div class="about-services-grid">
-				<div class="about-head">CREATIVE</div>
-				<div class="about-head">STRATEGY</div>
-				<div class="about-head">PRODUCT</div>
-				<div class="about-head">PRODUCTION</div>
-
-				<div class="about-cell">COPY WRITING</div>
-				<div class="about-cell">BRAND STRATEGY</div>
-				<div class="about-cell">IDEATION</div>
-				<div class="about-cell">POP-UP EVENTS</div>
-
-				<div class="about-cell">BRAND IDENTITY</div>
-				<div class="about-cell">DIGITAL STRATEGY</div>
-				<div class="about-cell">DESIGN</div>
-				<div class="about-cell">ACTIVATIONS</div>
-
-				<div class="about-cell">CREATIVE DIRECTION</div>
-				<div class="about-cell">STORY DEVELOPMENT</div>
-				<div class="about-cell">MARKETING STRATEGY</div>
-				<div class="about-cell">CONVENTIONS</div>
-
-				<div class="about-cell">BRAND CAMPAIGNS</div>
-				<div class="about-cell">CONTENT STRATEGY</div>
-				<div class="about-cell">PACKAGING</div>
-				<div class="about-cell">CONTENT PRODUCTION</div>
-
-				<div class="about-cell">ART DIRECTION</div>
-				<div class="about-cell">SOCIAL MEDIA STRATEGY</div>
-				<div class="about-cell">LICENSES &amp; PARTNERSHIPS</div>
-				<div class="about-cell">IMMERSIVE EXPERIENCES</div>
-
-				<div class="about-cell">GRAPHIC DESIGN</div>
-				<div class="about-cell">INFLUENCER PARTNERSHIPS</div>
-				<div class="about-cell">DEVELOPMENT</div>
-				<div class="about-cell">BRANDED ENVIRONMENTS</div>
+			  <div class="about-star-divider">
+				★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 			  </div>
 
-			  <div class="about-label about-label--lower">WHAT WE DID</div>
+			 <section class="about-hero-v2">
+			   <div class="about-brand-image-wrap">
+				 <img
+				   src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png"
+				   alt="EPHEMERA"
+				   class="about-brand-image-v2">
+			   </div>
+			 
+			   <p class="about-intro-v2">
+				 Ephemera is a creative studio that runs on pop-culture.
+				 We offer creative services to our favorite brands and artists
+				 to help tell stories that actually hit — across screens, stages,
+				 and social feeds. Sometimes we make merch.
+			   </p>
+			  </section>
 
-			  <div class="about-stats-grid">
-				<div class="about-stat">
-				  <div class="about-stat-num">15</div>
-				  <div class="about-stat-text">Years working experience in the industry</div>
+			  <section class="about-services-v2">
+
+				<article class="service-card service-card--pink">
+				  <div class="service-pill">WORLD BUILDING</div>
+				  <div class="service-card-body">
+					<ul>
+					  <li>Creative &amp; art direction</li>
+					  <li>Brand voice + tone</li>
+					  <li>Visual identity</li>
+					  <li>Starter kit</li>
+					</ul>
+					<p class="service-tldr">tldr:we define how you exist</p>
+				  </div>
+				</article>
+
+				<article class="service-card service-card--green">
+				  <div class="service-pill">CAMPAIGNS</div>
+				  <div class="service-card-body">
+					<ul>
+					  <li>Concepts + big ideas</li>
+					  <li>Messaging &amp; copy direction</li>
+					  <li>Launches, drops, announcements</li>
+					  <li>Rollout planning</li>
+					</ul>
+					<p class="service-tldr">tldr:we make people care</p>
+				  </div>
+				</article>
+
+				<article class="service-card service-card--blue">
+				  <div class="service-pill">EPHEMERA</div>
+				  <div class="service-card-body">
+					<ul>
+					  <li>Flyers, posters, zines</li>
+					  <li>Mailers, inserts, prints</li>
+					  <li>Event collateral</li>
+					  <li>Limited-run merch</li>
+					</ul>
+					<p class="service-tldr">tldr:we make things worth keeping</p>
+				  </div>
+				</article>
+
+				<article class="service-card service-card--yellow">
+				  <div class="service-pill">DIGITAL</div>
+				  <div class="service-card-body">
+					<ul>
+					  <li>Email moments</li>
+					  <li>Social strategy</li>
+					  <li>Website design</li>
+					  <li>Digital presence</li>
+					</ul>
+					<p class="service-tldr">tldr:we keep brands alive online</p>
+				  </div>
+				</article>
+
+			  </section>
+
+			  <section class="about-logo-strip">
+				<div class="about-logo-strip-inner">
+				  <!-- logos / gifs / partner art go here later -->
 				</div>
+			  </section>
 
-				<div class="about-stat">
-				  <div class="about-stat-num">75</div>
-				  <div class="about-stat-text">Collaborations generating 100M+ in total sales</div>
-				</div>
-
-				<div class="about-stat">
-				  <div class="about-stat-num">10</div>
-				  <div class="about-stat-text">Shared Media Placements</div>
-				</div>
-
-				<div class="about-stat">
-				  <div class="about-stat-num">500+</div>
-				  <div class="about-stat-text">Influencer Partnerships Facilitated</div>
-				</div>
-			  </div>
-
-			  <center>
-				<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DOWNLOAD_BUTTOn.gif" style="width:100%; max-width:200px;" alt="">
-			  </center>
-
-			  <div class="about-pdf-section">
-				<button onclick="openDownloadWindow()">DOWNLOAD</button>
-			  </div>
 			</div>
 		  </div>
-		</div>
-	  </div>
-	</div>
-
-	<div id="download-overlay" class="aero-overlay" aria-hidden="true">
-	  <div class="aero-window" style="width:260px; transform:none;" role="dialog" aria-modal="true" aria-label="secure download">
-		<div class="aero-header">
-		  <div class="aero-title">secure download</div>
-		  <button class="aero-close-btn" type="button" onclick="closeDownloadWindow()" aria-label="Close">✕</button>
-		</div>
-
-		<div class="aero-content" style="text-align:center; padding:20px;">
-		  <p style="margin-bottom:10px;">enter password</p>
-
-		  <input
-			id="download-pass"
-			type="password"
-			style="width:160px; padding:4px; border:1px solid #999; font-family:Comic Sans MS;">
-
-		  <br><br>
-
-		  <button onclick="checkDownload()">unlock</button>
-
-		  <p id="download-error" style="color:red; font-size:11px; display:none;">
-			incorrect password
-		  </p>
 		</div>
 	  </div>
 	</div>
