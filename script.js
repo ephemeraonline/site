@@ -485,7 +485,7 @@ if (curr_track) {
   const pets = [
     {
       name: "Daisy",
-      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PETS_PLACEHOLDER.png",
+      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DAISY.png",
       caption: "gone but never forgotten, prayers up for this diva."
     },
     {
