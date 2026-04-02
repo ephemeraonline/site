@@ -917,6 +917,7 @@ body {
   height: min(88vh, 760px);
   display: flex;
   flex-direction: column;
+  transform: translateY(40px);
 }
 
 .about-desktop-content {
@@ -943,7 +944,7 @@ body {
   background: #e9e9e9;
 }
 
-/* new inside layout */
+/* desktop inside layout */
 .about-sheet-v2 {
   width: 100%;
   min-height: 100%;
@@ -1098,7 +1099,7 @@ body {
 
 .about-logo-strip {
   margin: 24px -22px 0;
-  background: #ff0a9f;
+  background: #e9e9e9;
   min-height: 230px;
 }
 
@@ -1109,7 +1110,60 @@ body {
   box-sizing: border-box;
 }
 
-/* mobile image version */
+/* ==================================================
+   ABOUT CLIENTS SECTION
+================================================== */
+.about-clients-section {
+  width: 100%;
+}
+
+.about-clients-heading {
+  margin: 0 0 18px;
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+  font-size: clamp(15px, 1.4vw, 20px);
+  line-height: 1.2;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: #000;
+}
+
+.clients-table {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px 16px;
+  align-items: start;
+}
+
+.client-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.client-item img {
+  display: block;
+  width: 100%;
+  max-width: 90px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.client-item span {
+  display: block;
+  font-family: "Roboto Mono", monospace;
+  font-size: clamp(11px, 0.95vw, 13px);
+  line-height: 1.15;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: #111;
+}
+
+/* mobile / non-desktop poster version */
 .about-image-content {
   padding: 14px;
   background: #e9e9e9;
@@ -1131,23 +1185,38 @@ body {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
 }
 
-.about-pdf-btn {
-  display: inline-block;
-  background: #000;
-  color: #b7ff00;
-  text-decoration: none;
-  padding: 12px 18px;
-  font-family: "Courier New", monospace;
-  font-size: 13px;
-  font-weight: bold;
-  text-transform: uppercase;
-  border: 1px solid #000;
+.about-poster-btn:focus-visible {
+  outline: 2px solid #907cff;
+  outline-offset: 4px;
 }
 
-.about-pdf-btn:hover {
-  background: #b7ff00;
-  color: #000;
+@media (max-width: 1024px) {
+  .about-window {
+    width: min(92vw, 420px) !important;
+    max-width: 92vw !important;
+    height: auto !important;
+    max-height: 88vh !important;
+  }
+
+  .about-desktop-content {
+    display: none !important;
+  }
+
+  .about-mobile-content {
+    display: block !important;
+  }
+
+  .about-image-content {
+    padding: 12px;
+  }
 }
+
+@media (max-width: 900px) {
+  .clients-table {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 /* ==================================================
    MUSIC PLAYER
 ================================================== */
@@ -1668,22 +1737,6 @@ body::after {
     filter: blur(3px);
     opacity: 0.3;
   }
-
-  /* ABOUT: mobile poster version only */
-  .about-window {
-    width: min(92vw, 420px) !important;
-    max-width: 92vw !important;
-    height: auto !important;
-    max-height: 88vh !important;
-  }
-
-  .about-desktop-content {
-    display: none !important;
-  }
-
-  .about-mobile-content {
-    display: block !important;
-  }
 }
 
 @media (max-width: 640px) {
@@ -1819,5 +1872,19 @@ body::after {
 
   .about-image-content {
     padding: 10px;
+  }
+
+  .clients-table {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+
+  .client-item img {
+    max-width: 74px;
+    height: 58px;
+  }
+
+  .client-item span {
+    font-size: 10px;
   }
 }
