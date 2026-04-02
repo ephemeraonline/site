@@ -15,7 +15,7 @@
 	  min-height: 100%;
 	}
 
-body {
+	body {
 	  display: flex;
 	  align-items: center;
 	  justify-content: center;
@@ -40,7 +40,6 @@ body {
 	  border-radius: 26px;
 	  overflow: hidden;
 	}
-
 
 	.sticker::before {
 	  left: -2px;
@@ -186,13 +185,17 @@ body {
 
 	  <div class="body-band">
 		<div class="copy">
-		  <p class="line-1">This page doens’t exist.</p>
-		  <p class="line-2"> Not everything is meant to be found. </p>
+		  <p class="line-1">This page doesn’t exist.
+		   Not everything is meant to be found. </p>
 		  <div class="line-3">PAGE NOT FOUND.</div>
 
 		  <div class="subline">
-turn off your computer and go outside.
-			<a href="/">we will be here when you get back <3 </a>
+			turn off your computer and go outside.
+			<a
+			  href="https://ephemeraonline.world"
+			  onclick="if (history.length > 1) { history.back(); return false; }">
+			  we will be here when you get back &lt;3
+			</a>
 		  </div>
 		</div>
 
