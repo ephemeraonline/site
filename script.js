@@ -357,36 +357,20 @@ if (curr_track) {
 
 /* ==================================================
    EPHEMERA HEADER FADE / RETURN
-   desktop only for now
+   desktop original, mobile later fade
 ================================================== */
 (function () {
-  const DESKTOP_BREAKPOINT = 769;
-
   const topHeader = document.querySelector(".image-header-top");
-  const bottomHeader = document.querySelector(".image-header-bottom");
-  const tableWrap = document.querySelector(".image-table-wrap");
 
-  if (!topHeader || !bottomHeader || !tableWrap) return;
-
-  function isDesktop() {
-    return window.innerWidth >= DESKTOP_BREAKPOINT;
-  }
-
-  function resetHeaderState() {
-    topHeader.classList.remove("is-hidden");
-    bottomHeader.classList.remove("is-visible");
-    topHeader.style.opacity = "";
-  }
+  if (!topHeader) return;
 
   function handleEphemeraHeader() {
-    if (!isDesktop()) {
-      resetHeaderState();
-      return;
-    }
-
     const scrollY = window.scrollY || window.pageYOffset;
+    const isMobile = window.innerWidth < 769;
+    const fadeDistance = isMobile
+      ? Math.max(window.innerHeight * 0.75, 260)
+      : 260;
 
-    const fadeDistance = 260;
     const topOpacity = Math.max(0, 1 - scrollY / fadeDistance);
 
     topHeader.style.opacity = String(topOpacity);
@@ -395,16 +379,6 @@ if (curr_track) {
       topHeader.classList.add("is-hidden");
     } else {
       topHeader.classList.remove("is-hidden");
-    }
-
-    const tableRect = tableWrap.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const revealPoint = viewportHeight * 0.92;
-
-    if (tableRect.bottom <= revealPoint) {
-      bottomHeader.classList.add("is-visible");
-    } else {
-      bottomHeader.classList.remove("is-visible");
     }
   }
 
