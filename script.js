@@ -483,19 +483,19 @@ if (curr_track) {
 
   const pets = [
     {
-      name: "Daisy",
+      name: "Daisy Gul",
       image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DAISY.png",
-      caption: "gone but never forgotten, prayers up for this diva."
+      caption: "gone but never forgotten, prayers up for this diva, our first baby girl - Amad"
     },
     {
-      name: "Toona",
-      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PETS_PLACEHOLDER.png",
-      caption: "sub copy here"
+      name: "PETUNIA",
+      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Petunia.JPG",
+      caption: "Better known as ‘Toona’. The best bestie a girl could ask for <3. IYKYK. -Amelia"
     },
     {
-      name: "Pixel",
-      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PETS_PLACEHOLDER.png",
-      caption: "professionally cute and possibly in charge of the whole site."
+      name: "Daisy",
+      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Daisy.JPG",
+      caption: "Tiny, demading, and deeply adored. Heaven gained a princess. -Amelia."
     }
   ];
 
