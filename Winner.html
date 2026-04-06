@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 - EPHEMERA</title>
+  <title>401 - EPHEMERA</title>
   <style>
 	* {
 	  box-sizing: border-box;
@@ -104,31 +104,45 @@
 	}
 
 	.badge {
+	  position: relative;
 	  width: 100%;
-	  max-width: 200px;
-	  aspect-ratio: 1 / 1;
-	  background: #f5f0e8;
-	  border: 8px solid #111;
-	  border-radius: 999px 18px 18px 18px;
+	  max-width: 220px;
+	  min-height: 170px;
+	  display: flex;
+	  align-items: flex-end;
+	  justify-content: flex-end;
+	  overflow: visible;
+	}
+
+	.badge::before {
+	  content: "";
+	  position: absolute;
+	  right: var(--badge-semi-right, 0px);
+	  bottom: var(--badge-semi-bottom, 0px);
+	  width: var(--badge-semi-w, 170px);
+	  height: var(--badge-semi-h, 170px);
+	  background: var(--badge-semi-color, #f5f0e8);
+	  border-top: var(--badge-semi-border, 5px) solid #111;
+	  border-left: var(--badge-semi-border, 5px) solid #111;
+	  border-top-left-radius: 999px;
+	  z-index: 0;
+	}
+
+	.badge-inner.badge-image {
+	  position: relative;
+	  z-index: 1;
 	  display: flex;
 	  align-items: center;
 	  justify-content: center;
-	  padding: 18px;
-	  transform: rotate(-3deg);
+	  overflow: visible;
 	}
 
-	.badge-inner {
-	  background: #f2d21b;
-	  color: #111;
-	  border: 6px solid #111;
-	  padding: 14px 16px 12px;
-	  font-weight: 900;
-	  font-size: clamp(20px, 2.2vw, 34px);
-	  line-height: 0.9;
-	  text-transform: uppercase;
-	  text-align: center;
-	  transform: rotate(4deg);
-	  box-shadow: 4px 4px 0 #111;
+	.badge-inner.badge-image img {
+	  width: var(--badge-img-w, 140px);
+	  max-width: none;
+	  height: auto;
+	  display: block;
+	  transform: translate(var(--badge-img-x, 0px), var(--badge-img-y, 0px));
 	}
 
 	.subline {
@@ -167,7 +181,8 @@
 	  }
 
 	  .badge {
-		max-width: 150px;
+		max-width: 180px;
+		min-height: 135px;
 	  }
 
 	  .sticker::before,
@@ -181,30 +196,46 @@
 <body>
   <div class="error-wrap">
 	<div class="sticker">
-	  <div class="top-band">404 ERROR</div>
+	  <div class="top-band">401 ERROR</div>
 
 	  <div class="body-band">
 		<div class="copy">
-		  <p class="line-1">This page doesn’t exist.
-		   Not everything is meant to be found. </p>
+		  <p class="line-1">Turn Your Computer off and go outside.</p>
+		  <p class="line-2"> Trust Us. </p>
 		  <div class="line-3">PAGE NOT FOUND.</div>
 
 		  <div class="subline">
-			turn off your computer and go outside.
-			<a
-			  href="https://ephemeraonline.world"
-			  onclick="if (history.length > 1) { history.back(); return false; }">
-			  we will be here when you get back &lt;3
-			</a>
+			maybe it moved, maybe it broke, maybe it was never here.<br>
+			<a href="/">we will never know</a>
 		  </div>
 		</div>
 
 		<div class="badge-wrap">
-		  <div class="badge">
-			<div class="badge-inner">
-			  EPHEMERA<br>WEB
+		  <div
+			class="badge"
+			style="
+			  --badge-semi-w: 180px;
+			  --badge-semi-h: 180px;
+			  --badge-semi-right: -34px;
+			  --badge-semi-bottom: -30px;
+			  --badge-semi-color: #f5f0e8;
+			  --badge-semi-border: 10px;
+			"
+		  >
+			<div
+			  class="badge-inner badge-image"
+			  style="
+				--badge-img-w: 140px;
+				--badge-img-x: 29px;
+				--badge-img-y: 0px;
+			  "
+			>
+			  <img
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BEST_BUY.png"
+				alt="EPHEMERA logo"
+			  />
 			</div>
-		  </div>
+		  </div> 
 		</div>
 	  </div>
 	</div>
