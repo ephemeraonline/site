@@ -34,14 +34,7 @@ body {
   overflow-x: hidden;
 }
 
-html {
-  height: 100%;
-  overflow-y: auto;
-}
-
 body {
-  min-height: 100%;
-  overflow-y: hidden;
   background: #ffffff;
   color: #000;
   font-family: "Helvetica", sans-serif;
@@ -64,6 +57,15 @@ body {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+
+/* ==================================================
+   PAGE SCALE / MAIN POSITIONING CONTEXT
+================================================== */
+.page-scale {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* ==================================================
@@ -133,15 +135,15 @@ body {
 .e-wrap {
   --w: 80%;
   --x: 0px;
-  --y: 490px;
+  --y: 0px;
   width: var(--w);
   max-width: 420px;
   min-width: 120px;
   height: 200px;
-  margin: 10px auto 0;
-  margin-bottom: -190px;
+  margin: 500px auto 0;
+  margin-bottom: -40px;
   position: relative;
-  transform: translate(var(--x), var(--y));
+  transform: translateX(var(--x));
   z-index: 50;
 }
 
@@ -213,8 +215,10 @@ body {
    AERO WINDOW
 ================================================== */
 .aero-window {
-  position: relative;
-  margin: 6px auto 24px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin: 0;
   width: var(--w, 900px);
   max-width: var(--mw, 90%);
   box-sizing: border-box;
@@ -229,7 +233,7 @@ body {
   display: flex;
   flex-direction: column;
   transform:
-    translate(var(--x, 0px), var(--y, 120px))
+    translate(calc(-50% + var(--x, 0px)), var(--y, 120px))
     rotate(var(--r, 0deg))
     scale(var(--s, 1));
 }
@@ -299,7 +303,7 @@ body {
     visibility: visible !important;
     pointer-events: auto !important;
     transform:
-      translate(var(--x, 0px), var(--y, 0px))
+      translate(calc(-50% + var(--x, 0px)), var(--y, 0px))
       rotate(var(--r, 0deg))
       scale(1) !important;
   }
@@ -311,7 +315,7 @@ body {
     visibility: visible !important;
     pointer-events: auto !important;
     transform:
-      translate(var(--x, 0px), var(--y, 0px))
+      translate(calc(-50% + var(--x, 0px)), var(--y, 0px))
       rotate(var(--r, 0deg))
       scale(1) !important;
   }
@@ -324,7 +328,7 @@ body {
   opacity: 0;
   pointer-events: none;
   transform:
-    translate(var(--x, 0px), var(--y, 0px))
+    translate(calc(-50% + var(--x, 0px)), var(--y, 0px))
     rotate(var(--r, 0deg))
     scale(0.94);
   transition:
@@ -336,7 +340,7 @@ body {
   opacity: 1;
   pointer-events: auto;
   transform:
-    translate(var(--x, 0px), var(--y, 0px))
+    translate(calc(-50% + var(--x, 0px)), var(--y, 0px))
     rotate(var(--r, 0deg))
     scale(1);
 }
@@ -588,12 +592,12 @@ body {
 ================================================== */
 .image-table-wrap {
   width: 100%;
-  margin-top: 380px;
+  margin-top: 220px;
   padding: 0 16px 60px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  transform: translateY(160px);
+  transform: none;
 }
 
 .image-table {
@@ -939,7 +943,7 @@ body {
   flex: 1;
   padding: 0;
   overflow: hidden;
-  background: #ffffff;
+  background: #e9e9e9;
 }
 
 .aero-about-body {
@@ -948,7 +952,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  background: #ffffff;
+  background: #e9e9e9;
 }
 
 /* desktop inside layout */
@@ -1700,6 +1704,9 @@ body::after {
   }
 
   #welcome-window {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
     width: min(92vw, 420px) !important;
     max-width: 92vw !important;
     margin: 8px auto 8px !important;
