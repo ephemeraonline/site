@@ -284,7 +284,6 @@ body {
   --y: 150px;
 }
 
-/* desktop: second aero window should always be visible */
 @media (min-width: 769px) {
   .aero-window--second {
     display: flex !important;
@@ -535,7 +534,6 @@ body {
   display: block;
 }
 
-/* mobile-only alternate bottom header */
 .image-header-bottom-mobile {
   display: none;
 }
@@ -814,7 +812,6 @@ body {
   background: #fff;
 }
 
-/* hide scrollbar only when flyer is open */
 .aero-gallery-body:has(.flyer-inline-view.is-open) {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -1528,23 +1525,6 @@ body::after {
   pointer-events: none;
 }
 
-/* ==================================================
-   MOBILE GRID DEFAULT STATE
-================================================== */
-.mobile-grid-wrap,
-.mobile-grid {
-  display: none;
-}
-
-/* ==================================================
-   RESPONSIVE
-================================================== */
-@media (max-width: 900px) {
-  .flyer-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 768px) {
   :root {
     --mobile-player-offset: 96px;
@@ -1641,21 +1621,6 @@ body::after {
     width: min(88vw, 360px);
   }
 
-  .mobile-grid-item {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .mobile-grid-item .tbl-img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .mobile-grid-item .tbl-card {
-    width: 100%;
-  }
-
   .e-wrap {
     --y: 138px;
     transform:
@@ -1666,7 +1631,6 @@ body::after {
     margin-bottom: 0;
   }
 
-  /* mobile: second windows hidden until triggered */
   .aero-window--second {
     opacity: 0 !important;
     pointer-events: none !important;
@@ -1699,7 +1663,6 @@ body::after {
     transform: translateY(142px) !important;
   }
 
-  /* mobile trigger windows open centered */
   #pets-window,
   #under-construction-window,
   #come-back-soon-window {
@@ -1749,201 +1712,5 @@ body::after {
   .flyer-intro.is-blurred {
     filter: blur(3px);
     opacity: 0.3;
-  }
-}
-
-@media (max-width: 640px) {
-  .mobile-grid-wrap {
-    display: block;
-    width: 100%;
-    margin-top: 150px !important;
-    margin-bottom: 40px;
-    padding: 0 12px 40px;
-    box-sizing: border-box;
-    overflow: visible;
-  }
-
-  .mobile-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px 12px;
-    align-items: start;
-    overflow: visible;
-  }
-
-  .image-table-wrap {
-    display: none;
-  }
-
-  .mobile-grid-item {
-    min-width: 0;
-  }
-
-  .mobile-grid-item--wide {
-    grid-column: span 2;
-  }
-
-  .mobile-grid-item .tbl-img {
-    width: min(var(--w, 180px), 100%);
-    transform: none !important;
-    margin: 0 auto;
-  }
-
-  .mobile-grid-item .tbl-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .mobile-grid-item .tbl-img-wrap {
-    position: relative;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-  }
-
-  .mobile-grid-item .live-date {
-    position: static !important;
-    left: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    display: block;
-    width: 100%;
-    margin-top: 8px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.15;
-  }
-
-  .mobile-grid-item .tbl-caption {
-    margin-top: 8px;
-    max-width: 240px;
-    font-size: 18px;
-  }
-
-  #welcome-stars-mobile {
-    width: min(260px, 100%) !important;
-  }
-
-  .flyer-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .pets-frame-wrap {
-    grid-template-columns: 34px minmax(0, 1fr) 34px;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .pets-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .pets-glitter-frame {
-    width: min(200px, 100%);
-    min-width: 0;
-  }
-
-  .pets-text {
-    width: 100%;
-  }
-
-  .pets-text h2 {
-    font-size: 15px;
-  }
-
-  .pets-text p {
-    font-size: 13px;
-    line-height: 1.4;
-  }
-
-  .pets-arrow {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
-    font-size: 22px !important;
-  }
-
-  .pets-arrow-left,
-  .pets-arrow-right {
-    justify-self: center;
-    align-self: center;
-  }
-
-  .image-header-bottom-mobile {
-    margin: 120px 0 24px;
-  }
-
-  .about-window {
-    width: calc(100vw - 12px) !important;
-    max-width: calc(100vw - 12px) !important;
-  }
-
-  .about-image-content {
-    padding: 10px;
-  }
-
-  .clients-table {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px 12px;
-  }
-
-  .client-stack {
-    gap: 0;
-  }
-
-  .client-gif {
-    width: 74px;
-    height: 74px;
-  }
-
-  .client-stack .client-gif {
-    width: 74px;
-    height: auto;
-    margin: 0;
-  }
-
-  .client-item span {
-    font-size: 10px;
-  }
-}
-
-/* ==================================================
-   HARD STOP: NEVER SHOW DESKTOP + MOBILE TOGETHER
-================================================== */
-.mobile-grid-wrap,
-.mobile-grid {
-  display: none !important;
-}
-
-.image-table-wrap {
-  display: flex !important;
-}
-
-@media (max-width: 640px) {
-  .image-table-wrap {
-    display: none !important;
-  }
-
-  .mobile-grid-wrap {
-    display: block !important;
-    width: 100%;
-    margin-top: 150px !important;
-    margin-bottom: 40px;
-    padding: 0 12px 40px;
-    box-sizing: border-box;
-    overflow: visible;
-  }
-
-  .mobile-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px 12px;
-    align-items: start;
-    overflow: visible;
   }
 }
