@@ -1,4 +1,30 @@
 /* ==================================================
+   SHARED BODY SCROLL LOCK
+================================================== */
+const BodyScrollLock = (() => {
+  let lockCount = 0;
+
+  function lock() {
+	lockCount += 1;
+	document.body.style.overflow = "hidden";
+  }
+
+  function unlock() {
+	lockCount = Math.max(0, lockCount - 1);
+	if (lockCount === 0) {
+	  document.body.style.overflow = "";
+	}
+  }
+
+  function forceUnlock() {
+	lockCount = 0;
+	document.body.style.overflow = "";
+  }
+
+  return { lock, unlock, forceUnlock };
+})();
+
+/* ==================================================
    FALLING STARS
 ================================================== */
 const STAR_IMAGES = [
@@ -15,19 +41,19 @@ const STAR_IMAGES = [
 
 function spawnStars(count = 50) {
   for (let i = 0; i < count; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
+	const star = document.createElement("div");
+	star.className = "star";
 
-    const img = document.createElement("img");
-    img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
+	const img = document.createElement("img");
+	img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
 
-    star.style.left = Math.random() * window.innerWidth + "px";
-    star.style.width = Math.random() * 18 + 12 + "px";
-    star.style.animationDuration = Math.random() * 15 + 10 + "s";
-    star.style.animationDelay = Math.random() * -15 + "s";
+	star.style.left = Math.random() * window.innerWidth + "px";
+	star.style.width = Math.random() * 18 + 12 + "px";
+	star.style.animationDuration = Math.random() * 15 + 10 + "s";
+	star.style.animationDelay = Math.random() * -15 + "s";
 
-    star.appendChild(img);
-    document.body.appendChild(star);
+	star.appendChild(img);
+	document.body.appendChild(star);
   }
 }
 
@@ -35,7 +61,7 @@ spawnStars(50);
 
 window.addEventListener("resize", () => {
   document.querySelectorAll(".star").forEach((star) => {
-    star.style.left = Math.random() * window.innerWidth + "px";
+	star.style.left = Math.random() * window.innerWidth + "px";
   });
 });
 
@@ -47,32 +73,32 @@ window.addEventListener("resize", () => {
   if (!orbits.length) return;
 
   function rand(min, max) {
-    return Math.random() * (max - min) + min;
+	return Math.random() * (max - min) + min;
   }
 
   function pickSign() {
-    return Math.random() < 0.5 ? -1 : 1;
+	return Math.random() < 0.5 ? -1 : 1;
   }
 
   function applyRandom(el) {
-    const w1 = rand(0.4, 1.2) * pickSign();
-    const w2 = rand(0.6, 1.6) * pickSign();
-    const w3 = rand(0.4, 1.4) * pickSign();
-    const ws1 = rand(0.98, 1.04);
-    const ws2 = rand(0.98, 1.04);
-    const speed = rand(0.55, 1.05);
+	const w1 = rand(0.4, 1.2) * pickSign();
+	const w2 = rand(0.6, 1.6) * pickSign();
+	const w3 = rand(0.4, 1.4) * pickSign();
+	const ws1 = rand(0.98, 1.04);
+	const ws2 = rand(0.98, 1.04);
+	const speed = rand(0.55, 1.05);
 
-    el.style.setProperty("--w1", w1.toFixed(2) + "deg");
-    el.style.setProperty("--w2", w2.toFixed(2) + "deg");
-    el.style.setProperty("--w3", w3.toFixed(2) + "deg");
-    el.style.setProperty("--ws1", ws1.toFixed(3));
-    el.style.setProperty("--ws2", ws2.toFixed(3));
-    el.style.setProperty("--wiggle-speed", speed.toFixed(2) + "s");
+	el.style.setProperty("--w1", w1.toFixed(2) + "deg");
+	el.style.setProperty("--w2", w2.toFixed(2) + "deg");
+	el.style.setProperty("--w3", w3.toFixed(2) + "deg");
+	el.style.setProperty("--ws1", ws1.toFixed(3));
+	el.style.setProperty("--ws2", ws2.toFixed(3));
+	el.style.setProperty("--wiggle-speed", speed.toFixed(2) + "s");
   }
 
   orbits.forEach((el) => {
-    applyRandom(el);
-    el.addEventListener("mouseenter", () => applyRandom(el), { passive: true });
+	applyRandom(el);
+	el.addEventListener("mouseenter", () => applyRandom(el), { passive: true });
   });
 })();
 
@@ -95,125 +121,128 @@ window.addEventListener("resize", () => {
   if (!trigger || !overlay || !closeX) return;
 
   function lockFlyerStage() {
-    document.body.style.overflow = "hidden";
+	BodyScrollLock.lock();
 
-    if (flyerBody) {
-      flyerBody.style.overflow = "hidden";
-      flyerBody.scrollTop = 0;
-    }
+	if (flyerBody) {
+	  flyerBody.style.overflow = "hidden";
+	  flyerBody.scrollTop = 0;
+	}
   }
 
   function unlockFlyerStage() {
-    document.body.style.overflow = overlay.classList.contains("is-open") ? "hidden" : "";
+	BodyScrollLock.unlock();
 
-    if (flyerBody) {
-      flyerBody.style.overflow = "auto";
-    }
+	if (flyerBody) {
+	  flyerBody.style.overflow = "auto";
+	}
   }
 
   function openInlineFlyer(src, altText = "Expanded flyer preview") {
-    if (!flyerInlineView || !flyerInlineImg) return;
+	if (!flyerInlineView || !flyerInlineImg) return;
 
-    flyerInlineImg.src = src;
-    flyerInlineImg.alt = altText;
+	flyerInlineImg.src = src;
+	flyerInlineImg.alt = altText;
 
-    flyerInlineView.classList.add("is-open");
-    flyerInlineView.setAttribute("aria-hidden", "false");
+	flyerInlineView.classList.add("is-open");
+	flyerInlineView.setAttribute("aria-hidden", "false");
 
-    if (flyerGrid) flyerGrid.classList.add("is-blurred");
-    if (flyerIntro) flyerIntro.classList.add("is-blurred");
+	if (flyerGrid) flyerGrid.classList.add("is-blurred");
+	if (flyerIntro) flyerIntro.classList.add("is-blurred");
 
-    lockFlyerStage();
+	lockFlyerStage();
   }
 
   function closeInlineFlyer() {
-    if (!flyerInlineView || !flyerInlineImg) return;
+	if (!flyerInlineView || !flyerInlineImg) return;
 
-    flyerInlineView.classList.remove("is-open");
-    flyerInlineView.setAttribute("aria-hidden", "true");
-    flyerInlineImg.src = "";
+	flyerInlineView.classList.remove("is-open");
+	flyerInlineView.setAttribute("aria-hidden", "true");
+	flyerInlineImg.src = "";
 
-    if (flyerGrid) flyerGrid.classList.remove("is-blurred");
-    if (flyerIntro) flyerIntro.classList.remove("is-blurred");
+	if (flyerGrid) flyerGrid.classList.remove("is-blurred");
+	if (flyerIntro) flyerIntro.classList.remove("is-blurred");
 
-    unlockFlyerStage();
+	unlockFlyerStage();
   }
 
   function open() {
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+	overlay.classList.add("is-open");
+	overlay.setAttribute("aria-hidden", "false");
+	BodyScrollLock.lock();
 
-    if (flyerBody) {
-      flyerBody.style.overflow = "auto";
-    }
+	if (flyerBody) {
+	  flyerBody.style.overflow = "auto";
+	}
 
-    closeX.focus();
+	closeX.focus();
   }
 
   function close() {
-    closeInlineFlyer();
-    overlay.classList.remove("is-open");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+	if (flyerInlineView && flyerInlineView.classList.contains("is-open")) {
+	  closeInlineFlyer();
+	}
 
-    if (flyerBody) {
-      flyerBody.style.overflow = "auto";
-    }
+	overlay.classList.remove("is-open");
+	overlay.setAttribute("aria-hidden", "true");
+	BodyScrollLock.unlock();
+
+	if (flyerBody) {
+	  flyerBody.style.overflow = "auto";
+	}
   }
 
   trigger.addEventListener("click", (e) => {
-    e.preventDefault();
-    open();
+	e.preventDefault();
+	open();
   });
 
   closeX.addEventListener("click", (e) => {
-    e.preventDefault();
-    close();
+	e.preventDefault();
+	close();
   });
 
   overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) close();
+	if (e.target === overlay) close();
   });
 
   flyerThumbs.forEach((thumb) => {
-    thumb.addEventListener("click", (e) => {
-      e.preventDefault();
+	thumb.addEventListener("click", (e) => {
+	  e.preventDefault();
 
-      const src = thumb.getAttribute("data-full") || thumb.getAttribute("href");
-      const img = thumb.querySelector("img");
-      const altText = img ? img.alt : "Expanded flyer preview";
+	  const src = thumb.getAttribute("data-full") || thumb.getAttribute("href");
+	  const img = thumb.querySelector("img");
+	  const altText = img ? img.alt : "Expanded flyer preview";
 
-      openInlineFlyer(src, altText);
-    });
+	  openInlineFlyer(src, altText);
+	});
   });
 
   if (flyerInlineClose) {
-    flyerInlineClose.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeInlineFlyer();
-    });
+	flyerInlineClose.addEventListener("click", (e) => {
+	  e.preventDefault();
+	  e.stopPropagation();
+	  closeInlineFlyer();
+	});
   }
 
   if (flyerInlineView) {
-    flyerInlineView.addEventListener("click", (e) => {
-      if (e.target === flyerInlineView) {
-        closeInlineFlyer();
-      }
-    });
+	flyerInlineView.addEventListener("click", (e) => {
+	  if (e.target === flyerInlineView) {
+		closeInlineFlyer();
+	  }
+	});
   }
 
   document.addEventListener("keydown", (e) => {
-    if (!overlay.classList.contains("is-open")) return;
+	if (!overlay.classList.contains("is-open")) return;
 
-    if (e.key === "Escape") {
-      if (flyerInlineView && flyerInlineView.classList.contains("is-open")) {
-        closeInlineFlyer();
-      } else {
-        close();
-      }
-    }
+	if (e.key === "Escape") {
+	  if (flyerInlineView && flyerInlineView.classList.contains("is-open")) {
+		closeInlineFlyer();
+	  } else {
+		close();
+	  }
+	}
   });
 })();
 
@@ -254,18 +283,18 @@ const track_list = [
 
 function syncUI() {
   if (mobile_track_name) {
-    mobile_track_name.textContent = track_list[track_index].name;
+	mobile_track_name.textContent = track_list[track_index].name;
   }
 
   if (mobile_play_button) {
-    mobile_play_button.className = isPlaying
-      ? "playpause-track fas fa-pause"
-      : "playpause-track fas fa-play";
+	mobile_play_button.className = isPlaying
+	  ? "playpause-track fas fa-pause"
+	  : "playpause-track fas fa-play";
   }
 
   if (mobile_mute_icon && curr_track) {
-    mobile_mute_icon.classList.toggle("fa-volume-mute", curr_track.muted);
-    mobile_mute_icon.classList.toggle("fa-volume-up", !curr_track.muted);
+	mobile_mute_icon.classList.toggle("fa-volume-mute", curr_track.muted);
+	mobile_mute_icon.classList.toggle("fa-volume-up", !curr_track.muted);
   }
 }
 
@@ -283,18 +312,19 @@ function playpauseTrack() {
   if (!curr_track) return;
 
   if (isPlaying) {
-    curr_track.pause();
-    isPlaying = false;
-  } else {
-    curr_track.play().then(() => {
-      isPlaying = true;
-      syncUI();
-    }).catch(() => {
-      isPlaying = false;
-    });
+	curr_track.pause();
+	isPlaying = false;
+	syncUI();
+	return;
   }
 
-  syncUI();
+  curr_track.play().then(() => {
+	isPlaying = true;
+	syncUI();
+  }).catch(() => {
+	isPlaying = false;
+	syncUI();
+  });
 }
 
 function nextTrack() {
@@ -335,20 +365,19 @@ if (curr_track) {
   if (!desktopClock && !mobileClock) return;
 
   function updateLiveDateTime() {
-    const now = new Date();
+	const now = new Date();
 
-    const timeString = now.toLocaleTimeString([], {
-      hour: "numeric",
-      minute: "2-digit",
-      second: "2-digit"
-    });
+	const timeString = now.toLocaleTimeString([], {
+	  hour: "numeric",
+	  minute: "2-digit",
+	  second: "2-digit"
+	});
 
-    const dateString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+	const dateString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+	const output = `${timeString}<br>${dateString}`;
 
-    const output = `${timeString}<br>${dateString}`;
-
-    if (desktopClock) desktopClock.innerHTML = output;
-    if (mobileClock) mobileClock.innerHTML = output;
+	if (desktopClock) desktopClock.innerHTML = output;
+	if (mobileClock) mobileClock.innerHTML = output;
   }
 
   updateLiveDateTime();
@@ -357,7 +386,6 @@ if (curr_track) {
 
 /* ==================================================
    EPHEMERA HEADER FADE / RETURN
-   desktop original, mobile later fade
 ================================================== */
 (function () {
   const topHeader = document.querySelector(".image-header-top");
@@ -365,21 +393,21 @@ if (curr_track) {
   if (!topHeader) return;
 
   function handleEphemeraHeader() {
-    const scrollY = window.scrollY || window.pageYOffset;
-    const isMobile = window.innerWidth < 769;
-    const fadeDistance = isMobile
-      ? Math.max(window.innerHeight * 0.75, 260)
-      : 260;
+	const scrollY = window.scrollY || window.pageYOffset;
+	const isMobile = window.innerWidth < 769;
+	const fadeDistance = isMobile
+	  ? Math.max(window.innerHeight * 0.75, 260)
+	  : 260;
 
-    const topOpacity = Math.max(0, 1 - scrollY / fadeDistance);
+	const topOpacity = Math.max(0, 1 - scrollY / fadeDistance);
 
-    topHeader.style.opacity = String(topOpacity);
+	topHeader.style.opacity = String(topOpacity);
 
-    if (topOpacity <= 0.02) {
-      topHeader.classList.add("is-hidden");
-    } else {
-      topHeader.classList.remove("is-hidden");
-    }
+	if (topOpacity <= 0.02) {
+	  topHeader.classList.add("is-hidden");
+	} else {
+	  topHeader.classList.remove("is-hidden");
+	}
   }
 
   window.addEventListener("scroll", handleEphemeraHeader, { passive: true });
@@ -391,7 +419,6 @@ if (curr_track) {
 
 /* ==================================================
    UNDER CONSTRUCTION WINDOW
-   mobile trigger only
 ================================================== */
 (function () {
   const trigger = document.getElementById("pikachu-trigger-mobile");
@@ -401,44 +428,42 @@ if (curr_track) {
   if (!trigger || !windowEl) return;
 
   function openWindow() {
-    windowEl.classList.add("is-visible");
+	windowEl.classList.add("is-visible");
   }
 
   function closeWindow() {
-    windowEl.classList.remove("is-visible");
+	windowEl.classList.remove("is-visible");
   }
 
   trigger.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
+	e.preventDefault();
+	e.stopPropagation();
 
-    const isOpen = windowEl.classList.contains("is-visible");
-
-    if (isOpen) {
-      closeWindow();
-    } else {
-      openWindow();
-    }
+	const isOpen = windowEl.classList.contains("is-visible");
+	if (isOpen) {
+	  closeWindow();
+	} else {
+	  openWindow();
+	}
   });
 
   if (closeBtn) {
-    closeBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      closeWindow();
-    });
+	closeBtn.addEventListener("click", function (e) {
+	  e.preventDefault();
+	  e.stopPropagation();
+	  closeWindow();
+	});
   }
 
   windowEl.addEventListener("click", function (e) {
-    e.stopPropagation();
+	e.stopPropagation();
   });
 
   document.addEventListener("keydown", function (e) {
-    if (!windowEl.classList.contains("is-visible")) return;
-
-    if (e.key === "Escape") {
-      closeWindow();
-    }
+	if (!windowEl.classList.contains("is-visible")) return;
+	if (e.key === "Escape") {
+	  closeWindow();
+	}
   });
 })();
 
@@ -456,21 +481,21 @@ if (curr_track) {
   const petCaption = document.getElementById("pets-caption");
 
   const pets = [
-    {
-      name: "Daisy Gul",
-      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DAISY.png",
-      caption: "gone but never forgotten, prayers up for this diva, our first baby girl - Amad"
-    },
-    {
-      name: "PETUNIA",
-      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Petunia.JPG",
-      caption: "Better known as ‘Toona’. The best bestie a girl could ask for <3. IYKYK. -Amelia"
-    },
-    {
-      name: "Daisy",
-      image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Daisy.JPG",
-      caption: "Tiny, demading, and deeply adored. Heaven gained a princess. -Amelia."
-    }
+	{
+	  name: "Daisy Gul",
+	  image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DAISY.png",
+	  caption: "gone but never forgotten, prayers up for this diva, our first baby girl - Amad"
+	},
+	{
+	  name: "PETUNIA",
+	  image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Petunia.JPG",
+	  caption: "Better known as ‘Toona’. The best bestie a girl could ask for <3. IYKYK. -Amelia"
+	},
+	{
+	  name: "Daisy",
+	  image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Daisy.JPG",
+	  caption: "Tiny, demading, and deeply adored. Heaven gained a princess. -Amelia."
+	}
   ];
 
   let currentPetIndex = 0;
@@ -478,98 +503,89 @@ if (curr_track) {
   if (!triggers.length || !windowEl) return;
 
   function renderPet(index) {
-    if (!pets[index]) return;
+	if (!pets[index]) return;
 
-    if (petImage) {
-      petImage.src = pets[index].image;
-      petImage.alt = pets[index].name;
-    }
+	if (petImage) {
+	  petImage.src = pets[index].image;
+	  petImage.alt = pets[index].name;
+	}
 
-    if (petName) {
-      petName.textContent = pets[index].name;
-    }
+	if (petName) {
+	  petName.textContent = pets[index].name;
+	}
 
-    if (petCaption) {
-      petCaption.textContent = pets[index].caption;
-    }
+	if (petCaption) {
+	  petCaption.textContent = pets[index].caption;
+	}
   }
 
   function openWindow() {
-    windowEl.classList.add("is-visible");
-    renderPet(currentPetIndex);
+	windowEl.classList.add("is-visible");
+	renderPet(currentPetIndex);
   }
 
   function closeWindow() {
-    windowEl.classList.remove("is-visible");
+	windowEl.classList.remove("is-visible");
   }
 
   function showNextPet() {
-    currentPetIndex = (currentPetIndex + 1) % pets.length;
-    renderPet(currentPetIndex);
+	currentPetIndex = (currentPetIndex + 1) % pets.length;
+	renderPet(currentPetIndex);
   }
 
   function showPrevPet() {
-    currentPetIndex = (currentPetIndex - 1 + pets.length) % pets.length;
-    renderPet(currentPetIndex);
+	currentPetIndex = (currentPetIndex - 1 + pets.length) % pets.length;
+	renderPet(currentPetIndex);
   }
 
   triggers.forEach((trigger) => {
-    trigger.addEventListener("click", function (e) {
-      e.stopPropagation();
+	trigger.addEventListener("click", function (e) {
+	  e.stopPropagation();
 
-      const isOpen = windowEl.classList.contains("is-visible");
-
-      if (isOpen) {
-        closeWindow();
-      } else {
-        openWindow();
-      }
-    });
+	  const isOpen = windowEl.classList.contains("is-visible");
+	  if (isOpen) {
+		closeWindow();
+	  } else {
+		openWindow();
+	  }
+	});
   });
 
   if (closeBtn) {
-    closeBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      closeWindow();
-    });
+	closeBtn.addEventListener("click", function (e) {
+	  e.stopPropagation();
+	  closeWindow();
+	});
   }
 
   if (nextBtn) {
-    nextBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      showNextPet();
-    });
+	nextBtn.addEventListener("click", function (e) {
+	  e.stopPropagation();
+	  showNextPet();
+	});
   }
 
   if (prevBtn) {
-    prevBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      showPrevPet();
-    });
+	prevBtn.addEventListener("click", function (e) {
+	  e.stopPropagation();
+	  showPrevPet();
+	});
   }
 
   windowEl.addEventListener("click", function (e) {
-    e.stopPropagation();
+	e.stopPropagation();
   });
 
   document.addEventListener("click", function () {
-    closeWindow();
+	closeWindow();
   });
 
   document.addEventListener("keydown", function (e) {
-    if (!windowEl.classList.contains("is-visible")) return;
+	if (!windowEl.classList.contains("is-visible")) return;
 
-    if (e.key === "Escape") {
-      closeWindow();
-    }
-
-    if (e.key === "ArrowRight") {
-      showNextPet();
-    }
-
-    if (e.key === "ArrowLeft") {
-      showPrevPet();
-    }
+	if (e.key === "Escape") closeWindow();
+	if (e.key === "ArrowRight") showNextPet();
+	if (e.key === "ArrowLeft") showPrevPet();
   });
 
   renderPet(currentPetIndex);
@@ -577,7 +593,6 @@ if (curr_track) {
 
 /* ==================================================
    COME BACK SOON WINDOW
-   mobile trigger
 ================================================== */
 (function () {
   const trigger = document.getElementById("come-back-soon-trigger-mobile");
@@ -587,48 +602,46 @@ if (curr_track) {
   if (!trigger || !windowEl) return;
 
   function openWindow() {
-    windowEl.classList.add("is-visible");
+	windowEl.classList.add("is-visible");
   }
 
   function closeWindow() {
-    windowEl.classList.remove("is-visible");
+	windowEl.classList.remove("is-visible");
   }
 
   trigger.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
+	e.preventDefault();
+	e.stopPropagation();
 
-    const isOpen = windowEl.classList.contains("is-visible");
-
-    if (isOpen) {
-      closeWindow();
-    } else {
-      openWindow();
-    }
+	const isOpen = windowEl.classList.contains("is-visible");
+	if (isOpen) {
+	  closeWindow();
+	} else {
+	  openWindow();
+	}
   });
 
   if (closeBtn) {
-    closeBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      closeWindow();
-    });
+	closeBtn.addEventListener("click", function (e) {
+	  e.preventDefault();
+	  e.stopPropagation();
+	  closeWindow();
+	});
   }
 
   windowEl.addEventListener("click", function (e) {
-    e.stopPropagation();
+	e.stopPropagation();
   });
 
   document.addEventListener("click", function () {
-    closeWindow();
+	closeWindow();
   });
 
   document.addEventListener("keydown", function (e) {
-    if (!windowEl.classList.contains("is-visible")) return;
-
-    if (e.key === "Escape") {
-      closeWindow();
-    }
+	if (!windowEl.classList.contains("is-visible")) return;
+	if (e.key === "Escape") {
+	  closeWindow();
+	}
   });
 })();
 
@@ -643,34 +656,34 @@ if (curr_track) {
   if (!trigger || !overlay || !closeX) return;
 
   function open() {
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    closeX.focus();
+	overlay.classList.add("is-open");
+	overlay.setAttribute("aria-hidden", "false");
+	BodyScrollLock.lock();
+	closeX.focus();
   }
 
   function close() {
-    overlay.classList.remove("is-open");
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+	overlay.classList.remove("is-open");
+	overlay.setAttribute("aria-hidden", "true");
+	BodyScrollLock.unlock();
   }
 
   trigger.addEventListener("click", (e) => {
-    e.preventDefault();
-    open();
+	e.preventDefault();
+	open();
   });
 
   closeX.addEventListener("click", (e) => {
-    e.preventDefault();
-    close();
+	e.preventDefault();
+	close();
   });
 
   overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) close();
+	if (e.target === overlay) close();
   });
 
   document.addEventListener("keydown", (e) => {
-    if (!overlay.classList.contains("is-open")) return;
-    if (e.key === "Escape") close();
+	if (!overlay.classList.contains("is-open")) return;
+	if (e.key === "Escape") close();
   });
 })();
