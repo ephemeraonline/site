@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>★EPHEMERA★</title>
+
+  <meta property="og:title" content="★EPHEMERA★">
+  <meta property="og:description" content="A small creative studio run by two friends with too many browser tabs open.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_PREVIEW.png">
+  <meta property="og:url" content="https://ephemeraonline.world/">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="★EPHEMERA★">
+  <meta name="twitter:description" content="A small creative studio run by two friends with too many browser tabs open.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_PREVIEW.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css?v=10">
+</head>
+
+<body>
+  <div class="page-scale">
+
+	<div class="image-header image-header-top">
+	  <img
+		src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_HEADER_BALLOON.png"
+		alt=""
+		class="image-header-img"
+		style="--w:450px;">
+	</div>
+
+	<div class="e-wrap">
+	  <img
+		id="decor-e"
+		src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
+		alt="EPHEMERA logo">
+
+	  <div class="orbit-container">
+
+		<a href="/flyers">
+		  <img
+			class="orbit"
+			id="flyers-trigger"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYERS_BUTTON.gif"
+			style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:180px;"
+			alt="Flyers">
+		</a>
+
+		<img
+		  class="orbit"
+		  id="about-trigger"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
+		  style="--x:50px; --y:-280px; --r:5deg; --s:1.0; width:180px;"
+		  alt="about">
+
+		<a href="https://www.instagram.com/ephemeraonline.world/" target="_blank" rel="noopener noreferrer">
+		  <img
+			class="orbit"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STAR_INSTAGRAM.png"
+			style="--x:-260px; --y:170px; --r:-15deg; --s:1.0; width:180px;"
+			alt="Instagram">
+		</a>
+
+		<a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+		  <img
+			class="orbit"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
+			style="--x:260px; --y:180px; --r:5deg; --s:0.95; width:630px;"
+			alt="Store">
+		</a>
+
+		<a href="mailto:hi@ephemeraonline.world">
+		  <img
+			class="orbit"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
+			style="--x:260px; --y:-65px; --r:25deg; --s:1.05; width:180px;"
+			alt="Contact">
+		</a>
+
+	  </div>
+	</div>
+
+	<div id="mobile-player" class="aero-window mobile-player">
+	  <div class="aero-header">
+		<div class="aero-title">now playing</div>
+	  </div>
+
+	  <div class="mobile-player-body">
+		<button class="fas fa-backward" onclick="prevTrack()"></button>
+		<button class="playpause-track fas fa-play" onclick="playpauseTrack()"></button>
+		<button class="fas fa-forward" onclick="nextTrack()"></button>
+		<marquee scrollamount="4" class="songtitle"></marquee>
+		<button class="mute-track" onclick="toggleMute()">
+		  <i class="fas fa-volume-up"></i>
+		</button>
+	  </div>
+	</div>
+
+	<div id="welcome-window" class="aero-window aero-window--third" style="--w:900px; --x:40px; --y:920px;">
+	  <div class="aero-header">
+		<div class="aero-title"> welcome message </div>
+	  </div>
+	  <div class="aero-content">
+		<p>
+		  hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out =&#41;
+		</p>
+	  </div>
+	</div>
+
+	<div id="under-construction-window" class="aero-window aero-window--second hidden-window" style="--w:330px; --x:340px; --y:920px;">
+	  <div class="aero-header">
+		<div class="aero-title">under construction </div>
+		<button class="aero-close-btn" id="close-under-construction-window" type="button" aria-label="Close">✕</button>
+	  </div>
+	  <div class="aero-content">
+		<p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time.</p>
+	  </div>
+	</div>
+
+	<div id="come-back-soon-window" class="aero-window aero-window--second hidden-window" style="--w:350px; --x:50px; --y:1850px;">
+	  <div class="aero-header">
+		<div class="aero-title">come back soon </div>
+		<button class="aero-close-btn" id="close-come-back-soon-window" type="button" aria-label="Close">✕</button>
+	  </div>
+	  <div class="aero-content">
+		<p>click around, get lost, and have fun. thank you for being here &lt;3</p>
+	  </div>
+	</div>
+
+	<div id="pets-window" class="aero-window hidden-window" style="--w:560px; --x:530px; --y:1280px;">
+	  <div class="aero-header">
+		<div class="aero-title">FOREVER IN OUR HEARTS</div>
+		<button class="aero-close-btn" id="close-pets-window" type="button" aria-label="Close">✕</button>
+	  </div>
+
+	  <div class="aero-content pets-content">
+		<div class="pets-frame-wrap">
+		  <button class="pets-arrow pets-arrow-left" id="pets-prev" type="button" aria-label="Previous pet">‹</button>
+
+		  <div class="pets-card">
+			<div class="pets-glitter-frame">
+			  <img
+				id="pets-image"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PETS_PLACEHOLDER.png"
+				alt="Featured pet">
+			</div>
+
+			<div class="pets-text">
+			  <h2 id="pets-name">PET NAME</h2>
+			  <p id="pets-caption">
+				a very important creature from the EPHEMERA extended universe.
+			  </p>
+
+			  <a
+				class="pets-submit-btn"
+				href="mailto:hi@ephemeraonline.world?subject=PETS%20PLEASE">
+				submit a tribute
+			  </a>
+			</div>
+		  </div>
+
+		  <button class="pets-arrow pets-arrow-right" id="pets-next" type="button" aria-label="Next pet">›</button>
+		</div>
+	  </div>
+	</div>
+
+	<div class="image-table-wrap">
+	  <table class="image-table">
+		<tr>
+		  <td>
+			<div class="tbl-card">
+			  <div class="tbl-img-wrap">
+				<img
+				  class="tbl-img"
+				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED2.png"
+				  alt=""
+				  style="--w:250px; --x:0px; --y:0px;">
+				<div class="live-date" id="live-date"></div>
+			  </div>
+
+			  <div class="tbl-caption" style="--bg:#a5ff00; --color:#7d43b2;">
+				“i will outlive all my enemies”
+			  </div>
+			</div>
+		  </td>
+
+		  <td>
+			<img
+			  id="welcome-stars"
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_stars.gif"
+			  alt=""
+			  style="--w:400px; --x:30px; --y:0px;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td>
+			<a href="mailto:hi@ephemeraonline.world?subject=Let%27s%20work%20together&body=Hi%20EPHEMERA%2C" class="email-image-link">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif"
+				alt=""
+				style="--w:250px; --x:0px; --y:0px;">
+			</a>
+		  </td>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bear_balloon.gif"
+			  alt=""
+			  style="--w:200px; --x:0px; --y:0px;">
+		  </td>
+		  <td>
+			<a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_SCARY_MOVIES_TEMP.gif"
+				alt=""
+				style="--w:220px; --x:0px; --y:0px;">
+			</a>
+		  </td>
+		  <td>
+			<img
+			  id="pikachu-trigger"
+			  class="tbl-img under-construction-trigger"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif"
+			  alt=""
+			  style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_VIRUS.png"
+			  alt=""
+			  style="--w:250px; --x:0px; --y:0px;">
+		  </td>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BEAR_STAMPS.png"
+			  alt=""
+			  style="--w:120px; --x:40px; --y:0px;">
+		  </td>
+		  <td>
+			<a href="https://www.spacejam.com/1996" target="_blank" rel="noopener noreferrer">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PREZENT.gif"
+				alt=""
+				style="--w:160px; --x:40px; --y:0px;">
+			</a>
+		  </td>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ALWAYS_ONLINE.gif"
+			  alt=""
+			  style="--w:180px; --x:0px; --y:0px;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td>
+			<div class="counter-cell">
+			  <a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+				<img
+				  class="tbl-img"
+				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BAR_COUNTER.png"
+				  alt="counter decoration"
+				  style="--w:220px; --x:0px; --y:-10px;">
+			  </a>
+
+			  <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
+				<img
+				  src="https://hitwebcounter.com/counter/counter.php?page=21479206&style=0013&nbdigits=5&type=page&initCount=0"
+				  alt="Visitor Counter"
+				  border="0">
+			  </a>
+
+			  <br>
+			  VISITORS!
+			</div>
+		  </td>
+
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/fish_kissing.gif"
+			  alt=""
+			  style="--w:180px; --x:0px; --y:10px;">
+		  </td>
+
+		  <td>
+			<a href="https://ephemeraonline.world/Winner.html" target="_blank" rel="noopener noreferrer">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CONGRATS_AD_OH.gif"
+				alt=""
+				style="--w:200px; --x:0px; --y:0px;">
+			</a>
+		  </td>
+
+		  <td>
+			<img
+			  class="tbl-img pets-window-trigger"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
+			  alt="Open pets window"
+			  style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/KITTY_MANIFESTATION.gif"
+			  alt=""
+			  style="--w:180px; --x:-40px; --y:10px; --r:0deg; display:block; margin-bottom:30px;">
+
+			<div style="display:flex; gap:12px; align-items:flex-start; overflow:visible;">
+			  <a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+				<img
+				  class="tbl-img"
+				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/GOTH_STICKER.gif"
+				  alt=""
+				  style="width:220px; height:auto; display:block; object-fit:contain; transform:none;">
+			  </a>
+
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FAIRY_DOLLZ.gif"
+				alt=""
+				style="width:120px; height:auto; display:block; object-fit:contain; transform:none;">
+			</div>
+		  </td>
+
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/AWESOME_DAY.gif"
+			  alt=""
+			  style="--w:180px; --x:-40px; --y:10px; --r:5deg;">
+		  </td>
+
+		  <td>
+			<a href="https://open.spotify.com/playlist/6eNQRcbq2fcD1Yn73woxOk" target="_blank" rel="noopener noreferrer">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CD_ROM.gif"
+				alt=""
+				style="--w:180px; --x:0px; --y:10px;">
+			</a>
+		  </td>
+
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BLINKEE_TOWER.gif"
+			  alt=""
+			  style="--w:152px; --x:0px; --y:0px;">
+		  </td>
+		</tr>
+	  </table>
+	</div>
+
+	<div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
+	  <div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
+		<div class="aero-header">
+		  <div class="aero-title">our flyers</div>
+		  <button class="aero-close-btn" id="aero-gallery-close-x" type="button" aria-label="Close">✕</button>
+		</div>
+
+		<div class="aero-gallery-body">
+		  <div class="flyer-intro">
+			<p>
+			  Rooted in pop-culture, nostalgia, and a little bit of chaos, our studio creates flyers that grab attention, start conversations, and actually make people want to show up. Each one is built to live beyond the post—something you’d screenshot, save, and send to your friends.
+			</p>
+		  </div>
+
+		  <div id="flyer-inline-view" class="flyer-inline-view" aria-hidden="true">
+			<div class="flyer-inline-inner">
+			  <button
+				id="flyer-inline-close"
+				class="flyer-inline-close"
+				type="button"
+				aria-label="Close expanded flyer">✕</button>
+
+			  <img
+				id="flyer-inline-img"
+				class="flyer-inline-img"
+				src=""
+				alt="Expanded flyer preview">
+			</div>
+		  </div>
+
+		  <div class="flyer-grid">
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_THE_MOMENT.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_THE_MOMENT.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_THE_MOMENT.png" alt="The Moment flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_MADISON_BEER.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_MADISON_BEER.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_MADISON_BEER.png" alt="Madison Beer flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png" alt="Hemlocke Apple flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" alt="Fungies flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png" alt="Affirmations flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png" alt="5SOS flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png" alt="EOW flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png" alt="Addison flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png" alt="Halloween flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png" alt="Hemlocke Apple flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png" alt="Hire Ephemera flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png" alt="Daya flyer"></a>
+			<a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png"><img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" alt="Launch flyer"></a>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<div id="flyer-lightbox" class="flyer-lightbox" aria-hidden="true">
+	  <div class="flyer-lightbox-inner">
+		<button id="flyer-lightbox-close" class="flyer-lightbox-close" type="button" aria-label="Close">✕</button>
+		<img id="flyer-lightbox-img" class="flyer-lightbox-img" src="" alt="Expanded flyer">
+	  </div>
+	</div>
+
+	<div id="about-overlay" class="aero-overlay" aria-hidden="true">
+	  <div class="aero-window aero-gallery about-window" role="dialog" aria-modal="true" aria-label="About">
+		<div class="aero-header">
+		  <div class="aero-title">about us</div>
+		  <button class="aero-close-btn" id="about-close-x" type="button" aria-label="Close">✕</button>
+		</div>
+
+		<div class="aero-content about-aero-content about-desktop-content">
+		  <div class="aero-about-body">
+			<div class="about-sheet-v2">
+
+			  <div class="about-top-meta">
+				<span>HI@EPHEMERAONLINE.WORLD</span>
+				<span>FROM THE DESK OF EPHEMERA</span>
+				<span>@EPHEMERAONLINE.WORLD</span>
+			  </div>
+
+			  <div class="about-star-divider">
+				★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+			  </div>
+
+			  <section class="about-hero-v2">
+				<div class="about-brand-image-wrap">
+				  <img
+					src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png"
+					alt="EPHEMERA"
+					class="about-brand-image-v2">
+				</div>
+
+				<p class="about-intro-v2">
+				  Ephemera is a creative studio that runs on pop-culture.
+				  We offer creative services to our favorite brands and artists
+				  to help tell stories that actually hit — across screens, stages,
+				  and social feeds. Sometimes we make merch.
+				</p>
+			  </section>
+
+			  <section class="about-services-v2">
+				<article class="service-card service-card--pink">
+				  <div class="service-pill">WORLD BUILDING</div>
+				  <div class="service-card-body">
+					<ul>
+					  <li>Creative &amp; Art direction</li>
+					  <li>Brand voice + tone</li>
+					  <li>Visual identity</li>
+					  <li>Starter kit</li>
+					</ul>
+					<p class="service-tldr">tldr:we define how you exist</p>
+				  </div>
+				</article>
+
+				<article class="service-card service-card--green">
+				  <div class="service-pill">CAMPAIGNS</div>
+				  <div class="service-card-body">
+					<ul>
+					  <li>Concepts + big ideas</li>
+					  <li>Messaging &amp; copy direction</li>
+					  <li>Launches, drops, announcements</li>
+					  <li>Rollout planning</li>
+					</ul>
+					<p class="service-tldr">tldr:we make people care</p>
+				  </div>
+				</article>
+
+				<article class="service-card service-card--blue">
+				  <div class="service-pill">EPHEMERA</div>
+				  <div class="service-card-body">
+					<ul>
+					  <li>Flyers, posters, zines</li>
+					  <li>Mailers, inserts, prints</li>
+					  <li>Event collateral</li>
+					  <li>Limited-run merch</li>
+					</ul>
+					<p class="service-tldr">tldr:we make things worth keeping</p>
+				  </div>
+				</article>
+
+				<article class="service-card service-card--yellow">
+				  <div class="service-pill">DIGITAL</div>
+				  <div class="service-card-body">
+					<ul>
+					  <li>Email moments</li>
+					  <li>Social strategy</li>
+					  <li>Website design</li>
+					  <li>Digital presence</li>
+					</ul>
+					<p class="service-tldr">tldr:we keep brands alive online</p>
+				  </div>
+				</article>
+			  </section>
+
+			  <section class="about-logo-strip">
+				<div class="about-logo-strip-inner">
+				  <div class="about-clients-section">
+					<h2 class="about-clients-heading">SOME CLIENTS WE HAVE WORKED WITH</h2>
+
+					<div class="clients-table">
+					  <div class="client-item">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/sanrio.gif" alt="Sanrio">
+						<span>SANRIO</span>
+					  </div>
+
+					  <div class="client-item">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/spongebob.gif" alt="Nickelodeon">
+						<span>NICKELODEON</span>
+					  </div>
+
+					  <div class="client-item">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/fire-mtv.gif" alt="Viacom">
+						<span>VIACOM</span>
+					  </div>
+
+					  <div class="client-item">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/apple%20music.gif" alt="Apple Music">
+						<span>APPLE MUSIC</span>
+					  </div>
+
+					  <div class="client-item">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bubbles.gif" alt="Cartoon Network">
+						<span>CARTOON NETWORK</span>
+					  </div>
+
+					  <div class="client-item">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/hulu.gif" alt="Hulu">
+						<span>HULU</span>
+					  </div>
+
+					  <div class="client-item">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/disney.gif" alt="Disney">
+						<span>DISNEY</span>
+					  </div>
+
+					  <div class="client-item">
+						<div class="client-stack">
+						  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/blinkiesCafe-J7.gif" alt="">
+						  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/blinkiesCafe-9p.gif" alt="">
+						  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/netflix.gif" alt="">
+						  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/blinkiesCafe-tQ.gif" alt="">
+						</div>
+						<span>AND MORE!</span>
+					  </div>
+					</div>
+
+				  </div>
+				</div>
+			  </section>
+
+			</div>
+		  </div>
+		</div>
+
+		<div class="aero-content about-image-content about-mobile-content" aria-hidden="true">
+		  <button class="about-poster-btn" id="about-poster-btn" type="button" aria-label="Open about poster">
+			<img
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT_SHEET.png"
+			  data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT_SHEET.png"
+			  alt="About EPHEMERA poster"
+			  class="about-poster-img"
+			  id="about-poster-img">
+		  </button>
+		</div>
+	  </div>
+	</div>
+
+	<div id="about-lightbox" class="flyer-lightbox" aria-hidden="true">
+	  <div class="flyer-lightbox-inner">
+		<button id="about-lightbox-close" class="flyer-lightbox-close" type="button" aria-label="Close">✕</button>
+		<img id="about-lightbox-img" class="flyer-lightbox-img" src="" alt="Expanded about poster">
+	  </div>
+	</div>
+
+	<audio id="music" src=""></audio>
+  </div>
+
+  <script src="script.js?v=10"></script>
+</body>
+</html>
