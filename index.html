@@ -1652,10 +1652,33 @@
 		min-height: 0;
 	  }
 	
+	  .stage {
+		position: relative;
+		min-height: 1180px;
+	  }
+	
+	  .e-wrap-mobile-old {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		margin: 0;
+		transform: translate(-50%, 490px) scale(0.5);
+	  }
+	
+	  #welcome-window {
+		position: absolute;
+		top:760px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: calc(100vw - 28px);
+		max-width: calc(100vw - 28px);
+		margin: 0;
+	  }
+	
 	  .mobile-grid-wrap {
 		display: block !important;
 		width: 100%;
-		margin-top: 470px !important;
+		margin-top: -220px !important;
 		margin-bottom: 10px;
 		padding: 0 12px 40px;
 		box-sizing: border-box;
