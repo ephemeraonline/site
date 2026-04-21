@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>★EPHEMERA★</title>
+  <title>EPHEMERA window test</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -323,6 +323,14 @@
 		  scale(var(--s, 1));
 	  }
 	}
+
+	.e-wrap-mobile-old {
+	  display: none;
+	}
+
+	/* ==================================================
+	   MOBILE-ONLY OLD E-WRAP CLONE
+	================================================== */
 
 	/* ==================================================
 	   AERO WINDOW
@@ -1353,6 +1361,30 @@
 		font-size: 14px;
 	  }
 
+	  #mobile-player {
+		display: block !important;
+		position: fixed;
+		top: 25px;
+		left: 50%;
+		right: auto;
+		width: auto;
+		max-width: none;
+		margin: 0;
+		padding: 0;
+		z-index: 1000003;
+		transform: translate(-50%, -50%) !important;
+		box-sizing: border-box;
+	  }
+
+	  .mobile-player .mobile-player-body {
+		width: min(380px, calc(100vw - 24px));
+	  }
+
+	  .mobile-player .mute-track {
+		margin-left: auto;
+		margin-right: 4px;
+	  }
+
 	  .image-header-top {
 		top: 70px;
 		display: flex !important;
@@ -1377,6 +1409,71 @@
 		width: min(88vw, 360px);
 	  }
 
+	  .stage .e-wrap {
+		display: none !important;
+	  }
+
+	  .e-wrap-mobile-old {
+		--w: 50%;
+		--x: 0px;
+		--y: 490px;
+		display: block !important;
+		width: var(--w);
+		max-width: 420px;
+		min-width: 120px;
+		height: 200px;
+		margin: 0 auto -70px;
+		position: relative;
+		transform: translate(var(--x), var(--y)) scale(0.5);
+		transform-origin: center top;
+		z-index: 50;
+		pointer-events: none;
+	  }
+
+	  #decor-e-mobile-old {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%) translateY(40px);
+		width: 60%;
+		height: auto;
+		z-index: 50;
+		pointer-events: none;
+	  }
+
+	  .orbit-container-mobile-old {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 60%;
+		height: 60%;
+		transform: translate(-50%, -50%) translateY(40px);
+		pointer-events: none;
+		z-index: 60;
+	  }
+
+	  .orbit-mobile-old {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 18%;
+		max-width: 240px;
+		min-width: 60px;
+		display: block;
+		height: auto;
+		pointer-events: auto;
+		z-index: 10;
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), var(--y))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+		animation: float-mobile-old 6s ease-in-out infinite;
+		transition: transform 0.2s ease;
+		will-change: transform;
+	  }
+
+
 	  .stage {
 		width: calc(100vw - 24px);
 		height: auto;
@@ -1390,8 +1487,7 @@
 		width: 100%;
 		height: 220px;
 		margin: 0 auto 18px;
-		transform: none;
-		--y: 138px;
+		--y: 160px;
 		transform:
 		  translate(var(--x, 0px), calc(var(--y) - 10px))
 		  scale(0.5);
@@ -1429,50 +1525,9 @@
 		}
 	  }
 
-	  .aero-window {
-		position: relative !important;
-		top: auto !important;
-		left: auto !important;
-		transform: none !important;
-		width: min(92vw, 420px) !important;
-		max-width: 92vw !important;
-		margin: 0 auto 16px !important;
-	  }
-
-	  .aero-window:not(#mobile-player):not(#welcome-window):not(#pets-window):not(#under-construction-window):not(#come-back-soon-window),
-	  .aero-window--first {
-		width: min(92vw, 420px) !important;
-		max-width: 92vw !important;
-		margin: 8px auto 8px !important;
-		transform: none !important;
-	  }
-
-	  #welcome-window {
-		width: min(92vw, 420px) !important;
-		max-width: 92vw !important;
-		margin: 150px auto 16px !important;
-		transform: none !important;
-	  }
-
 	  .image-table-wrap {
 		width: calc(100vw - 24px);
 		margin: 40px auto 40px;
-	  }
-
-	  .image-table,
-	  .image-table tbody,
-	  .image-table tr,
-	  .image-table td {
-		display: block;
-		width: 100%;
-	  }
-
-	  .image-table td {
-		padding: 10px 0;
-	  }
-
-	  .tbl-img {
-		transform: none !important;
 	  }
 
 	  .tbl-caption {
@@ -1482,10 +1537,6 @@
 
 	  .live-date {
 		font-size: 14px;
-	  }
-
-	  .mobile-player .mobile-player-body {
-		width: min(380px, calc(100vw - 24px));
 	  }
 
 	  .mobile-grid-item {
@@ -1502,6 +1553,10 @@
 	  .mobile-grid-item .tbl-card {
 		width: 100%;
 	  }
+	  
+  #welcome-window {
+		  top: 620px;
+		}
 
 	  #under-construction-window,
 	  #come-back-soon-window {
@@ -1567,17 +1622,46 @@
 	  }
 	}
 
+
+	@keyframes float-mobile-old {
+	  0% {
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), var(--y))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+	  }
+	  50% {
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), calc(var(--y) - 8px))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+	  }
+	  100% {
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), var(--y))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+	  }
+	}
+
 	@media (max-width: 640px) {
+	  .page {
+		min-height: 0;
+	  }
+	
 	  .mobile-grid-wrap {
 		display: block !important;
 		width: 100%;
-		margin-top: 150px !important;
-		margin-bottom: 40px;
+		margin-top: 470px !important;
+		margin-bottom: 10px;
 		padding: 0 12px 40px;
 		box-sizing: border-box;
 		overflow: visible;
 	  }
-
+	
 	  .mobile-grid {
 		display: grid !important;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1585,31 +1669,31 @@
 		align-items: start;
 		overflow: visible;
 	  }
-
+	
 	  .image-table-wrap {
 		display: none !important;
 	  }
-
+	
 	  .mobile-grid-item {
 		min-width: 0;
 	  }
-
+	
 	  .mobile-grid-item--wide {
 		grid-column: span 2;
 	  }
-
+	
 	  .mobile-grid-item .tbl-img {
 		width: min(var(--w, 180px), 100%);
 		transform: none !important;
 		margin: 0 auto;
 	  }
-
+	
 	  .mobile-grid-item .tbl-card {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	  }
-
+	
 	  .mobile-grid-item .tbl-img-wrap {
 		position: relative;
 		display: flex !important;
@@ -1618,7 +1702,7 @@
 		justify-content: flex-start;
 		width: 100%;
 	  }
-
+	
 	  .mobile-grid-item .live-date {
 		position: static !important;
 		left: auto !important;
@@ -1631,97 +1715,97 @@
 		font-size: 14px;
 		line-height: 1.15;
 	  }
-
+	
 	  .mobile-grid-item .tbl-caption {
 		margin-top: 8px;
 		max-width: 240px;
 		font-size: 18px;
 	  }
-
+	
 	  #welcome-stars-mobile {
 		width: min(260px, 100%) !important;
 	  }
-
+	
 	  .flyer-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	  }
-
+	
 	  .pets-frame-wrap {
 		grid-template-columns: 34px minmax(0, 1fr) 34px;
 		gap: 8px;
 		align-items: center;
 	  }
-
+	
 	  .pets-card {
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
 	  }
-
+	
 	  .pets-glitter-frame {
 		width: min(200px, 100%);
 		min-width: 0;
 	  }
-
+	
 	  .pets-text {
 		width: 100%;
 	  }
-
+	
 	  .pets-text h2 {
 		font-size: 15px;
 	  }
-
+	
 	  .pets-text p {
 		font-size: 13px;
 		line-height: 1.4;
 	  }
-
+	
 	  .pets-arrow {
 		width: 34px;
 		height: 34px;
 		min-width: 34px;
 		font-size: 22px !important;
 	  }
-
+	
 	  .pets-arrow-left,
 	  .pets-arrow-right {
 		justify-self: center;
 		align-self: center;
 	  }
-
+	
 	  .image-header-bottom-mobile {
 		margin: 120px 0 24px;
 	  }
-
+	
 	  .about-window {
 		width: calc(100vw - 12px) !important;
 		max-width: calc(100vw - 12px) !important;
 	  }
-
+	
 	  .about-image-content {
 		padding: 10px;
 	  }
-
+	
 	  .clients-table {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 16px 12px;
 	  }
-
+	
 	  .client-stack {
 		gap: 0;
 	  }
-
+	
 	  .client-gif {
 		width: 74px;
 		height: 74px;
 	  }
-
+	
 	  .client-stack .client-gif {
 		width: 74px;
 		height: auto;
 		margin: 0;
 	  }
-
+	
 	  .client-item span {
 		font-size: 10px;
 	  }
@@ -1756,6 +1840,57 @@
 	  alt=""
 	  class="image-header-img"
 	  style="--w:450px;">
+  </div>
+
+
+  <!-- MOBILE-ONLY OLD E-WRAP CLONE -->
+  <div class="e-wrap-mobile-old">
+	<img
+	  id="decor-e-mobile-old"
+	  src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
+	  alt="EPHEMERA logo">
+
+	<div class="orbit-container-mobile-old">
+	  <a href="/flyers">
+		<img
+		  class="orbit-mobile-old"
+		  id="flyers-trigger-mobile-old"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYERS_BUTTON.gif"
+		  style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:180px;"
+		  alt="Flyers">
+	  </a>
+
+	  <img
+		class="orbit-mobile-old"
+		id="about-trigger-mobile-old"
+		src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
+		style="--x:50px; --y:-280px; --r:5deg; --s:1.0; width:180px;"
+		alt="About">
+
+	  <a href="https://www.instagram.com/ephemeraonline.world/" target="_blank" rel="noopener noreferrer">
+		<img
+		  class="orbit-mobile-old"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STAR_INSTAGRAM.png"
+		  style="--x:-260px; --y:170px; --r:-15deg; --s:1.0; width:180px;"
+		  alt="Instagram">
+	  </a>
+
+	  <a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+		<img
+		  class="orbit-mobile-old"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
+		  style="--x:260px; --y:180px; --r:5deg; --s:0.95; width:630px;"
+		  alt="Store">
+	  </a>
+
+	  <a href="mailto:hi@ephemeraonline.world">
+		<img
+		  class="orbit-mobile-old"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
+		  style="--x:260px; --y:-65px; --r:25deg; --s:1.05; width:180px;"
+		  alt="Contact">
+	  </a>
+	</div>
   </div>
 
   <div class="page">
@@ -2816,18 +2951,18 @@
 	const curr_track = document.getElementById("music");
 
 	const track_list = [
-	  { name: "HYD - Angel", path: "https://files.catbox.moe/sre606.mp3" },
-	  { name: "2Charm - prerogative", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/2charm-prerogative.mp3" },	
-	  { name: "ADÉLA - KGB", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/01%20KGB%20%5BThe%20Unreleased%20Collection%5D.mp3" },
-	  { name: "Olivia Rodrigo - drop dead", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/Olivia%20Rodrigo%20-%20drop%20dead.mp3" },
-	  { name: "Charli xcx - Sympathy is a knife featuring ariana grande", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/03%20Sympathy%20is%20a%20Knife%20(feat.%20Ariana%20Grande).mp33" },
-	  { name: "Mckayla Twiggs - What A Girl Wants", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/04%20-%20What%20A%20Girl%20Wants.mp3" },
-	  { name: "Danny L Harle - Raft in the Sea Featuring Julia Michaels", path: "https://files.catbox.moe/7ehw00.mp3" },
-	  { name: "Slayyyter - GAS STATION", path: "https://files.catbox.moe/3ahhlz.mp3" },
-	  { name: "Justine Skye - Just A Girl", path: "https://files.catbox.moe/29chhm.mp3" },
-	  { name: "Daya - Bandit", path: "https://files.catbox.moe/lzmwtq.mp3" },
-	  { name: "Camila Cabello feat. JT & Yung Miami - Dade County Dreaming", path: "https://files.catbox.moe/ulber5.mp3" },
-	  { name: "Hemloke Springs - Sever the Blight", path: "https://files.catbox.moe/5zb6s6.mp3" }
+	 { name: "HYD - Angel", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/Hyd%20-%20Angel.mp3" },
+	   { name: "Olivia Rodrigo - drop dead", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/Olivia%20Rodrigo%20-%20drop%20dead.mp3" },
+	   { name: "ADÉLA - KGB", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/01%20KGB%20%5BThe%20Unreleased%20Collection%5D.mp3" },
+	   { name: "2Charm - prerogative", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/2charm-prerogative.mp3" },
+	   { name: "Charli xcx - Sympathy is a knife featuring ariana grande", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/03%20Sympathy%20is%20a%20Knife%20(feat.%20Ariana%20Grande).mp3" },
+	   { name: "Mckayla Twiggs - What A Girl Wants", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/04%20-%20What%20A%20Girl%20Wants.mp3" },
+	   { name: "Danny L Harle - Raft in the Sea Featuring Julia Michaels", path: "https://files.catbox.moe/7ehw00.mp3" },
+	   { name: "Slayyyter - GAS STATION", path: "https://files.catbox.moe/3ahhlz.mp3" },
+	   { name: "Justine Skye - Just A Girl", path: "https://files.catbox.moe/29chhm.mp3" },
+	   { name: "Daya - Bandit", path: "https://files.catbox.moe/lzmwtq.mp3" },
+	   { name: "Camila Cabello feat. JT & Yung Miami - Dade County Dreaming", path: "https://files.catbox.moe/ulber5.mp3" },
+	   { name: "Hemloke Springs - Sever the Blight", path: "https://files.catbox.moe/5zb6s6.mp3" }
 	];
 
 	function syncUI() {
