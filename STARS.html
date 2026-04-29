@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Falling Stars Test</title>
+
+  <style>
+	* {
+	  box-sizing: border-box;
+	}
+
+	html,
+	body {
+	  margin: 0;
+	  padding: 0;
+	  width: 100%;
+	  min-height: 100%;
+	  overflow-x: hidden;
+	}
+
+	body {
+	  background: #ffffff;
+	  font-family: Arial, Helvetica, sans-serif;
+	  color: #000;
+	}
+
+	.page {
+	  position: relative;
+	  width: 100%;
+	  min-height: 100vh;
+	  overflow: hidden;
+	  background: #ffffff;
+	}
+
+	/* ==================================================
+	   FALLING STARS
+	================================================== */
+	.star {
+	  position: fixed;
+	  top: -80px;
+	  left: 0;
+	  pointer-events: none;
+	  z-index: 1;
+	  animation: fall linear infinite;
+	  will-change: transform, opacity;
+	}
+
+	.star img {
+	  width: 100%;
+	  height: auto;
+	  display: block;
+	  opacity: 0.95;
+	  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+	}
+
+	@keyframes fall {
+	  to {
+		transform: translateY(calc(100vh + 160px)) rotate(360deg);
+		opacity: 0;
+	  }
+	}
+  </style>
+</head>
+
+<body>
+  <main class="page"></main>
+
+  <script>
+	/* ==================================================
+	   FALLING STARS
+	================================================== */
+	const STAR_IMAGES = [
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BLUE_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_GREEN_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_PINK_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_RED_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ORANGE_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_PURPLE.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_YELLOW.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_WKDBLUE.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_MAGENTA.png"
+	];
+
+	function spawnStars(count = 50) {
+	  for (let i = 0; i < count; i++) {
+		const star = document.createElement("div");
+		star.className = "star";
+
+		const img = document.createElement("img");
+		img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
+		img.alt = "";
+
+		star.style.left = Math.random() * window.innerWidth + "px";
+		star.style.width = Math.random() * 18 + 12 + "px";
+		star.style.animationDuration = Math.random() * 15 + 10 + "s";
+		star.style.animationDelay = Math.random() * -15 + "s";
+
+		star.appendChild(img);
+		document.body.appendChild(star);
+	  }
+	}
+
+	spawnStars(50);
+  </script>
+</body>
+</html>
