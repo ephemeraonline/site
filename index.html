@@ -1435,7 +1435,7 @@
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%) translateY(40px);
-		width: 60%;
+		width: 130%;
 		height: auto;
 		z-index: 50;
 		pointer-events: none;
@@ -3242,6 +3242,39 @@
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+
+<script>
+/* ============================================
+   MOBILE-ONLY HEADER HIDE (ONE WAY)
+   DESKTOP COMPLETELY UNTOUCHED
+============================================ */
+(function () {
+  // HARD EXIT — desktop never even registers this
+  if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+  const header = document.querySelector('.image-header-top');
+  if (!header) return;
+
+  let hidden = false;
+
+  // Visual trigger: just before the main content shift
+  // (safe, scroll-based, no floating elements involved)
+  const HIDE_SCROLL_Y = 320;
+
+  window.addEventListener(
+	'scroll',
+	() => {
+	  if (hidden) return;
+
+	  if (window.scrollY >= HIDE_SCROLL_Y) {
+		header.classList.add('is-hidden');
+		hidden = true;
+	  }
+	},
+	{ passive: true }
+  );
 })();
 </script>
 
