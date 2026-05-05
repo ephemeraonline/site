@@ -3247,36 +3247,45 @@
 
 <script>
 /* ============================================
-   MOBILE-ONLY HEADER HIDE (ONE WAY)
+   MOBILE-ONLY HEADER VISIBILITY
+   - hides when scrolling down past threshold
+   - reappears when scrolling UP past same point
+   - original position (not pinned)
    DESKTOP COMPLETELY UNTOUCHED
 ============================================ */
 (function () {
-  // HARD EXIT — desktop never even registers this
   if (!window.matchMedia('(max-width: 768px)').matches) return;
 
   const header = document.querySelector('.image-header-top');
   if (!header) return;
 
+  const THRESHOLD = 320; // same visual point as before
   let hidden = false;
-
-  // Visual trigger: just before the main content shift
-  // (safe, scroll-based, no floating elements involved)
-  const HIDE_SCROLL_Y = 320;
+  let lastY = window.scrollY;
 
   window.addEventListener(
 	'scroll',
 	() => {
-	  if (hidden) return;
+	  const y = window.scrollY;
+	  const scrollingUp = y < lastY;
 
-	  if (window.scrollY >= HIDE_SCROLL_Y) {
+	  // Hide when scrolling down past threshold
+	  if (!hidden && y >= THRESHOLD) {
 		header.classList.add('is-hidden');
 		hidden = true;
 	  }
+
+	  // Show again when scrolling UP past threshold
+	  if (hidden && scrollingUp && y < THRESHOLD) {
+		header.classList.remove('is-hidden');
+		hidden = false;
+	  }
+
+	  lastY = y;
 	},
 	{ passive: true }
   );
 })();
 </script>
-
 </body>
 </html>
