@@ -1,1 +1,3291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> ★EPHEMERA★ </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
+  <style>
+	* {
+	  box-sizing: border-box;
+	  cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_GOOD.png"), auto !important;
+	}
+
+	a,
+	button,
+	img,
+	.orbit {
+	  cursor: url("https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_CURSOR_BAD.png"), pointer !important;
+	}
+
+	html,
+	body {
+	  margin: 0;
+	  padding: 0;
+	  width: 100%;
+	  overflow-x: hidden;
+	}
+
+	body {
+	  background: #ffffff;
+	  font-family: Arial, Helvetica, sans-serif;
+	  color: #000;
+	  font-size: 12px;
+	}
+
+	@font-face {
+	  font-family: "NurealRegular";
+	  src: url("https://files.catbox.moe/zcgiwn.woff2") format("woff2");
+	}
+
+	@font-face {
+	  font-family: "Myriad Pro";
+	  src: url("https://dl.dropbox.com/scl/fi/z8hqw29h8a9i3a3cbbxkt/MYRIADPRO-REGULAR.OTF?rlkey=begwqxljs2gzyw26h00oeovzi&st=px0mbeax&dl=0") format("woff");
+	}
+
+	@font-face {
+	  font-family: "ComicSansWeb";
+	  src: url("https://github.com/ephemeraonline/site/raw/refs/heads/main/FONTS/comic-sans.woff") format("woff");
+	  font-weight: 400;
+	  font-style: normal;
+	  font-display: swap;
+	}
+
+	.page {
+	  position: relative;
+	  min-height: 1400px;
+	  width: 100%;
+	  overflow-x: hidden;
+	}
+
+	/* ==================================================
+	   FALLING STARS
+	================================================== */
+	.star {
+	  position: fixed;
+	  top: -80px;
+	  left: 0;
+	  pointer-events: none;
+	  z-index: -9999;
+	  animation: fall linear infinite;
+	  will-change: transform, opacity;
+	}
+
+	.star img {
+	  width: 100%;
+	  height: auto;
+	  display: block;
+	  opacity: 0.95;
+	  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+	}
+
+	@keyframes fall {
+	  to {
+		transform: translateY(calc(100vh + 160px)) rotate(360deg);
+		opacity: 0;
+	  }
+	}
+
+	/* ==================================================
+	   TOP GREEN BAR
+	================================================== */
+	.top-strip {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 58px;
+	  background: #a5ff00;
+	  z-index: 1000;
+	}
+
+	.top-strip::after {
+	  content: "⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹";
+	  position: absolute;
+	  top: 12px;
+	  left: 0;
+	  width: 100%;
+	  text-align: center;
+	  color: #7d43b2;
+	  font-size: 18px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	}
+
+	body::before {
+	  content: "";
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 60px;
+	  background: #a5ff00;
+	  z-index: 1000002;
+	  pointer-events: none;
+	}
+
+	body::after {
+	  content: "⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹";
+	  position: fixed;
+	  top: 14px;
+	  left: 0;
+	  width: 100%;
+	  text-align: center;
+	  font-size: 18px;
+	  line-height: 1;
+	  color: #7d43b2;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  z-index: 1000002;
+	  pointer-events: none;
+	}
+
+	/* ==================================================
+	   IMAGE HEADER
+	================================================== */
+	.image-header-top {
+	  position: fixed;
+	  top: 60px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  z-index: 1002;
+	  pointer-events: none;
+	  opacity: 1;
+	  transition: opacity 260ms ease, transform 260ms ease;
+	  will-change: opacity, transform;
+	}
+
+	.image-header-top.is-hidden {
+	  opacity: 0;
+	  transform: translateX(-50%) translateY(-12px);
+	}
+
+	.image-header-top img {
+	  display: block;
+	  width: min(450px, 88vw);
+	  height: auto;
+	}
+
+	.image-header-bottom-mobile {
+	  display: none;
+	}
+
+	.image-header-img {
+	  width: var(--w, 600px);
+	  max-width: 90vw;
+	  height: auto;
+	  display: block;
+	}
+
+	/* ==================================================
+	   MOBILE AERO MUSIC PLAYER
+	================================================== */
+	#mobile-player {
+	  display: block;
+	  position: fixed;
+	  top: 25px;
+	  left: 50%;
+	  right: auto;
+	  width: auto;
+	  max-width: none;
+	  margin: 0;
+	  padding: 0;
+	  z-index: 1000003;
+	  transform: translate(-50%, -50%) !important;
+	  box-sizing: border-box;
+	}
+
+	#mobile-player .aero-header {
+	  display: none;
+	}
+
+	.mobile-player .mobile-player-body {
+	  display: flex;
+	  align-items: center;
+	  gap: 10px;
+	  width: 380px;
+	  padding: 0 12px;
+	  background: #e9e9e9;
+	  box-sizing: border-box;
+	}
+
+	.mobile-player .mobile-player-body button {
+	  min-width: 28px;
+	  width: 28px;
+	  height: 28px;
+	  padding: 0;
+	  border: none;
+	  background: transparent;
+	  color: #3947ef;
+	  text-shadow: none;
+	  font-size: 14px !important;
+	  opacity: 0.8;
+	  display: grid;
+	  place-items: center;
+	}
+
+	.mobile-player .mobile-player-body button:hover {
+	  opacity: 1;
+	}
+
+	.mobile-player .songtitle {
+	  margin: 0;
+	  padding: 0;
+	  flex: 1;
+	  min-width: 0;
+	  color: #7d43b2;
+	  font-size: 13px;
+	  font-family: "Helvetica", sans-serif;
+	  font-weight: bold;
+	  line-height: 1;
+	}
+
+	.mobile-player .mute-track {
+	  margin-left: auto;
+	  margin-right: 4px;
+	}
+
+	/* ==================================================
+	   INTRO STAGE
+	================================================== */
+	.stage {
+	  position: relative;
+	  width: min(1200px, calc(100vw - 40px));
+	  height: 820px;
+	  margin: 0 auto;
+	  padding-top: 150px;
+	  z-index: 10;
+	}
+
+	.e-wrap {
+	  position: absolute;
+	  top: 530px;
+	  left: 50%;
+	  width: 720px;
+	  height: 200px;
+	  transform: translateX(-50%);
+	  z-index: 10;
+	  pointer-events: none;
+	}
+
+	#decor-e {
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  width: 250px;
+	  height: auto;
+	  transform: translate(-50%, -50%);
+	  z-index: 11;
+	  pointer-events: none;
+	}
+
+	.orbit-container {
+	  position: absolute;
+	  inset: 0;
+	  pointer-events: none;
+	  z-index: 12;
+	}
+
+	.orbit {
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  display: block;
+	  height: auto;
+	  pointer-events: auto;
+	  transform:
+		translate(-50%, -50%)
+		translate(var(--x), var(--y))
+		rotate(var(--r, 0deg))
+		scale(var(--s, 1));
+	  animation: floaty 6s ease-in-out infinite;
+	  transition: transform 0.2s ease;
+	  will-change: transform;
+	}
+
+	@keyframes floaty {
+	  0%, 100% {
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), var(--y))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+	  }
+	  50% {
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), calc(var(--y) - 8px))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+	  }
+	}
+
+	.e-wrap-mobile-old {
+	  display: none;
+	}
+
+	/* ==================================================
+	   MOBILE-ONLY OLD E-WRAP CLONE
+	================================================== */
+
+	/* ==================================================
+	   AERO WINDOW
+	================================================== */
+	.aero-window {
+	  position: absolute;
+	  overflow: hidden;
+	  border-radius: 12px;
+	  border: 1px solid rgba(255,255,255,0.7);
+	  background: rgba(255,255,255,0.14);
+	  box-shadow:
+		0 0 20px rgba(0, 150, 255, 0.14),
+		0 8px 32px rgba(0, 0, 0, 0.08);
+	  backdrop-filter: blur(12px);
+	  display: flex;
+	  flex-direction: column;
+	}
+
+	.aero-header {
+	  height: 40px;
+	  background: #907cff;
+	  display: flex;
+	  align-items: center;
+	  padding: 0 14px;
+	  border-bottom: 1px solid #6a53db;
+	}
+
+	.aero-title {
+	  color: #fff;
+	  font-size: 14px;
+	  font-weight: 700;
+	  font-family: Verdana, Geneva, sans-serif;
+	}
+
+	.aero-close,
+	.aero-close-btn {
+	  margin-left: auto;
+	  width: 28px;
+	  height: 28px;
+	  border: 0;
+	  border-radius: 9px;
+	  background: rgba(255,255,255,0.22);
+	  color: #fff;
+	  font-size: 16px;
+	  cursor: pointer;
+	}
+
+	.aero-close-btn {
+	  margin-right: 10px;
+	  width: 34px;
+	  border-radius: 10px;
+	  min-width: 34px;
+	  font-size: 14px;
+	  text-shadow: none;
+	  border: 1px solid rgba(0, 0, 0, 0.14);
+	  background: rgba(255, 255, 255, 0.25);
+	}
+
+	.aero-close-btn:hover {
+	  background: rgba(255, 90, 90, 0.85);
+	}
+
+	.aero-content {
+	  background: #e9e9e9;
+	  padding: 14px 15px;
+	  font-family: Verdana, Geneva, sans-serif;
+	  font-size: 18px;
+	  font-weight: 700;
+	  line-height: 1.08;
+	}
+
+	.aero-content p {
+	  margin: 0;
+	}
+
+	#welcome-window {
+	  top: 890px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 780px;
+	  max-width: calc(100vw - 120px);
+	  z-index: 20;
+	}
+
+	#under-window {
+	  top: 1270px;
+	  left: calc(50% + 250px);
+	  width: 285px;
+	  z-index: 21;
+	}
+
+	.hidden-window {
+	  display: none;
+	  opacity: 0;
+	  pointer-events: none;
+	}
+
+	.hidden-window.is-visible {
+	  display: flex;
+	  opacity: 1;
+	  pointer-events: auto;
+	}
+
+	/* ==================================================
+	   GRID
+	================================================== */
+	.image-table-wrap {
+	  width: min(1100px, calc(100vw - 40px));
+	  margin: 420px auto 80px;
+	  position: relative;
+	  z-index: 10;
+	  display: flex;
+	  justify-content: center;
+	}
+
+	.image-table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  table-layout: fixed;
+	}
+
+	.image-table td {
+	  padding: 12px;
+	  vertical-align: top;
+	  text-align: center;
+	}
+
+	.tbl-img {
+	  display: block;
+	  width: var(--w, 180px);
+	  height: auto;
+	  margin: 0 auto;
+	  transform: translate(var(--x, 0px), var(--y, 0px)) rotate(var(--r, 0deg));
+	}
+
+	.tbl-card {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	}
+
+	.tbl-img-wrap {
+	  position: relative;
+	  display: inline-block;
+	}
+
+	.live-date {
+	  position: static;
+	  width: 100%;
+	  margin-top: -10px;
+	  text-align: center;
+	  font-family: "ComicSansWeb", "Comic Sans MS", "Comic Sans", cursive !important;
+	  font-weight: 700;
+	  font-size: 16px;
+	  line-height: 1.2;
+	  color: #7c42b2;
+	  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.55);
+	  pointer-events: none;
+	}
+
+	.tbl-caption {
+	  margin-top: 8px;
+	  padding: 8px 12px;
+	  font-family: "ComicSansWeb", "Comic Sans MS", "Comic Sans", cursive;
+	  font-weight: bold;
+	  font-size: 20px;
+	  background: var(--bg, #a5ff00);
+	  color: var(--color, #7d43b2);
+	  text-align: center;
+	  width: fit-content;
+	  max-width: 260px;
+	  border-radius: 0;
+	}
+
+	.counter-cell {
+	  text-align: center;
+	  padding: 10px;
+	  position: relative;
+	  width: 200px;
+	  font-family: "ComicSansWeb", "Comic Sans MS", "Comic Sans", cursive;
+	  font-weight: bold;
+	  font-size: 20px;
+	  color: #000aff;
+	  margin: 0 auto;
+	}
+
+	.email-image-link {
+	  display: inline-block;
+	}
+
+	.grid-window-cell {
+	  text-align: center;
+	  vertical-align: top;
+	}
+
+	.grid-aero-window {
+	  position: relative !important;
+	  top: -80px !important;
+	  left: 40px !important;
+	  transform: none !important;
+	  width: 420px;
+	  max-width: 100%;
+	  margin: -60px auto 0;
+	  z-index: auto;
+	}
+
+	/* ==================================================
+	   AERO GALLERY MODAL
+	================================================== */
+	.aero-overlay {
+	  position: fixed;
+	  inset: 0;
+	  display: none;
+	  place-items: center;
+	  z-index: 999999;
+	  background: rgba(60, 255, 0, 0);
+	  backdrop-filter: blur(2px);
+	}
+
+	.aero-overlay.is-open {
+	  display: grid;
+	}
+
+	.aero-gallery {
+	  width: min(960px, calc(100vw - 28px));
+	  height: min(620px, calc(100vh - 28px));
+	  overflow: hidden;
+	  transform: none !important;
+	}
+
+	.aero-gallery-body {
+	  position: relative;
+	  height: calc(100% - 40px);
+	  padding: 14px;
+	  overflow: auto;
+	  background: #e9e9e9;
+	}
+
+	.flyer-intro {
+	  max-width: 760px;
+	  margin: 0 auto 24px;
+	  text-align: center;
+	  transition: filter 220ms ease, opacity 220ms ease;
+	}
+
+	.flyer-intro p {
+	  margin: 0;
+	  color: #7d43b2;
+	  font-family: Verdana, Geneva, sans-serif;
+	  font-size: 15px;
+	  line-height: 1.6;
+	  font-weight: 700;
+	}
+
+	.flyer-grid {
+	  display: grid;
+	  grid-template-columns: repeat(4, minmax(0, 1fr));
+	  gap: 14px;
+	  transition: filter 220ms ease, opacity 220ms ease;
+	}
+
+	.flyer-grid.is-blurred,
+	.flyer-intro.is-blurred {
+	  filter: blur(4px);
+	  opacity: 0.35;
+	  pointer-events: none;
+	}
+
+	.flyer-thumb {
+	  position: relative;
+	  display: block;
+	  aspect-ratio: 4 / 5;
+	  overflow: hidden;
+	  border-radius: 12px;
+	  background: #dcdcdc;
+	  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
+	  text-decoration: none;
+	}
+
+	.flyer-thumb img {
+	  width: 100%;
+	  height: 100%;
+	  display: block;
+	  object-fit: cover;
+	  transition: transform 220ms ease;
+	}
+
+	.flyer-thumb::after {
+	  content: "\f00e";
+	  font-family: "Font Awesome 5 Free";
+	  font-weight: 900;
+	  position: absolute;
+	  inset: 0;
+	  display: grid;
+	  place-items: center;
+	  font-size: 28px;
+	  color: #fff;
+	  background: rgba(0, 0, 0, 0.28);
+	  opacity: 0;
+	  transition: opacity 180ms ease;
+	  pointer-events: none;
+	}
+
+	.flyer-thumb:hover img {
+	  transform: scale(1.06);
+	}
+
+	.flyer-thumb:hover::after {
+	  opacity: 1;
+	}
+
+	.flyer-inline-view {
+	  position: absolute;
+	  inset: 0;
+	  display: none;
+	  align-items: center;
+	  justify-content: center;
+	  padding: 20px;
+	  background: rgba(233, 233, 233, 0.24);
+	  backdrop-filter: blur(6px);
+	  -webkit-backdrop-filter: blur(6px);
+	  z-index: 20;
+	}
+
+	.flyer-inline-view.is-open {
+	  display: flex;
+	}
+
+	.flyer-inline-inner {
+	  position: relative;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  width: 100%;
+	  height: 100%;
+	}
+
+	.flyer-inline-img {
+	  max-width: min(100%, 720px);
+	  max-height: 100%;
+	  width: auto;
+	  height: auto;
+	  display: block;
+	  border-radius: 12px;
+	  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+	}
+
+	.flyer-inline-close {
+	  position: absolute;
+	  top: 12px;
+	  right: 10px;
+	  transform: none;
+	  width: 38px;
+	  height: 38px;
+	  border: 0;
+	  border-radius: 999px;
+	  background: rgba(166, 255, 0, 0.95);
+	  color: #000;
+	  font-size: 18px;
+	  line-height: 1;
+	  display: grid;
+	  place-items: center;
+	  z-index: 3;
+	}
+
+	.flyer-inline-close:hover {
+	  background: #fff;
+	}
+
+	.aero-gallery-body:has(.flyer-inline-view.is-open) {
+	  scrollbar-width: none;
+	  -ms-overflow-style: none;
+	}
+
+	.aero-gallery-body:has(.flyer-inline-view.is-open)::-webkit-scrollbar {
+	  display: none;
+	}
+
+	/* ==================================================
+	   FLYER LIGHTBOX
+	================================================== */
+	.flyer-lightbox {
+	  position: fixed;
+	  inset: 0;
+	  z-index: 1000001;
+	  display: none;
+	  place-items: center;
+	  background: rgba(0, 0, 0, 0.6);
+	  backdrop-filter: blur(4px);
+	  padding: 20px;
+	}
+
+	.flyer-lightbox.is-open {
+	  display: grid;
+	}
+
+	.flyer-lightbox-inner {
+	  position: relative;
+	  width: min(92vw, 1000px);
+	  height: min(90vh, 900px);
+	  display: grid;
+	  place-items: center;
+	  overflow: auto;
+	}
+
+	.flyer-lightbox-img {
+	  max-width: 100%;
+	  max-height: 100%;
+	  width: auto;
+	  height: auto;
+	  display: block;
+	  border-radius: 12px;
+	  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+	  transition: transform 220ms ease;
+	  transform-origin: center center;
+	  cursor: zoom-in !important;
+	}
+
+	.flyer-lightbox-img.is-zoomed {
+	  transform: scale(1.8);
+	  cursor: zoom-out !important;
+	}
+
+	.flyer-lightbox-close {
+	  position: absolute;
+	  top: 14px;
+	  right: 14px;
+	  z-index: 2;
+	  width: 40px;
+	  height: 40px;
+	  border: 0;
+	  border-radius: 999px;
+	  background: rgba(255, 255, 255, 0.92);
+	  color: #000;
+	  font-size: 18px;
+	  line-height: 1;
+	  display: grid;
+	  place-items: center;
+	}
+
+	.flyer-lightbox-close:hover {
+	  background: #fff;
+	}
+
+	/* ==================================================
+	   ABOUT OVERLAY CONTENT
+	================================================== */
+	.about-window {
+	  width: min(92vw, 980px);
+	  height: min(88vh, 760px);
+	  display: flex;
+	  flex-direction: column;
+	  transform: none !important;
+	}
+
+	.about-desktop-content {
+	  display: block;
+	}
+
+	.about-mobile-content {
+	  display: none;
+	}
+
+	.about-aero-content {
+	  flex: 1;
+	  padding: 0;
+	  overflow: hidden;
+	  background: #ffffff;
+	}
+
+	.aero-about-body {
+	  width: 100%;
+	  height: 100%;
+	  overflow-y: auto;
+	  overflow-x: hidden;
+	  scroll-behavior: smooth;
+	  background: #ffffff;
+	}
+
+	.about-sheet-v2 {
+	  width: 100%;
+	  min-height: 100%;
+	  padding: 20px 22px 0;
+	  box-sizing: border-box;
+	  background: #ffffff;
+	  color: #000;
+	  font-family: "Roboto Mono", monospace;
+	}
+
+	.about-top-meta {
+	  display: grid;
+	  grid-template-columns: 1fr 1fr 1fr;
+	  gap: 10px;
+	  font-size: 11px;
+	  font-weight: 700;
+	  text-transform: uppercase;
+	  margin-bottom: 10px;
+	  letter-spacing: -0.02em;
+	}
+
+	.about-top-meta span:nth-child(2) {
+	  text-align: center;
+	}
+
+	.about-top-meta span:nth-child(3) {
+	  text-align: right;
+	}
+
+	.about-star-divider {
+	  position: relative;
+	  width: 100%;
+	  overflow: hidden;
+	  white-space: nowrap;
+	  font-size: clamp(10px, 1.2vw, 16px);
+	  line-height: 1;
+	  margin: 14px 0 22px;
+	  font-weight: 700;
+	}
+
+	.about-hero-v2 {
+	  margin-bottom: 24px;
+	}
+
+	.about-brand-image-wrap {
+	  width: 100%;
+	  margin: 0 0 18px;
+	  display: flex;
+	  justify-content: center;
+	}
+
+	.about-brand-image-v2 {
+	  display: block;
+	  width: 100%;
+	  max-width: 500px;
+	  height: auto;
+	}
+
+	.about-intro-v2 {
+	  margin: 0 0 24px;
+	  font-family: "Roboto Mono", monospace;
+	  font-size: clamp(14px, 2vw, 18px);
+	  line-height: 1.3;
+	  font-weight: 700;
+	  max-width: 900px;
+	  letter-spacing: -0.02em;
+	  color: #222;
+	}
+
+	.about-services-v2 {
+	  display: grid;
+	  grid-template-columns: repeat(2, minmax(0, 1fr));
+	  gap: 24px;
+	  margin-bottom: 24px;
+	}
+
+	.service-card {
+	  position: relative;
+	  padding-top: 18px;
+	}
+
+	.service-card-body {
+	  min-height: 196px;
+	  padding: 36px 16px 16px;
+	  border: 3px solid #000;
+	  border-radius: 28px;
+	  background: #ffffff;
+	  box-sizing: border-box;
+	}
+
+	.service-card-body ul {
+	  margin: 0 0 18px;
+	  padding-left: 22px;
+	}
+
+	.service-card-body li {
+	  font-family: "Roboto Mono", monospace;
+	  font-size: clamp(13px, 1.15vw, 16px);
+	  line-height: 1.28;
+	  font-weight: 700;
+	  letter-spacing: -0.03em;
+	}
+
+	.service-pill {
+	  position: absolute;
+	  top: 0;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  min-width: 66%;
+	  padding: 8px 14px;
+	  border: 3px solid #000;
+	  border-radius: 999px;
+	  text-align: center;
+	  color: #000;
+	  font-family: "Roboto Mono", monospace;
+	  font-size: clamp(13px, 1.1vw, 16px);
+	  line-height: 1;
+	  font-weight: 700;
+	  text-transform: uppercase;
+	  letter-spacing: -0.03em;
+	  box-sizing: border-box;
+	}
+
+	.service-card--pink .service-pill {
+	  background: #f27db1;
+	}
+
+	.service-card--green .service-pill {
+	  background: #a5ff00;
+	}
+
+	.service-card--blue .service-pill {
+	  background: #73b9db;
+	}
+
+	.service-card--yellow .service-pill {
+	  background: #f6d300;
+	}
+
+	.service-tldr {
+	  margin: 0;
+	  text-align: center;
+	  font-family: "Roboto Mono", monospace;
+	  font-size: clamp(12px, 1vw, 15px);
+	  line-height: 1.2;
+	  font-weight: 400;
+	  text-decoration: underline;
+	  text-underline-offset: 3px;
+	  letter-spacing: -0.02em;
+	  color: #222;
+	}
+
+	.about-logo-strip {
+	  margin: 24px -22px 0;
+	  background: #ffffff;
+	  min-height: 230px;
+	}
+
+	.about-logo-strip-inner {
+	  width: 100%;
+	  min-height: 230px;
+	  padding: 24px;
+	  box-sizing: border-box;
+	}
+
+	.about-clients-section {
+	  width: 100%;
+	}
+
+	.about-clients-heading {
+	  margin: 0 0 18px;
+	  text-align: center;
+	  font-family: "Roboto Mono", monospace;
+	  font-size: clamp(15px, 1.4vw, 20px);
+	  line-height: 1.2;
+	  font-weight: 700;
+	  text-transform: uppercase;
+	  letter-spacing: -0.03em;
+	  color: #000;
+	}
+
+	.clients-table {
+	  display: grid;
+	  grid-template-columns: repeat(4, minmax(0, 1fr));
+	  gap: 18px 16px;
+	  align-items: start;
+	}
+
+	.client-item {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  text-align: center;
+	  gap: 6px;
+	}
+
+	.client-stack {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  gap: 0;
+	}
+
+	.client-gif {
+	  display: block;
+	  width: 130px;
+	  height: 90px;
+	  object-fit: contain;
+	  margin: 0 auto;
+	}
+
+	.client-stack .client-gif {
+	  width: 130px;
+	  height: auto;
+	  margin: 0;
+	}
+
+	.client-item span {
+	  display: block;
+	  font-family: "Roboto Mono", monospace;
+	  font-size: 13px;
+	  line-height: 1.15;
+	  font-weight: 700;
+	  text-transform: uppercase;
+	  letter-spacing: -0.03em;
+	  color: #111;
+	}
+
+	.about-image-content {
+	  padding: 14px;
+	  background: #e9e9e9;
+	}
+
+	.about-poster-btn {
+	  display: block;
+	  width: 100%;
+	  padding: 0;
+	  border: 0;
+	  background: transparent;
+	}
+
+	.about-poster-img {
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	  border-radius: 8px;
+	  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+	}
+
+	.about-poster-btn:focus-visible {
+	  outline: 2px solid #907cff;
+	  outline-offset: 4px;
+	}
+
+	/* ==================================================
+	   PETS WINDOW
+	================================================== */
+	#pets-window {
+	  position: fixed;
+	  top: 50%;
+	  left: 50%;
+	  right: auto;
+	  bottom: auto;
+	  width: min(92vw, 360px);
+	  max-width: 92vw;
+	  max-height: 78vh;
+	  margin: 0;
+	  transform: translate(-50%, -50%) !important;
+	  z-index: 1000004;
+	}
+
+	#pets-window .aero-content {
+	  overflow-y: auto;
+	}
+
+	#pets-window .pets-content {
+	  padding: 12px 14px 16px;
+	}
+
+	.pets-frame-wrap {
+	  display: grid;
+	  grid-template-columns: 34px minmax(0, 1fr) 34px;
+	  gap: 8px;
+	  align-items: center;
+	}
+
+	.pets-card {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  gap: 12px;
+	  min-width: 0;
+	  text-align: center;
+	}
+
+	.pets-glitter-frame {
+	  position: relative;
+	  overflow: hidden;
+	  width: min(210px, 100%);
+	  min-width: 0;
+	  padding: 8px;
+	  border-radius: 18px;
+	  background:
+		linear-gradient(135deg, #ff8de1 0%, #ffe66f 28%, #7ef9ff 55%, #b996ff 78%, #ff8de1 100%);
+	  box-shadow:
+		0 0 0 3px rgba(255, 255, 255, 0.85),
+		0 10px 22px rgba(125, 67, 178, 0.18);
+	}
+
+	.pets-glitter-frame::before {
+	  content: "";
+	  position: absolute;
+	  inset: 3px;
+	  border-radius: 14px;
+	  pointer-events: none;
+	  border: 1px solid rgba(255, 255, 255, 0.35);
+	  opacity: 0.7;
+	}
+
+	.pets-glitter-frame::after {
+	  content: "";
+	  position: absolute;
+	  inset: 0;
+	  border-radius: 18px;
+	  pointer-events: none;
+	  background:
+		radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.95) 0 1.5px, transparent 2.5px),
+		radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.85) 0 1px, transparent 2px),
+		radial-gradient(circle at 82% 72%, rgba(255, 255, 255, 0.95) 0 1.5px, transparent 2.5px),
+		radial-gradient(circle at 24% 78%, rgba(255, 255, 255, 0.8) 0 1px, transparent 2px),
+		radial-gradient(circle at 52% 10%, rgba(255, 255, 255, 0.9) 0 1px, transparent 2px),
+		radial-gradient(circle at 10% 55%, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
+		radial-gradient(circle at 92% 46%, rgba(255, 255, 255, 0.8) 0 1px, transparent 2px);
+	  opacity: 0.28;
+	  mix-blend-mode: screen;
+	  animation: petsBorderSparkle 2.6s steps(1, end) infinite;
+	}
+
+	.pets-glitter-frame img {
+	  display: block;
+	  width: 100%;
+	  aspect-ratio: 1 / 1;
+	  object-fit: cover;
+	  border-radius: 12px;
+	  background: #fff;
+	  position: relative;
+	  z-index: 1;
+	}
+
+	.pets-text {
+	  width: 100%;
+	  min-width: 0;
+	  flex: unset;
+	}
+
+	.pets-text h2 {
+	  margin: 0 0 8px;
+	  color: #7d43b2;
+	  font-size: 25px;
+	  line-height: 1;
+	  text-align: center;
+	  font-family: "ComicSansWeb", "Comic Sans MS", "Comic Sans", cursive;
+	  text-transform: uppercase;
+	}
+
+	.pets-text p {
+	  margin: 0 0 12px;
+	  color: #5a4b73;
+	  font-size: 12px;
+	  line-height: 1.35;
+	  text-align: center;
+	  font-weight: 700;
+	  font-family: Verdana, Geneva, sans-serif;
+	}
+
+	.pets-submit-btn {
+	  display: inline-flex;
+	  align-items: center;
+	  justify-content: center;
+	  padding: 10px 16px;
+	  border-radius: 999px;
+	  background: #a5ff00;
+	  color: #7d43b2;
+	  text-decoration: none;
+	  font-size: 13px;
+	  font-weight: 700;
+	  font-family: Verdana, Geneva, sans-serif;
+	  text-transform: lowercase;
+	  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.12);
+	}
+
+	.pets-submit-btn:hover {
+	  background: #c3ff59;
+	}
+
+	.pets-arrow {
+	  width: 34px;
+	  height: 34px;
+	  min-width: 34px;
+	  border: 0;
+	  border-radius: 999px;
+	  background: #907cff;
+	  color: #fff;
+	  font-size: 22px !important;
+	  line-height: 1;
+	  text-shadow: none;
+	  display: grid;
+	  place-items: center;
+	  padding: 0;
+	  box-shadow: 0 8px 16px rgba(125, 67, 178, 0.18);
+	}
+
+	.pets-arrow:hover {
+	  background: #7d43b2;
+	}
+
+	.pets-arrow-left,
+	.pets-arrow-right {
+	  justify-self: center;
+	  align-self: center;
+	}
+
+	@keyframes petsBorderSparkle {
+	  0%, 100% {
+		opacity: 0.25;
+		transform: scale(1);
+		filter: brightness(1);
+	  }
+	  20% {
+		opacity: 0.5;
+		filter: brightness(1.08);
+	  }
+	  40% {
+		opacity: 0.3;
+		transform: scale(1.01);
+	  }
+	  60% {
+		opacity: 0.58;
+		filter: brightness(1.15);
+	  }
+	  80% {
+		opacity: 0.35;
+	  }
+	}
+
+	/* ==================================================
+	   SCROLL BARS
+	================================================== */
+	.aero-about-body,
+	.aero-gallery-body {
+	  scrollbar-width: thin;
+	  scrollbar-color: #000 #b7ff00;
+	}
+
+	.aero-about-body::-webkit-scrollbar,
+	.aero-gallery-body::-webkit-scrollbar {
+	  width: 12px;
+	}
+
+	.aero-about-body::-webkit-scrollbar-track,
+	.aero-gallery-body::-webkit-scrollbar-track {
+	  background: #b7ff00;
+	}
+
+	.aero-about-body::-webkit-scrollbar-thumb,
+	.aero-gallery-body::-webkit-scrollbar-thumb {
+	  background: #000;
+	  border: 2px solid #b7ff00;
+	}
+
+	.aero-about-body::-webkit-scrollbar-thumb:hover,
+	.aero-gallery-body::-webkit-scrollbar-thumb:hover {
+	  background: #333;
+	}
+
+	/* ==================================================
+	   MOBILE GRID
+	================================================== */
+	.mobile-grid-wrap,
+	.mobile-grid {
+	  display: none;
+	}
+
+	@media (min-width: 641px) {
+	  .mobile-grid-wrap,
+	  .mobile-grid {
+		display: none !important;
+	  }
+	}
+
+	/* ==================================================
+	   RESPONSIVE
+	================================================== */
+	@media (max-width: 1024px) {
+	  .about-window {
+		width: min(92vw, 420px) !important;
+		max-width: 92vw !important;
+		height: auto !important;
+		max-height: 88vh !important;
+	  }
+
+	  .about-desktop-content {
+		display: none !important;
+	  }
+
+	  .about-mobile-content {
+		display: block !important;
+	  }
+
+	  .about-image-content {
+		padding: 12px;
+	  }
+	}
+
+	@media (max-width: 900px) {
+	  .clients-table {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	  }
+
+	  .flyer-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	  }
+	}
+
+	@media (max-width: 768px) {
+	  :root {
+		--mobile-player-offset: 96px;
+	  }
+
+	  .top-strip::after {
+		font-size: 14px;
+		top: 13px;
+	  }
+
+	  body::before {
+		content: "";
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 50px;
+		background: #a5ff00;
+		z-index: 999999;
+		pointer-events: none;
+	  }
+
+	  body::after {
+		top: 12px;
+		font-size: 14px;
+	  }
+
+	  #mobile-player {
+		display: block !important;
+		position: fixed;
+		top: 25px;
+		left: 50%;
+		right: auto;
+		width: auto;
+		max-width: none;
+		margin: 0;
+		padding: 0;
+		z-index: 1000003;
+		transform: translate(-50%, -50%) !important;
+		box-sizing: border-box;
+	  }
+
+	  .mobile-player .mobile-player-body {
+		width: min(380px, calc(100vw - 24px));
+	  }
+
+	  .mobile-player .mute-track {
+		margin-left: auto;
+		margin-right: 4px;
+	  }
+
+	  .image-header-top {
+		top: 70px;
+		display: flex !important;
+		justify-content: center;
+		width: 100%;
+		margin-top: 50px;
+	  }
+
+	  .image-header-bottom {
+		display: none !important;
+	  }
+
+	  .image-header-bottom-mobile {
+		display: flex !important;
+		justify-content: center;
+		width: 100%;
+		margin: 140px 0 24px;
+		pointer-events: none;
+	  }
+
+	  .image-header-img {
+		width: min(88vw, 360px);
+	  }
+
+	  .stage .e-wrap {
+		display: none !important;
+	  }
+
+	  .e-wrap-mobile-old {
+		--w: 50%;
+		--x: 0px;
+		--y: 490px;
+		display: block !important;
+		width: var(--w);
+		max-width: 420px;
+		min-width: 120px;
+		height: 200px;
+		margin: 0 auto -70px;
+		position: relative;
+		transform: translate(var(--x), var(--y)) scale(0.5);
+		transform-origin: center top;
+		z-index: 50;
+		pointer-events: none;
+	  }
+
+	  #decor-e-mobile-old {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%) translateY(40px);
+		width: 130%;
+		height: auto;
+		z-index: 50;
+		pointer-events: none;
+	  }
+
+	  .orbit-container-mobile-old {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 60%;
+		height: 60%;
+		transform: translate(-50%, -50%) translateY(40px);
+		pointer-events: none;
+		z-index: 60;
+	  }
+
+	  .orbit-mobile-old {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 18%;
+		max-width: 240px;
+		min-width: 60px;
+		display: block;
+		height: auto;
+		pointer-events: auto;
+		z-index: 10;
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), var(--y))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+		animation: float-mobile-old 6s ease-in-out infinite;
+		transition: transform 0.2s ease;
+		will-change: transform;
+	  }
+
+
+	  .stage {
+		width: calc(100vw - 24px);
+		height: auto;
+		padding-top: 130px;
+	  }
+
+	  .e-wrap {
+		position: relative;
+		top: auto;
+		left: auto;
+		width: 100%;
+		height: 220px;
+		margin: 0 auto 18px;
+		--y: 160px;
+		transform:
+		  translate(var(--x, 0px), calc(var(--y) - 10px))
+		  scale(0.5);
+		transform-origin: center top;
+		margin-top: 0;
+		margin-bottom: 0;
+	  }
+
+	  #decor-e {
+		width: min(300px, 78vw);
+	  }
+
+	  .orbit {
+		transform:
+		  translate(-50%, -50%)
+		  translate(calc(var(--x) * 0.58), calc(var(--y) * 0.58))
+		  rotate(var(--r, 0deg))
+		  scale(calc(var(--s, 1) * 0.78));
+	  }
+
+	  @keyframes floaty {
+		0%, 100% {
+		  transform:
+			translate(-50%, -50%)
+			translate(calc(var(--x) * 0.58), calc(var(--y) * 0.58))
+			rotate(var(--r, 0deg))
+			scale(calc(var(--s, 1) * 0.78));
+		}
+		50% {
+		  transform:
+			translate(-50%, -50%)
+			translate(calc(var(--x) * 0.58), calc(var(--y) * 0.58 - 6px))
+			rotate(var(--r, 0deg))
+			scale(calc(var(--s, 1) * 0.78));
+		}
+	  }
+
+	  .image-table-wrap {
+		width: calc(100vw - 24px);
+		margin: 40px auto 40px;
+	  }
+
+	  .tbl-caption {
+		font-size: 18px;
+		max-width: 240px;
+	  }
+
+	  .live-date {
+		font-size: 14px;
+	  }
+
+	  .mobile-grid-item {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+	  }
+
+	  .mobile-grid-item .tbl-img {
+		max-width: 100%;
+		height: auto;
+	  }
+
+	  .mobile-grid-item .tbl-card {
+		width: 100%;
+	  }
+	  
+  #welcome-window {
+		  
+		}
+
+	  #under-construction-window,
+	  #come-back-soon-window {
+		display: none !important;
+	  }
+
+	  #under-construction-window.is-visible,
+	  #come-back-soon-window.is-visible {
+		display: flex !important;
+		opacity: 1 !important;
+		pointer-events: auto !important;
+	  }
+
+	  #pets-window,
+	  #under-construction-window,
+	  #come-back-soon-window {
+		position: fixed !important;
+		top: 50% !important;
+		left: 50% !important;
+		right: auto !important;
+		bottom: auto !important;
+		width: min(92vw, 420px) !important;
+		max-width: 92vw !important;
+		max-height: 78vh !important;
+		margin: 0 !important;
+		transform: translate(-50%, -50%) !important;
+		z-index: 1000004 !important;
+	  }
+
+	  #pets-window .aero-content,
+	  #under-construction-window .aero-content,
+	  #come-back-soon-window .aero-content {
+		overflow-y: auto;
+	  }
+
+	  .aero-window .aero-content {
+		font-size: 15px;
+	  }
+
+	  .flyer-intro {
+		margin-bottom: 20px;
+	  }
+
+	  .flyer-intro p {
+		font-size: 14px;
+		line-height: 1.55;
+	  }
+
+	  .flyer-inline-view {
+		inset: 10px;
+		padding: 14px;
+	  }
+
+	  .flyer-inline-img {
+		max-width: 100%;
+		max-height: 100%;
+	  }
+
+	  .flyer-grid.is-blurred,
+	  .flyer-intro.is-blurred {
+		filter: blur(3px);
+		opacity: 0.3;
+	  }
+	}
+
+
+	@keyframes float-mobile-old {
+	  0% {
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), var(--y))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+	  }
+	  50% {
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), calc(var(--y) - 8px))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+	  }
+	  100% {
+		transform:
+		  translate(-50%, -50%)
+		  translate(var(--x), var(--y))
+		  rotate(var(--r, 0deg))
+		  scale(var(--s, 1));
+	  }
+	}
+
+	@media (max-width: 640px) {
+	  .page {
+		min-height: 0;
+	  }
+	
+	  .stage {
+		position: relative;
+		min-height: 1180px;
+	  }
+	
+	  .e-wrap-mobile-old {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		margin: 0;
+		transform: translate(-50%, 490px) scale(0.5);
+	  }
+	
+	  #welcome-window {
+	position: absolute;
+	  top:730px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: calc(100vw - 28px);
+	  max-width: calc(100vw - 28px);
+	  margin: 0;
+	  }
+	
+	  .mobile-grid-wrap {
+		display: block !important;
+		width: 100%;
+		margin-top: -220px !important;
+		margin-bottom: 10px;
+		padding: 0 12px 40px;
+		box-sizing: border-box;
+		overflow: visible;
+	  }
+	
+	  .mobile-grid {
+		display: grid !important;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 18px 12px;
+		align-items: start;
+		overflow: visible;
+	  }
+	
+	  .image-table-wrap {
+		display: none !important;
+	  }
+	
+	  .mobile-grid-item {
+		min-width: 0;
+	  }
+	
+	  .mobile-grid-item--wide {
+		grid-column: span 2;
+	  }
+	
+	  .mobile-grid-item .tbl-img {
+		width: min(var(--w, 180px), 100%);
+		transform: none !important;
+		margin: 0 auto;
+	  }
+	
+	  .mobile-grid-item .tbl-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	  }
+	
+	  .mobile-grid-item .tbl-img-wrap {
+		position: relative;
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: center;
+		justify-content: flex-start;
+		width: 100%;
+	  }
+	
+	  .mobile-grid-item .live-date {
+		position: static !important;
+		left: auto !important;
+		bottom: auto !important;
+		transform: none !important;
+		display: block;
+		width: 100%;
+		margin-top: 8px;
+		text-align: center;
+		font-size: 14px;
+		line-height: 1.15;
+	  }
+	
+	  .mobile-grid-item .tbl-caption {
+		margin-top: 8px;
+		max-width: 240px;
+		font-size: 18px;
+	  }
+	
+	  #welcome-stars-mobile {
+		width: min(260px, 100%) !important;
+	  }
+	
+	  .flyer-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	  }
+	
+	  .pets-frame-wrap {
+		grid-template-columns: 34px minmax(0, 1fr) 34px;
+		gap: 8px;
+		align-items: center;
+	  }
+	
+	  .pets-card {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	  }
+	
+	  .pets-glitter-frame {
+		width: min(200px, 100%);
+		min-width: 0;
+	  }
+	
+	  .pets-text {
+		width: 100%;
+	  }
+	
+	  .pets-text h2 {
+		font-size: 15px;
+	  }
+	
+	  .pets-text p {
+		font-size: 13px;
+		line-height: 1.4;
+	  }
+	
+	  .pets-arrow {
+		width: 34px;
+		height: 34px;
+		min-width: 34px;
+		font-size: 22px !important;
+	  }
+	
+	  .pets-arrow-left,
+	  .pets-arrow-right {
+		justify-self: center;
+		align-self: center;
+	  }
+	
+	  .image-header-bottom-mobile {
+		margin: 120px 0 24px;
+	  }
+	
+	  .about-window {
+		width: calc(100vw - 12px) !important;
+		max-width: calc(100vw - 12px) !important;
+	  }
+	
+	  .about-image-content {
+		padding: 10px;
+	  }
+	
+	  .clients-table {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 16px 12px;
+	  }
+	
+	  .client-stack {
+		gap: 0;
+	  }
+	
+	  .client-gif {
+		width: 74px;
+		height: 74px;
+	  }
+	
+	  .client-stack .client-gif {
+		width: 74px;
+		height: auto;
+		margin: 0;
+	  }
+	
+	  .client-item span {
+		font-size: 10px;
+	  }
+	}
+  </style>
+</head>
+<body>
+  <div class="top-strip"></div>
+
+  <!-- MOBILE AERO MUSIC PLAYER -->
+  <div id="mobile-player" class="aero-window mobile-player">
+	<div class="aero-header">
+	  <div class="aero-title">now playing</div>
+	</div>
+
+	<div class="mobile-player-body">
+	  <button class="fas fa-backward" onclick="prevTrack()" type="button" aria-label="Previous track"></button>
+	  <button class="playpause-track fas fa-play" onclick="playpauseTrack()" type="button" aria-label="Play or pause"></button>
+	  <button class="fas fa-forward" onclick="nextTrack()" type="button" aria-label="Next track"></button>
+
+	  <marquee scrollamount="4" class="songtitle"></marquee>
+
+	  <button class="mute-track" onclick="toggleMute()" type="button" aria-label="Mute or unmute">
+		<i class="fas fa-volume-up" aria-hidden="true"></i>
+	  </button>
+	</div>
+  </div>
+
+  <div class="image-header-top">
+	<img
+	  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_HEADER_BALLOON.png"
+	  alt=""
+	  class="image-header-img"
+	  style="--w:450px;">
+  </div>
+
+
+  <!-- MOBILE-ONLY OLD E-WRAP CLONE -->
+  <div class="e-wrap-mobile-old">
+	<img
+	  id="decor-e-mobile-old"
+	  src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
+	  alt="EPHEMERA logo">
+
+	<div class="orbit-container-mobile-old">
+	  <a href="#" class="flyers-trigger-mobile-old-link">
+		<img
+		  class="orbit-mobile-old"
+		  id="flyers-trigger-mobile-old"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYERS_BUTTON.gif"
+		  style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:180px;"
+		  alt="Flyers">
+	  </a>
+
+	  <img
+		class="orbit-mobile-old"
+		id="about-trigger-mobile-old"
+		src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
+		style="--x:50px; --y:-280px; --r:5deg; --s:1.0; width:180px;"
+		alt="About">
+
+	  <a href="https://www.instagram.com/ephemeraonline.world/" target="_blank" rel="noopener noreferrer">
+		<img
+		  class="orbit-mobile-old"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STAR_INSTAGRAM.png"
+		  style="--x:-260px; --y:170px; --r:-15deg; --s:1.0; width:180px;"
+		  alt="Instagram">
+	  </a>
+
+	  <a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+		<img
+		  class="orbit-mobile-old"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
+		  style="--x:260px; --y:180px; --r:5deg; --s:0.95; width:630px;"
+		  alt="Store">
+	  </a>
+
+	  <a href="mailto:hi@ephemeraonline.world">
+		<img
+		  class="orbit-mobile-old"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
+		  style="--x:260px; --y:-65px; --r:25deg; --s:1.05; width:180px;"
+		  alt="Contact">
+	  </a>
+	</div>
+  </div>
+
+  <div class="page">
+	<div class="stage">
+
+	  <div class="e-wrap">
+		<img
+		  id="decor-e"
+		  src="https://i.ibb.co/3mv0DPQ0/INTERNET-E-WITH-STROKE.png"
+		  alt="EPHEMERA logo">
+
+		<div class="orbit-container">
+		  <a href="/flyers">
+			<img
+			  class="orbit"
+			  id="flyers-trigger"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYERS_BUTTON.gif"
+			  style="--x:-205px; --y:-120px; --r:-15deg; --s:1.0; width:190px;"
+			  alt="Flyers">
+		  </a>
+
+		  <img
+			class="orbit"
+			id="about-trigger"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
+			style="--x:35px; --y:-235px; --r:5deg; --s:0.95; width:190px;"
+			alt="About">
+
+		  <a href="https://www.instagram.com/ephemeraonline.world/" target="_blank" rel="noopener noreferrer">
+			<img
+			  class="orbit"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STAR_INSTAGRAM.png"
+			  style="--x:-215px; --y:125px; --r:-15deg; --s:0.95; width:190px;"
+			  alt="Instagram">
+		  </a>
+
+		  <a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+			<img
+			  class="orbit"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
+			  style="--x:215px; --y:145px; --r:5deg; --s:0.68; width:310px;"
+			  alt="Store">
+		  </a>
+
+		  <a href="mailto:hi@ephemeraonline.world">
+			<img
+			  class="orbit"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
+			  style="--x:220px; --y:-55px; --r:25deg; --s:0.95; width:190px;"
+			  alt="Contact">
+		  </a>
+		</div>
+	  </div>
+
+	  <div id="welcome-window" class="aero-window">
+		<div class="aero-header">
+		  <div class="aero-title">welcome message</div>
+		</div>
+		<div class="aero-content">
+		  <p>
+			hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out =) 
+		  </p>
+		</div>
+	  </div>
+
+	  <div id="under-window" class="aero-window">
+		<div class="aero-header">
+		  <div class="aero-title">under construction</div>
+		  <button class="aero-close" type="button">✕</button>
+		</div>
+		<div class="aero-content">
+		  <p>
+			this site will be an on-going work in progress, pages can move, links may break, ideas will evolve.
+		  </p>
+		</div>
+	  </div>
+	</div>
+
+	<div class="image-table-wrap">
+	  <table class="image-table">
+		<tr>
+		  <td>
+			<div class="tbl-card">
+			  <div class="tbl-img-wrap">
+				<img
+				  class="tbl-img"
+				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED2.png"
+				  alt=""
+				  style="--w:250px; --x:0px; --y:0px;">
+				<div class="live-date" id="live-date"></div>
+			  </div>
+
+			  <div class="tbl-caption" style="--bg:#a5ff00; --color:#7d43b2;">
+				“i will outlive all my enemies”
+			  </div>
+			</div>
+		  </td>
+
+		  <td>
+			<img
+			  id="welcome-stars"
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_stars.gif"
+			  alt=""
+			  style="--w:400px; --x:30px; --y:0px;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td>
+			<a href="mailto:hi@ephemeraonline.world?subject=Let%27s%20work%20together&body=Hi%20EPHEMERA%2C" class="email-image-link">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif"
+				alt=""
+				style="--w:250px; --x:0px; --y:0px;">
+			</a>
+		  </td>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bear_balloon.gif"
+			  alt=""
+			  style="--w:200px; --x:0px; --y:0px;">
+		  </td>
+		  <td>
+			<a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_SCARY_MOVIES_TEMP.gif"
+				alt=""
+				style="--w:220px; --x:0px; --y:0px;">
+			</a>
+		  </td>
+		  <td>
+			<img
+			  id="pikachu-trigger"
+			  class="tbl-img under-construction-trigger"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif"
+			  alt=""
+			  style="--w:180px; --x:0px; --y:0px;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_VIRUS.png"
+			  alt=""
+			  style="--w:250px; --x:0px; --y:0px;">
+		  </td>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BEAR_STAMPS.png"
+			  alt=""
+			  style="--w:120px; --x:40px; --y:0px;">
+		  </td>
+		  <td>
+			<a href="https://www.spacejam.com/1996" target="_blank" rel="noopener noreferrer">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PREZENT.gif"
+				alt=""
+				style="--w:160px; --x:40px; --y:0px;">
+			</a>
+		  </td>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ALWAYS_ONLINE.gif"
+			  alt=""
+			  style="--w:180px; --x:0px; --y:0px;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td>
+			<div class="counter-cell">
+			  <a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+				<img
+				  class="tbl-img"
+				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BAR_COUNTER.png"
+				  alt="counter decoration"
+				  style="--w:220px; --x:0px; --y:-10px;">
+			  </a>
+
+			  <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener noreferrer">
+				<img
+				  src="https://hitwebcounter.com/counter/counter.php?page=21479206&style=0013&nbdigits=5&type=page&initCount=0"
+				  alt="Visitor Counter"
+				  border="0">
+			  </a>
+
+			  <br>
+			  VISITORS!
+			</div>
+		  </td>
+
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/fish_kissing.gif"
+			  alt=""
+			  style="--w:180px; --x:0px; --y:10px;">
+		  </td>
+
+		  <td>
+			<a href="https://ephemeraonline.world/Winner.html" target="_blank" rel="noopener noreferrer">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CONGRATS_AD_OH.gif"
+				alt=""
+				style="--w:200px; --x:0px; --y:0px;">
+			</a>
+		  </td>
+
+		  <td>
+			<img
+			  class="tbl-img pets-window-trigger"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
+			  alt=""
+			  style="--w:180px; --x:0px; --y:0px;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/KITTY_MANIFESTATION.gif"
+			  alt=""
+			  style="--w:180px; --x:-40px; --y:10px; --r:0deg; display:block; margin-bottom:30px;">
+
+			<div style="display:flex; gap:12px; align-items:flex-start; overflow:visible; justify-content:center;">
+			  <a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+				<img
+				  class="tbl-img"
+				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/GOTH_STICKER.gif"
+				  alt=""
+				  style="width:220px; height:auto; display:block; object-fit:contain; transform:none;">
+			  </a>
+
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FAIRY_DOLLZ.gif"
+				alt=""
+				style="width:120px; height:auto; display:block; object-fit:contain; transform:none;">
+			</div>
+		  </td>
+
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/AWESOME_DAY.gif"
+			  alt=""
+			  style="--w:180px; --x:-40px; --y:10px; --r:5deg;">
+		  </td>
+
+		  <td>
+			<a href="https://open.spotify.com/playlist/6eNQRcbq2fcD1Yn73woxOk" target="_blank" rel="noopener noreferrer">
+			  <img
+				class="tbl-img"
+				src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CD_ROM.gif"
+				alt=""
+				style="--w:180px; --x:0px; --y:10px;">
+			</a>
+		  </td>
+
+		  <td>
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BLINKEE_TOWER.gif"
+			  alt=""
+			  style="--w:152px; --x:0px; --y:0px;">
+		  </td>
+		</tr>
+
+		<tr>
+		  <td></td>
+
+		  <td colspan="2" class="grid-window-cell">
+			<div id="come-back-window" class="aero-window grid-aero-window">
+			  <div class="aero-header">
+				<div class="aero-title">come back soon</div>
+				<button class="aero-close" type="button">✕</button>
+			  </div>
+			  <div class="aero-content">
+				<p>
+				  click around, get lost, and have fun. thank you for being here &lt;3
+				</p>
+			  </div>
+			</div>
+		  </td>
+
+		  <td></td>
+		</tr>
+	  </table>
+	</div>
+  </div>
+
+  <div class="mobile-grid-wrap">
+	<div class="mobile-grid">
+	  <div class="mobile-grid-item">
+		<div class="tbl-card">
+		  <div class="tbl-img-wrap">
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DA%20UPDATED2.png"
+			  alt=""
+			  style="--w:250px; --x:0px; --y:0px;">
+			<div class="live-date" id="live-date-mobile"></div>
+		  </div>
+
+		  <div class="tbl-caption" style="--bg:#a5ff00; --color:#7d43b2;">
+			“i will outlive all my enemies”
+		  </div>
+		</div>
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  id="welcome-stars-mobile"
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/welcome_stars.gif"
+		  alt=""
+		  style="--w:400px; --x:0px; --y:0px;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<a href="mailto:hi@ephemeraonline.world?subject=Let%27s%20work%20together&body=Hi%20EPHEMERA%2C" class="email-image-link">
+		  <img
+			class="tbl-img"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/glitterfy6205309206B81.gif"
+			alt=""
+			style="--w:250px; --x:0px; --y:0px;">
+		</a>
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bear_balloon.gif"
+		  alt=""
+		  style="--w:200px; --x:0px; --y:0px;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+		  <img
+			class="tbl-img"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_SCARY_MOVIES_TEMP.gif"
+			alt=""
+			style="--w:220px; --x:0px; --y:0px;">
+		</a>
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  id="pikachu-trigger-mobile"
+		  class="tbl-img under-construction-trigger"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Pikachu_Construction.gif"
+		  alt=""
+		  style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_VIRUS.png"
+		  alt=""
+		  style="--w:250px; --x:0px; --y:0px;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BEAR_STAMPS.png"
+		  alt=""
+		  style="--w:120px; --x:0px; --y:0px;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<a href="https://www.spacejam.com/1996" target="_blank" rel="noopener noreferrer">
+		  <img
+			class="tbl-img"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PREZENT.gif"
+			alt=""
+			style="--w:160px; --x:0px; --y:0px;">
+		</a>
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ALWAYS_ONLINE.gif"
+		  alt=""
+		  style="--w:180px; --x:0px; --y:0px;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<div class="counter-cell">
+		  <a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+			<img
+			  class="tbl-img"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BAR_COUNTER.png"
+			  alt="counter decoration"
+			  style="--w:220px; --x:0px; --y:-10px;">
+		  </a>
+
+		  <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener noreferrer">
+			<img
+			  src="https://hitwebcounter.com/counter/counter.php?page=21479206&style=0013&nbdigits=5&type=page&initCount=0"
+			  alt="Visitor Counter"
+			  border="0">
+		  </a>
+
+		  <br>
+		  VISITORS!
+		</div>
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/fish_kissing.gif"
+		  alt=""
+		  style="--w:180px; --x:0px; --y:10px;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<a href="https://ephemeraonline.world/Winner.html" target="_blank" rel="noopener noreferrer">
+		  <img
+			class="tbl-img"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/CONGRATS_AD_OH.gif"
+			alt=""
+			style="--w:200px; --x:0px; --y:0px;">
+		</a>
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  class="tbl-img pets-window-trigger"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bloggif_69a9f9b7e3544-ezgif.com-gif-maker.gif"
+		  alt="Open pets window"
+		  style="--w:180px; --x:0px; --y:0px; cursor:pointer;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/KITTY_MANIFESTATION.gif"
+		  alt=""
+		  style="--w:180px; --x:0px; --y:0px; --r:0deg; display:block; margin-bottom:20px;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<a href="https://ephemera-8892.myshopify.com" target="_blank" rel="noopener noreferrer">
+		  <img
+			class="tbl-img"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/GOTH_STICKER.gif"
+			alt=""
+			style="--w:180px; --x:0px; --y:0px; --r:0deg; display:block; margin-bottom:20px;">
+		</a>
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  id="come-back-soon-trigger-mobile"
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/AWESOME_DAY.gif"
+		  alt=""
+		  style="--w:180px; --x:0px; --y:0px; --r:0deg; cursor:pointer;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<a href="https://open.spotify.com/playlist/6eNQRcbq2fcD1Yn73woxOk" target="_blank" rel="noopener noreferrer">
+		  <img
+			class="tbl-img"
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CD_ROM.gif"
+			alt=""
+			style="--w:180px; --x:0px; --y:0px;">
+		</a>
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/BLINKEE_TOWER.gif"
+		  alt=""
+		  style="--w:152px; --x:0px; --y:0px;">
+	  </div>
+
+	  <div class="mobile-grid-item">
+		<img
+		  class="tbl-img"
+		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_TALL.gif"
+		  alt=""
+		  style="--w:45px; --x:0px; --y:0px;">
+	  </div>
+	</div>
+  </div>
+
+  <div id="aero-gallery-overlay" class="aero-overlay" aria-hidden="true">
+	<div class="aero-window aero-gallery" role="dialog" aria-modal="true" aria-label="Flyers gallery">
+	  <div class="aero-header">
+		<div class="aero-title">our flyers</div>
+		<button class="aero-close-btn" id="aero-gallery-close-x" type="button" aria-label="Close">✕</button>
+	  </div>
+
+	  <div class="aero-gallery-body">
+		<div class="flyer-intro">
+		  <p>
+			Rooted in pop-culture, nostalgia, and a little bit of chaos, our studio creates flyers that grab attention, start conversations, and actually make people want to show up. Each one is built to live beyond the post—something you’d screenshot, save, and send to your friends.
+		  </p>
+		</div>
+
+		<div id="flyer-inline-view" class="flyer-inline-view" aria-hidden="true">
+		  <div class="flyer-inline-inner">
+			<button
+			  id="flyer-inline-close"
+			  class="flyer-inline-close"
+			  type="button"
+			  aria-label="Close expanded flyer">✕</button>
+
+			<img
+			  id="flyer-inline-img"
+			  class="flyer-inline-img"
+			  src=""
+			  alt="Expanded flyer preview">
+		  </div>
+		</div>
+
+		<div class="flyer-grid">
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_THE_MOMENT.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_THE_MOMENT.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_THE_MOMENT.png" alt="The Moment flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_MADISON_BEER.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_MADISON_BEER.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_MADISON_BEER.png" alt="Madison Beer flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FREAKIER.png" alt="Hemlocke Apple flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_FUNGIES.png" alt="Fungies flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_AFFIRMATIONS.png" alt="Affirmations flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_5S0S.png" alt="5SOS flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_EOW.png" alt="EOW flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_ADDISON.png" alt="Addison flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYER_HALLOWEEN.png" alt="Halloween flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HEMLOCKE_APPLE.png" alt="Hemlocke Apple flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_HIRE_EPHEMERA.png" alt="Hire Ephemera flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_DAYA.png" alt="Daya flyer">
+		  </a>
+
+		  <a class="flyer-thumb" href="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png">
+			<img src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/FLYER_LAUNCH.png" alt="Launch flyer">
+		  </a>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+  <div id="flyer-lightbox" class="flyer-lightbox" aria-hidden="true">
+	<div class="flyer-lightbox-inner">
+	  <button id="flyer-lightbox-close" class="flyer-lightbox-close" type="button" aria-label="Close">✕</button>
+	  <img id="flyer-lightbox-img" class="flyer-lightbox-img" src="" alt="Expanded flyer">
+	</div>
+  </div>
+
+  <div id="about-overlay" class="aero-overlay" aria-hidden="true">
+	<div class="aero-window aero-gallery about-window" role="dialog" aria-modal="true" aria-label="About">
+	  <div class="aero-header">
+		<div class="aero-title">about us</div>
+		<button class="aero-close-btn" id="about-close-x" type="button" aria-label="Close">✕</button>
+	  </div>
+
+	  <div class="aero-content about-aero-content about-desktop-content">
+		<div class="aero-about-body">
+		  <div class="about-sheet-v2">
+
+			<div class="about-top-meta">
+			  <span>HI@EPHEMERAONLINE.WORLD</span>
+			  <span>FROM THE DESK OF EPHEMERA</span>
+			  <span>@EPHEMERAONLINE.WORLD</span>
+			</div>
+
+			<div class="about-star-divider">
+			  ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+			</div>
+
+			<section class="about-hero-v2">
+			  <div class="about-brand-image-wrap">
+				<img
+				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_NEW_HEAVY_WEBSITE.png"
+				  alt="EPHEMERA"
+				  class="about-brand-image-v2">
+			  </div>
+
+			  <p class="about-intro-v2">
+				Ephemera is a creative studio that runs on pop-culture.
+				We offer creative services to our favorite brands and artists
+				to help tell stories that actually hit — across screens, stages,
+				and social feeds. Sometimes we make merch.
+			  </p>
+			</section>
+
+			<section class="about-services-v2">
+			  <article class="service-card service-card--pink">
+				<div class="service-pill">WORLD BUILDING</div>
+				<div class="service-card-body">
+				  <ul>
+					<li>Creative &amp; Art direction</li>
+					<li>Brand voice + tone</li>
+					<li>Visual identity</li>
+					<li>Starter kit</li>
+				  </ul>
+				  <p class="service-tldr">tldr:we define how you exist</p>
+				</div>
+			  </article>
+
+			  <article class="service-card service-card--green">
+				<div class="service-pill">CAMPAIGNS</div>
+				<div class="service-card-body">
+				  <ul>
+					<li>Concepts + big ideas</li>
+					<li>Messaging &amp; copy direction</li>
+					<li>Launches, drops, announcements</li>
+					<li>Rollout planning</li>
+				  </ul>
+				  <p class="service-tldr">tldr:we make people care</p>
+				</div>
+			  </article>
+
+			  <article class="service-card service-card--blue">
+				<div class="service-pill">EPHEMERA</div>
+				<div class="service-card-body">
+				  <ul>
+					<li>Flyers, posters, zines</li>
+					<li>Mailers, inserts, prints</li>
+					<li>Event collateral</li>
+					<li>Limited-run merch</li>
+				  </ul>
+				  <p class="service-tldr">tldr:we make things worth keeping</p>
+				</div>
+			  </article>
+
+			  <article class="service-card service-card--yellow">
+				<div class="service-pill">DIGITAL</div>
+				<div class="service-card-body">
+				  <ul>
+					<li>Email moments</li>
+					<li>Social strategy</li>
+					<li>Website design</li>
+					<li>Digital presence</li>
+				  </ul>
+				  <p class="service-tldr">tldr:we keep brands alive online</p>
+				</div>
+			  </article>
+			</section>
+
+			<section class="about-logo-strip">
+			  <div class="about-logo-strip-inner">
+				<div class="about-clients-section">
+				  <h2 class="about-clients-heading">SOME CLIENTS WE HAVE WORKED WITH</h2>
+
+				  <div class="clients-table">
+					<div class="client-item">
+					  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/sanrio.gif" alt="Sanrio">
+					  <span>SANRIO</span>
+					</div>
+
+					<div class="client-item">
+					  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/spongebob.gif" alt="Nickelodeon">
+					  <span>NICKELODEON</span>
+					</div>
+
+					<div class="client-item">
+					  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/fire-mtv.gif" alt="Viacom">
+					  <span>VIACOM</span>
+					</div>
+
+					<div class="client-item">
+					  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/apple%20music.gif" alt="Apple Music">
+					  <span>APPLE MUSIC</span>
+					</div>
+
+					<div class="client-item">
+					  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/bubbles.gif" alt="Cartoon Network">
+					  <span>CARTOON NETWORK</span>
+					</div>
+
+					<div class="client-item">
+					  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/hulu.gif" alt="Hulu">
+					  <span>HULU</span>
+					</div>
+
+					<div class="client-item">
+					  <img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/disney.gif" alt="Disney">
+					  <span>DISNEY</span>
+					</div>
+
+					<div class="client-item">
+					  <div class="client-stack">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/blinkiesCafe-J7.gif" alt="">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/blinkiesCafe-9p.gif" alt="">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/netflix.gif" alt="Netflix">
+						<img class="client-gif" src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/blinkiesCafe-tQ.gif" alt="">
+					  </div>
+					  <span>AND MORE!</span>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</section>
+
+		  </div>
+		</div>
+	  </div>
+
+	  <div class="aero-content about-image-content about-mobile-content" aria-hidden="true">
+		<button class="about-poster-btn" id="about-poster-btn" type="button" aria-label="Open about poster">
+		  <img
+			src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT_SHEET.png"
+			data-full="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT_SHEET.png"
+			alt="About EPHEMERA poster"
+			class="about-poster-img"
+			id="about-poster-img">
+		</button>
+	  </div>
+	</div>
+  </div>
+
+  <div id="about-lightbox" class="flyer-lightbox" aria-hidden="true">
+	<div class="flyer-lightbox-inner">
+	  <button id="about-lightbox-close" class="flyer-lightbox-close" type="button" aria-label="Close">✕</button>
+	  <img id="about-lightbox-img" class="flyer-lightbox-img" src="" alt="Expanded about poster">
+	</div>
+  </div>
+
+  <div id="under-construction-window" class="aero-window hidden-window" aria-hidden="true">
+	<div class="aero-header">
+	  <div class="aero-title">under construction</div>
+	  <button class="aero-close-btn" id="close-under-construction-window" type="button" aria-label="Close">✕</button>
+	</div>
+	<div class="aero-content">
+	  <p>this site will be an on-going work in progress, pages can move, links may break, ideas will evolve. make sure to check back soon because you never know what you might find next time.</p>
+	</div>
+  </div>
+
+  <div id="come-back-soon-window" class="aero-window hidden-window" aria-hidden="true">
+	<div class="aero-header">
+	  <div class="aero-title">come back soon</div>
+	  <button class="aero-close-btn" id="close-come-back-soon-window" type="button" aria-label="Close">✕</button>
+	</div>
+	<div class="aero-content">
+	  <p>click around, get lost, and have fun. thank you for being here &lt;3</p>
+	</div>
+  </div>
+
+  <div id="pets-window" class="aero-window hidden-window" aria-hidden="true">
+	<div class="aero-header">
+	  <div class="aero-title">FOREVER IN OUR HEARTS</div>
+	  <button class="aero-close-btn" id="close-pets-window" type="button" aria-label="Close">✕</button>
+	</div>
+
+	<div class="aero-content pets-content">
+	  <div class="pets-frame-wrap">
+		<button class="pets-arrow pets-arrow-left" id="pets-prev" type="button" aria-label="Previous pet">‹</button>
+
+		<div class="pets-card">
+		  <div class="pets-glitter-frame">
+			<img
+			  id="pets-image"
+			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/PETS_PLACEHOLDER.png"
+			  alt="Featured pet">
+		  </div>
+
+		  <div class="pets-text">
+			<h2 id="pets-name">PET NAME</h2>
+			<p id="pets-caption">
+			  a very important creature from the EPHEMERA extended universe.
+			</p>
+
+			<a
+			  class="pets-submit-btn"
+			  href="mailto:hi@ephemeraonline.world?subject=PETS%20PLEASE">
+			  submit a tribute
+			</a>
+		  </div>
+		</div>
+
+		<button class="pets-arrow pets-arrow-right" id="pets-next" type="button" aria-label="Next pet">›</button>
+	  </div>
+	</div>
+  </div>
+
+  <audio id="music" src=""></audio>
+
+  <script>
+	/* ==================================================
+	   FALLING STARS
+	================================================== */
+	const STAR_IMAGES = [
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BLUE_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_GREEN_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_PINK_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_RED_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ORANGE_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_PURPLE.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_YELLOW.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_WKDBLUE.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_MAGENTA.png"
+	];
+
+	function spawnStars(count = 50) {
+	  for (let i = 0; i < count; i++) {
+		const star = document.createElement("div");
+		star.className = "star";
+
+		const img = document.createElement("img");
+		img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
+
+		star.style.left = Math.random() * window.innerWidth + "px";
+		star.style.width = Math.random() * 18 + 12 + "px";
+		star.style.animationDuration = Math.random() * 15 + 10 + "s";
+		star.style.animationDelay = Math.random() * -15 + "s";
+
+		star.appendChild(img);
+		document.body.appendChild(star);
+	  }
+	}
+
+	spawnStars(50);
+
+	window.addEventListener("resize", () => {
+	  document.querySelectorAll(".star").forEach((star) => {
+		star.style.left = Math.random() * window.innerWidth + "px";
+	  });
+	});
+
+	/* ==================================================
+	   ORBIT HOVER RANDOMISER
+	================================================== */
+	(function setupRandomOrbitHover() {
+	  const orbits = Array.from(document.querySelectorAll(".orbit"));
+	  if (!orbits.length) return;
+
+	  function rand(min, max) {
+		return Math.random() * (max - min) + min;
+	  }
+
+	  function pickSign() {
+		return Math.random() < 0.5 ? -1 : 1;
+	  }
+
+	  function applyRandom(el) {
+		const w1 = rand(0.4, 1.2) * pickSign();
+		const w2 = rand(0.6, 1.6) * pickSign();
+		const w3 = rand(0.4, 1.4) * pickSign();
+		const ws1 = rand(0.98, 1.04);
+		const ws2 = rand(0.98, 1.04);
+		const speed = rand(0.55, 1.05);
+
+		el.style.setProperty("--w1", w1.toFixed(2) + "deg");
+		el.style.setProperty("--w2", w2.toFixed(2) + "deg");
+		el.style.setProperty("--w3", w3.toFixed(2) + "deg");
+		el.style.setProperty("--ws1", ws1.toFixed(3));
+		el.style.setProperty("--ws2", ws2.toFixed(3));
+		el.style.setProperty("--wiggle-speed", speed.toFixed(2) + "s");
+	  }
+
+	  orbits.forEach((el) => {
+		applyRandom(el);
+		el.addEventListener("mouseenter", () => applyRandom(el), { passive: true });
+	  });
+	})();
+
+	/* ==================================================
+	   FLYERS POPUP
+	================================================== */
+	(function () {
+	  const triggers = document.querySelectorAll(
+		"#flyers-trigger, #flyers-trigger-mobile-old, .flyers-trigger-mobile-old-link"
+	  );
+	  const overlay = document.getElementById("aero-gallery-overlay");
+	  const closeX = document.getElementById("aero-gallery-close-x");
+
+	  const flyerThumbs = document.querySelectorAll(".flyer-thumb");
+	  const flyerGrid = document.querySelector(".flyer-grid");
+	  const flyerIntro = document.querySelector(".flyer-intro");
+	  const flyerInlineView = document.getElementById("flyer-inline-view");
+	  const flyerInlineImg = document.getElementById("flyer-inline-img");
+	  const flyerInlineClose = document.getElementById("flyer-inline-close");
+	  const flyerBody = document.querySelector(".aero-gallery-body");
+
+	  if (!triggers.length || !overlay || !closeX) return;
+
+	  function lockFlyerStage() {
+		document.body.style.overflow = "hidden";
+
+		if (flyerBody) {
+		  flyerBody.style.overflow = "hidden";
+		  flyerBody.scrollTop = 0;
+		}
+	  }
+
+	  function unlockFlyerStage() {
+		document.body.style.overflow = overlay.classList.contains("is-open") ? "hidden" : "";
+
+		if (flyerBody) {
+		  flyerBody.style.overflow = "";
+		}
+	  }
+
+	  function closeInlineFlyer() {
+		if (!flyerInlineView || !flyerInlineImg) return;
+		flyerInlineView.classList.remove("is-open");
+		flyerInlineView.setAttribute("aria-hidden", "true");
+		flyerInlineImg.removeAttribute("src");
+		unlockFlyerStage();
+	  }
+
+	  function openInlineFlyer(src, altText) {
+		if (!flyerInlineView || !flyerInlineImg) return;
+		flyerInlineImg.src = src;
+		flyerInlineImg.alt = altText || "Expanded flyer preview";
+		flyerInlineView.classList.add("is-open");
+		flyerInlineView.setAttribute("aria-hidden", "false");
+		lockFlyerStage();
+	  }
+
+	  function openOverlay() {
+		overlay.classList.add("is-open");
+		overlay.setAttribute("aria-hidden", "false");
+		document.body.style.overflow = "hidden";
+		closeInlineFlyer();
+	  }
+
+	  function closeOverlay() {
+		closeInlineFlyer();
+		overlay.classList.remove("is-open");
+		overlay.setAttribute("aria-hidden", "true");
+		document.body.style.overflow = "";
+	  }
+
+	  triggers.forEach((trigger) => {
+		trigger.addEventListener("click", (e) => {
+		  e.preventDefault();
+		  openOverlay();
+		});
+	  });
+
+	  closeX.addEventListener("click", (e) => {
+		e.preventDefault();
+		closeOverlay();
+	  });
+
+	  overlay.addEventListener("click", (e) => {
+		if (e.target === overlay) closeOverlay();
+	  });
+
+	  document.addEventListener("keydown", (e) => {
+		if (!overlay.classList.contains("is-open")) return;
+
+		if (e.key === "Escape") {
+		  if (flyerInlineView && flyerInlineView.classList.contains("is-open")) {
+			closeInlineFlyer();
+		  } else {
+			closeOverlay();
+		  }
+		}
+	  });
+
+	  flyerThumbs.forEach((thumb) => {
+		thumb.addEventListener("click", (e) => {
+		  e.preventDefault();
+		  const src = thumb.getAttribute("data-full") || thumb.getAttribute("href");
+		  const img = thumb.querySelector("img");
+		  openInlineFlyer(src, img ? img.alt : "Expanded flyer preview");
+		});
+	  });
+
+	  if (flyerInlineClose) {
+		flyerInlineClose.addEventListener("click", (e) => {
+		  e.preventDefault();
+		  closeInlineFlyer();
+		});
+	  }
+
+	  if (flyerInlineView) {
+		flyerInlineView.addEventListener("click", (e) => {
+		  if (e.target === flyerInlineView) closeInlineFlyer();
+		});
+	  }
+	})();
+
+	/* ==================================================
+	   ABOUT POPUP
+	================================================== */
+	(function () {
+	  const triggers = document.querySelectorAll(
+		"#about-trigger, #about-trigger-mobile-old"
+	  );
+	  const overlay = document.getElementById("about-overlay");
+	  const closeX = document.getElementById("about-close-x");
+
+	  if (!triggers.length || !overlay || !closeX) return;
+
+	  function open() {
+		overlay.classList.add("is-open");
+		overlay.setAttribute("aria-hidden", "false");
+		document.body.style.overflow = "hidden";
+		closeX.focus();
+	  }
+
+	  function close() {
+		overlay.classList.remove("is-open");
+		overlay.setAttribute("aria-hidden", "true");
+		document.body.style.overflow = "";
+	  }
+
+	  triggers.forEach((trigger) => {
+		trigger.addEventListener("click", (e) => {
+		  e.preventDefault();
+		  open();
+		});
+	  });
+
+	  closeX.addEventListener("click", (e) => {
+		e.preventDefault();
+		close();
+	  });
+
+	  overlay.addEventListener("click", (e) => {
+		if (e.target === overlay) close();
+	  });
+
+	  document.addEventListener("keydown", (e) => {
+		if (!overlay.classList.contains("is-open")) return;
+		if (e.key === "Escape") close();
+	  });
+	})();
+	/* ==================================================
+	   UNDER CONSTRUCTION WINDOW
+	================================================== */
+	(function () {
+	  const triggers = document.querySelectorAll(".under-construction-trigger");
+	  const windowEl = document.getElementById("under-construction-window");
+	  const closeBtn = document.getElementById("close-under-construction-window");
+
+	  if (!triggers.length || !windowEl) return;
+
+	  function openWindow() { windowEl.classList.add("is-visible"); }
+	  function closeWindow() { windowEl.classList.remove("is-visible"); }
+
+	  triggers.forEach((trigger) => {
+		trigger.addEventListener("click", function (e) {
+		  e.preventDefault();
+		  e.stopPropagation();
+		  const isOpen = windowEl.classList.contains("is-visible");
+		  if (isOpen) closeWindow(); else openWindow();
+		});
+	  });
+
+	  if (closeBtn) {
+		closeBtn.addEventListener("click", function (e) {
+		  e.preventDefault();
+		  e.stopPropagation();
+		  closeWindow();
+		});
+	  }
+
+	  windowEl.addEventListener("click", function (e) { e.stopPropagation(); });
+	  document.addEventListener("click", function () { closeWindow(); });
+	  document.addEventListener("keydown", function (e) {
+		if (!windowEl.classList.contains("is-visible")) return;
+		if (e.key === "Escape") closeWindow();
+	  });
+	})();
+
+	/* ==================================================
+	   COME BACK SOON WINDOW
+	================================================== */
+	(function () {
+	  const trigger = document.getElementById("come-back-soon-trigger-mobile");
+	  const windowEl = document.getElementById("come-back-soon-window");
+	  const closeBtn = document.getElementById("close-come-back-soon-window");
+
+	  if (!trigger || !windowEl) return;
+
+	  function openWindow() { windowEl.classList.add("is-visible"); }
+	  function closeWindow() { windowEl.classList.remove("is-visible"); }
+
+	  trigger.addEventListener("click", function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		const isOpen = windowEl.classList.contains("is-visible");
+		if (isOpen) closeWindow(); else openWindow();
+	  });
+
+	  if (closeBtn) {
+		closeBtn.addEventListener("click", function (e) {
+		  e.preventDefault();
+		  e.stopPropagation();
+		  closeWindow();
+		});
+	  }
+
+	  windowEl.addEventListener("click", function (e) { e.stopPropagation(); });
+	  document.addEventListener("click", function () { closeWindow(); });
+	  document.addEventListener("keydown", function (e) {
+		if (!windowEl.classList.contains("is-visible")) return;
+		if (e.key === "Escape") closeWindow();
+	  });
+	})();
+
+	/* ==================================================
+	   PETS WINDOW
+	================================================== */
+	(function () {
+	  const triggers = document.querySelectorAll(".pets-window-trigger");
+	  const windowEl = document.getElementById("pets-window");
+	  const closeBtn = document.getElementById("close-pets-window");
+	  const prevBtn = document.getElementById("pets-prev");
+	  const nextBtn = document.getElementById("pets-next");
+	  const petImage = document.getElementById("pets-image");
+	  const petName = document.getElementById("pets-name");
+	  const petCaption = document.getElementById("pets-caption");
+
+	  const pets = [
+		{ name: "Daisy Gul", image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DAISY.png", caption: "gone but never forgotten, prayers up for this diva, our first baby girl - Amad" },
+		{ name: "PETUNIA", image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Petunia.JPG", caption: "Better known as ‘Toona’. The best bestie a girl could ask for <3. IYKYK. -Amelia" },
+		{ name: "Daisy", image: "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/Daisy.JPG", caption: "Tiny, demading, and deeply adored. Heaven gained a princess. -Amelia." }
+	  ];
+
+	  let currentPetIndex = 0;
+	  if (!triggers.length || !windowEl) return;
+
+	  function renderPet(index) {
+		if (!pets[index]) return;
+		if (petImage) { petImage.src = pets[index].image; petImage.alt = pets[index].name; }
+		if (petName) petName.textContent = pets[index].name;
+		if (petCaption) petCaption.textContent = pets[index].caption;
+	  }
+	  function openWindow() { windowEl.classList.add("is-visible"); renderPet(currentPetIndex); }
+	  function closeWindow() { windowEl.classList.remove("is-visible"); }
+	  function showNextPet() { currentPetIndex = (currentPetIndex + 1) % pets.length; renderPet(currentPetIndex); }
+	  function showPrevPet() { currentPetIndex = (currentPetIndex - 1 + pets.length) % pets.length; renderPet(currentPetIndex); }
+
+	  triggers.forEach((trigger) => {
+		trigger.addEventListener("click", function (e) {
+		  e.preventDefault();
+		  e.stopPropagation();
+		  const isOpen = windowEl.classList.contains("is-visible");
+		  if (isOpen) closeWindow(); else openWindow();
+		});
+	  });
+	  if (closeBtn) closeBtn.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); closeWindow(); });
+	  if (nextBtn) nextBtn.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); showNextPet(); });
+	  if (prevBtn) prevBtn.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); showPrevPet(); });
+	  windowEl.addEventListener("click", function (e) { e.stopPropagation(); });
+	  document.addEventListener("click", function () { closeWindow(); });
+	  document.addEventListener("keydown", function (e) {
+		if (!windowEl.classList.contains("is-visible")) return;
+		if (e.key === "Escape") closeWindow();
+		if (e.key === "ArrowRight") showNextPet();
+		if (e.key === "ArrowLeft") showPrevPet();
+	  });
+	  renderPet(currentPetIndex);
+	})();
+
+
+	/* ==================================================
+	   MUSIC PLAYER
+	================================================== */
+	const mobile_track_name = document.querySelector("#mobile-player .songtitle");
+	const mobile_play_button = document.querySelector("#mobile-player .playpause-track");
+	const mobile_mute_icon = document.querySelector("#mobile-player .mute-track i");
+
+	let track_index = 0;
+	let isPlaying = false;
+
+	const curr_track = document.getElementById("music");
+
+	const track_list = [
+	  { name: "HYD - Angel", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/Hyd%20-%20Angel.mp3" },
+	  { name: "Olivia Rodrigo - drop dead", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/Olivia%20Rodrigo%20-%20drop%20dead.mp3" },
+	  { name: "ADÉLA - KGB", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/01%20KGB%20%5BThe%20Unreleased%20Collection%5D.mp3" },
+	  { name: "2Charm - prerogative", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/2charm-prerogative.mp3" },
+	  { name: "Charli xcx - Sympathy is a knife featuring ariana grande", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/03%20Sympathy%20is%20a%20Knife%20(feat.%20Ariana%20Grande).mp3" },
+	  { name: "Mckayla Twiggs - What A Girl Wants", path: "https://github.com/ephemeraonline/site/raw/refs/heads/main/AUDIO/04%20-%20What%20A%20Girl%20Wants.mp3" },
+	  { name: "Danny L Harle - Raft in the Sea Featuring Julia Michaels", path: "https://files.catbox.moe/7ehw00.mp3" },
+	  { name: "Slayyyter - GAS STATION", path: "https://files.catbox.moe/3ahhlz.mp3" },
+	  { name: "Justine Skye - Just A Girl", path: "https://files.catbox.moe/29chhm.mp3" },
+	  { name: "Daya - Bandit", path: "https://files.catbox.moe/lzmwtq.mp3" },
+	  { name: "Camila Cabello feat. JT & Yung Miami - Dade County Dreaming", path: "https://files.catbox.moe/ulber5.mp3" },
+	  { name: "Hemloke Springs - Sever the Blight", path: "https://files.catbox.moe/5zb6s6.mp3" }
+	];
+
+	function syncUI() {
+	  if (mobile_track_name) {
+		mobile_track_name.textContent = track_list[track_index].name;
+	  }
+
+	  if (mobile_play_button) {
+		mobile_play_button.className = isPlaying
+		  ? "playpause-track fas fa-pause"
+		  : "playpause-track fas fa-play";
+	  }
+
+	  if (mobile_mute_icon && curr_track) {
+		mobile_mute_icon.classList.toggle("fa-volume-mute", curr_track.muted);
+		mobile_mute_icon.classList.toggle("fa-volume-up", !curr_track.muted);
+	  }
+	}
+
+	function loadTrack(index) {
+	  if (!curr_track) return;
+
+	  curr_track.src = track_list[index].path;
+	  curr_track.load();
+	  curr_track.onended = nextTrack;
+
+	  syncUI();
+	}
+
+	function playpauseTrack() {
+	  if (!curr_track) return;
+
+	  if (isPlaying) {
+		curr_track.pause();
+		isPlaying = false;
+		syncUI();
+	  } else {
+		curr_track.play().then(() => {
+		  isPlaying = true;
+		  syncUI();
+		}).catch(() => {
+		  isPlaying = false;
+		  syncUI();
+		});
+	  }
+	}
+
+	function nextTrack() {
+	  track_index = (track_index + 1) % track_list.length;
+	  loadTrack(track_index);
+	  if (isPlaying) {
+		curr_track.play().catch(() => {});
+	  }
+	}
+
+	function prevTrack() {
+	  track_index = (track_index - 1 + track_list.length) % track_list.length;
+	  loadTrack(track_index);
+	  if (isPlaying) {
+		curr_track.play().catch(() => {});
+	  }
+	}
+
+	function toggleMute() {
+	  if (!curr_track) return;
+
+	  curr_track.muted = !curr_track.muted;
+	  syncUI();
+	}
+
+	if (curr_track) {
+	  loadTrack(track_index);
+	  isPlaying = false;
+	  syncUI();
+	}
+
+  </script>
+
+<script>
+/* ==================================================
+   HEADER HIDE ON SCROLL
+================================================== */
+(function () {
+  const header = document.querySelector('.image-header-top');
+  if (!header) return;
+
+  let lastY = window.scrollY;
+
+  function onScroll() {
+	const currentY = window.scrollY;
+	const hideThreshold = window.innerWidth <= 768 ? 180 : 120;
+
+	if (currentY > hideThreshold && currentY > lastY) {
+	  header.classList.add('is-hidden');
+	} else {
+	  header.classList.remove('is-hidden');
+	}
+
+	lastY = currentY;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+
+<script>
+/* ============================================
+   MOBILE-ONLY HEADER VISIBILITY
+   - hides when scrolling down past threshold
+   - reappears when scrolling UP past same point
+   - original position (not pinned)
+   DESKTOP COMPLETELY UNTOUCHED
+============================================ */
+(function () {
+  if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+  const header = document.querySelector('.image-header-top');
+  if (!header) return;
+
+  const THRESHOLD = 320; // same visual point as before
+  let hidden = false;
+  let lastY = window.scrollY;
+
+  window.addEventListener(
+	'scroll',
+	() => {
+	  const y = window.scrollY;
+	  const scrollingUp = y < lastY;
+
+	  // Hide when scrolling down past threshold
+	  if (!hidden && y >= THRESHOLD) {
+		header.classList.add('is-hidden');
+		hidden = true;
+	  }
+
+	  // Show again when scrolling UP past threshold
+	  if (hidden && scrollingUp && y < THRESHOLD) {
+		header.classList.remove('is-hidden');
+		hidden = false;
+	  }
+
+	  lastY = y;
+	},
+	{ passive: true }
+  );
+})();
+</script>
+</body>
+</html>
