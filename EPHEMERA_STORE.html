@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title> ★EPHEMERA★ STORE</title>
+
+  <style>
+	* {
+	  box-sizing: border-box;
+	}
+
+	html,
+	body {
+	  margin: 0;
+	  padding: 0;
+	  width: 100%;
+	  min-height: 100%;
+	  overflow-x: hidden;
+	}
+
+	body {
+	  background: #ffffff;
+	  font-family: Arial, Helvetica, sans-serif;
+	  color: #000;
+	}
+
+	@font-face {
+	  font-family: "NurealRegular";
+	  src: url("https://files.catbox.moe/zcgiwn.woff2") format("woff");
+	  font-weight: 400;
+	  font-style: normal;
+	  font-display: swap;
+	}
+
+	.page {
+	  position: relative;
+	  width: 100%;
+	  min-height: 100vh;
+	  overflow: hidden;
+	  background: #ffffff;
+
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	}
+
+	/* ==================================================
+	   COMING SOON
+	================================================== */
+	.coming-soon {
+	  position: relative;
+	  z-index: 5;
+
+	  font-family: "NurealRegular", "NurealRegular", "NurealRegular", ;
+	  font-size: clamp(42px, 9vw, 70px);
+	  font-weight: 700;
+	  line-height: 0.9;
+	  letter-spacing: 0.06em;
+	  text-transform: uppercase;
+
+	  color: #7d43b2;
+
+	  background: #a5ff00;
+	  padding: 18px 34px 24px;
+
+	  border: 0px solid rgba(0, 0, 0, 0);
+	  border-radius: 999px;
+
+	  box-shadow:
+		6px 0px 0 rgba(0, 0, 0, 0),
+		0 0 18px rgba(165, 255, 0, 0);
+
+	  text-align: center;
+	  user-select: none;
+
+	  transform: rotate(-2deg);
+	}
+
+	.coming-soon span {
+	  display: block;
+	}
+
+	/* ==================================================
+	   FALLING STARS
+	================================================== */
+	.star {
+	  position: fixed;
+	  top: -80px;
+	  left: 0;
+	  pointer-events: none;
+	  z-index: 1;
+	  animation: fall linear infinite;
+	  will-change: transform, opacity;
+	}
+
+	.star img {
+	  width: 100%;
+	  height: auto;
+	  display: block;
+	  opacity: 0.95;
+	  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+	}
+
+	@keyframes fall {
+	  to {
+		transform: translateY(calc(100vh + 160px)) rotate(360deg);
+		opacity: 0;
+	  }
+	}
+
+	@media (max-width: 640px) {
+	  .coming-soon {
+		padding: 16px 22px 20px;
+		border-width: 3px;
+
+		box-shadow:
+		  4px 4px 0 #000,
+		  0 0 14px rgba(165, 255, 0, 0.45);
+	  }
+	}
+  </style>
+</head>
+
+<body>
+  <main class="page">
+	<div class="coming-soon">
+	  <span>COMING</span>
+	  <span>SOON</span>
+	</div>
+  </main>
+
+  <script>
+	/* ==================================================
+	   FALLING STARS
+	================================================== */
+	const STAR_IMAGES = [
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_BLUE_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_GREEN_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_PINK_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_RED_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_ORANGE_STAR.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_PURPLE.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_YELLOW.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_WKDBLUE.png",
+	  "https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_STAR_MAGENTA.png"
+	];
+
+	function spawnStars(count = 50) {
+	  for (let i = 0; i < count; i++) {
+		const star = document.createElement("div");
+		star.className = "star";
+
+		const img = document.createElement("img");
+		img.src = STAR_IMAGES[Math.floor(Math.random() * STAR_IMAGES.length)];
+		img.alt = "";
+
+		star.style.left = Math.random() * window.innerWidth + "px";
+		star.style.width = Math.random() * 18 + 12 + "px";
+		star.style.animationDuration = Math.random() * 15 + 10 + "s";
+		star.style.animationDelay = Math.random() * -15 + "s";
+
+		star.appendChild(img);
+		document.body.appendChild(star);
+	  }
+	}
+
+	spawnStars(50);
+  </script>
+</body>
+</html>
