@@ -347,6 +347,7 @@
 	  backdrop-filter: blur(12px);
 	  display: flex;
 	  flex-direction: column;
+	  
 	}
 
 	.aero-header {
@@ -406,13 +407,23 @@
 	  margin: 0;
 	}
 
-	#welcome-window {
+	.welcome-window {
 	  top: 890px;
 	  left: 50%;
 	  transform: translateX(-50%);
 	  width: 780px;
 	  max-width: calc(100vw - 120px);
 	  z-index: 20;
+	}
+
+	/* Mobile-only in-flow welcome window */
+	.welcome-window-mobile {
+	  display: none;
+	  position: static;
+	  width: calc(100vw - 28px);
+	  max-width: calc(100vw - 28px);
+	  margin: -490px auto;
+	  z-index: auto;
 	}
 
 	#under-window {
@@ -1554,8 +1565,16 @@
 		width: 100%;
 	  }
 	  
-  #welcome-window {
-		  
+	  .welcome-window {
+		  position: static;
+		  top: auto;
+		  left: auto;
+		  transform: none;
+		  width: calc(100vw - 28px);
+		  max-width: calc(100vw - 28px);
+		  margin: 16px auto;
+		  z-index: auto;
+		  display: none;
 		}
 
 	  #under-construction-window,
@@ -1646,193 +1665,202 @@
 		  scale(var(--s, 1));
 	  }
 	}
+	
+	
 
 	@media (max-width: 640px) {
-	  .page {
-		min-height: 0;
-	  }
-	
-	  .stage {
-		position: relative;
-		min-height: 1180px;
-	  }
-	
-	  .e-wrap-mobile-old {
-		position: absolute;
-		left: 50%;
-		top: 0;
-		margin: 0;
-		transform: translate(-50%, 490px) scale(0.5);
-	  }
-	
-	  #welcome-window {
-	position: absolute;
-	  top:730px;
-	  left: 50%;
-	  transform: translateX(-50%);
-	  width: calc(100vw - 28px);
-	  max-width: calc(100vw - 28px);
-	  margin: 0;
-	  }
-	
-	  .mobile-grid-wrap {
-		display: block !important;
-		width: 100%;
-		margin-top: -220px !important;
-		margin-bottom: 10px;
-		padding: 0 12px 40px;
-		box-sizing: border-box;
-		overflow: visible;
-	  }
-	
-	  .mobile-grid {
-		display: grid !important;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 18px 12px;
-		align-items: start;
-		overflow: visible;
-	  }
-	
-	  .image-table-wrap {
-		display: none !important;
-	  }
-	
-	  .mobile-grid-item {
-		min-width: 0;
-	  }
-	
-	  .mobile-grid-item--wide {
-		grid-column: span 2;
-	  }
-	
-	  .mobile-grid-item .tbl-img {
-		width: min(var(--w, 180px), 100%);
-		transform: none !important;
-		margin: 0 auto;
-	  }
-	
-	  .mobile-grid-item .tbl-card {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	  }
-	
-	  .mobile-grid-item .tbl-img-wrap {
-		position: relative;
-		display: flex !important;
-		flex-direction: column !important;
-		align-items: center;
-		justify-content: flex-start;
-		width: 100%;
-	  }
-	
-	  .mobile-grid-item .live-date {
-		position: static !important;
-		left: auto !important;
-		bottom: auto !important;
-		transform: none !important;
-		display: block;
-		width: 100%;
-		margin-top: 8px;
-		text-align: center;
-		font-size: 14px;
-		line-height: 1.15;
-	  }
-	
-	  .mobile-grid-item .tbl-caption {
-		margin-top: 8px;
-		max-width: 240px;
-		font-size: 18px;
-	  }
-	
-	  #welcome-stars-mobile {
-		width: min(260px, 100%) !important;
-	  }
-	
-	  .flyer-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	  }
-	
-	  .pets-frame-wrap {
-		grid-template-columns: 34px minmax(0, 1fr) 34px;
-		gap: 8px;
-		align-items: center;
-	  }
-	
-	  .pets-card {
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-	  }
-	
-	  .pets-glitter-frame {
-		width: min(200px, 100%);
-		min-width: 0;
-	  }
-	
-	  .pets-text {
-		width: 100%;
-	  }
-	
-	  .pets-text h2 {
-		font-size: 15px;
-	  }
-	
-	  .pets-text p {
-		font-size: 13px;
-		line-height: 1.4;
-	  }
-	
-	  .pets-arrow {
-		width: 34px;
-		height: 34px;
-		min-width: 34px;
-		font-size: 22px !important;
-	  }
-	
-	  .pets-arrow-left,
-	  .pets-arrow-right {
-		justify-self: center;
-		align-self: center;
-	  }
-	
-	  .image-header-bottom-mobile {
-		margin: 120px 0 24px;
-	  }
-	
-	  .about-window {
-		width: calc(100vw - 12px) !important;
-		max-width: calc(100vw - 12px) !important;
-	  }
-	
-	  .about-image-content {
-		padding: 10px;
-	  }
-	
-	  .clients-table {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 16px 12px;
-	  }
-	
-	  .client-stack {
-		gap: 0;
-	  }
-	
-	  .client-gif {
-		width: 74px;
-		height: 74px;
-	  }
-	
-	  .client-stack .client-gif {
-		width: 74px;
-		height: auto;
-		margin: 0;
-	  }
-	
-	  .client-item span {
-		font-size: 10px;
-	  }
+	.page {
+	min-height: 0;
 	}
+	
+	.stage {
+	position: relative;
+	min-height: auto;
+	padding-bottom: 40px;
+	}
+	
+	.e-wrap-mobile-old {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	margin: 0;
+	transform: translate(-50%, 490px) scale(0.5);
+	}
+	
+	.welcome-window {
+	display: none !important;
+	}
+	
+	.welcome-window-mobile {
+	display: flex !important;
+	position: relative;
+	width: calc(100vw - 28px);
+	max-width: calc(100vw - 28px);
+	margin: 590px auto 24px;
+	z-index: 20;
+	}
+	
+	.mobile-grid-wrap {
+	display: block !important;
+	width: 100%;
+	margin-top: 110px !important; /* increase this */
+	margin-bottom: 10px;
+	padding: 0 12px 40px;
+	box-sizing: border-box;
+	overflow: visible;
+	}
+
+	.mobile-grid {
+	display: grid !important;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 18px 12px;
+	align-items: start;
+	overflow: visible;
+	}
+	
+	.image-table-wrap {
+	display: none !important;
+	}
+	
+	.mobile-grid-item {
+	min-width: 0;
+	}
+	
+	.mobile-grid-item--wide {
+	grid-column: span 2;
+	}
+	
+	.mobile-grid-item .tbl-img {
+	width: min(var(--w, 180px), 100%);
+	transform: none !important;
+	margin: 0 auto;
+	}
+	
+	.mobile-grid-item .tbl-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	}
+	
+	.mobile-grid-item .tbl-img-wrap {
+	position: relative;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	}
+	
+	.mobile-grid-item .live-date {
+	position: static !important;
+	left: auto !important;
+	bottom: auto !important;
+	transform: none !important;
+	display: block;
+	width: 100%;
+	margin-top: 8px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 1.15;
+	}
+	
+	.mobile-grid-item .tbl-caption {
+	margin-top: 8px;
+	max-width: 240px;
+	font-size: 18px;
+	}
+	
+	#welcome-stars-mobile {
+	width: min(260px, 100%) !important;
+	}
+	
+	.flyer-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	
+	.pets-frame-wrap {
+	grid-template-columns: 34px minmax(0, 1fr) 34px;
+	gap: 8px;
+	align-items: center;
+	}
+	
+	.pets-card {
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	}
+	
+	.pets-glitter-frame {
+	width: min(200px, 100%);
+	min-width: 0;
+	}
+	
+	.pets-text {
+	width: 100%;
+	}
+	
+	.pets-text h2 {
+	font-size: 15px;
+	}
+	
+	.pets-text p {
+	font-size: 13px;
+	line-height: 1.4;
+	}
+	
+	.pets-arrow {
+	width: 34px;
+	height: 34px;
+	min-width: 34px;
+	font-size: 22px !important;
+	}
+	
+	.pets-arrow-left,
+	.pets-arrow-right {
+	justify-self: center;
+	align-self: center;
+	}
+	
+	.image-header-bottom-mobile {
+	margin: 120px 0 24px;
+	}
+	
+	.about-window {
+	width: calc(100vw - 12px) !important;
+	max-width: calc(100vw - 12px) !important;
+	}
+	
+	.about-image-content {
+	padding: 10px;
+	}
+	
+	.clients-table {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 16px 12px;
+	}
+	
+	.client-stack {
+	gap: 0;
+	}
+	
+	.client-gif {
+	width: 74px;
+	height: 74px;
+	}
+	
+	.client-stack .client-gif {
+	width: 74px;
+	height: auto;
+	margin: 0;
+	}
+	
+	.client-item span {
+	font-size: 10px;
+	}
+	}
+
+	
+	  
   </style>
 </head>
 <body>
@@ -1964,31 +1992,33 @@
 			  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
 			  style="--x:220px; --y:-55px; --r:25deg; --s:0.95; width:190px;"
 			  alt="Contact">
+			  
 		  </a>
 		</div>
 	  </div>
 
-	  <div id="welcome-window" class="aero-window">
-		<div class="aero-header">
-		  <div class="aero-title">welcome message</div>
-		</div>
-		<div class="aero-content">
-		  <p>
-			hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out =) 
-		  </p>
-		</div>
-	  </div>
+	</div>
 
-	  <div id="under-window" class="aero-window">
-		<div class="aero-header">
-		  <div class="aero-title">under construction</div>
-		  <button class="aero-close" type="button">✕</button>
-		</div>
-		<div class="aero-content">
-		  <p>
-			this site will be an on-going work in progress, pages can move, links may break, ideas will evolve.
-		  </p>
-		</div>
+	<div id="welcome-window" class="aero-window welcome-window">
+	  <div class="aero-header">
+		<div class="aero-title">welcome message</div>
+	  </div>
+	  <div class="aero-content">
+		<p>
+		  hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out =) 
+		</p>
+	  </div>
+	</div>
+
+	<div id="under-window" class="aero-window">
+	  <div class="aero-header">
+		<div class="aero-title">under construction</div>
+		<button class="aero-close" type="button">✕</button>
+	  </div>
+	  <div class="aero-content">
+		<p>
+		  this site will be an on-going work in progress, pages can move, links may break, ideas will evolve.
+		</p>
 	  </div>
 	</div>
 
@@ -2214,6 +2244,17 @@
 		</tr>
 	  </table>
 	</div>
+  </div>
+
+  <div id="welcome-window-mobile" class="aero-window welcome-window-mobile">
+    <div class="aero-header">
+      <div class="aero-title">welcome message</div>
+    </div>
+    <div class="aero-content">
+      <p>
+        hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out =) 
+      </p>
+    </div>
   </div>
 
   <div class="mobile-grid-wrap">
@@ -2657,6 +2698,21 @@
 				</div>
 			  </div>
 			</section>
+			
+			<!-- ============================================================
+				   MOBILE LAYOUT — shown only on <=768px via CSS
+			  ============================================================ -->
+			  
+			  <div class="m-welcome">
+				<div class="m-welcome-header">
+				  <span class="m-welcome-title">welcome message</span>
+				</div>
+				<div class="m-welcome-body">
+				  <p>hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out =)</p>
+				</div>
+			  </div>
+			
+			
 
 		  </div>
 		</div>
@@ -3216,6 +3272,21 @@
 	  syncUI();
 	}
 
+	/* ==================================================
+	   LIVE DATE
+	================================================== */
+	(function() {
+	  var now = new Date();
+	  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+	  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	  var dateStr = days[now.getDay()] + ' ' + months[now.getMonth()] + ' ' + now.getDate();
+	  var ids = ['live-date', 'live-date-mobile', 'live-date-m'];
+	  ids.forEach(function(id) {
+	    var el = document.getElementById(id);
+	    if (el) el.textContent = dateStr;
+	  });
+	})();
+
   </script>
 
 <script>
@@ -3285,6 +3356,59 @@
 	},
 	{ passive: true }
   );
+})();
+</script>
+
+<script>
+/* ============================================
+   UNIFIED HEADER LOGIC (Mobile & Desktop)
+   - Visible on initial load
+   - Hides automatically when reaching .e-wrap
+   - Hides on scroll-down, reappears on scroll-up
+============================================ */
+(function () {
+  const header = document.querySelector('.image-header-top');
+  const eWrap = document.querySelector('.e-wrap');
+  if (!header || !eWrap) return;
+
+  let lastY = window.scrollY;
+  
+  // Calculate the position of the e-wrap section relative to the page
+  const getEWrapThreshold = () => {
+	const rect = eWrap.getBoundingClientRect();
+	return rect.top + window.scrollY;
+  };
+
+  function handleScroll() {
+	const currentY = window.scrollY;
+	const scrollingUp = currentY < lastY;
+	const eWrapThreshold = getEWrapThreshold();
+
+	// 1. Hide as soon as we reach or pass the e-wrap section
+	if (currentY >= eWrapThreshold) {
+	  if (scrollingUp) {
+		header.classList.remove('is-hidden');
+	  } else {
+		header.classList.add('is-hidden');
+	  }
+	} 
+	// 2. Stay visible while above e-wrap (initial state)
+	else {
+	  // Optional: hide on scroll down even above e-wrap for a consistent feel
+	  if (!scrollingUp && currentY > 50) {
+		header.classList.add('is-hidden');
+	  } else {
+		header.classList.remove('is-hidden');
+	  }
+	}
+
+	lastY = currentY;
+  }
+
+  // Use passive: true for better scroll performance
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  // Also run on load to set initial state
+  handleScroll();
 })();
 </script>
 </body>
