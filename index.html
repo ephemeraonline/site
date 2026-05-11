@@ -3304,25 +3304,34 @@
 <script>
 /* ==================================================
    HEADER SCROLL BEHAVIOUR
-   - Always visible on page load (desktop + mobile)
+   - Always visible on page load
    - Hides when scrolling DOWN past threshold
-   - Reappears when scrolling UP past threshold
+   - Desktop: reappears any time you scroll up
+   - Mobile: reappears only when scrolled back above the mobile grid
 ================================================== */
 (function () {
   const header = document.querySelector('.image-header-top');
   if (!header) return;
 
-  // Lower threshold on mobile so it disappears a bit sooner while scrolling
-  const THRESHOLD = window.matchMedia('(max-width: 768px)').matches ? 200 : 120;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const HIDE_THRESHOLD = isMobile ? 200 : 120;
   let lastY = window.scrollY;
+
+  function getShowThreshold() {
+    if (!isMobile) return 0; // desktop: show as soon as scrolling up
+    const grid = document.querySelector('.mobile-grid-wrap');
+    if (!grid) return HIDE_THRESHOLD;
+    // top of mobile grid relative to page
+    return grid.getBoundingClientRect().top + window.scrollY;
+  }
 
   window.addEventListener('scroll', function () {
     const y = window.scrollY;
     const scrollingDown = y > lastY;
 
-    if (scrollingDown && y > THRESHOLD) {
+    if (scrollingDown && y > HIDE_THRESHOLD) {
       header.classList.add('is-hidden');
-    } else if (!scrollingDown) {
+    } else if (!scrollingDown && y < getShowThreshold()) {
       header.classList.remove('is-hidden');
     }
 
