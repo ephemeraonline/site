@@ -3273,142 +3273,61 @@
 	}
 
 	/* ==================================================
-	   LIVE DATE
+	   LIVE DATE + CLOCK
 	================================================== */
 	(function() {
-	  var now = new Date();
 	  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 	  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-	  var dateStr = days[now.getDay()] + ' ' + months[now.getMonth()] + ' ' + now.getDate();
 	  var ids = ['live-date', 'live-date-mobile', 'live-date-m'];
-	  ids.forEach(function(id) {
-	    var el = document.getElementById(id);
-	    if (el) el.textContent = dateStr;
-	  });
+
+	  function pad(n) { return n < 10 ? '0' + n : n; }
+
+	  function tick() {
+	    var now = new Date();
+	    var dateStr = days[now.getDay()] + ' ' + months[now.getMonth()] + ' ' + now.getDate();
+	    var h = now.getHours();
+	    var ampm = h >= 12 ? 'pm' : 'am';
+	    h = h % 12 || 12;
+	    var timeStr = h + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds()) + ' ' + ampm;
+	    ids.forEach(function(id) {
+	      var el = document.getElementById(id);
+	      if (el) el.textContent = dateStr + '  ·  ' + timeStr;
+	    });
+	  }
+
+	  tick();
+	  setInterval(tick, 1000);
 	})();
 
   </script>
 
 <script>
 /* ==================================================
-   HEADER HIDE ON SCROLL
+   HEADER SCROLL BEHAVIOUR
+   - Always visible on page load (desktop + mobile)
+   - Hides when scrolling DOWN past threshold
+   - Reappears when scrolling UP past threshold
 ================================================== */
 (function () {
   const header = document.querySelector('.image-header-top');
   if (!header) return;
 
+  // Lower threshold on mobile so it disappears a bit sooner while scrolling
+  const THRESHOLD = window.matchMedia('(max-width: 768px)').matches ? 200 : 120;
   let lastY = window.scrollY;
 
-  function onScroll() {
-	const currentY = window.scrollY;
-	const hideThreshold = window.innerWidth <= 768 ? 180 : 120;
+  window.addEventListener('scroll', function () {
+    const y = window.scrollY;
+    const scrollingDown = y > lastY;
 
-	if (currentY > hideThreshold && currentY > lastY) {
-	  header.classList.add('is-hidden');
-	} else {
-	  header.classList.remove('is-hidden');
-	}
+    if (scrollingDown && y > THRESHOLD) {
+      header.classList.add('is-hidden');
+    } else if (!scrollingDown) {
+      header.classList.remove('is-hidden');
+    }
 
-	lastY = currentY;
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-})();
-</script>
-
-<script>
-/* ============================================
-   MOBILE-ONLY HEADER VISIBILITY
-   - hides when scrolling down past threshold
-   - reappears when scrolling UP past same point
-   - original position (not pinned)
-   DESKTOP COMPLETELY UNTOUCHED
-============================================ */
-(function () {
-  if (!window.matchMedia('(max-width: 768px)').matches) return;
-
-  const header = document.querySelector('.image-header-top');
-  if (!header) return;
-
-  const THRESHOLD = 320; // same visual point as before
-  let hidden = false;
-  let lastY = window.scrollY;
-
-  window.addEventListener(
-	'scroll',
-	() => {
-	  const y = window.scrollY;
-	  const scrollingUp = y < lastY;
-
-	  // Hide when scrolling down past threshold
-	  if (!hidden && y >= THRESHOLD) {
-		header.classList.add('is-hidden');
-		hidden = true;
-	  }
-
-	  // Show again when scrolling UP past threshold
-	  if (hidden && scrollingUp && y < THRESHOLD) {
-		header.classList.remove('is-hidden');
-		hidden = false;
-	  }
-
-	  lastY = y;
-	},
-	{ passive: true }
-  );
-})();
-</script>
-
-<script>
-/* ============================================
-   UNIFIED HEADER LOGIC (Mobile & Desktop)
-   - Visible on initial load
-   - Hides automatically when reaching .e-wrap
-   - Hides on scroll-down, reappears on scroll-up
-============================================ */
-(function () {
-  const header = document.querySelector('.image-header-top');
-  const eWrap = document.querySelector('.e-wrap');
-  if (!header || !eWrap) return;
-
-  let lastY = window.scrollY;
-  
-  // Calculate the position of the e-wrap section relative to the page
-  const getEWrapThreshold = () => {
-	const rect = eWrap.getBoundingClientRect();
-	return rect.top + window.scrollY;
-  };
-
-  function handleScroll() {
-	const currentY = window.scrollY;
-	const scrollingUp = currentY < lastY;
-	const eWrapThreshold = getEWrapThreshold();
-
-	// 1. Hide as soon as we reach or pass the e-wrap section
-	if (currentY >= eWrapThreshold) {
-	  if (scrollingUp) {
-		header.classList.remove('is-hidden');
-	  } else {
-		header.classList.add('is-hidden');
-	  }
-	} 
-	// 2. Stay visible while above e-wrap (initial state)
-	else {
-	  // Optional: hide on scroll down even above e-wrap for a consistent feel
-	  if (!scrollingUp && currentY > 50) {
-		header.classList.add('is-hidden');
-	  } else {
-		header.classList.remove('is-hidden');
-	  }
-	}
-
-	lastY = currentY;
-  }
-
-  // Use passive: true for better scroll performance
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  // Also run on load to set initial state
-  handleScroll();
+    lastY = y;
+  }, { passive: true });
 })();
 </script>
 </body>
