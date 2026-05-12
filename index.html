@@ -1396,25 +1396,29 @@
 		margin-right: 4px;
 	  }
 
-	  .image-header-top {
-		top: 70px;
-		display: flex !important;
-		justify-content: center;
-		width: 100%;
-		margin-top: 50px;
-	  }
+	.image-header-top {
+  top: 0;
+  display: flex !important;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0;
+  position: relative;
+  z-index: 9999;
+}
 
-	  .image-header-bottom {
-		display: none !important;
-	  }
+.image-header-bottom {
+  display: none !important;
+}
 
-	  .image-header-bottom-mobile {
-		display: flex !important;
-		justify-content: center;
-		width: 100%;
-		margin: 140px 0 24px;
-		pointer-events: none;
-	  }
+.image-header-bottom-mobile {
+  display: flex !important;
+  justify-content: center;
+  width: 100%;
+  margin: 40px 0 24px;
+  pointer-events: none;
+  position: relative;
+  z-index: 9999;
+}
 
 	  .image-header-img {
 		width: min(88vw, 360px);
