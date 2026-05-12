@@ -1396,29 +1396,25 @@
 		margin-right: 4px;
 	  }
 
-	.image-header-top {
-  top: 0;
-  display: flex !important;
-  justify-content: center;
-  width: 100%;
-  margin-top: 0;
-  position: relative;
-  z-index: 9999;
-}
+	  .image-header-top {
+		top: 70px;
+		display: flex !important;
+		justify-content: center;
+		width: 100%;
+		margin-top: 50px;
+	  }
 
-.image-header-bottom {
-  display: none !important;
-}
+	  .image-header-bottom {
+		display: none !important;
+	  }
 
-.image-header-bottom-mobile {
-  display: flex !important;
-  justify-content: center;
-  width: 100%;
-  margin: 40px 0 24px;
-  pointer-events: none;
-  position: relative;
-  z-index: 9999;
-}
+	  .image-header-bottom-mobile {
+		display: flex !important;
+		justify-content: center;
+		width: 100%;
+		margin: 140px 0 24px;
+		pointer-events: none;
+	  }
 
 	  .image-header-img {
 		width: min(88vw, 360px);
@@ -1434,7 +1430,7 @@
 		--y: 490px;
 		display: block !important;
 		width: var(--w);
-		max-width: 420px;
+		max-width: 920px;
 		min-width: 120px;
 		height: 200px;
 		margin: 0 auto -70px;
@@ -1467,26 +1463,27 @@
 		z-index: 60;
 	  }
 
-	  .orbit-mobile-old {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 18%;
-		max-width: 930px;
-		min-width: 160px;
-		display: block;
-		height: auto;
-		pointer-events: auto;
-		z-index: 10;
-		transform:
-		  translate(-50%, -50%)
-		  translate(var(--x), var(--y))
-		  rotate(var(--r, 0deg))
-		  scale(var(--s, 1));
-		animation: float-mobile-old 6s ease-in-out infinite;
-		transition: transform 0.2s ease;
-		will-change: transform;
-	  }
+	.orbit-mobile-old {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	
+	  display: block;
+	  height: auto;
+	
+	  pointer-events: auto;
+	  z-index: 10;
+	
+	  transform:
+		translate(-50%, -50%)
+		translate(var(--x), var(--y))
+		rotate(var(--r, 0deg))
+		scale(var(--s, 1));
+	
+	  animation: float-mobile-old 6s ease-in-out infinite;
+	  transition: transform 0.2s ease;
+	  will-change: transform;
+	}
 
 
 	  .stage {
@@ -1646,33 +1643,7 @@
 	}
 
 
-	
-  /* ==================================================
-     INDIVIDUAL MOBILE ELEMENT SIZING
-  ================================================== */
-
-  .orbit-mobile-flyers {
-    width: 320px;
-  }
-
-  .orbit-mobile-about {
-    width: 390px;
-  }
-
-  .orbit-mobile-instagram {
-    width: 390px;
-  }
-
-  .orbit-mobile-store {
-    width: 290px;
-  }
-
-  .orbit-mobile-contact {
-    width: 390px;
-  }
-
-
-@keyframes float-mobile-old {
+	@keyframes float-mobile-old {
 	  0% {
 		transform:
 		  translate(-50%, -50%)
@@ -1937,7 +1908,7 @@
 		  class="orbit-mobile-old"
 		  id="flyers-trigger-mobile-old"
 		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_FLYERS_BUTTON.gif"
-		  style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:240px;"
+		  style="--x:-240px; --y:-140px; --r:-15deg; --s:1.1; width:250px;"
 		  alt="Flyers">
 	  </a>
 
@@ -1945,22 +1916,22 @@
 		class="orbit-mobile-old"
 		id="about-trigger-mobile-old"
 		src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_ABOUT.png"
-		style="--x:50px; --y:-280px; --r:5deg; --s:1.0; width:180px;"
+		style="--x:50px; --y:-280px; --r:5deg; --s:1.0; width:250px;"
 		alt="About">
 
 	  <a href="https://www.instagram.com/ephemeraonline.world/" target="_blank" rel="noopener noreferrer">
 		<img
 		  class="orbit-mobile-old"
 		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_STAR_INSTAGRAM.png"
-		  style="--x:-260px; --y:170px; --r:-15deg; --s:1.0; width:180px;"
+		  style="--x:-260px; --y:170px; --r:-15deg; --s:1.0; width:250px;"
 		  alt="Instagram">
 	  </a>
 
-<a href="https://ephemeraonline.world/store" target="_blank" rel="noopener noreferrer">
+	  <a href="https://ephemeraonline.world/store" target="_blank" rel="noopener noreferrer">
 		<img
-		  class="orbit-mobile-old orbit-mobile-store"
+		  class="orbit-mobile-old"
 		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/NOTEPAD_STORE.gif"
-		  style="--x:260px; --y:180px; --r:5deg; --s:0.95;"
+		  style="--x:260px; --y:220px; --r:5deg; --s:0.95; width:290px;"
 		  alt="Store">
 	  </a>
 
@@ -1968,7 +1939,7 @@
 		<img
 		  class="orbit-mobile-old"
 		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_CONTACT.png"
-		  style="--x:260px; --y:-65px; --r:25deg; --s:1.05; width:180px;"
+		  style="--x:260px; --y:-65px; --r:25deg; --s:1.05; width:250px;"
 		  alt="Contact">
 	  </a>
 	</div>
@@ -3303,142 +3274,70 @@
 	}
 
 	/* ==================================================
-	   LIVE DATE
+	   LIVE DATE + CLOCK
 	================================================== */
 	(function() {
-	  var now = new Date();
 	  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 	  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-	  var dateStr = days[now.getDay()] + ' ' + months[now.getMonth()] + ' ' + now.getDate();
 	  var ids = ['live-date', 'live-date-mobile', 'live-date-m'];
-	  ids.forEach(function(id) {
-	    var el = document.getElementById(id);
-	    if (el) el.textContent = dateStr;
-	  });
+
+	  function pad(n) { return n < 10 ? '0' + n : n; }
+
+	  function tick() {
+	    var now = new Date();
+	    var dateStr = days[now.getDay()] + ' ' + months[now.getMonth()] + ' ' + now.getDate();
+	    var h = now.getHours();
+	    var ampm = h >= 12 ? 'pm' : 'am';
+	    h = h % 12 || 12;
+	    var timeStr = h + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds()) + ' ' + ampm;
+	    ids.forEach(function(id) {
+	      var el = document.getElementById(id);
+	      if (el) el.textContent = dateStr + '  ·  ' + timeStr;
+	    });
+	  }
+
+	  tick();
+	  setInterval(tick, 1000);
 	})();
 
   </script>
 
 <script>
 /* ==================================================
-   HEADER HIDE ON SCROLL
+   HEADER SCROLL BEHAVIOUR
+   - Always visible on page load
+   - Hides when scrolling DOWN past threshold
+   - Desktop: reappears any time you scroll up
+   - Mobile: reappears only when scrolled back above the mobile grid
 ================================================== */
 (function () {
   const header = document.querySelector('.image-header-top');
   if (!header) return;
 
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const HIDE_THRESHOLD = isMobile ? 200 : 120;
   let lastY = window.scrollY;
 
-  function onScroll() {
-	const currentY = window.scrollY;
-	const hideThreshold = window.innerWidth <= 768 ? 180 : 120;
-
-	if (currentY > hideThreshold && currentY > lastY) {
-	  header.classList.add('is-hidden');
-	} else {
-	  header.classList.remove('is-hidden');
-	}
-
-	lastY = currentY;
+  function getShowThreshold() {
+    if (!isMobile) return 0; // desktop: show as soon as scrolling up
+    const grid = document.querySelector('.mobile-grid-wrap');
+    if (!grid) return HIDE_THRESHOLD;
+    // top of mobile grid relative to page
+    return grid.getBoundingClientRect().top + window.scrollY;
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-})();
-</script>
+  window.addEventListener('scroll', function () {
+    const y = window.scrollY;
+    const scrollingDown = y > lastY;
 
-<script>
-/* ============================================
-   MOBILE-ONLY HEADER VISIBILITY
-   - hides when scrolling down past threshold
-   - reappears when scrolling UP past same point
-   - original position (not pinned)
-   DESKTOP COMPLETELY UNTOUCHED
-============================================ */
-(function () {
-  if (!window.matchMedia('(max-width: 768px)').matches) return;
+    if (scrollingDown && y > HIDE_THRESHOLD) {
+      header.classList.add('is-hidden');
+    } else if (!scrollingDown && y < getShowThreshold()) {
+      header.classList.remove('is-hidden');
+    }
 
-  const header = document.querySelector('.image-header-top');
-  if (!header) return;
-
-  const THRESHOLD = 320; // same visual point as before
-  let hidden = false;
-  let lastY = window.scrollY;
-
-  window.addEventListener(
-	'scroll',
-	() => {
-	  const y = window.scrollY;
-	  const scrollingUp = y < lastY;
-
-	  // Hide when scrolling down past threshold
-	  if (!hidden && y >= THRESHOLD) {
-		header.classList.add('is-hidden');
-		hidden = true;
-	  }
-
-	  // Show again when scrolling UP past threshold
-	  if (hidden && scrollingUp && y < THRESHOLD) {
-		header.classList.remove('is-hidden');
-		hidden = false;
-	  }
-
-	  lastY = y;
-	},
-	{ passive: true }
-  );
-})();
-</script>
-
-<script>
-/* ============================================
-   UNIFIED HEADER LOGIC (Mobile & Desktop)
-   - Visible on initial load
-   - Hides automatically when reaching .e-wrap
-   - Hides on scroll-down, reappears on scroll-up
-============================================ */
-(function () {
-  const header = document.querySelector('.image-header-top');
-  const eWrap = document.querySelector('.e-wrap');
-  if (!header || !eWrap) return;
-
-  let lastY = window.scrollY;
-  
-  // Calculate the position of the e-wrap section relative to the page
-  const getEWrapThreshold = () => {
-	const rect = eWrap.getBoundingClientRect();
-	return rect.top + window.scrollY;
-  };
-
-  function handleScroll() {
-	const currentY = window.scrollY;
-	const scrollingUp = currentY < lastY;
-	const eWrapThreshold = getEWrapThreshold();
-
-	// 1. Hide as soon as we reach or pass the e-wrap section
-	if (currentY >= eWrapThreshold) {
-	  if (scrollingUp) {
-		header.classList.remove('is-hidden');
-	  } else {
-		header.classList.add('is-hidden');
-	  }
-	} 
-	// 2. Stay visible while above e-wrap (initial state)
-	else {
-	  // Optional: hide on scroll down even above e-wrap for a consistent feel
-	  if (!scrollingUp && currentY > 50) {
-		header.classList.add('is-hidden');
-	  } else {
-		header.classList.remove('is-hidden');
-	  }
-	}
-
-	lastY = currentY;
-  }
-
-  // Use passive: true for better scroll performance
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  // Also run on load to set initial state
-  handleScroll();
+    lastY = y;
+  }, { passive: true });
 })();
 </script>
 </body>
