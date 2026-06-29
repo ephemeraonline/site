@@ -24,7 +24,7 @@
 <meta property="twitter:image" content="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPH_SOCIAL_CARD.png">
 
 	<!-- ==================================================
-     SEO + SOCIAL META TAGS
+	 SEO + SOCIAL META TAGS
 ================================================== -->
 
 <meta name="description" content="EPHEMERA is a small creative studio run by two friends with too many browser tabs open.">
@@ -65,7 +65,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!-- ==================================================
-     END SEO + SOCIAL META TAGS
+	 END SEO + SOCIAL META TAGS
 ================================================== -->
 
 
@@ -2307,22 +2307,33 @@
 			  </div>
 			</div>
 		  </td>
+		 
 
 		  <td></td>
+		  <tr>
+			  <td>
+				  <a href="https://ephemeraonline.world/deck.html target="_blank" rel="noopener noreferrer">
+				  <img
+					class="tbl-img"
+					src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DECK_ICON.gif"
+					alt=""
+					style="--w:122px; --x:0px; --y:0px;">
+				</td>
+			  </tr>
 		</tr>
 	  </table>
 	</div>
   </div>
 
   <div id="welcome-window-mobile" class="aero-window welcome-window-mobile">
-    <div class="aero-header">
-      <div class="aero-title">welcome message</div>
-    </div>
-    <div class="aero-content">
-      <p>
-        hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out =) 
-      </p>
-    </div>
+	<div class="aero-header">
+	  <div class="aero-title">welcome message</div>
+	</div>
+	<div class="aero-content">
+	  <p>
+		hi! welcome to our site , we are EPHEMERA - a small creative studio run by two friends with too many browser tabs open. we built this space to experiment freely and let our ideas exist without needing to be perfect or permanent. it’s a love letter to the simpler times of early internet: personal pages, messy layouts, and the joy of clicking links just to see where they go. our site is a digital scrapbook where you’ll find bits of design, past projects, stuff we like and much more. some elements may stick around and some might disappear. we’re still figuring it out =) 
+	  </p>
+	</div>
   </div>
 
   <div class="mobile-grid-wrap">
@@ -2523,6 +2534,18 @@
 		  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/EPHEMERA_TALL.gif"
 		  alt=""
 		  style="--w:45px; --x:0px; --y:0px;">
+		  
+		  <tr>
+			<td>
+				<a href="https://ephemeraonline.world/deck.html target="_blank" rel="noopener noreferrer">
+				<img
+				  class="tbl-img"
+				  src="https://raw.githubusercontent.com/ephemeraonline/site/refs/heads/main/IMAGES/DECK_ICON.gif"
+				  alt=""
+				  style="--w:122px; --x:0px; --y:0px;">
+			  </td>
+			</tr>
+		  
 	  </div>
 	</div>
   </div>
@@ -3347,36 +3370,36 @@
   var ids = ['live-date', 'live-date-mobile', 'live-date-m'];
 
   function pad(n) {
-    return n < 10 ? '0' + n : n;
+	return n < 10 ? '0' + n : n;
   }
 
   function tick() {
-    var now = new Date();
+	var now = new Date();
 
-    // DATE → XX/XX/XX
-    var dateStr =
-      pad(now.getMonth() + 1) + '/' +
-      pad(now.getDate()) + '/' +
-      String(now.getFullYear()).slice(-2);
+	// DATE → XX/XX/XX
+	var dateStr =
+	  pad(now.getMonth() + 1) + '/' +
+	  pad(now.getDate()) + '/' +
+	  String(now.getFullYear()).slice(-2);
 
-    // TIME → includes seconds
-    var h = now.getHours();
-    var ampm = h >= 12 ? 'pm' : 'am';
+	// TIME → includes seconds
+	var h = now.getHours();
+	var ampm = h >= 12 ? 'pm' : 'am';
 
-    h = h % 12 || 12;
+	h = h % 12 || 12;
 
-    var timeStr =
-      h + ':' +
-      pad(now.getMinutes()) + ':' +
-      pad(now.getSeconds()) + ' ' + ampm;
+	var timeStr =
+	  h + ':' +
+	  pad(now.getMinutes()) + ':' +
+	  pad(now.getSeconds()) + ' ' + ampm;
 
-    ids.forEach(function(id) {
-      var el = document.getElementById(id);
+	ids.forEach(function(id) {
+	  var el = document.getElementById(id);
 
-      if (el) {
-        el.textContent = dateStr + '  ·  ' + timeStr;
-      }
-    });
+	  if (el) {
+		el.textContent = dateStr + '  ·  ' + timeStr;
+	  }
+	});
   }
 
   tick();
@@ -3401,24 +3424,24 @@
   let lastY = window.scrollY;
 
   function getShowThreshold() {
-    if (!isMobile) return 0; // desktop: show as soon as scrolling up
-    const grid = document.querySelector('.mobile-grid-wrap');
-    if (!grid) return HIDE_THRESHOLD;
-    // top of mobile grid relative to page
-    return grid.getBoundingClientRect().top + window.scrollY;
+	if (!isMobile) return 0; // desktop: show as soon as scrolling up
+	const grid = document.querySelector('.mobile-grid-wrap');
+	if (!grid) return HIDE_THRESHOLD;
+	// top of mobile grid relative to page
+	return grid.getBoundingClientRect().top + window.scrollY;
   }
 
   window.addEventListener('scroll', function () {
-    const y = window.scrollY;
-    const scrollingDown = y > lastY;
+	const y = window.scrollY;
+	const scrollingDown = y > lastY;
 
-    if (scrollingDown && y > HIDE_THRESHOLD) {
-      header.classList.add('is-hidden');
-    } else if (!scrollingDown && y < getShowThreshold()) {
-      header.classList.remove('is-hidden');
-    }
+	if (scrollingDown && y > HIDE_THRESHOLD) {
+	  header.classList.add('is-hidden');
+	} else if (!scrollingDown && y < getShowThreshold()) {
+	  header.classList.remove('is-hidden');
+	}
 
-    lastY = y;
+	lastY = y;
   }, { passive: true });
 })();
 </script>
